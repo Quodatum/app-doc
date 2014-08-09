@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<xs:schema targetNamespace="test" elementFormDefault="qualified"
+	attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="test">
+
+	<xs:group name="myGroup">
+		<xs:choice>
+			<xs:element name="two" type="xs:token" />
+			<xs:element name="three" type="xs:token" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="base">
+		<xs:sequence>
+			<xs:group ref="myGroup" />
+			<xs:element name="one" type="xs:token" minOccurs="0" />
+			<xs:element name="four" type="xs:token" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="restricted">
+		<xs:complexContent>
+			<xs:restriction base="base">
+				<xs:sequence>
+					<xs:group ref="myGroup" />
+					<xs:element name="one" type="xs:token" minOccurs="0" />
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="root" type="restricted" />
+</xs:schema>
