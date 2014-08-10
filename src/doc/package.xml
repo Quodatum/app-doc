@@ -1,0 +1,4 @@
+<package abbrev="doc" name="urn:quodatum.basex.doc" version="0.1"
+	spec="1.0" xmlns="http://expath.org/ns/pkg">
+	<title>Doc</title>
+</package>

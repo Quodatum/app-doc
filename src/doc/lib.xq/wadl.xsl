@@ -14,7 +14,7 @@
 	<xsl:template match="/wadl:application/wadl:resources">
 		<div>
 			<h2>
-				REST (XQ) API:
+				RestXQ API:
 				<xsl:value-of select="$root" />
 			</h2>
 			<accordion close-others="false">
@@ -28,10 +28,11 @@
 							<span style="padding-left:1em">
 								<xsl:value-of select="substring(@path,1+string-length($root))" />
 							</span>
-							<p class="right">
+							<p class="pull-right">
 								<xsl:value-of select="wadl:method/wadl:doc" />
+								<i class="glyphicon" ng-class="{{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}}"></i>	
 							</p>
-						</accordion-heading>
+										</accordion-heading>
 						<xsl:apply-templates select="wadl:method" />
 					</accordion-group>
 				</xsl:for-each>

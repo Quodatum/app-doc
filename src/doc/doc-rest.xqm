@@ -20,8 +20,13 @@ declare
 %rest:GET %rest:path("doc")
 function doc(){
     let $apps:=("benchx","doc")
+    return <div>
+     <a href="components">Components</a>  
+    
+    {
     for $a in $apps
-    return <a href="app/{$a}">{$a}</a>  
+    return <a href="app/{$a}">{$a}</a>
+    } </div> 
 }; 
 
 (:~
@@ -33,13 +38,13 @@ declare
 %rest:GET %rest:path("doc/app/{$app}")
 function app($app as xs:string) 
 {
-   <div>
-   <a href="app/{$app}/server/xqdoc">Xquery doc for application</a>
-   <a href="app/{$app}/server/wadl">WADL doc for application</a>
-   <a href="app/{$app}/client/components">Client side components used by the application</a>
-   <a href="app/{$app}/client/templates">XML templates  for application</a> 
-    <a href="doc/components">Components</a>      
-   </div>
+   <section>
+       <h2><a href="..">doc</a>/{$app}</h2>
+       <a href="{$app}/server/xqdoc">Xquery doc for application</a>
+       <a href="{$app}/server/wadl">WADL doc for application</a>
+       <a href="{$app}/client/components">Client side components used by the application</a>
+       <a href="{$app}/client/templates">XML templates  for application</a>       
+   </section>
 };
 (:~
  : show xqdoc for rest api
@@ -86,7 +91,9 @@ declare
 function client-components($app as xs:string) 
 {
   let $c:=resolve($app,"package.xml")
-  let $r:=xslt:transform(fn:doc($c), fn:doc("component.xsl"))  
+  let $r:=xslt:transform(fn:doc($c)
+                        ,fn:doc("component.xsl")
+                        )  
   return $r 
 }; 
 
@@ -105,7 +112,7 @@ function templates($app as xs:string)
  : list all components in catalog
  :)
 declare 
-%rest:GET %rest:path("doc/doc/components")
+%rest:GET %rest:path("doc/components")
 function components(){
     $dr:components
 };
