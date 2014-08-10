@@ -58,19 +58,26 @@ function xqdoc($app as xs:string,
                 $mod as xs:string,
                 $fmt as xs:string) 
 {
-    let $src:=resolve($app,$mod)
+    let $src:=app-uri($app,$mod)
     let $mod:=fn:trace($mod,"mod::::")
     let $doc:=inspect:xqdoc($src)
     let $r:=if($fmt="html") then doc:generate-html($doc) else $doc
     return (web:method($fmt),$r)
 };
 
-declare function resolve(
+declare function app-uri(
                 $app as xs:string,
                 $path as xs:string) as xs:string
 {
     fn:resolve-uri(fn:concat("../",$app,"/",$path))
-}; 
+};
+declare function static-uri(
+                $app as xs:string,
+                $path as xs:string) as xs:string
+{
+    fn:resolve-uri(fn:concat("../static/",$app,"/",$path))
+};
+ 
 (:~
  : show xqdoc for rest api
  :)
@@ -90,7 +97,7 @@ declare
 %output:method("html")  
 function client-components($app as xs:string) 
 {
-  let $c:=resolve($app,"package.xml")
+  let $c:=app-uri($app,"package.xml")
   let $r:=xslt:transform(fn:doc($c)
                         ,fn:doc("component.xsl")
                         )  
@@ -105,7 +112,14 @@ declare
 %output:method("html")  
 function templates($app as xs:string) 
 {
-  <todo>Yes</todo>
+    let $path:=static-uri($app,"templates/")
+    let $path:=fn:trace($path,"path::::")
+    let $list:=file:list($path,fn:true())
+    return <div>{
+     for $t in $list
+     order by fn:lower-case($t)
+      return <a href="templates/{$t}">{$t}</a>
+      }</div>
 }; 
 
 (:~

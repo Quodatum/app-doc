@@ -1,3 +1,6 @@
+(:~
+ : testing schema functions
+ :)
 import module namespace xsd="apb.schema.rest" at "schema.xqm";
 declare namespace J= "org.apb.modules.Xsd";
 
