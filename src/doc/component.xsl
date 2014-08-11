@@ -21,29 +21,46 @@
 			</xsl:for-each>
 		</div>
 	</xsl:template>
-
+<!-- convert package.xml to bootstrap html -->
 	<xsl:template match="/pkg:package">
-		<xsl:variable name="cmps">
-			<xsl:copy-of select="document('data/components.xml')/components/cmp" />
-		</xsl:variable>
+		<xsl:variable name="cmps" select="doc('data/components.xml')//cmp" />
+		<xsl:variable name="used" select="pkg:dependency" />
+		<xsl:variable name="found" select="$cmps[@name=$used/@name]" />
 		<div>
 			<h2>
-				Package (
-				<xsl:value-of select="count(pkg:dependency)" />
-				)
+				<span class="label label-primary"><xsl:value-of select="@abbrev" /></span>
+				lists <span class="label label-default"><xsl:value-of select="count($used)" /></span>			
+				dependancies in package.xml<a href="../../doc/app/{@abbrev}/client/components?fmt=xml" target="dn"><i class="glyphicon glyphicon-save"></i></a>
 			</h2>
+			<xsl:for-each select="$used">
+			     <xsl:sort select="lower-case(@name)" />
+			     <xsl:variable name="cmp" select="$cmps[@name=current()/@name]" />
+			     
+				<a ng-click="scrollTo('cmp-{@name}')"
+				class="btn btn-sm btn-{if($cmp)then 'success' else 'danger'}">
+				<xsl:value-of select="@name" />
+				</a>
+			</xsl:for-each>
 			<div>
-				<xsl:apply-templates select="$cmps">
+				<h3>Used</h3>
+				<xsl:apply-templates select="$found">
 					<xsl:sort select="lower-case(@name)" />
 				</xsl:apply-templates>
 			</div>
-			<h2>Errors</h2>
-			TODO
+			<h3>
+				Not used
+				(
+				<xsl:value-of select="count($cmps)" />
+				)
+			</h3>
+			<div>
+				<xsl:apply-templates select="$cmps except $found">
+					<xsl:sort select="lower-case(@name)" />
+				</xsl:apply-templates>
+			</div>
 		</div>
 	</xsl:template>
-	<xsl:template match="/pkg:package" mode="html">
-		<xsl:param name="cmps" select="document('data/components.xml')" />
-	</xsl:template>
+
 
 	<xsl:template match="cmp">
 		<div class="panel panel-default">

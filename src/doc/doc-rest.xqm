@@ -6,7 +6,7 @@
 module namespace dr = 'apb.doc.rest';
 declare default function namespace 'apb.doc.rest'; 
 
-import module namespace doc = 'apb.doc' at 'lib.xq/doctools.xqm';
+import module namespace doc = 'apb.doc' at 'doctools.xqm';
 import module namespace web = 'apb.web.utils3' at 'lib.xq/webutils.xqm';
 
 declare variable $dr:components:=fn:doc("data/components.xml");
@@ -47,11 +47,10 @@ function app($app as xs:string)
    </section>
 };
 (:~
- : show xqdoc for rest api
+ : show xqdoc for $mod in $app
  :)
 declare 
 %rest:GET %rest:path("doc/app/{$app}/server/xqdoc")
-
 %restxq:query-param("mod", "{$mod}","benchx-rest.xqm")
 %restxq:query-param("fmt", "{$fmt}","html")   
 function xqdoc($app as xs:string,
@@ -90,18 +89,21 @@ function wadl($app as xs:string)
 }; 
 
 (:~
- : show client javascript components 
+ : show client  components 
  :)
 declare 
 %rest:GET %rest:path("doc/app/{$app}/client/components")
+%restxq:query-param("fmt", "{$fmt}","html")
 %output:method("html")  
-function client-components($app as xs:string) 
+function client-components($app as xs:string,
+                        $fmt as xs:string) 
 {
   let $c:=app-uri($app,"package.xml")
-  let $r:=xslt:transform(fn:doc($c)
+  return if($fmt="xml")    
+         then (web:download-response("xml", "package.xml"),fn:doc($c))
+         else xslt:transform(fn:doc($c)
                         ,fn:doc("component.xsl")
                         )  
-  return $r 
 }; 
 
 (:~

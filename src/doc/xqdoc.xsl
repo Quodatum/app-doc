@@ -54,10 +54,10 @@
 			</table>
 			<h2>Variables</h2>
 			<xsl:for-each select="xqdoc:variables/xqdoc:variable">
-                <xsl:sort select="xqdoc:name" />
-                <xsl:apply-templates select="." />
-            </xsl:for-each>
-            
+				<xsl:sort select="xqdoc:name" />
+				<xsl:apply-templates select="." />
+			</xsl:for-each>
+
 			<h2>Functions</h2>
 			<xsl:for-each select="xqdoc:functions/xqdoc:function">
 				<xsl:sort select="xqdoc:name" />
@@ -65,31 +65,25 @@
 			</xsl:for-each>
 		</div>
 	</xsl:template>
-	
+
 	<xsl:template match="xqdoc:variable">
 		<h3>
 			<xsl:value-of select="xqdoc:name" />
 		</h3>
 		<table>
-                <tr>
-                    <td>
-                        <b>Type:</b>
-                    </td>
-                    <td>
-                        <code>item()</code>
-                    </td>
-                </tr>
-                <tr>
-                <td>
-                    <b>Description:</b>
-                </td>
-                <td>
-                    <xsl:value-of select="xqdoc:comment/xqdoc:description" />
-                </td>
-            </tr>
-            </table>
+			<tr>
+				<td>
+					<b>Type:</b>
+				</td>
+				<td>
+					<code>item()</code>
+				</td>
+			</tr>
+			<xsl:apply-templates select="xqdoc:comment/xqdoc:description"/>
+			
+		</table>
 	</xsl:template>
-	
+
 	<xsl:template match="xqdoc:function">
 		<h3>
 			<!-- <xsl:value-of select="xqdoc:signature" /> -->
@@ -121,15 +115,19 @@
 					</table>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<b>Description:</b>
-				</td>
-				<td>
-					<xsl:value-of select="xqdoc:comment/xqdoc:description" />
-				</td>
-			</tr>
+			<xsl:apply-templates select="xqdoc:comment/xqdoc:description"/>
 		</table>
+	</xsl:template>
+
+	<xsl:template match="xqdoc:description">
+		<tr>
+			<td>
+				<b>Description:</b>
+			</td>
+			<td>
+				<xsl:value-of select="." />
+			</td>
+		</tr>
 	</xsl:template>
 
 	<xsl:template match="xqdoc:parameters">
