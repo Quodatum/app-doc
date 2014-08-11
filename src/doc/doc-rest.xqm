@@ -89,7 +89,8 @@ function wadl($app as xs:string)
 }; 
 
 (:~
- : show client  components 
+ : show client  components from the package.xml
+ : @parameter $fmt xml or html
  :)
 declare 
 %rest:GET %rest:path("doc/app/{$app}/client/components")
@@ -99,11 +100,7 @@ function client-components($app as xs:string,
                         $fmt as xs:string) 
 {
   let $c:=app-uri($app,"package.xml")
-  return if($fmt="xml")    
-         then (web:download-response("xml", "package.xml"),fn:doc($c))
-         else xslt:transform(fn:doc($c)
-                        ,fn:doc("component.xsl")
-                        )  
+  return doc:components(fn:doc($c)/*,$fmt)    
 }; 
 
 (:~
