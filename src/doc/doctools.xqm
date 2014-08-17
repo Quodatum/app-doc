@@ -12,7 +12,7 @@ declare default function namespace 'apb.doc';
 declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
 
-import module namespace web = 'apb.web.utils3' at 'lib.xq/webutils.xqm';
+import module namespace web = 'apb.web.utils3' at 'lib/webutils3.xqm';
 import module namespace rest = 'http://exquery.org/ns/restxq';
 
 declare function generate-html($inspect)

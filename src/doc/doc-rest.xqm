@@ -7,7 +7,7 @@ module namespace dr = 'apb.doc.rest';
 declare default function namespace 'apb.doc.rest'; 
 
 import module namespace doc = 'apb.doc' at 'doctools.xqm';
-import module namespace web = 'apb.web.utils3' at 'lib.xq/webutils.xqm';
+import module namespace web = 'apb.web.utils3' at 'lib/webutils3.xqm';
 
 declare variable $dr:components:=fn:doc("data/components.xml");
 
