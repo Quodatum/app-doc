@@ -1,0 +1,40 @@
+<div>
+    <div class="fluid">
+        <ul class="breadcrumb ">
+            <li class="active">XSLT </li>
+            <li>
+                <button class="btn" ng-click="transform()">
+                    <i class="glyphicon glyphicon-plus-sign"></i>
+                    Transform
+                </button>
+            </li>
+            <ul class="nav nav-pills pull-right" >
+                <li>
+                    <form class="form-inline">
+                        <label>
+                            Show Result:
+                            <input type="checkbox" ng-model="state.showResult" />
+                        </label>
+                    </form>
+                </li>
+            </ul>
+        </ul>
+
+
+    </div>
+    <div class="row" ng-hide="state.showResult">
+        <div class="col-md-6 ace_editor_wrapper">
+            <div ng-style="style()" fillheight="" style="font-size:12pt;"
+                ng-model="state.xml" ui-ace="aceopts"></div>
+        </div>
+        <div class="col-md-6 ace_editor_wrapper">
+            <div ng-style="style()" fillheight="" style="font-size:12pt;"
+                ng-model="state.xslt" ui-ace="aceopts"></div>
+        </div>
+    </div>
+    <div class="row ace_editor_wrapper" ng-show="state.showResult">
+
+        <div ng-style="style()" fillheight="" style="font-size:12pt;"
+            ng-model="state.result" ui-ace="aceopts"></div>
+    </div>
+</div>
