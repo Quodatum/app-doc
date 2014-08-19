@@ -9,15 +9,15 @@ declare default function namespace 'apb.doc.rest';
 import module namespace doc = 'apb.doc' at 'doctools.xqm';
 import module namespace web = 'apb.web.utils3' at 'lib/webutils3.xqm';
 
-declare variable $dr:components:=fn:doc("data/components.xml");
+
 
 (:~
  : The doc api
  :)
-declare 
+declare
+ %rest:GET %rest:path("doc")
  %output:method("html")
  %output:version("5.0")
-%rest:GET %rest:path("doc")
 function doc(){
     let $apps:=("benchx","doc")
     return <div>
@@ -32,10 +32,10 @@ function doc(){
 (:~
  : The doc $app api
  :)
-declare 
+declare
+%rest:GET %rest:path("doc/app/{$app}") 
  %output:method("html")
  %output:version("5.0")
-%rest:GET %rest:path("doc/app/{$app}")
 function app($app as xs:string) 
 {
    <section>
@@ -60,7 +60,7 @@ function xqdoc($app as xs:string,
     let $src:=app-uri($app,$mod)
     let $mod:=fn:trace($mod,"mod::::")
     let $doc:=inspect:xqdoc($src)
-    let $r:=if($fmt="html") then doc:generate-html($doc) else $doc
+    let $r:=if($fmt="html") then doc:xquery-html($doc) else $doc
     return (web:method($fmt),$r)
 };
 
@@ -70,6 +70,7 @@ declare function app-uri(
 {
     fn:resolve-uri(fn:concat("../",$app,"/",$path))
 };
+
 declare function static-uri(
                 $app as xs:string,
                 $path as xs:string) as xs:string
@@ -85,7 +86,7 @@ declare
 %output:method("html")  
 function wadl($app as xs:string) 
 {
-  doc:wadl("/" || $app) 
+  doc:wadl-html("/" || $app) 
 }; 
 
 (:~
@@ -99,8 +100,13 @@ declare
 function client-components($app as xs:string,
                         $fmt as xs:string) 
 {
-  let $c:=app-uri($app,"package.xml")
-  return doc:components(fn:doc($c)/*,$fmt)    
+  let $pkg:=app-uri($app,"package.xml")
+  return if (fn:not(fn:doc-available($pkg)))
+         then fn:error(xs:QName('dr:package'),"package.xml not found")
+         else let $doc:=fn:doc($pkg) 
+              return if($fmt="xml") 
+                      then (web:download-response("xml", "package.xml"),$doc)
+                      else doc:components-html($doc/*)    
 }; 
 
 (:~
@@ -127,5 +133,5 @@ function templates($app as xs:string)
 declare 
 %rest:GET %rest:path("doc/components")
 function components(){
-    $dr:components
+    $doc:components
 };

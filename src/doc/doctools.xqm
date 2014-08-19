@@ -15,20 +15,27 @@ declare namespace pkg="http://expath.org/ns/pkg";
 import module namespace web = 'apb.web.utils3' at 'lib/webutils3.xqm';
 import module namespace rest = 'http://exquery.org/ns/restxq';
 
-declare function generate-html($inspect)
+declare variable $doc:components:=fn:doc("data/components.xml");
+
+declare function xquery-html($inspect)
 {
     xslt:transform($inspect,fn:resolve-uri("xqdoc.xsl"))
 };
 
-declare function components($pkg as element(),
-                            $fmt as xs:string)
+
+(:~
+ : html report for compoents referenced in package
+ :)
+declare function components-html($pkg as element())
 {
-     if($fmt="xml")    
-     then (web:download-response("xml", "package.xml"),$pkg)
-     else xslt:transform($pkg,fn:doc("component.xsl"))  
+    xslt:transform($pkg,fn:doc("component.xsl"))  
 };
 
-declare function wadl($root)
+
+(:~
+ : return html report for entries starting with $root
+ :)
+declare function wadl-html($root)
 {
     let $doc:=wadl-under($root)
     let $params:=map { "root" := $root }

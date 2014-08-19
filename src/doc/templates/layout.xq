@@ -1,15 +1,15 @@
 declare  variable $body external;
 declare  variable $version external;
-<html ng-app="app-doc" ng-controller="AppController">
+<html ng-app="doc" ng-controller="AppController">
 <head>
  <meta charset="utf-8"/>
- <base href="/static/app-doc/" />
+ <base href="/static/doc/" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta name="description" content="app-doc"/>
+<meta name="description" content="doc"/>
 <meta name="author" content="andy bunce"/>
     
-<title>app-doc (v{$version})</title>
+<title>doc (v{$version})</title>
 <!-- Le fav and touch icons -->
 <link rel="shortcut icon" href="app.ico"/>
 
@@ -18,7 +18,7 @@ declare  variable $version external;
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.min.css" rel="stylesheet" type="text/css" />  
 <link href="/static/lib/angular-tree-control/0.2.0/css/tree-control.css" rel="stylesheet"/>
 <link href="/static/lib/ui-layout/0.0.1/ui-layout.css" rel="stylesheet"/>
-<link href="/static/app-doc/app.css" rel="stylesheet"/>
+<link href="/static/doc/app.css" rel="stylesheet"/>
 
 <script type="text/javascript">
   (function(i,s,o,g,r,a,m){{i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){{
@@ -35,9 +35,9 @@ declare  variable $version external;
         <div class="container-fluid">
           
           <div class="navbar-header"> 
-            <a class="navbar-brand" href="/app-doc/">
-            <img src="/static/app-doc/app-doc.svg" style="width:20px;height:20px" />
-            app-doc</a>          
+            <a class="navbar-brand" href="/doc/">
+            <img src="/static/doc/doc.svg" style="width:20px;height:20px" />
+            doc</a>          
           </div>
           
             <ul class="nav navbar-nav" >                
@@ -60,7 +60,7 @@ declare  variable $version external;
    <script src="/static/lib/ace/03.08.2014/src-min-noconflict/ext-settings_menu.js" type="text/javascript" charset="utf-8"></script>
   <script src="/static/lib/ace/03.08.2014/src-min-noconflict/ext-keybinding_menu.js" type="text/javascript" charset="utf-8"></script>
      
-     <script src="/static/app-doc/js/acebits.js"  ></script>
+     <script src="/static/doc/js/acebits.js"  ></script>
              
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js" type="text/javascript"></script>
@@ -84,10 +84,10 @@ declare  variable $version external;
     <script src="/static/lib/ui-layout/0.0.1/ui-layout.js"></script>
     <script src="/static/lib/ui-ace/0.1.0/ui-ace.js"></script>
     <script src="/static/lib/angular-flashr/0.0.5/angular-flashr.js"></script> 
-    <script src="/static/app-doc/js/directives.js"  ></script>
-    <script src="/static/app-doc/app.js"  ></script>
+    <script src="/static/doc/js/directives.js"  ></script>
+    <script src="/static/doc/app.js"  ></script>
     
-    <script src="/static/app-doc/feats/tree/tree.js"  ></script>
-    <script src="/static/app-doc/feats/xslt/xslt.js"  ></script>
+    <script src="/static/doc/feats/tree/tree.js"  ></script>
+    <script src="/static/doc/feats/xslt/xslt.js"  ></script>
 </body>
 </html>
