@@ -54,11 +54,6 @@ declare variable $static external :="/static/doc/";
      <script src="//cdn.jsdelivr.net/ace/1.1.4/noconflict/ace.js"></script>
      <script src="//cdn.jsdelivr.net/ace/1.1.4/noconflict/ext-language_tools.js"></script>
      -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js" type="text/javascript"></script>
-   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js" type="text/javascript"></script>
-
-     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.3.1/lodash.min.js" type="text/javascript"></script>
-     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js" type="text/javascript"></script>
      <!-- angular -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"  ></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-resource.min.js"  ></script>
@@ -71,8 +66,7 @@ declare variable $static external :="/static/doc/";
     <script src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"  ></script>
    
     <!-- local libs -->
-     <script src="/static/lib/angular-tree-control/0.2.0/angular-tree-control.js"></script>
-  
+   
     <script src="/static/doc/feats/tree/tree.js"  ></script>
     <script src="/static/doc/feats/xslt/xslt.js"  ></script>
 </body>
