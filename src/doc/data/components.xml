@@ -195,6 +195,7 @@
 	</cmp>
 
 	<cmp name="stacktrace">
+	   <runat>browser</runat>
 		<home>http://stacktracejs.com/</home>
 		<tagline>Framework-agnostic, micro-library for getting
 			stack traces in
@@ -206,6 +207,17 @@
 		</release>
 	</cmp>
 
+	<cmp name="oci.treeview">
+	   <runat>browser</runat>
+		<home>https://github.com/objectcomputing/oci.treeview</home>
+		<tagline>AngularJS tree directive with subdirective for extending node
+			behavior
+		</tagline>
+		<release version="2040305">
+			<local type="js">lib/oci.treeview/2040305/treeview.min.js</local>
+			<local type="css">lib/oci.treeview/2040305/treeview.css</local>
+		</release>
+	</cmp>
 	<cmp name="FileSaver">
 		<local>lib/FileSaver.js" </local>
 		<home>https://github.com/eligrey/FileSaver.js/</home>

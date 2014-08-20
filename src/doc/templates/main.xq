@@ -1,4 +1,3 @@
-<div class="container" style="">
-    <ng-view class="view-animate"
-       style="position:relative;">Loading...</ng-view>
-</div>
+<div class="xqdoc" ng-include="inc" autoscroll="true">loading
+        doc...
+    </div>

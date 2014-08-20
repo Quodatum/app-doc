@@ -17,6 +17,26 @@ import module namespace rest = 'http://exquery.org/ns/restxq';
 
 declare variable $doc:components:=fn:doc("data/components.xml");
 
+(:~
+ : return uri for $path in $app
+ :)
+declare function app-uri(
+                $app as xs:string,
+                $path as xs:string) as xs:string
+{
+    fn:resolve-uri(fn:concat("../",$app,"/",$path))
+};
+
+(:~
+ : return uri for $path in $app static files
+ :)
+declare function static-uri(
+                $app as xs:string,
+                $path as xs:string) as xs:string
+{
+    fn:resolve-uri(fn:concat("../static/",$app,"/",$path))
+};
+
 declare function xquery-html($inspect)
 {
     xslt:transform($inspect,fn:resolve-uri("xqdoc.xsl"))

@@ -7,7 +7,8 @@ module namespace dr = 'apb.doc.rest';
 declare default function namespace 'apb.doc.rest'; 
 
 import module namespace doc = 'apb.doc' at 'doctools.xqm';
-import module namespace web = 'apb.web.utils3' at 'lib/webutils3.xqm';
+import module namespace txq = 'apb.txq' at "lib/txq.xqm";
+import module namespace web = 'apb.web.utils2' at 'lib/webutils2.xqm';
 
 
 
@@ -19,14 +20,8 @@ declare
  %output:method("html")
  %output:version("5.0")
 function doc(){
-    let $apps:=("benchx","doc")
-    return <div>
-     <a href="components">Components</a>  
-    
-    {
-    for $a in $apps
-    return <a href="app/{$a}">{$a}</a>
-    } </div> 
+ (: @TODO check db exist app status et :)
+ render("main.xq",map{})
 }; 
 
 (:~
@@ -57,26 +52,14 @@ function xqdoc($app as xs:string,
                 $mod as xs:string,
                 $fmt as xs:string) 
 {
-    let $src:=app-uri($app,$mod)
+    let $src:=doc:app-uri($app,$mod)
     let $mod:=fn:trace($mod,"mod::::")
     let $doc:=inspect:xqdoc($src)
     let $r:=if($fmt="html") then doc:xquery-html($doc) else $doc
     return (web:method($fmt),$r)
 };
 
-declare function app-uri(
-                $app as xs:string,
-                $path as xs:string) as xs:string
-{
-    fn:resolve-uri(fn:concat("../",$app,"/",$path))
-};
 
-declare function static-uri(
-                $app as xs:string,
-                $path as xs:string) as xs:string
-{
-    fn:resolve-uri(fn:concat("../static/",$app,"/",$path))
-};
  
 (:~
  : show xqdoc for rest api
@@ -100,7 +83,7 @@ declare
 function client-components($app as xs:string,
                         $fmt as xs:string) 
 {
-  let $pkg:=app-uri($app,"package.xml")
+  let $pkg:=doc:app-uri($app,"package.xml")
   return if (fn:not(fn:doc-available($pkg)))
          then fn:error(xs:QName('dr:package'),"package.xml not found")
          else let $doc:=fn:doc($pkg) 
@@ -117,7 +100,7 @@ declare
 %output:method("html")  
 function templates($app as xs:string) 
 {
-    let $path:=static-uri($app,"templates/")
+    let $path:=doc:static-uri($app,"templates/")
     let $path:=fn:trace($path,"path::::")
     let $list:=file:list($path,fn:true())
     return <div>{
@@ -135,3 +118,17 @@ declare
 function components(){
     $doc:components
 };
+
+declare function render($template,$map){
+  let $defaults:=map{
+                    "version":"0.0.1"
+                }
+let $map:=map:new(($map,$defaults))
+return ($web:html5,txq:render(
+            fn:resolve-uri("./templates/" || $template)
+            ,$map
+            ,fn:resolve-uri("./templates/layout.xq")
+            )
+        )
+};
+

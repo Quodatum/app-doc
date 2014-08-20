@@ -21,6 +21,7 @@ declare variable $web:html5:=
     </http:response>
 </restxq:response>;
 
+
 (:~
 : execute function fn if session has loggedin user with matching role else 401
 :)
@@ -101,6 +102,7 @@ declare function redirect($url as xs:string)
        </rest:response>
 };
 
+
 (:~ CORS header with download option :) 
 declare function headers($attachment,$response){
 (<restxq:response>
@@ -115,12 +117,25 @@ declare function headers($attachment,$response){
 
 (:~ download as zip file :) 
 declare function zip-download($zipname,$data){
-(<restxq:response>
+    (download-response("raw",$zipname), $data)
+};
+
+(:~ headers for download  :) 
+declare function method($method as xs:string){
+<restxq:response>
     <output:serialization-parameters>
-        <output:method value="raw"/>
+        <output:method value="{$method}"/>
+    </output:serialization-parameters>
+</restxq:response>
+};
+(:~ headers for download  :) 
+declare function download-response($method,$filename){
+<restxq:response>
+    <output:serialization-parameters>
+        <output:method value="{$method}"/>
     </output:serialization-parameters>
    <http:response>
-       <http:header name="Content-Disposition" value='attachment;filename="{$zipname}"'/> 
+       <http:header name="Content-Disposition" value='attachment;filename="{$filename}"'/> 
     </http:response>
-</restxq:response>, $data)
+</restxq:response>
 };
