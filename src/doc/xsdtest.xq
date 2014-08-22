@@ -1,7 +1,7 @@
 (:~
  : testing schema functions
  :)
-import module namespace xsd="apb.schema.rest" at "schema.xqm";
+import module namespace xsd="quodatum.schema.rest" at "schema.xqm";
 declare namespace J= "org.apb.modules.Xsd";
 
 let $xpl:="C:\Users\andy\workspace\xprocdoc\tests\x.xpl"

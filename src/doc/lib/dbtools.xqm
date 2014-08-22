@@ -4,8 +4,8 @@
 : @since mar 2013
 :)
 
-module namespace dbtools = 'apb.dbtools';
-declare default function namespace 'apb.dbtools'; 
+module namespace dbtools = 'quodatum.dbtools';
+declare default function namespace 'quodatum.dbtools'; 
 
 (:~ 
 : save all in db to zip

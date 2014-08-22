@@ -31,29 +31,8 @@ declare variable $static external :="/static/doc/";
 </script>   
 </head>
 <body> 
-<div class="container">
-      <div class="navbar navbar-inverse" role="navigation">
-        <div class="container-fluid">
-          
-          <div class="navbar-header"> 
-            <a class="navbar-brand" href="/doc/">
-            <img src="{$static}doc.svg" style="width:20px;height:20px" />
-            doc</a>          
-          </div>
-          
-            <ul class="nav navbar-nav" >                
-                <li><a href="apps"><i class="fa fa-shield"></i> Apps</a></li>
-                <li><a href="components"><i class="fa fa-comment"></i> Components</a></li>
-              
-            </ul>
-         </div>
-        </div>      
-        {$body}
-</div>
-<!-- 
-     <script src="//cdn.jsdelivr.net/ace/1.1.4/noconflict/ace.js"></script>
-     <script src="//cdn.jsdelivr.net/ace/1.1.4/noconflict/ext-language_tools.js"></script>
-     -->
+{$body}
+
      <!-- angular -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"  ></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-resource.min.js"  ></script>
@@ -63,11 +42,12 @@ declare variable $static external :="/static/doc/";
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.min.js"></script> 
     <!-- others -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"  ></script>
    
     <!-- local libs -->
-   
-    <script src="/static/doc/feats/tree/tree.js"  ></script>
-    <script src="/static/doc/feats/xslt/xslt.js"  ></script>
+    <script src="{$static}app.js"  ></script>
+    <script src="{$static}feats/apps/apps.js"  ></script>
+    <script src="{$static}feats/components/components.js"  ></script>
 </body>
 </html>

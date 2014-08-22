@@ -9,8 +9,8 @@ xquery version "3.0";
 : @licence apache 2
 :)
  
-module namespace txq = 'apb.txq';
-declare default function namespace 'apb.txq';
+module namespace txq = 'quodatum.txq';
+declare default function namespace 'quodatum.txq';
 import module namespace xquery = "http://basex.org/modules/xquery";
  
 (:~

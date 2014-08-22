@@ -3,12 +3,12 @@
  :@author Andy Bunce
  :@version 0.1
  :)
-module namespace dr = 'apb.doc.rest';
-declare default function namespace 'apb.doc.rest'; 
+module namespace dr = 'quodatum.doc.rest';
+declare default function namespace 'quodatum.doc.rest'; 
 
-import module namespace doc = 'apb.doc' at 'doctools.xqm';
-import module namespace txq = 'apb.txq' at "lib/txq.xqm";
-import module namespace web = 'apb.web.utils2' at 'lib/webutils2.xqm';
+import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
+import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
+import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
 
 
 
@@ -121,7 +121,8 @@ function components(){
 
 declare function render($template,$map){
   let $defaults:=map{
-                    "version":"0.0.1"
+                    "version":"0.0.3",
+                    "static":"/static/doc/"
                 }
 let $map:=map:new(($map,$defaults))
 return ($web:html5,txq:render(

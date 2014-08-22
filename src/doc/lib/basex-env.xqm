@@ -7,8 +7,8 @@ xquery version "3.0";
 : @licence apache 2
 :)
  
-module namespace env = 'apb.basex.env';
-declare default function namespace 'apb.basex.env';
+module namespace env = 'quodatum.basex.env';
+declare default function namespace 'quodatum.basex.env';
 declare namespace sys="java.lang.System";
 declare namespace Runtime="java.lang.Runtime";
 declare variable $env:core:=(

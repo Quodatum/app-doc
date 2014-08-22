@@ -2,4 +2,7 @@
 	spec="1.0" xmlns="http://expath.org/ns/pkg">
 	<title>Doc</title>
 	<dependency name="twitter-bootstrap" version="3.1.1" />
+	<dependency name="angular-ui-bootstrap" version="3.1.1" />
+	<dependency name="restangular" version="3.1.1" />
+	
 </package>

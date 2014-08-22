@@ -4,8 +4,8 @@
 : @since mar 2013
 :)
 
-module namespace dice = 'apb.web.dice';
-declare default function namespace 'apb.web.dice'; 
+module namespace dice = 'quodatum.web.dice';
+declare default function namespace 'quodatum.web.dice'; 
 declare namespace restxq = 'http://exquery.org/ns/restxq';
 import module namespace request = "http://exquery.org/ns/request";
 

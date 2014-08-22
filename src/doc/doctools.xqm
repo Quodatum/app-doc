@@ -7,12 +7,12 @@ xquery version "3.0";
 : @licence apache 2
 :)
  
-module namespace doc = 'apb.doc';
-declare default function namespace 'apb.doc';
+module namespace doc = 'quodatum.doc';
+declare default function namespace 'quodatum.doc';
 declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
 
-import module namespace web = 'apb.web.utils3' at 'lib/webutils3.xqm';
+import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
 import module namespace rest = 'http://exquery.org/ns/restxq';
 
 declare variable $doc:components:=fn:doc("data/components.xml");

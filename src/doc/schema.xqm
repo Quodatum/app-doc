@@ -3,8 +3,8 @@
  :@author Andy Bunce
  :@version 0.1
  :)
-module namespace xsd = 'apb.schema.rest';
-declare default function namespace 'apb.schema.rest';
+module namespace xsd = 'quodatum.schema.rest';
+declare default function namespace 'quodatum.schema.rest';
 
 declare namespace xerces= "com.sun.org.apache.xerces.internal.impl.Version";
 
