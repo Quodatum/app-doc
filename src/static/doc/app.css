@@ -61,4 +61,7 @@ left: 0;;
     border-color: #EEE;
     border-width:thin medium;
 }
-
+.selectedNode {
+  background-color: #aaddff;
+  font-weight: bold;
+}

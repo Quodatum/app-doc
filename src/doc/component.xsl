@@ -8,17 +8,24 @@
 				<xsl:value-of select="count(cmp)" />
 				)
 			</h2>
-			<div>
-				<xsl:apply-templates select="cmp">
-					<xsl:sort select="lower-case(@name)" />
-				</xsl:apply-templates>
+			<div class="row">
+				<div class="col-md-2">
+					<xsl:copy-of select="pkg:cmplist(cmp/@name)" />
+				</div>
+				<div class="col-md-10">
+					<div style="max-height:100%;overflow:scroll;">
+						<xsl:apply-templates select="cmp">
+							<xsl:sort select="lower-case(@name)" />
+						</xsl:apply-templates>
+					</div>
+					<h2>Errors</h2>
+					<xsl:for-each select="//depends[not(. =//cmp/@name)]">
+						<span class="label label-danger">
+							<xsl:value-of select="." />
+						</span>
+					</xsl:for-each>
+				</div>
 			</div>
-			<h2>Errors</h2>
-			<xsl:for-each select="//depends[not(. =//cmp/@name)]">
-				<span class="label label-danger">
-					<xsl:value-of select="." />
-				</span>
-			</xsl:for-each>
 		</div>
 	</xsl:template>
 	<!-- convert package.xml to bootstrap html -->
@@ -88,7 +95,7 @@
 					</span>
 
 					<span class="pull-right">
-						<a href="{home}" target="benchx-doc" class="badge">
+						<a href="{home}" target="benchx-doc" class="badge" title="{@name} {home}">
 							<i class="glyphicon glyphicon-home"></i>
 							Home
 						</a>
@@ -115,21 +122,11 @@
 
 				<div>
 					Used by:
-					<xsl:for-each select="//cmp[depends=current()/@name]">
-						<xsl:sort select="@name" />
-						<a ng-click="scrollTo('cmp-{@name}')" class="label label-info">
-							<xsl:value-of select="@name" />
-						</a>
-					</xsl:for-each>
+					<xsl:copy-of select="pkg:cmplist(//cmp[depends=current()/@name]/@name)" />
 				</div>
 				<div>
 					Depends on:
-					<xsl:for-each select="depends">
-						<xsl:sort select="@name" />
-						<a ng-click="scrollTo('cmp-{.}')" class="label label-info">
-							<xsl:value-of select="." />
-						</a>
-					</xsl:for-each>
+					<xsl:copy-of select="pkg:cmplist(depends/text())" />
 				</div>
 				<h5>Versions</h5>
 				<ul>
@@ -160,6 +157,17 @@
 			</div>
 		</li>
 	</xsl:template>
+
+	<!-- o/p links to components in arg -->
+	<xsl:function name="pkg:cmplist">
+		<xsl:param name="cmps" />
+		<xsl:for-each select="$cmps">
+			<xsl:sort select="lower-case(.)" />
+			<a ng-click="scrollTo('cmp-{.}')" class="label label-info">
+				<xsl:value-of select="." />
+			</a>
+		</xsl:for-each>
+	</xsl:function>
 
 	<xsl:template match="@*|node()">
 		<xsl:copy>

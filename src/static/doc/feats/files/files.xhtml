@@ -1,0 +1,17 @@
+<div>
+	<div>Files</div>
+	<div class="row">
+		<div class="col-md-3">
+			<oci.treeview tree="treeData" on-select-node="getMoreData">
+			<!--HTML to be transcluded--> <span class="myNodeClass">{{
+				tree.label }}</span> </oci.treeview>
+		</div>
+
+		<div class="col-md-3">
+			<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
+				ya-context="context">
+				<span ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}">{{ node.$model.label }}</span>
+			</div>
+		</div>
+	</div>
+</div>

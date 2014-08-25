@@ -213,6 +213,7 @@
 		<tagline>AngularJS tree directive with subdirective for extending node
 			behavior
 		</tagline>
+		<depends>angularjs</depends>
 		<release version="2040305">
 			<local type="js">lib/oci.treeview/2040305/treeview.min.js</local>
 			<local type="css">lib/oci.treeview/2040305/treeview.css</local>
@@ -231,28 +232,50 @@
 			</cdn>
 		</release>
 	</cmp>
-	<cmp name="FileSaver">
 
+	<cmp name="FileSaver">
 		<home>https://github.com/eligrey/FileSaver.js/</home>
 		<tagline>An HTML5 saveAs() FileSaver implementation</tagline>
 		<release version="">
 			<local type="js">lib/FileSaver.js</local>
 		</release>
 	</cmp>
+
 	<cmp name="ace">
-		<cdn src="lib/ace/01.08.2014" />
+		<home>http://ace.c9.io/</home>
+		<licence>BSD</licence>
+		<tagline>Ace is an embeddable code editor written in JavaScript.
+		</tagline>
+		<release version="01.08.2014">
+			<cdn src="lib/ace/01.08.2014" />
+		</release>
 	</cmp>
+
 	<cmp name="ui-ace">
-		<cdn src="lib/ace/01.08.2014" />
+		<home>https://github.com/angular-ui/ui-ace</home>
+		<release>
+			<cdn src="lib/ace/01.08.2014" />
+		</release>
 	</cmp>
 
 	<cmp name="toastr">
 		<cdn
 			src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js" />
 	</cmp>
+
 	<cmp name="angular-flashr">
-		<cdn
-			src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js" />
 		<home>https://github.com/TylerGarlick/angular.flashr</home>
+		<release version="2.0.1">
+			<cdn
+				src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js" />
+		</release>
 	</cmp>
+
+    <cmp name="angular-ya-treeview">
+        <home>https://github.com/ca77y/angular-ya-treeview</home>
+        <release version="0.2.1">
+            <cdn
+                src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js" />
+        </release>
+    </cmp>	
 </components>

@@ -15,10 +15,9 @@ declare variable $static external :="/static/doc/";
 <title>doc (v{$version})</title>
 <!-- Le fav and touch icons -->
 <link rel="shortcut icon" href="app.ico"/>
-
-
 <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.css" rel="stylesheet" type="text/css" />  
-
+<link href="{$static}../lib/oci.treeview/20140305/treeview.css" rel="stylesheet" type="text/css" />
+<link href="{$static}../lib/angular-ya-treeview/0.2.1/ya-treeview-0.2.1.css" rel="stylesheet" type="text/css" />    
 <link href="{$static}app.css" rel="stylesheet"/>
 
 <script type="text/javascript">
@@ -46,8 +45,12 @@ declare variable $static external :="/static/doc/";
     <script src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"  ></script>
    
     <!-- local libs -->
+    <script src="{$static}../lib/oci.treeview/20140305/treeview.js"  ></script>
+    <script src="{$static}../lib/angular-ya-treeview/0.2.1/ya-treeview-0.2.1-tpls.js"  ></script>
+   
     <script src="{$static}app.js"  ></script>
     <script src="{$static}feats/apps/apps.js"  ></script>
     <script src="{$static}feats/components/components.js"  ></script>
+    <script src="{$static}feats/files/files.js"  ></script>
 </body>
 </html>

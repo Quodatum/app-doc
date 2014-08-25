@@ -1,8 +1,11 @@
 angular.module('doc', [ 'ngRoute', 
                         'ui.bootstrap',
                         'restangular',
+                        'oci.treeview',
+                        'ya.treeview','ya.treeview.tpls',
                         'quodatum.doc.apps',
-                        'quodatum.doc.components'])
+                        'quodatum.doc.components',
+                        'quodatum.doc.files'])
 
 .constant(
 		"apiRoot", "../../doc/").config(
@@ -12,12 +15,12 @@ angular.module('doc', [ 'ngRoute',
 					$routeProvider.when('/', {
 						redirectTo : '/components'
 					}).when('/search', {
-						templateUrl : '/static/doc/partials/search.xhtml',
+						templateUrl : '/static/doc/templates/search.xhtml',
 						controller : "SearchCtrl"
 					}).when('/404', {
-						templateUrl : '/static/doc/partials/404.xhtml'
+						templateUrl : '/static/doc/templates/404.xhtml'
 					}).when('/error', {
-						templateUrl : '/static/doc/partials/error.xhtml'
+						templateUrl : '/static/doc/templates/error.xhtml'
 					}).otherwise({
 						redirectTo : '/404'
 					});
@@ -48,7 +51,32 @@ angular.module('doc', [ 'ngRoute',
 				} ])
 				
 				
-.controller("AppController", [ "$scope", function($scope) {
+.controller("AppController", [ "$scope","$location", function($scope,$location) {
 	console.log("AppController");
+	 $scope.doSearch=function(){
+         $location.path("/search").search({q: $scope.q});
+     };
 }])
+
+.controller("SearchCtrl", [ 'Search', '$location', '$scope', '$routeParams',
+		function(Search, $location, $scope, $routeParams) {
+			$scope.q = $routeParams.q;
+			$scope.results = Search.api.query({
+				q : $scope.q
+			});
+			$scope.submit = function() {
+				$location.path("/search");
+			};
+			$scope.doSearch = function() {
+				$scope.results = Search.api.query({
+					q : $scope.q
+				});
+			};
+		} ])
+.factory('Search',
+        [ '$resource', '$http', "apiRoot", function($resource, $http, apiRoot) {
+            return {
+                api : $resource(apiRoot + 'search?q=:q')
+            }
+        } ])		
 ;

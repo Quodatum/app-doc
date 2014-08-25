@@ -1,0 +1,30 @@
+<div class="navbar navbar-inverse" role="navigation">
+	<div class="container-fluid">
+
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/doc/"> <img src="{$static}doc.svg"
+				style="width: 20px; height: 20px" /> Doc
+			</a>
+		</div>
+
+		<ul class="nav navbar-nav">
+			<li><a href="#/apps"><i class="fa fa-shield"></i> Apps</a></li>
+			<li><a href="#/components"><i class="fa fa-comment"></i>
+					Components</a></li>
+			<li><a href="#/files"><i class="fa fa-comment"></i>
+                    Files</a></li>
+             <li><a href="#/schema"><i class="fa fa-comment"></i>
+                    Schema</a></li>         		
+		</ul>
+		           <div class="col-sm-3 col-md-3 pull-left">
+        <form class="navbar-form" role="search" ng-submit="doSearch()">
+        <div class="input-group">
+            <input type="text" class="form-control input-sm" placeholder="Search" name="q" id="q"/>
+            <div class="input-group-btn">
+                <button class="btn btn-default input-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+        </div>
+	</div>
+</div>

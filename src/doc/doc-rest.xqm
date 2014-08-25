@@ -115,13 +115,19 @@ function templates($app as xs:string)
  :)
 declare 
 %rest:GET %rest:path("doc/components")
-function components(){
-    $doc:components
+%restxq:query-param("fmt", "{$fmt}","xml")
+function components($fmt as xs:string){
+    let $d:=$doc:components
+    return (
+        web:method($fmt),
+        if($fmt="xml") then $d else doc:components-html($d)
+    )
+    
 };
 
 declare function render($template,$map){
   let $defaults:=map{
-                    "version":"0.0.3",
+                    "version":"0.0.4",
                     "static":"/static/doc/"
                 }
 let $map:=map:new(($map,$defaults))

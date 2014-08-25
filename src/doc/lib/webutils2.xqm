@@ -21,6 +21,24 @@ declare variable $web:html5:=
     </http:response>
 </restxq:response>;
 
+declare variable $web:xml:=
+<restxq:response>
+    <output:serialization-parameters>
+        <output:method value="xml"/>
+    </output:serialization-parameters>
+   <http:response>
+       <http:header name="apb" value='test'/> 
+    </http:response>
+</restxq:response>;
+
+(:~ headers for serialisation  :) 
+declare function method($method as xs:string){
+switch ($method) 
+   case "xml" return $web:xml
+   case "html5" return $web:html5
+   case "html" return $web:html5
+   default return fn:error(xs:QName('web:method'),"bad method") 
+};
 
 (:~
 : execute function fn if session has loggedin user with matching role else 401
@@ -120,14 +138,7 @@ declare function zip-download($zipname,$data){
     (download-response("raw",$zipname), $data)
 };
 
-(:~ headers for download  :) 
-declare function method($method as xs:string){
-<restxq:response>
-    <output:serialization-parameters>
-        <output:method value="{$method}"/>
-    </output:serialization-parameters>
-</restxq:response>
-};
+
 (:~ headers for download  :) 
 declare function download-response($method,$filename){
 <restxq:response>
