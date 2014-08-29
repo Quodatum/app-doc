@@ -1,4 +1,4 @@
-angular.module('doc', [ 'ngRoute', 
+angular.module('doc', [ 'ngRoute', 'ngResource',
                         'ui.bootstrap',
                         'restangular',
                         'oci.treeview',
@@ -33,7 +33,7 @@ angular.module('doc', [ 'ngRoute',
 				'RestangularProvider',
 				function(RestangularProvider) {
 					console.log("RestangularProvider config");
-					RestangularProvider.setBaseUrl('../../doc/');
+					RestangularProvider.setBaseUrl('.');
 					RestangularProvider.setResponseExtractor(function(response,
 							operation, what, url) {
 						var data = response;
@@ -58,8 +58,16 @@ angular.module('doc', [ 'ngRoute',
      };
 }])
 
+.factory('Search',
+        [ '$resource', '$http', "apiRoot", function($resource, $http, apiRoot) {
+            return {
+                api : $resource(apiRoot + 'search?q=:q')
+            }
+        } ])
+        
 .controller("SearchCtrl", [ 'Search', '$location', '$scope', '$routeParams',
 		function(Search, $location, $scope, $routeParams) {
+			console.log("Search",$routeParams);
 			$scope.q = $routeParams.q;
 			$scope.results = Search.api.query({
 				q : $scope.q
@@ -73,10 +81,5 @@ angular.module('doc', [ 'ngRoute',
 				});
 			};
 		} ])
-.factory('Search',
-        [ '$resource', '$http', "apiRoot", function($resource, $http, apiRoot) {
-            return {
-                api : $resource(apiRoot + 'search?q=:q')
-            }
-        } ])		
+		
 ;

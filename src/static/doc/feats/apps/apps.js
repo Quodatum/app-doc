@@ -12,9 +12,9 @@ angular.module('quodatum.doc.apps', [ 'restangular'])
 		} ])
 
 // controllers
-.controller("AppsCtrl", [ "$scope", function($scope) {
+.controller("AppsCtrl", [ "$scope","Restangular", function($scope,Restangular) {
 
 	console.log("AppsCtrl2");
-	
+	var applist = Restangular.one("data").all('app');
 
 } ]);

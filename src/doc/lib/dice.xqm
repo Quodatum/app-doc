@@ -104,6 +104,9 @@ declare function json-request($items,$fields,$fn,$crumbs){
 
 (:~ 
  : sort, slice, return json
+ : @param $items results
+ : @param $fields map
+ : @param @fn 
  :)
 declare function json-request($items,$fields,$fn){
     json-request($items,$fields,$fn,())

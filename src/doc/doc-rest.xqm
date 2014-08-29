@@ -8,6 +8,7 @@ declare default function namespace 'quodatum.doc.rest';
 
 import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
 import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
+import module namespace dice = 'quodatum.web.dice' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
 
 
@@ -23,6 +24,28 @@ function doc(){
  (: @TODO check db exist app status et :)
  render("main.xq",map{})
 }; 
+
+(:~
+ : list of apps
+ :)
+declare
+%rest:GET %rest:path("doc/app")
+%output:method("json")   
+function app() 
+{
+dice:json-request((),(),())
+};
+
+(:~
+ : search apps
+ :)
+declare
+%rest:GET %rest:path("doc/search")
+%output:method("json")   
+function search() 
+{
+dice:json-request((),(),())
+};
 
 (:~
  : The doc $app api
@@ -127,7 +150,7 @@ function components($fmt as xs:string){
 
 declare function render($template,$map){
   let $defaults:=map{
-                    "version":"0.0.4",
+                    "version":"0.1.0",
                     "static":"/static/doc/"
                 }
 let $map:=map:new(($map,$defaults))

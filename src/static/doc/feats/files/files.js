@@ -29,15 +29,14 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 			label : 'ChildX'
 		}, {
 			label : 'ChildY'
-		}
-		]
+		} ]
 	};
 
 	$scope.getMoreData = function(node) {
 		console.log("SELECT: ", node);
-//		return $http.get('/tree-data/' + node.path).success(function(data) {
-//			node.children = data;
-//		});
+		// return $http.get('/tree-data/' + node.path).success(function(data) {
+		// node.children = data;
+		// });
 	};
 
 	$scope.$on('nodeSelected', function(event, node, context) {
@@ -48,40 +47,46 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 		node.class = 'selectedNode';
 		context.selectedNode = node;
 	});
-	//----------ya---------
+	// ----------ya---------
+	$scope.context = {
+		selectedNodes : [],
+		hits : 0
+	};
 	$scope.options = {
-		    context: {
-		        selectedNodes: []
-		    },
-		    onSelect: function ($event, node, context) {
-		        if ($event.ctrlKey) {
-		            var idx = context.selectedNodes.indexOf(node);
-		            if (context.selectedNodes.indexOf(node) === -1) {
-		                context.selectedNodes.push(node);
-		            } else {
-		                context.selectedNodes.splice(idx, 1);
-		            }
-		        } else {
-		            context.selectedNodes = [node];
-		        }
-		    }
-		};
 
+		onSelect : function($event, node, context) {
+			context.hits++;
+			if ($event.ctrlKey) {
+				var idx = context.selectedNodes.indexOf(node);
+				if (context.selectedNodes.indexOf(node) === -1) {
+					context.selectedNodes.push(node);
+				} else {
+					context.selectedNodes.splice(idx, 1);
+				}
+			} else {
+				context.selectedNodes = [ node ];
+			}
+		}
+	};
 
-		$scope.model = [{
-		        label: 'parent1',
-		        children: [{
-		            label: 'childa'
-		        }]
-		    }, {
-		        label: 'parent2',
-		        children: [{
-		            label: 'childb',
-		            children: [{
-		                label: 'innerChild'
-		            }]
-		        }]
-		    }, {
-		        label: 'parent3'
-		    }];
+	$scope.model = [ {
+		label : 'parent1',
+		children : [ {
+			label : 'childa'
+		}, {
+			label : 'child x'
+		}, {
+			label : 'child y'
+		} ]
+	}, {
+		label : 'parent2',
+		children : [ {
+			label : 'child b has a very long label',
+			children : [ {
+				label : 'innerChild'
+			} ]
+		} ]
+	}, {
+		label : 'parent3'
+	} ];
 } ]);
