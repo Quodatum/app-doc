@@ -19,7 +19,8 @@
 		           <div class="col-sm-3 col-md-3 pull-left">
         <form class="navbar-form" role="search" ng-submit="doSearch()">
         <div class="input-group">
-            <input type="text" class="form-control input-sm" placeholder="Search" name="q" id="q"/>
+            <input type="text" ng-model="search.q" class="form-control input-sm" 
+            placeholder="Search" name="q" id="q"/>
             <div class="input-group-btn">
                 <button class="btn btn-default input-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </div>

@@ -53,8 +53,9 @@ angular.module('doc', [ 'ngRoute', 'ngResource',
 				
 .controller("AppController", [ "$scope","$location", function($scope,$location) {
 	console.log("AppController");
+	$scope.search={};
 	 $scope.doSearch=function(){
-         $location.path("/search").search({q: $scope.q});
+         $location.path("/search").search({q: $scope.search.q});
      };
 }])
 

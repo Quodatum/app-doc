@@ -150,7 +150,7 @@ function components($fmt as xs:string){
 
 declare function render($template,$map){
   let $defaults:=map{
-                    "version":"0.1.0",
+                    "version":"0.1.1",
                     "static":"/static/doc/"
                 }
 let $map:=map:new(($map,$defaults))
