@@ -8,9 +8,9 @@ declare default function namespace 'quodatum.doc.rest';
 
 import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
 import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
-import module namespace dice = 'quodatum.web.dice' at "lib/dice.xqm";
+import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
-
+import module namespace entity = 'apb.models.generated' at 'models.xqm';
 
 
 (:~
@@ -29,22 +29,30 @@ function doc(){
  : list of apps
  :)
 declare
-%rest:GET %rest:path("doc/app")
+%rest:GET %rest:path("doc/data/app")
 %output:method("json")   
 function app() 
 {
-dice:json-request((),(),())
+let $items:=(<item><name>doc</name></item>,
+            <item><name>benchx</name></item>)
+let $flds:=entity:fields("application")
+
+return dice:json-request($items,$flds)
 };
 
 (:~
  : search apps
+ : @TODO fix this
  :)
 declare
 %rest:GET %rest:path("doc/search")
 %output:method("json")   
 function search() 
 {
-dice:json-request((),(),())
+let $items:=(<item><name>doc</name></item>,
+            <item><name>benchx</name></item>)
+let $flds:=entity:fields("application")
+return dice:json-request($items,$flds)
 };
 
 (:~

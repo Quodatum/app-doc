@@ -1,4 +1,4 @@
-<components xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<components xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="components.xsd">
 	<cmp name="angular-tree-control">
 		<runat>browser</runat>
@@ -200,7 +200,7 @@
 			all web browsers.
 		</tagline>
 		<release version="0.6.0">
-			<cdn src="lib/stacktrace/0.6.0" />
+			<cdn>lib/stacktrace/0.6.0</cdn>
 		</release>
 	</cmp>
 
@@ -216,6 +216,7 @@
 			<local type="css">lib/oci.treeview/2040305/treeview.css</local>
 		</release>
 	</cmp>
+
 	<cmp name="restangular">
 		<runat>browser</runat>
 		<home>https://github.com/mgonto/restangular</home>
@@ -244,37 +245,47 @@
 		<tagline>Ace is an embeddable code editor written in JavaScript.
 		</tagline>
 		<release version="01.08.2014">
-			<cdn src="lib/ace/01.08.2014" />
+			<local>lib/ace/01.08.2014</local>
 		</release>
 	</cmp>
 
 	<cmp name="ui-ace">
 		<home>https://github.com/angular-ui/ui-ace</home>
 		<release version="01.08.2014">
-			<cdn src="lib/ace/01.08.2014" />
+			<cdn>lib/ace/01.08.2014</cdn>
 		</release>
 	</cmp>
 
 	<cmp name="toastr">
+		<home>http://codeseven.github.io/toastr/</home>
 		<release version="2.0.1">
-			<cdn
-				src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js" />
+			<cdn>//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js</cdn>
 		</release>
 	</cmp>
 
 	<cmp name="angular-flashr">
 		<home>https://github.com/TylerGarlick/angular.flashr</home>
+		<depends>angularjs</depends>
 		<release version="2.0.1">
-			<cdn
-				src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js" />
+			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js</cdn>
 		</release>
 	</cmp>
 
 	<cmp name="angular-ya-treeview">
 		<home>https://github.com/ca77y/angular-ya-treeview</home>
+		<tagline>Yet Another Treeview for AngularJS</tagline>
+		<depends>angularjs</depends>
 		<release version="0.2.1">
-			<cdn
-				src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js" />
+			<cdn>//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js</cdn>
+		</release>
+	</cmp>
+
+	<cmp name="font-awesome">
+		<runat>browser</runat>
+		<home>http://fortawesome.github.io/Font-Awesome/</home>
+		<tagline>Font Awesome gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS. </tagline>
+		<release version="4.1.0">
+			<cdn>//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css</cdn>
 		</release>
 	</cmp>
 </components>

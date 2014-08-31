@@ -1,3 +1,21 @@
 <div>
 	apps
+	<table class="table table-condensed table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Updated</th>
+				<th>Path</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="app in apps">
+				<td><a href="#/apps/{{app.name}}">{{app.name}}</a></td>
+				<td>{{app.description}}</td>
+				<td>{{db.modifiedDate}}</td>
+				<td>{{db.path}}</td>
+			</tr>
+		</tbody>
+	</table>
 </div>

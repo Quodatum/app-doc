@@ -39,10 +39,7 @@
 				<xs:complexType>
 					<xs:simpleContent>
 						<xs:extension base="xs:string">
-							<xs:attribute use="optional" name="type" type="xs:string">
-							</xs:attribute>
-							<xs:attribute use="optional" name="src" type="xs:string">
-							</xs:attribute>
+							<xs:attribute use="optional" name="type" type="xs:string"/>
 						</xs:extension>
 					</xs:simpleContent>
 				</xs:complexType>

@@ -4,8 +4,8 @@
 : @since mar 2013
 :)
 
-module namespace dice = 'quodatum.web.dice';
-declare default function namespace 'quodatum.web.dice'; 
+module namespace dice = 'quodatum.web.dice/v2';
+declare default function namespace 'quodatum.web.dice/v2'; 
 declare namespace restxq = 'http://exquery.org/ns/restxq';
 import module namespace request = "http://exquery.org/ns/request";
 
@@ -90,7 +90,7 @@ as element(json){
  : sort, slice, return json using request parameters
  : @param $items sequence of source items
  :)
-declare function json-request($items,$fields,$fn,$crumbs){
+declare function json-request($items,$fields,$crumbs){
   let $start:=xs:integer(fn:number(request:parameter("start","0")))
   let $limit:=xs:integer(fn:number(request:parameter("limit","30")))
   let $sort:=request:parameter("sort","")
@@ -108,8 +108,8 @@ declare function json-request($items,$fields,$fn,$crumbs){
  : @param $fields map
  : @param @fn 
  :)
-declare function json-request($items,$fields,$fn){
-    json-request($items,$fields,$fn,())
+declare function json-request($items,$fields){
+    json-request($items,$fields,())
 };
 
 declare function status($code,$reason){

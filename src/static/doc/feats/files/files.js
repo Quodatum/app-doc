@@ -11,7 +11,7 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 } ])
 
 // controllers
-.controller("FilesCtrl", [ "$scope", function($scope) {
+.controller("FilesCtrl", [ "$scope", "Restangular",function($scope,Restangular) {
 
 	console.log("FilesCtrl2");
 	$scope.treeData = {
@@ -66,7 +66,14 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 			} else {
 				context.selectedNodes = [ node ];
 			}
-		}
+		},
+		 onExpand: function($event, node, context) {
+		        Restangular.one('files', node.$model.id).getList('children')
+		            .then(function (result) {
+		                node.$model.children = result;
+		                node.$children = context.nodifyArray(result);
+		            });
+		 }
 	};
 
 	$scope.model = [ {
