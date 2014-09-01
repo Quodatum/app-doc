@@ -12,6 +12,15 @@ import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
 import module namespace entity = 'apb.models.generated' at 'models.xqm';
 
+(:  trailing slash :)
+declare variable $dr:base:= db:system()/globaloptions/webpath/fn:string()
+                             || file:dir-separator();
+
+(:~ true path from segment :)
+declare function path($path as xs:string)
+ as xs:string{
+ $dr:base || $path
+};
 
 (:~
  : The doc api
@@ -38,6 +47,36 @@ let $items:=(<item><name>doc</name></item>,
 let $flds:=entity:fields("application")
 
 return dice:json-request($items,$flds)
+};
+
+(:~
+ : list of files
+ :)
+declare
+%rest:GET %rest:path("doc/data/files")
+%rest:query-param("dir", "{$dir}","/")  
+%output:method("json")   
+function files($dir) 
+{
+    let $fdir:= path($dir)
+    let $xq:=file:list($fdir)
+    let $f:=function($d){
+             let $d:=fn:translate($d,"\","/")
+             return   
+              <_>
+                 <name>{$d}</name>
+                 <path>{$dir || $d}</path>
+                 <state>closed</state>
+              </_>}
+    return 
+    <json arrays="json" objects="_">
+      {for $d in $xq where file:is-dir($fdir ||$d)
+         return $f($d)
+      }
+      { for $d in $xq where fn:not(file:is-dir($fdir ||$d))
+        return  $f($d)
+       }         
+ </json>
 };
 
 (:~
@@ -158,7 +197,7 @@ function components($fmt as xs:string){
 
 declare function render($template,$map){
   let $defaults:=map{
-                    "version":"0.1.1",
+                    "version":"0.1.2",
                     "static":"/static/doc/"
                 }
 let $map:=map:new(($map,$defaults))

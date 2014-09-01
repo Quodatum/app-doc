@@ -14,12 +14,12 @@
 				ya-context="context">
 				<span ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}">
 				<i class="fa" ng-class="node.$hasChildren?'fa-folder-open':'fa-file'"></i> 
-				{{ node.$model.label }}</span>
+				{{ node.$model.name }}</span>
 			</div>
 		</div>
 		<div class="col-md-3">
 		<h4>Diags</h4>
-		<div>Last selected: <strong>{{context.selectedNode.$model.label}}</strong></div>
+		<div>Last selected: <strong>{{context.selectedNode.$model.path}}</strong></div>
 		<div>Context: {{context | json}}</div>
 		</div>
 	</div>

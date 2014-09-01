@@ -11,9 +11,11 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 } ])
 
 // controllers
-.controller("FilesCtrl", [ "$scope", "Restangular",function($scope,Restangular) {
+.controller("FilesCtrl", [ "$scope", "Restangular","$resource","apiRoot",
+                           function($scope,Restangular,$resource,apiRoot) {
 
 	console.log("FilesCtrl2");
+	
 	$scope.treeData = {
 		label : 'Root',
 		state : 'expanded',
@@ -52,6 +54,15 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 		selectedNodes : [],
 		hits : 0
 	};
+	function getChildren(dir,node,context){ 
+		var f=$resource(apiRoot+'/data/files');
+		f.query({dir:dir}).$promise
+		 .then(function (result) {
+	            node.$model.children = result;
+	            node.$children = context.nodifyArray(result);
+	        })
+	        ;
+	};
 	$scope.options = {
 
 		onSelect : function($event, node, context) {
@@ -68,11 +79,8 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 			}
 		},
 		 onExpand: function($event, node, context) {
-		        Restangular.one('files', node.$model.id).getList('children')
-		            .then(function (result) {
-		                node.$model.children = result;
-		                node.$children = context.nodifyArray(result);
-		            });
+			    var id=node.$model.label;
+			    getChildren("/",node,context);
 		 }
 	};
 
