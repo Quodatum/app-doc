@@ -85,23 +85,12 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 	};
 
 	$scope.model = [ {
-		label : 'parent1',
-		children : [ {
-			label : 'childa'
-		}, {
-			label : 'child x'
-		}, {
-			label : 'child y'
-		} ]
-	}, {
-		label : 'parent2',
-		children : [ {
-			label : 'child b has a very long label',
-			children : [ {
-				label : 'innerChild'
-			} ]
-		} ]
-	}, {
-		label : 'parent3'
-	} ];
-} ]);
+		name : 'root',
+		path:"/",
+		 has_children:true,
+		children : function(node){
+			var f=$resource(apiRoot+'/data/files');
+			return f.query({dir:node.$model.path});
+			}
+} ];
+}]);	

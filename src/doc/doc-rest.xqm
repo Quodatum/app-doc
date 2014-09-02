@@ -11,6 +11,7 @@ import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
 import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
 import module namespace entity = 'apb.models.generated' at 'models.xqm';
+import module namespace cva = 'quodatum.cva.rest' at "lib/cva.xqm";
 
 (:  trailing slash :)
 declare variable $dr:base:= db:system()/globaloptions/webpath/fn:string()
@@ -195,9 +196,16 @@ function components($fmt as xs:string){
     
 };
 
+declare
+%rest:GET %rest:path("doc/meta/cvabar/{$bar}")
+%output:method("json")
+function bar($bar){
+    cva:getbar("doc",$bar)
+};
+ 
 declare function render($template,$map){
   let $defaults:=map{
-                    "version":"0.1.2",
+                    "version":"0.1.4",
                     "static":"/static/doc/"
                 }
 let $map:=map:new(($map,$defaults))

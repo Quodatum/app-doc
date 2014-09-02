@@ -34,7 +34,7 @@ declare variable $static external :="/static/doc/";
 {$body}
 
      <!-- angular -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"  ></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"  ></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-resource.min.js"  ></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-cookies.min.js"  ></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-sanitize.min.js"></script> 
