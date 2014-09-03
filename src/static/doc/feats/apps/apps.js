@@ -7,6 +7,8 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 		templateUrl : '/static/doc/feats/apps/apps.xhtml',
 		controller : "AppsCtrl"
 	}).when('/apps/:app', {
+		redirectTo: "/apps/:app/wadl"		
+	}).when('/apps/:app/:view', {
 		templateUrl : '/static/doc/feats/apps/app1.xhtml',
 		controller : "AppCtrl"
 	});
@@ -53,14 +55,15 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 					$log.log("View:", $routeParams.view);
 					var app = $routeParams.app;
 					var map = {
-						"xqdoc" : '/doc/app/benchx/server/xqdoc',
-						"wadl" : '/doc/app/benchx/server/wadl',
-						"components" : '/doc/app/benchx/client/components',
-						"templates" : '/doc/app/benchx/client/templates',
+						"xqdoc" : '/server/xqdoc',
+						"wadl" : '/server/wadl',
+						"components" : '/client/components',
+						"templates" : '/client/templates',
 						"xqdoc2" : 'doc/server'
 					};
 					$scope.view = $routeParams.view;
-					$scope.inc = map[$routeParams.view];
+					$scope.app = $routeParams.app;
+					$scope.inc = "/doc/app/"+app +map[$routeParams.view];
 					$scope.setTitle("docs");
 					$scope.scrollTo = function(id) {
 						$log.log("DDDD", id);

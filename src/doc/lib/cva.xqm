@@ -7,10 +7,10 @@ module namespace cva = 'quodatum.cva.rest';
 declare default function namespace 'quodatum.cva.rest'; 
 
 (:~
- : show xqdoc for rest api
+ : @return bar named $bar from app named $app
  :)
 declare function getbar($app as xs:string,$bar as xs:string) 
-{
+as element(json){
     let $uri:=fn:resolve-uri(fn:concat("../data/bars/",$bar,".xml"))
     return fn:doc($uri)/*!fixup(.)
 };

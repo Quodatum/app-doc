@@ -44,7 +44,7 @@ declare function xquery-html($inspect)
 
 
 (:~
- : html report for compoents referenced in package
+ : html report for components referenced in package
  :)
 declare function components-html($pkg as element())
 {
