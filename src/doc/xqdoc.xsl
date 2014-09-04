@@ -53,16 +53,14 @@
 				</tr>
 			</table>
 			<h2>Variables</h2>
-			<xsl:for-each select="xqdoc:variables/xqdoc:variable">
+			<xsl:apply-templates select="xqdoc:variables/xqdoc:variable">
 				<xsl:sort select="xqdoc:name" />
-				<xsl:apply-templates select="." />
-			</xsl:for-each>
+			</xsl:apply-templates>
 
 			<h2>Functions</h2>
-			<xsl:for-each select="xqdoc:functions/xqdoc:function">
+			<xsl:apply-templates select="xqdoc:functions/xqdoc:function">
 				<xsl:sort select="xqdoc:name" />
-				<xsl:apply-templates select="." />
-			</xsl:for-each>
+			</xsl:apply-templates>
 		</div>
 	</xsl:template>
 
@@ -79,8 +77,8 @@
 					<code>item()</code>
 				</td>
 			</tr>
-			<xsl:apply-templates select="xqdoc:comment/xqdoc:description"/>
-			
+			<xsl:apply-templates select="xqdoc:comment/xqdoc:description" />
+
 		</table>
 	</xsl:template>
 
@@ -115,7 +113,7 @@
 					</table>
 				</td>
 			</tr>
-			<xsl:apply-templates select="xqdoc:comment/xqdoc:description"/>
+			<xsl:apply-templates select="xqdoc:comment/xqdoc:description" />
 		</table>
 	</xsl:template>
 

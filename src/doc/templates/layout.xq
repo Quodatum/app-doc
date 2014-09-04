@@ -14,7 +14,7 @@ declare variable $static external :="/static/doc/";
     
 <title>doc (v{$version})</title>
 <!-- Le fav and touch icons -->
-<link rel="shortcut icon" href="app.ico"/>
+<link rel="shortcut icon" href="{$static}logo.svg"/>
 <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.css" rel="stylesheet" type="text/css" />  
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
 <link href="{$static}../lib/oci.treeview/20140305/treeview.css" rel="stylesheet" type="text/css" />

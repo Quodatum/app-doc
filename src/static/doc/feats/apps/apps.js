@@ -66,7 +66,7 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 					$scope.inc = "/doc/app/"+app +map[$routeParams.view];
 					$scope.setTitle("docs");
 					$scope.scrollTo = function(id) {
-						$log.log("DDDD", id);
+						$log.log("Scroll: ", id);
 						$location.hash(id);
 						// call $anchorScroll()
 						$anchorScroll();

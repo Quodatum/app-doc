@@ -64,7 +64,8 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 	        ;
 	};
 	$scope.options = {
-
+		hasChildrenKey:"isdir",
+		
 		onSelect : function($event, node, context) {
 			context.hits++;
 			if ($event.ctrlKey) {
@@ -79,8 +80,8 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 			}
 		},
 		 onExpand: function($event, node, context) {
-			    var id=node.$model.label;
-			    getChildren("/",node,context);
+			    var id=node.$model.path;
+			    getChildren(id,node,context);
 		 }
 	};
 
@@ -88,9 +89,6 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 		name : 'root',
 		path:"/",
 		 has_children:true,
-		children : function(node){
-			var f=$resource(apiRoot+'/data/files');
-			return f.query({dir:node.$model.path});
-			}
+		 children:[]
 } ];
 }]);	

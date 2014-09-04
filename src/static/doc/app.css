@@ -79,3 +79,6 @@ left: 0;;
   background-color: #aaddff;
   font-weight: bold;
 }
+.navbar-nav .btn {
+	  margin: 2px;
+}

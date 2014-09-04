@@ -34,32 +34,36 @@
 		<xsl:variable name="used" select="pkg:dependency" />
 		<xsl:variable name="found" select="$cmps[@name=$used/@name]" />
 		<div>
-			<h2>
-				<span class="label label-primary">
-					<xsl:value-of select="@abbrev" />
-				</span>
-				lists
+			<h3>
+				Components used
 				<span class="label label-default">
 					<xsl:value-of select="count($used)" />
 				</span>
-				dependancies in package.xml
-				<a href="../../doc/app/{@abbrev}/client/components?fmt=xml"
-					target="dn">
-					<i class="glyphicon glyphicon-save"></i>
-				</a>
-			</h2>
-			<ol>
-				<xsl:for-each select="$used">
-					<xsl:sort select="lower-case(@name)" />
-					<xsl:variable name="cmp" select="$cmps[@name=current()/@name]" />
-					<li>
-						<a ng-click="scrollTo('cmp-{@name}')"
-							class="btn btn-sm btn-{if($cmp)then 'success' else 'danger'}">
-							<xsl:value-of select="@name" />
-						</a>
-					</li>
-				</xsl:for-each>
-			</ol>
+
+
+
+				<small>
+					package.xml
+					<a href="../../doc/app/{@abbrev}/client/components?fmt=xml"
+						target="dn">
+						<i class="glyphicon glyphicon-save"></i>
+					</a>
+				</small>
+			</h3>
+			<div>
+				<ul class="nav navbar-nav">
+					<xsl:for-each select="$used">
+						<xsl:sort select="lower-case(@name)" />
+						<xsl:variable name="cmp" select="$cmps[@name=current()/@name]" />
+						<li>
+							<button ng-click="scrollTo('cmp-{@name}')"
+								class="navbar-btn btn btn-sm btn-{if($cmp)then 'success' else 'danger'}">
+								<xsl:value-of select="@name" />
+							</button>
+						</li>
+					</xsl:for-each>
+				</ul>
+			</div>
 			<div>
 				<h3>Used</h3>
 				<xsl:apply-templates select="$found">

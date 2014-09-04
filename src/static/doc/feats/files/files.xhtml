@@ -12,9 +12,12 @@
 		<div>ya-treeview</div>
 			<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
 				ya-context="context">
-				<span ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}">
-				<i class="fa" ng-class="node.$hasChildren?'fa-folder-open':'fa-file'"></i> 
-				{{ node.$model.name }}</span>
+				<span ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}"
+				title="{{ node.$model.path }}">
+				<i class="fa" ng-class="{'fa-folder-open': node.$hasChildren, 'fa-file': !node.$hasChildren}"></i> 
+				{{ node.$model.name }}
+				<span>{{node.$hasChildren}}</span><span>{{node.collapsed}}</span>
+				</span>
 			</div>
 		</div>
 		<div class="col-md-3">

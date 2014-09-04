@@ -61,21 +61,21 @@ function files($dir)
 {
     let $fdir:= path($dir)
     let $xq:=file:list($fdir)
-    let $f:=function($d){
+    let $f:=function($d,$isFolder){
              let $d:=fn:translate($d,"\","/")
              return   
               <_>
                  <name>{$d}</name>
                  <path>{$dir || $d}</path>
-                 <state>closed</state>
+                 <isdir>{$isFolder}</isdir>
               </_>}
     return 
     <json arrays="json" objects="_">
       {for $d in $xq where file:is-dir($fdir ||$d)
-         return $f($d)
+         return $f($d,fn:true())
       }
       { for $d in $xq where fn:not(file:is-dir($fdir ||$d))
-        return  $f($d)
+        return  $f($d,fn:false())
        }         
  </json>
 };
