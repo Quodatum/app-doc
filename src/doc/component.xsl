@@ -2,29 +2,27 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!-- convert components.xml to bootstrap html -->
 	<xsl:template match="/components">
-		<div>
-			<h2>
-				Components (
-				<xsl:value-of select="count(cmp)" />
-				)
-			</h2>
-			<div class="row">
-				<div class="col-md-2">
-					<xsl:copy-of select="pkg:cmplist(cmp/@name)" />
+		<div class="row">
+			<div class="col-md-2">
+				<xsl:copy-of select="pkg:cmplist(cmp/@name)" />
+			</div>
+			<div class="col-md-10" style="height:70vh;overflow:scroll;">
+				<h2>
+					Components (
+					<xsl:value-of select="count(cmp)" />
+					)
+				</h2>
+				<div>
+					<xsl:apply-templates select="cmp">
+						<xsl:sort select="lower-case(@name)" />
+					</xsl:apply-templates>
 				</div>
-				<div class="col-md-10">
-					<div style="max-height:100%;overflow:scroll;">
-						<xsl:apply-templates select="cmp">
-							<xsl:sort select="lower-case(@name)" />
-						</xsl:apply-templates>
-					</div>
-					<h2>Errors</h2>
-					<xsl:for-each select="//depends[not(. =//cmp/@name)]">
-						<span class="label label-danger">
-							<xsl:value-of select="." />
-						</span>
-					</xsl:for-each>
-				</div>
+				<h2>Errors</h2>
+				<xsl:for-each select="//depends[not(. =//cmp/@name)]">
+					<span class="label label-danger">
+						<xsl:value-of select="." />
+					</span>
+				</xsl:for-each>
 			</div>
 		</div>
 	</xsl:template>
@@ -100,7 +98,7 @@
 
 					<span class="pull-right">
 						<a href="{home}" target="benchx-doc" class="badge" title="{@name} {home}">
-							<i class="glyphicon glyphicon-home"></i>
+							<i class="fa fa-external-link"></i>
 							Home
 						</a>
 					</span>

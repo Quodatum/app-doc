@@ -57,20 +57,20 @@ declare
 %rest:GET %rest:path("doc/data/files")
 %rest:query-param("dir", "{$dir}","/")  
 %output:method("json")   
-function files($dir) 
+function files($dir) as element(json) 
 {
     let $fdir:= path($dir)
     let $xq:=file:list($fdir)
     let $f:=function($d,$isFolder){
              let $d:=fn:translate($d,"\","/")
              return   
-              <_>
+              <_ type="object">
                  <name>{$d}</name>
                  <path>{$dir || $d}</path>
-                 <isdir>{$isFolder}</isdir>
+                 <isdir type="boolean">{$isFolder}</isdir>
               </_>}
     return 
-    <json arrays="json" objects="_">
+    <json type="array">
       {for $d in $xq where file:is-dir($fdir ||$d)
          return $f($d,fn:true())
       }
@@ -177,7 +177,7 @@ function templates($app as xs:string)
     return <div>{
      for $t in $list
      order by fn:lower-case($t)
-      return <a href="templates/{$t}">{$t}</a>
+      return <a href="{$path}{$t}">{$t}</a>
       }</div>
 }; 
 

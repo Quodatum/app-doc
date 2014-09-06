@@ -1,6 +1,6 @@
-<div>
+<div id="cloud-container">
 	<div>Files</div>
-	<div class="row">
+	<div class="row" style="height:100%;">
 		<div class="col-md-3">
 		<div>oci.treeview</div>
 			<oci.treeview tree="treeData" on-select-node="getMoreData">
@@ -11,13 +11,11 @@
 		<div class="col-md-3">
 		<div>ya-treeview</div>
 			<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
-				ya-context="context">
-				<span ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}"
+				ya-context="context" style="height:50vh;">
+				<div ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}"
 				title="{{ node.$model.path }}">
-				<i class="fa" ng-class="{'fa-folder-open': node.$hasChildren, 'fa-file': !node.$hasChildren}"></i> 
-				{{ node.$model.name }}
-				<span>{{node.$hasChildren}}</span><span>{{node.collapsed}}</span>
-				</span>
+				<i class="fa" ng-class="node.$hasChildren?(node.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i> 
+				{{ node.$model.name }}</div>
 			</div>
 		</div>
 		<div class="col-md-3">

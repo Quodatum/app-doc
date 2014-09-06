@@ -4,7 +4,7 @@ angular.module('quodatum.doc.schema', [ 'restangular'])
 .config(
 		[ '$routeProvider', function($routeProvider) {
 			console.log("$routeProvider quodatum.doc.schema");
-			$routeProvider.when('/apps', {
+			$routeProvider.when('/schema', {
 				templateUrl : '/static/doc/feats/schema/schema.xhtml',
 				controller : "SchemaCtrl"
 			});

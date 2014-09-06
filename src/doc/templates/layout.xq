@@ -53,5 +53,6 @@ declare variable $static external :="/static/doc/";
     <script src="{$static}feats/apps/apps.js"  ></script>
     <script src="{$static}feats/components/components.js"  ></script>
     <script src="{$static}feats/files/files.js"  ></script>
+    <script src="{$static}feats/schema/schema.js"  ></script>
 </body>
 </html>

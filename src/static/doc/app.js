@@ -5,7 +5,8 @@ angular.module('doc', [ 'ngRoute', 'ngResource',
                         'ya.treeview','ya.treeview.tpls',
                         'quodatum.doc.apps',
                         'quodatum.doc.components',
-                        'quodatum.doc.files'])
+                        'quodatum.doc.files',
+                        'quodatum.doc.schema'])
 
 .constant(
 		"apiRoot", "../../doc/").config(
@@ -19,6 +20,8 @@ angular.module('doc', [ 'ngRoute', 'ngResource',
 						controller : "SearchCtrl"
 					}).when('/404', {
 						templateUrl : '/static/doc/templates/404.xhtml'
+					}).when('/about', {
+						templateUrl : '/static/doc/templates/about.xhtml'		
 					}).when('/error', {
 						templateUrl : '/static/doc/templates/error.xhtml'
 					}).otherwise({
