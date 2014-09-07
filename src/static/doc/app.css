@@ -13,7 +13,7 @@ body {
 a.anchor {
     display: block;
     position: relative;
-    top: -8px;
+    top: -16px;
     visibility: hidden;
 }
 
