@@ -5,44 +5,67 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/02/xpath-functions"
 	exclude-result-prefixes="xs wadl fn" version="2.0">
 
-
+<!-- root is initial path to ignore -->
 	<xsl:param name="root" as="xs:string" />
 
 	<!-- generate module html // -->
 	<xsl:template match="/wadl:application/wadl:resources">
-		<div>
-			<h2>
-				RestXQ API:
-				<xsl:value-of select="$root" />
-			</h2>
+		<div class="row">
+			<div class="col-md-3">
+				<ul>
+					<xsl:for-each select="wadl:resource">
+						<xsl:sort select="@path" />
+						<li>
+							<xsl:apply-templates select="." mode="link">
+								<xsl:with-param name="root" select="$root" />
+							</xsl:apply-templates>
+						</li>
+					</xsl:for-each>
+				</ul>
+			</div>
+			<div class="col-md-9" style="height:70vh;overflow:scroll;">
 
-			<xsl:for-each select="wadl:resource">
-				<xsl:sort select="@path" />
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a class="anchor" id="cmp-{@path}"></a>
+				<h2>
+					RestXQ API:
+					<xsl:value-of select="$root" />
+				</h2>
 
-							<a ng-click="scrollTo('cmp-{@path}')" class="label label-info">					
-									<xsl:value-of select="substring(@path,1+string-length($root))" />
-							</a>
-							<xsl:call-template name="method-name" />
-							<p class="pull-right">
-								<xsl:apply-templates
-									select="wadl:method/wadl:response/wadl:representation" />
-							</p>
-						</h4>
+				<xsl:for-each select="wadl:resource">
+					<xsl:sort select="@path" />
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a class="anchor" id="path-{generate-id()}"></a>
+								<xsl:apply-templates select="." mode="link">
+									<xsl:with-param name="root" select="$root" />
+								</xsl:apply-templates>
 
+								<p class="pull-right">
+									<xsl:apply-templates
+										select="wadl:method/wadl:response/wadl:representation" />
+								</p>
+							</h4>
+
+						</div>
+
+						<div class="panel-body">
+							<xsl:value-of select="wadl:method/wadl:doc" />
+							<xsl:apply-templates select="wadl:method" />
+						</div>
 					</div>
-
-					<div class="panel-body">
-						<xsl:value-of select="wadl:method/wadl:doc" />
-						<xsl:apply-templates select="wadl:method" />
-					</div>
-				</div>
-			</xsl:for-each>
-
+				</xsl:for-each>
+			</div>
 		</div>
+	</xsl:template>
+
+	<xsl:template match="wadl:resource" mode="link">
+		<xsl:param name="root" />
+		<a ng-click="scrollTo('path-{generate-id()}')"
+		title="{wadl:method/wadl:doc}">
+			<span class="label label-info">
+				<xsl:value-of select="substring(@path,1+string-length($root))" />
+			</span></a>
+		<xsl:call-template name="method-name" />
 	</xsl:template>
 
 	<xsl:template match="wadl:method">

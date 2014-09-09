@@ -177,7 +177,7 @@ function templates($app as xs:string)
     return <div>{
      for $t in $list
      order by fn:lower-case($t)
-      return <a href="{$path}{$t}">{$t}</a>
+      return <a href="/static/{$app}/templates/{$t}">{$t}</a>
       }</div>
 }; 
 
@@ -205,7 +205,7 @@ function bar($bar){
  
 declare function render($template,$map){
   let $defaults:=map{
-                    "version":"0.1.4",
+                    "version":"0.2.0",
                     "static":"/static/doc/"
                 }
 let $map:=map:new(($map,$defaults))
