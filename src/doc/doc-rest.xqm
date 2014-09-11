@@ -61,6 +61,7 @@ function files($dir) as element(json)
 {
     let $fdir:= path($dir)
     let $xq:=file:list($fdir)
+    let $xq:=$xq
     let $f:=function($d,$isFolder){
              let $d:=fn:translate($d,"\","/")
              return   
@@ -71,12 +72,11 @@ function files($dir) as element(json)
               </_>}
     return 
     <json type="array">
-      {for $d in $xq where file:is-dir($fdir ||$d)
-         return $f($d,fn:true())
-      }
-      { for $d in $xq where fn:not(file:is-dir($fdir ||$d))
-        return  $f($d,fn:false())
-       }         
+      {for $ls in $xq   
+       let $isFolder:=file:is-dir($fdir ||$ls)
+       order by $isFolder descending,fn:lower-case($ls)
+       return $f($ls,$isFolder)
+      }      
  </json>
 };
 
@@ -177,7 +177,12 @@ function templates($app as xs:string)
     return <div>{
      for $t in $list
      order by fn:lower-case($t)
-      return <a href="/static/{$app}/templates/{$t}">{$t}</a>
+     
+      return <div>
+      
+      <iframe src="/static/{$app}/templates/{$t}">zz</iframe>
+      <a href="/static/{$app}/templates/{$t}">{$t}</a>
+      </div>
       }</div>
 }; 
 

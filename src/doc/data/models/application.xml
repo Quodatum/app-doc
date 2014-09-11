@@ -1,0 +1,15 @@
+<entity name="application" type="element(repo:meta)">
+  <namespace prefix="repo">http://basex.org/xquery/repo</namespace>
+    <description>A RESTXQ based web application described by the AIDE framework.</description>
+	<fields>
+		<field name="name" type="xs:string">
+			<description>Application name</description>
+			<xpath>$_/repo:target</xpath>
+		</field>
+		<field name="description" type="xs:string">
+			<description>Application description</description>
+			<xpath>$_/repo:description</xpath>
+		</field>
+	</fields>
+	<iconclass>glyphicon glyphicon-cog</iconclass>
+</entity>

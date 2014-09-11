@@ -6,6 +6,4 @@
 	<dependency name="restangular" version="3.1.1" />
 	<dependency name="font-awesome" version="4.1.0" />
 	<dependency name="angular-ya-treeview" version="0.2.1" />
-	<dependency name="font-awesome" version="4.1.0" />
-	<dependency name="angular-ui-bootstrap" version="0.10.0" />
 </package>

@@ -38,7 +38,7 @@ declare %updating function sync-from-path($dbname as xs:string,$path as xs:strin
 : @param $dbname name of database
 : @param $path  base file path where files are relative to en
 : @param $files file names from base
-: @param fn functio to apply
+: @param fn function to apply f(fullsrcpath)->anotherpath
 :)
 declare %updating function sync-from-files($dbname as xs:string,
                                            $path as xs:string,
