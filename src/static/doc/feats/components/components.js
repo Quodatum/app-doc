@@ -7,7 +7,11 @@ angular.module('quodatum.doc.components', [ 'restangular'])
            $routeProvider.when('/components', {
                templateUrl : '/static/doc/feats/components/components.xhtml',
                controller : "CmpCtrl"
-           });  
+           }).when('/components/tree', {
+               templateUrl : '/static/doc/feats/components/cmptree.xhtml',
+               controller : "CmptreeCtrl"
+           })
+           ;  
 
       }])
  
@@ -28,6 +32,9 @@ angular.module('quodatum.doc.components', [ 'restangular'])
 		$anchorScroll();
 	};		
 
+}])
+.controller("CmptreeCtrl", ['$scope',function($scope){
+	
 }])
 ;
           

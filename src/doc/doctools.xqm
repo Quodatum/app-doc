@@ -37,9 +37,10 @@ declare function static-uri(
     fn:resolve-uri(fn:concat("../static/",$app,"/",$path))
 };
 
-declare function xquery-html($inspect)
+declare function xquery-html($inspect,$app,$source)
 {
-    xslt:transform($inspect,fn:resolve-uri("xqdoc.xsl"))
+   let $params:=map { "path" := $source,"app":=$app }
+   return xslt:transform($inspect,fn:resolve-uri("xqdoc.xsl"),$params)
 };
 
 

@@ -7,19 +7,15 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 		templateUrl : '/static/doc/feats/apps/apps.xhtml',
 		controller : "AppsCtrl"
 	}).when('/apps/:app', {
-		redirectTo: "/apps/:app/wadl"		
-	}).when('/apps/:app/:view', {
 		templateUrl : '/static/doc/feats/apps/app1.xhtml',
-		controller : "AppCtrl"
+		controller : "AppCtrl"	
+	}).when('/apps/:app/:view', {
+		templateUrl : '/static/doc/feats/apps/app2.xhtml',
+		controller : "AppCtrl2"
 	});
 
 } ])
 
-.run([ "$rootScope","$window", function($rootScope, $window) {
-	$rootScope.setTitle = function(t) {
-		$window.document.title = t;
-	};
-} ])
 
 // controllers
 .controller("AppsCtrl",
@@ -37,19 +33,19 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 .controller(
 		"AppCtrl",
 		[ "$scope", "$routeParams", "Restangular",
-				function($scope, $routeParams, Restangular) {
-					console.log("AppsCtrl");
-					var item = $routeParams.app;
+				function($scope, $routeParams, Restangular) {				
+					var app = $routeParams.app;
+					console.log("AppCtrl",app);
 					var applist = Restangular.one("data").all('app');
 					applist.getList().then(function(d) {
 						console.log("AppsCtrl", d);
-						$scope.apps = d;
+						$scope.app = app;
 					});
 
 				} ])
 
 .controller(
-		'AppCtrl',
+		'AppCtrl2',
 		[ "$scope", "$routeParams", "$location", "$anchorScroll", "$log",
 				function($scope, $routeParams, $location, $anchorScroll, $log) {
 					$log.log("View:", $routeParams.view);
@@ -63,7 +59,12 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 					};
 					$scope.view = $routeParams.view;
 					$scope.app = $routeParams.app;
-					$scope.inc = "/doc/app/"+app +map[$routeParams.view];
+					var target = "../../doc/app/"+app +map[$routeParams.view];
+					if($routeParams.path){
+						target+="?path="+$routeParams.path;
+					}
+					$scope.inc = target;
+					console.log("TAR",target);
 					$scope.setTitle("docs");
 					$scope.scrollTo = function(id) {
 						$log.log("Scroll: ", id);

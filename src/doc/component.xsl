@@ -4,7 +4,9 @@
 	<xsl:template match="/components">
 		<div class="row">
 			<div class="col-md-2">
-				<xsl:copy-of select="pkg:cmplist(cmp)" />
+				<xsl:call-template name="list">
+					<xsl:with-param name="cmps" select="cmp" />
+				</xsl:call-template>
 			</div>
 			<div class="col-md-10" style="height:70vh;overflow:scroll;">
 				<h2>
@@ -33,7 +35,9 @@
 		<xsl:variable name="found" select="$cmps[@name=$used/@name]" />
 		<div class="row">
 			<div class="col-md-2">
-				<xsl:copy-of select="pkg:cmplist($found)" />
+				<xsl:call-template name="list">
+                    <xsl:with-param name="cmps" select="$found" />
+                </xsl:call-template>
 			</div>
 			<div class="col-md-10" style="height:70vh;overflow:scroll;">
 				<h3>
@@ -41,7 +45,7 @@
 					<span class="label label-default">
 						<xsl:value-of select="count($used)" />
 					</span>
-					<small>
+					<small class="pull-right">
 						package.xml
 						<a href="../../doc/app/{@abbrev}/client/components?fmt=xml"
 							target="dn">
@@ -98,11 +102,15 @@
 
 				<div>
 					Used by:
-					<xsl:copy-of select="pkg:cmplist(//cmp[depends=current()/@name]/@name)" />
+					<xsl:call-template name="list">
+                    <xsl:with-param name="cmps" select="//cmp[depends=current()/@name]/@name" />
+                </xsl:call-template>
 				</div>
 				<div>
 					Depends on:
-					<xsl:copy-of select="pkg:cmplist(depends/text())" />
+					<xsl:call-template name="list">
+					<xsl:with-param name="cmps" select="depends/text()" />
+					</xsl:call-template>
 				</div>
 				<h5>Versions</h5>
 				<ul>
@@ -134,18 +142,13 @@
 		</li>
 	</xsl:template>
 
-	<!-- o/p links to components in arg -->
-	<xsl:function name="pkg:cmplist">
+	<xsl:template name="list">
 		<xsl:param name="cmps" />
-
 		<xsl:for-each select="$cmps">
 			<xsl:sort select="lower-case(@name)" />
-
 			<xsl:apply-templates select="." mode="link" />
-
 		</xsl:for-each>
-
-	</xsl:function>
+	</xsl:template>
 
 	<xsl:template match="cmp" mode="link">
 		<a ng-click="scrollTo('cmp-{@name}')" class="label label-info"

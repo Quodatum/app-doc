@@ -5,7 +5,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/02/xpath-functions"
 	exclude-result-prefixes="xs wadl fn" version="2.0">
 
-<!-- root is initial path to ignore -->
+	<!-- root is initial path to ignore -->
 	<xsl:param name="root" as="xs:string" />
 
 	<!-- generate module html // -->
@@ -60,11 +60,11 @@
 
 	<xsl:template match="wadl:resource" mode="link">
 		<xsl:param name="root" />
-		<a ng-click="scrollTo('path-{generate-id()}')"
-		title="{wadl:method/wadl:doc}">
+		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
 			<span class="label label-info">
 				<xsl:value-of select="substring(@path,1+string-length($root))" />
-			</span></a>
+			</span>
+		</a>
 		<xsl:call-template name="method-name" />
 	</xsl:template>
 

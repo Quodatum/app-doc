@@ -53,6 +53,11 @@ angular.module('doc', [ 'ngRoute', 'ngResource',
 					});
 				} ])
 				
+.run([ "$rootScope","$window", function($rootScope, $window) {
+	$rootScope.setTitle = function(t) {
+		$window.document.title = t;
+	};
+} ])
 				
 .controller("AppController", [ "$scope","$location", function($scope,$location) {
 	console.log("AppController");

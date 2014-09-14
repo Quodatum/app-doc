@@ -113,21 +113,28 @@ function app($app as xs:string)
    </section>
 };
 (:~
- : show xqdoc for $mod in $app
+ : show xqdoc for $path in $app
+ : @param fmt: 'xml' or 'html'
  :)
 declare 
 %rest:GET %rest:path("doc/app/{$app}/server/xqdoc")
-%restxq:query-param("mod", "{$mod}","benchx-rest.xqm")
+%restxq:query-param("path", "{$path}","")
 %restxq:query-param("fmt", "{$fmt}","html")   
 function xqdoc($app as xs:string,
-                $mod as xs:string,
+                $path as xs:string,
                 $fmt as xs:string) 
 {
-    let $src:=doc:app-uri($app,$mod)
-    let $mod:=fn:trace($mod,"mod::::")
-    let $doc:=inspect:xqdoc($src)
-    let $r:=if($fmt="html") then doc:xquery-html($doc) else $doc
-    return (web:method($fmt),$r)
+    let $src:=doc:app-uri($app,$path)
+    return if(fn:unparsed-text-available($src))
+           then
+                let $doc:=inspect:xqdoc($src)
+                let $r:=if($fmt="html") then doc:xquery-html($doc,$app,$path) else $doc
+                return (web:method($fmt),$r)
+           else 
+               <span>'{$src}' not found
+               <a href="#apps/{$app}/xqdoc?path=benchx-rest.xqm">bench-rest.xqm</a>
+               <a href="#apps/{$app}/xqdoc?path=doc-rest.xqm">doc-rest.xqm</a>
+               </span>
 };
 
 
@@ -154,12 +161,13 @@ declare
 function client-components($app as xs:string,
                         $fmt as xs:string) 
 {
-  let $pkg:=doc:app-uri($app,"package.xml")
+  let $s:="expath-pkg.xml"
+  let $pkg:=doc:app-uri($app,$s)
   return if (fn:not(fn:doc-available($pkg)))
-         then fn:error(xs:QName('dr:package'),"package.xml not found")
+         then fn:error(xs:QName('dr:package'),$pkg || " not found")
          else let $doc:=fn:doc($pkg) 
               return if($fmt="xml") 
-                      then (web:download-response("xml", "package.xml"),$doc)
+                      then (web:download-response("xml", $s),$doc)
                       else doc:components-html($doc/*)    
 }; 
 
@@ -210,7 +218,7 @@ function bar($bar){
  
 declare function render($template,$map){
   let $defaults:=map{
-                    "version":"0.2.0",
+                    "version":"0.2.1",
                     "static":"/static/doc/"
                 }
 let $map:=map:new(($map,$defaults))

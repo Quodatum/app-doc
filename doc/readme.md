@@ -12,3 +12,20 @@ A UI component. Crumbs,Views,Actions
 Has an XML respresentation.
 lib/cva.xqm can load from a conventional location and format for json 
 
+##xslt 
+Anchor
+<a class="anchor" id="cmp-{@name}"/>
+<a ng-click="scrollTo('cmp-{@name}')">
+    <xsl:value-of select="@name" />
+</a>
+
+## Framework
+An application has a name. The name must be a valid folder name 
+server uses BaseX with RESTXQ
+client uses Angularjs
+Code layout
+/app
+/static/app
+
+#restangular One vs All
+
