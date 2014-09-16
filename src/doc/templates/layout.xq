@@ -46,10 +46,10 @@ declare variable $static external :="/static/doc/";
     <script src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"  ></script>
    
     <!-- local libs -->
-    <script src="{$static}../lib/oci.treeview/20140305/treeview.js"  ></script>
     <script src="{$static}../lib/angular-ya-treeview/0.2.1/ya-treeview-0.2.1-tpls.js"  ></script>
    
     <script src="{$static}app.js"  ></script>
+    <script src="{$static}directives.js"  ></script>
     <script src="{$static}feats/apps/apps.js"  ></script>
     <script src="{$static}feats/components/components.js"  ></script>
     <script src="{$static}feats/files/files.js"  ></script>

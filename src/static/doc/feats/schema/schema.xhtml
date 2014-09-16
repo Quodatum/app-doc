@@ -10,10 +10,15 @@
             </div>
         </div>
 
-        <div class="col-md-9">        
+        <div class="col-md-6">        
         <h4>Diags</h4>
         <div>Last selected: <strong>{{context.selectedNode.$model.path}}</strong></div>
         <div>Context: {{context | json}}</div>
+        </div>
+          <div class="col-md-3">
+          above
+        <filepick value="fred" endpoint="data/files"/>
+        below
         </div>
     </div>
 </div>

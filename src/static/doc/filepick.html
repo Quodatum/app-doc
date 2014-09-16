@@ -1,0 +1,13 @@
+<div>
+	<div>{{context.selectedNode.$model.path}}</div>
+	<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
+		ya-context="context" style="height: 50vh;">
+		<div
+			ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}"
+			title="{{ node.$model.path }}">
+			<i class="fa"
+				ng-class="node.$hasChildren?(node.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
+			{{ node.$model.name }}
+		</div>
+	</div>
+</div>

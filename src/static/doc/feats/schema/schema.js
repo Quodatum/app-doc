@@ -15,6 +15,7 @@ angular.module('quodatum.doc.schema', [ 'restangular'])
 .controller("SchemaCtrl", [ "$scope","$resource","apiRoot", function($scope,$resource,apiRoot) {
 
 	console.log("SchemaCtrl2");
+	$scope.fred="Bill";
 	$scope.context = {
 			selectedNodes : [],
 			hits : 0

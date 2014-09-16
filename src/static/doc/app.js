@@ -1,12 +1,12 @@
 angular.module('doc', [ 'ngRoute', 'ngResource',
                         'ui.bootstrap',
                         'restangular',
-                        'oci.treeview',
                         'ya.treeview','ya.treeview.tpls',
                         'quodatum.doc.apps',
                         'quodatum.doc.components',
                         'quodatum.doc.files',
-                        'quodatum.doc.schema'])
+                        'quodatum.doc.schema',
+                        'quodatum.directives'])
 
 .constant(
 		"apiRoot", "../../doc/").config(
