@@ -6,9 +6,13 @@ body {
 }
   
 
-.ya-treeview {
-    font-size: inherit;
-    overflow-y: scroll;
+/* .ya-treeview { */
+/*     font-size: inherit; */
+/*     overflow-y: scroll; */
+/* } */
+.wadl-method {
+	width:5em;
+	display:inline-block;
 }
 a.anchor {
     display: block;

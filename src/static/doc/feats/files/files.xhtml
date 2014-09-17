@@ -2,23 +2,9 @@
 	<div>Files</div>
 	<div class="row" style="height:100%;">
 		<div class="col-md-3">
-		<div>oci.treeview</div>
-			<oci.treeview tree="treeData" on-select-node="getMoreData">
-			<!--HTML to be transcluded--> <span ng-class="tree.class">{{
-				tree.label }}</span> </oci.treeview>
+		<filepick value="fred" endpoint="data/file/list"/>
 		</div>
-
-		<div class="col-md-3">
-		<div>ya-treeview</div>
-			<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
-				ya-context="context" style="height:50vh;">
-				<div ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}"
-				title="{{ node.$model.path }}">
-				<i class="fa" ng-class="node.$hasChildren?(node.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i> 
-				{{ node.$model.name }}</div>
-			</div>
-		</div>
-		<div class="col-md-3">
+		<div class="col-md-9">
 		<h4>Diags</h4>
 		<div>Last selected: <strong>{{context.selectedNode.$model.path}}</strong></div>
 		<div>Context: {{context | json}}</div>

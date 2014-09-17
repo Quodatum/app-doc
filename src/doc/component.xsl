@@ -103,13 +103,13 @@
 				<div>
 					Used by:
 					<xsl:call-template name="list">
-                    <xsl:with-param name="cmps" select="//cmp[depends=current()/@name]/@name" />
+                    <xsl:with-param name="cmps" select="//cmp[depends=current()/@name]" />
                 </xsl:call-template>
 				</div>
 				<div>
 					Depends on:
 					<xsl:call-template name="list">
-					<xsl:with-param name="cmps" select="depends/text()" />
+					<xsl:with-param name="cmps" select="//cmp[@name=current()/depends]" />
 					</xsl:call-template>
 				</div>
 				<h5>Versions</h5>

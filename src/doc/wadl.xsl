@@ -12,7 +12,7 @@
 	<xsl:template match="/wadl:application/wadl:resources">
 		<div class="row">
 			<div class="col-md-3">
-				<ul>
+				<ul style="overflow:scroll">
 					<xsl:for-each select="wadl:resource">
 						<xsl:sort select="@path" />
 						<li>
@@ -60,12 +60,13 @@
 
 	<xsl:template match="wadl:resource" mode="link">
 		<xsl:param name="root" />
+		
 		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
 			<span class="label label-info">
 				<xsl:value-of select="substring(@path,1+string-length($root))" />
 			</span>
 		</a>
-		<xsl:call-template name="method-name" />
+		<xsl:call-template name="method-name" />		
 	</xsl:template>
 
 	<xsl:template match="wadl:method">
@@ -116,7 +117,7 @@
 		<xsl:variable name="name" select="wadl:method/@name" />
 		<span>
 			<xsl:attribute name="class">
-		<xsl:text>label </xsl:text>
+		<xsl:text>wadl-method label </xsl:text>
 			<xsl:choose>
 				<xsl:when test="$name='GET'">
 					<xsl:text>label-primary</xsl:text>

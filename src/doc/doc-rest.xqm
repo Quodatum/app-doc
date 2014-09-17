@@ -12,19 +12,12 @@ import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
 import module namespace entity = 'apb.models.generated' at 'models.xqm';
 import module namespace cva = 'quodatum.cva.rest' at "lib/cva.xqm";
+import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
 
-(:  trailing slash :)
-declare variable $dr:base:= db:system()/globaloptions/webpath/fn:string()
-                             || file:dir-separator();
 
-(:~ true path from segment :)
-declare function path($path as xs:string)
- as xs:string{
- $dr:base || $path
-};
 
 (:~
- : The doc api
+ : The doc home page as html. The UI entry point.
  :)
 declare
  %rest:GET %rest:path("doc")
@@ -36,7 +29,7 @@ function doc(){
 }; 
 
 (:~
- : list of apps
+ : list of apps found on file system.
  :)
 declare
 %rest:GET %rest:path("doc/data/app")
@@ -51,33 +44,16 @@ return dice:json-request($items,$flds)
 };
 
 (:~
- : list of files
+ : list of files 
+ : @return json array {name:"gg","path:"aaa/bb",isdir:false}
  :)
 declare
-%rest:GET %rest:path("doc/data/files")
+%rest:GET %rest:path("doc/data/file/list")
 %rest:query-param("dir", "{$dir}","/")  
 %output:method("json")   
 function files($dir) as element(json) 
 {
-    let $fdir:= path($dir)
-    let $xq:=file:list($fdir)
-    let $xq:=$xq
-    let $f:=function($d,$isFolder){
-             let $d:=fn:translate($d,"\","/")
-             return   
-              <_ type="object">
-                 <name>{$d}</name>
-                 <path>{$dir || $d}</path>
-                 <isdir type="boolean">{$isFolder}</isdir>
-              </_>}
-    return 
-    <json type="array">
-      {for $ls in $xq   
-       let $isFolder:=file:is-dir($fdir ||$ls)
-       order by $isFolder descending,fn:lower-case($ls)
-       return $f($ls,$isFolder)
-      }      
- </json>
+    df:list($dir)
 };
 
 (:~
@@ -130,11 +106,14 @@ function xqdoc($app as xs:string,
                 let $doc:=inspect:xqdoc($src)
                 let $r:=if($fmt="html") then doc:xquery-html($doc,$app,$path) else $doc
                 return (web:method($fmt),$r)
-           else 
-               <span>'{$src}' not found
+           else
+             <div> 
+               <div>'{$src}' not found
                <a href="#apps/{$app}/xqdoc?path=benchx-rest.xqm">bench-rest.xqm</a>
                <a href="#apps/{$app}/xqdoc?path=doc-rest.xqm">doc-rest.xqm</a>
-               </span>
+               </div>
+               <filepick value="fred" endpoint="data/file/list"/>   
+               </div> 
 };
 
 
