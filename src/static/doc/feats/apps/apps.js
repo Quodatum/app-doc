@@ -59,9 +59,14 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 					};
 					$scope.view = $routeParams.view;
 					$scope.app = $routeParams.app;
+					var searchObject = $location.search(); // {path:"dd",type:"basex"}
+					console.log("search:",searchObject);
 					var target = "../../doc/app/"+app +map[$routeParams.view];
-					if($routeParams.path){
+					if(searchObject.path){
 						target+="?path="+$routeParams.path;
+					}
+					if(searchObject.type){
+						target+="&type="+searchObject.type;
 					}
 					$scope.inc = target;
 					console.log("TAR",target);

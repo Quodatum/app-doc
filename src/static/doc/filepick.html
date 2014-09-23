@@ -1,6 +1,9 @@
 <div>
 	<div class="input-group">
-		<span class="input-group-addon">@</span> <input type="text"  class="form-control"
+		<span class="input-group-addon">
+		          <i class="fa"
+                ng-class="context.selectedNode.$hasChildren?(context.selectedNode.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
+</span> <input type="text"  class="form-control"
 			name="userName" ng-model="context.selectedNode.$model.path" required>
 	</div>
 	<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"

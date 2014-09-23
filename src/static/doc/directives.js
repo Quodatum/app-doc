@@ -1,4 +1,9 @@
-//Syntax allows to chain factories
+/* quodatum.directives
+ * filepick shows file directory tree
+ * tree
+ * filetree
+ * apbDropdown generates sort by drop down.
+ */
 angular
 		.module('quodatum.directives', [ 'ngResource' ])
 		// <filetree value=/>

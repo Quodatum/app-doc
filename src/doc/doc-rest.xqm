@@ -95,22 +95,26 @@ function app($app as xs:string)
 declare 
 %rest:GET %rest:path("doc/app/{$app}/server/xqdoc")
 %restxq:query-param("path", "{$path}","")
-%restxq:query-param("fmt", "{$fmt}","html")   
-function xqdoc($app as xs:string,
+%restxq:query-param("fmt", "{$fmt}","html")
+%restxq:query-param("type", "{$type}")   
+function xqdoc($type ,
+                $app as xs:string,
                 $path as xs:string,
                 $fmt as xs:string) 
 {
-    let $src:=doc:app-uri($app,$path)
-    return if(fn:unparsed-text-available($src))
+    let $type:=($type,"app")[1]
+    let $uri:=doc:uri($type,$app,$path)
+    let $_:=fn:trace(($type,$app,$path),"uri: ")
+    return if(fn:unparsed-text-available($uri))
            then
-                let $doc:=inspect:xqdoc($src)
-                let $r:=if($fmt="html") then doc:xquery-html($doc,$app,$path) else $doc
+                let $r:=doc:xqdoc($type,$app,$path,$fmt)
                 return (web:method($fmt),$r)
            else
              <div> 
-               <div>'{$src}' not found
+               <div>'{$uri}' not found
                <a href="#apps/{$app}/xqdoc?path=benchx-rest.xqm">bench-rest.xqm</a>
                <a href="#apps/{$app}/xqdoc?path=doc-rest.xqm">doc-rest.xqm</a>
+               <a href="#apps/{$app}/xqdoc?type=basex&amp;path=file.xqm">files.xqm</a>
                </div>
                <filepick value="fred" endpoint="data/file/list"/>   
                </div> 

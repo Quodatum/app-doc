@@ -20,9 +20,9 @@
 			<div class="col-md-10" style="height:70vh;overflow:scroll;">
 				<h2>
 
-					<xsl:value-of select="xqdoc:module/xqdoc:name" />
+					<xsl:apply-templates select="xqdoc:module/xqdoc:name" />
 					(
-					<xsl:value-of select="xqdoc:module/@type" />
+					<xsl:apply-templates select="xqdoc:module/@type" />
 					module)
 					<small class="pull-right">
                         xqdoc
@@ -39,7 +39,7 @@
 						</td>
 						<td>
 							<code>
-								<xsl:value-of select="xqdoc:module/xqdoc:uri" />
+								<xsl:apply-templates select="xqdoc:module/xqdoc:uri" />
 							</code>
 						</td>
 					</tr>
@@ -48,7 +48,7 @@
 							<b>Description:</b>
 						</td>
 						<td>
-							<xsl:value-of select="xqdoc:module/xqdoc:comment/xqdoc:description" />
+							<xsl:apply-templates select="xqdoc:module/xqdoc:comment/xqdoc:description" />
 						</td>
 					</tr>
 					<tr>
@@ -56,7 +56,7 @@
 							<b>Author:</b>
 						</td>
 						<td>
-							<xsl:value-of select="xqdoc:module/xqdoc:comment/xqdoc:author" />
+							<xsl:apply-templates select="xqdoc:module/xqdoc:comment/xqdoc:author" />
 						</td>
 					</tr>
 					<tr>
@@ -64,7 +64,7 @@
 							<b>Version:</b>
 						</td>
 						<td>
-							<xsl:value-of select="xqdoc:module/xqdoc:comment/xqdoc:version" />
+							<xsl:apply-templates select="xqdoc:module/xqdoc:comment/xqdoc:version" />
 						</td>
 					</tr>
 					<tr>
