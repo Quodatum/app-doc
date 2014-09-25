@@ -14,54 +14,23 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 .controller("FilesCtrl", [ "$scope", "Restangular","$resource","apiRoot",
                            function($scope,Restangular,$resource,apiRoot) {
 
-	console.log("FilesCtrl2");
 	
-	$scope.treeData = {
-		label : 'Root',
-		state : 'expanded',
-		children : [ {
-			label : 'Child1',
-			state : 'expanded',
-			children : [ {
-				label : 'Grandchild1',
-				state : 'leaf',
-				children : []
-			} ]
-		}, {
-			label : 'ChildX'
-		}, {
-			label : 'ChildY'
-		} ]
-	};
-
-	$scope.getMoreData = function(node) {
-		console.log("SELECT: ", node);
-		// return $http.get('/tree-data/' + node.path).success(function(data) {
-		// node.children = data;
-		// });
-	};
-
-	$scope.$on('nodeSelected', function(event, node, context) {
-		if (context.selectedNode) {
-			context.selectedNode.class = '';
-		}
-
-		node.class = 'selectedNode';
-		context.selectedNode = node;
-	});
 	// ----------ya---------
 	$scope.context = {
 		selectedNodes : [],
 		hits : 0
 	};
 	function getChildren(dir,node,context){ 
-		var f=$resource(apiRoot+'/data/files');
+		var f=$resource(apiRoot+'/data/list');
 		f.query({dir:dir}).$promise
 		 .then(function (result) {
 	            node.$model.children = result;
 	            node.$children = context.nodifyArray(result);
 	        })
 	        ;
+	};
+	$scope.fsel=function(p){
+		alert("AA:"+p.path);
 	};
 	$scope.options = {
 		hasChildrenKey:"isdir",

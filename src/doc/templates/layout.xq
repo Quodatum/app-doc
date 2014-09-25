@@ -47,9 +47,9 @@ declare variable $static external :="/static/doc/";
    
     <!-- local libs -->
     <script src="{$static}../lib/angular-ya-treeview/0.2.1/ya-treeview-0.2.1-tpls.js"  ></script>
-   
+    <script src="{$static}../lib/filepick/0.1.0/directives.js"  ></script>   
+
     <script src="{$static}app.js"  ></script>
-    <script src="{$static}directives.js"  ></script>
     <script src="{$static}feats/apps/apps.js"  ></script>
     <script src="{$static}feats/components/components.js"  ></script>
     <script src="{$static}feats/files/files.js"  ></script>

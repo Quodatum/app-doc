@@ -1,0 +1,18 @@
+<entity name="component-js" type="element(component)">
+    <description>About a javascript library </description>
+	<fields>
+		<field name="name" type="xs:string">
+			<description>name</description>
+			<xpath>$_/@name</xpath>
+		</field>
+		<field name="version" type="xs:string">
+			<description>description</description>
+			<xpath>$_/@version</xpath>
+		</field>
+		<field name="cdn" type="xs:string">
+			<description>cdn url</description>
+			<xpath>$_/cdn/@src</xpath>
+		</field>
+	</fields>
+	<iconclass>glyphicon glyphicon-cog</iconclass>
+</entity>

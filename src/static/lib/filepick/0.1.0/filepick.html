@@ -5,6 +5,10 @@
                 ng-class="context.selectedNode.$hasChildren?(context.selectedNode.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
 </span> <input type="text"  class="form-control"
 			name="userName" ng-model="context.selectedNode.$model.path" required>
+			<span class="input-group-btn">
+        <button class="btn btn-default" ng-click="action()" type="button"><i class="fa fa-share"></i>
+</button>
+      </span>
 	</div>
 	<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
 		ya-context="context" style="height: 50vh;">

@@ -10,10 +10,10 @@ import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
 import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
 import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
-import module namespace entity = 'apb.models.generated' at 'models.xqm';
+import module namespace entity = 'quodatum.models.generated' at 'models.xqm';
 import module namespace cva = 'quodatum.cva.rest' at "lib/cva.xqm";
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
-
+import module namespace bf = 'quodatum.tools.buildfields' at "lib/entity-gen.xqm";
 
 
 (:~
@@ -24,8 +24,11 @@ declare
  %output:method("html")
  %output:version("5.0")
 function doc(){
- (: @TODO check db exist app status et :)
- render("main.xq",map{})
+     (: update model.xqm :)
+     let $x:=bf:write(fn:resolve-uri("./data/models"),
+                      fn:resolve-uri("models.xqm"))
+     (: @TODO check db exist app status et :)                 
+     return render("main.xq",map{})
 }; 
 
 (:~
@@ -44,8 +47,8 @@ return dice:json-request($items,$flds)
 };
 
 (:~
- : list of files 
- : @return json array {name:"gg","path:"aaa/bb",isdir:false}
+ : list of direct children of dir as json array 
+ : @return json [ {name:"gg","path:"aaa/bb",isdir:false},{}..]
  :)
 declare
 %rest:GET %rest:path("doc/data/file/list")
@@ -65,29 +68,12 @@ declare
 %output:method("json")   
 function search() 
 {
-let $items:=(<item><name>doc</name></item>,
-            <item><name>benchx</name></item>)
-let $flds:=entity:fields("application")
-return dice:json-request($items,$flds)
+    let $items:=(<item><name>doc</name></item>,
+                <item><name>benchx</name></item>)
+    let $flds:=entity:fields("application")
+    return dice:json-request($items,$flds)
 };
 
-(:~
- : The doc $app api
- :)
-declare
-%rest:GET %rest:path("doc/app/{$app}") 
- %output:method("html")
- %output:version("5.0")
-function app($app as xs:string) 
-{
-   <section>
-       <h2><a href="..">doc</a>/{$app}</h2>
-       <a href="{$app}/server/xqdoc">Xquery doc for application</a>
-       <a href="{$app}/server/wadl">WADL doc for application</a>
-       <a href="{$app}/client/components">Client side components used by the application</a>
-       <a href="{$app}/client/templates">XML templates  for application</a>       
-   </section>
-};
 (:~
  : show xqdoc for $path in $app
  : @param fmt: 'xml' or 'html'
@@ -200,16 +186,16 @@ function bar($bar){
 };
  
 declare function render($template,$map){
-  let $defaults:=map{
-                    "version":"0.2.1",
-                    "static":"/static/doc/"
-                }
-let $map:=map:new(($map,$defaults))
-return ($web:html5,txq:render(
-            fn:resolve-uri("./templates/" || $template)
-            ,$map
-            ,fn:resolve-uri("./templates/layout.xq")
+    let $defaults:=map{
+                        "version":"0.3.0",
+                        "static":"/static/doc/"
+                    }
+    let $map:=map:new(($map,$defaults))
+    return ($web:html5,txq:render(
+                fn:resolve-uri("./templates/" || $template)
+                ,$map
+                ,fn:resolve-uri("./templates/layout.xq")
+                )
             )
-        )
 };
 

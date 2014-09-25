@@ -2,13 +2,13 @@
  : hand generated 
  :)
 
-module namespace entity = 'apb.models.generated';
+module namespace entity = 'quodatum.models.generated';
 
           
 declare variable $entity:list:=map { 
   "application":= map{
      "name":= "application",
-     "description":= "A RESTXQ based web application described by the AIDE framework.",
+     "description":= "A RESTXQ based web application described by the ABIDE framework.",
      "access":= map{ 
        "name":=function($_ as element()) as xs:string {$_/name} },
      "json":= map{ 

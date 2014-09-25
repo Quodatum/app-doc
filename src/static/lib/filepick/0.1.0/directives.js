@@ -16,9 +16,10 @@ angular
 							return {
 								restrict : "E",
 								scope : {
-									value : '='
+									value : '=',
+									onselect:"&"
 								},
-								templateUrl : '../static/doc/filepick.html',
+								templateUrl : '../static/lib/filepick/0.1.0/filepick.html',
 								controller : function($scope, $resource) {
 									function getChildren(dir, node, context) {
 										var f = $resource("data/file/list");
@@ -42,6 +43,7 @@ angular
 										onSelect : function($event, node,
 												context) {
 											context.hits++;
+											
 											if ($event.ctrlKey) {
 												var idx = context.selectedNodes
 														.indexOf(node);
@@ -70,6 +72,12 @@ angular
 										has_children : true,
 										children : []
 									} ];
+									
+									$scope.action=function(){
+										var p=$scope.context.selectedNode.$model;
+										//@see http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-3-isolate-scope-and-function-parameters
+										$scope.onselect()(p);
+									};
 								}
 							}
 						} ])
