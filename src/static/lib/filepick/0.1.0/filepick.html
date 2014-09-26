@@ -6,18 +6,18 @@
 </span> <input type="text"  class="form-control"
 			name="userName" ng-model="context.selectedNode.$model.path" required>
 			<span class="input-group-btn">
-        <button class="btn btn-default" ng-click="action()" type="button"><i class="fa fa-share"></i>
+        <button class="btn btn-default" ng-disabled="busy" ng-click="action()" type="button"><i class="fa fa-share"></i>
 </button>
       </span>
 	</div>
 	<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
 		ya-context="context" style="height: 50vh;">
-		<div
+		<a class="nav"
 			ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}"
 			title="{{ node.$model.path }}">
 			<i class="fa"
 				ng-class="node.$hasChildren?(node.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
 			{{ node.$model.name }}
-		</div>
+		</a>
 	</div>
 </div>

@@ -90,3 +90,6 @@ left: 0;;
 .navbar-nav .btn {
 	  margin: 2px;
 }
+.ya-treeview a.nav {
+	font-size:inherit !important;
+}

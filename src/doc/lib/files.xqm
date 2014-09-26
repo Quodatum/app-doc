@@ -46,12 +46,26 @@ function list($dir) as element(json)
  </json>
 };
 
-declare   
-function read($dir) as element(*) 
+declare function read($dir) as item() 
 {
     let $fdir:= path($dir)
-    let $isFolder:=file:is-dir($fdir )
-    return if($isFolder) 
-            then <div>Folder</div>
-            else <div>{$fdir}</div>
+    return if(fn:doc-available($fdir))
+           then fn:serialize(fn:doc($fdir))
+           else if(fn:unparsed-text-available($fdir))
+           then fn:unparsed-text($fdir)
+           else ()
+};
+
+
+declare function is-text-file($path) as xs:boolean{
+    is-text(file:read-binary($path,0,1024))
+};
+
+(:~ 
+ : test for text
+ : @see http://stackoverflow.com/questions/2644938/how-to-tell-binary-from-text-files-in-linux
+ :) 
+declare function is-text($b as xs:base64Binary )
+as xs:boolean{
+  fn:empty(bin:find($b, 0,convert:bytes-to-base64(xs:byte(0))))
 };

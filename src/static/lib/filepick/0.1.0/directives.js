@@ -21,10 +21,10 @@ angular
 								},
 								templateUrl : '../static/lib/filepick/0.1.0/filepick.html',
 								controller : function($scope, $resource) {
-									function getChildren(dir, node, context) {
+									function getChildren(path, node, context) {
 										var f = $resource("data/file/list");
 										f.query({
-											dir : dir
+											path : path
 										}).$promise.then(function(result) {
 											node.$model.children = result;
 											node.$children = context
@@ -63,6 +63,9 @@ angular
 												context) {
 											var id = node.$model.path;
 											getChildren(id, node, context);
+										},
+										onDblClick:function( $event, node, context){
+											$scope.action();
 										}
 									};
 
@@ -76,8 +79,9 @@ angular
 									$scope.action=function(){
 										var p=$scope.context.selectedNode.$model;
 										//@see http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-3-isolate-scope-and-function-parameters
-										$scope.onselect()(p);
+										$scope.onselect()($scope.context);
 									};
+									$scope.busy=false;
 								}
 							}
 						} ])

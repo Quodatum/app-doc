@@ -52,11 +52,23 @@ return dice:json-request($items,$flds)
  :)
 declare
 %rest:GET %rest:path("doc/data/file/list")
-%rest:query-param("dir", "{$dir}","/")  
+%rest:query-param("path", "{$path}","/")  
 %output:method("json")   
-function files($dir) as element(json) 
+function files($path) as element(json) 
 {
-    df:list($dir)
+    df:list($path)
+};
+(:~
+ : list of file
+ : @return html resprestation of file
+ :)
+declare
+%rest:GET %rest:path("doc/data/file/read")
+%rest:query-param("path", "{$path}","/")  
+%output:method("html")   
+function read($path) as element() 
+{
+    <pre>{df:read($path)}</pre>
 };
 
 (:~

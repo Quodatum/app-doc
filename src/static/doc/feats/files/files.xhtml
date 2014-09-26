@@ -5,9 +5,10 @@
 		<filepick value="fred" endpoint="data/file/list" onselect="fsel"/>
 		</div>
 		<div class="col-md-9">
-		<h4>Diags</h4>
-		<div>Last selected: <strong>{{context.selectedNode.$model.path}}</strong></div>
-		<div>Context: {{context | json}}</div>
+		<h4>{{path}}</h4>
+		
+		<div  ng-include="include" autoscroll="true">loading
+        Loading ...</div>
 		</div>
 	</div>
 </div>
