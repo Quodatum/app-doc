@@ -21,7 +21,7 @@ declare variable $doc:components:=fn:doc("data/components.xml")/components;
  : e.g "C:\Program Files (x86)\basex\etc\modules\"
  :)
 declare variable $doc:basex-modules:=file:parent(db:system()/globaloptions/repopath)
-                                    || "etc\modules\";
+                                    || "etc/modules/";
  
 (:~
  : full file system path to 

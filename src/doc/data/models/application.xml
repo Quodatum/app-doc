@@ -7,8 +7,16 @@
 		</field>
 		<field name="description" type="xs:string+">
 			<description>Application description</description>
-			<xpath>'todo'</xpath>
+			<xpath>'todo ' || $_/name </xpath>
 		</field>
+		<field name="uri" type="xs:string+">
+            <description>Application link</description>
+            <xpath>'/' || $_/name</xpath>
+        </field>
+        <field name="logo" type="xs:string+">
+            <description>uri for the application logo</description>
+            <xpath>'/static/' || $_/name  || '/logo.svg'</xpath>
+        </field>
 	</fields>
 	<iconclass>glyphicon glyphicon-cog</iconclass>
 </entity>

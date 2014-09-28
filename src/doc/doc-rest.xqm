@@ -222,7 +222,7 @@ function bar($bar){
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.3.1",
+                        "version":"0.3.2",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

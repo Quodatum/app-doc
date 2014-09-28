@@ -1,0 +1,18 @@
+<entity name="search-result" type="element(search)">
+    <description>About a search result.</description>
+	<fields>
+		<field name="title" type="xs:string">
+			<description>title</description>
+			<xpath>$_/title</xpath>
+		</field>
+		<field name="type" type="xs:string">
+			<description>type</description>
+			<xpath>$_/type</xpath>
+		</field>
+		<field name="uri" type="xs:string">
+			<description>link to result</description>
+			<xpath>$_/uri</xpath>
+		</field>
+	</fields>
+	<iconclass>glyphicon glyphicon-cog</iconclass>
+</entity>

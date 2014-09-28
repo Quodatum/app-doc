@@ -301,4 +301,14 @@
 			<cdn>//cdn.jsdelivr.net/satellizer/0.7.0/satellizer.min.js</cdn>
 		</release>
 	</cmp>
+	
+	<cmp name="filepick">
+        <runat>browser</runat>
+        <home>.</home>
+        <depends>angular-ya-treeview</depends>
+        <tagline>Fle selector with tree view</tagline>
+        <release version="0.1.0">
+            <local>lib/filepick/0.1.0/directives.js</local>
+        </release>
+    </cmp>
 </components>

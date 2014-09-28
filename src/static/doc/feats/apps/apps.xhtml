@@ -11,18 +11,19 @@
 	<table class="table table-condensed table-striped table-bordered">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Updated</th>
-				<th>Path</th>
+			    <th>logo</th>
+				<th>Name</th>						
+				<th>link</th>
+				<th>Description</th>    
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="app in apps">
-				<td><a href="#/apps/{{app.name}}">{{app.name}}</a></td>
+			    <td><img src="{{app.logo}}" style="width:20px;height:20px;"/></td>
+				<td><a href="#/apps/{{app.name}}">{{app.name}}</a></td>				
+				<td><a href="{{app.uri}}" target="app-{{app.name}}">{{app.name}}</a></td>
 				<td>{{app.description}}</td>
-				<td>{{db.modifiedDate}}</td>
-				<td>{{db.path}}</td>
+				
 			</tr>
 		</tbody>
 	</table>
