@@ -36,8 +36,8 @@
 		<div class="row">
 			<div class="col-md-2">
 				<xsl:call-template name="list">
-                    <xsl:with-param name="cmps" select="$found" />
-                </xsl:call-template>
+					<xsl:with-param name="cmps" select="$found" />
+				</xsl:call-template>
 			</div>
 			<div class="col-md-10" style="height:70vh;overflow:scroll;">
 				<h3>
@@ -86,13 +86,8 @@
 				<p>
 					<xsl:value-of select="tagline" />
 				</p>
+				<xsl:apply-templates select="licence" />
 
-				<span>
-					Licence:
-					<span class="badge">
-						<xsl:value-of select="licence" />
-					</span>
-				</span>
 				<span>
 					Runat:
 					<span class="badge">
@@ -103,13 +98,15 @@
 				<div>
 					Used by:
 					<xsl:call-template name="list">
-                    <xsl:with-param name="cmps" select="//cmp[depends=current()/@name]" />
-                </xsl:call-template>
+						<xsl:with-param name="cmps"
+							select="//cmp[depends=current()/@name]" />
+					</xsl:call-template>
 				</div>
 				<div>
 					Depends on:
 					<xsl:call-template name="list">
-					<xsl:with-param name="cmps" select="//cmp[@name=current()/depends]" />
+						<xsl:with-param name="cmps"
+							select="//cmp[@name=current()/depends]" />
 					</xsl:call-template>
 				</div>
 				<h5>Versions</h5>
@@ -118,6 +115,15 @@
 				</ul>
 			</div>
 		</div>
+	</xsl:template>
+
+	<xsl:template match="licence">
+		<span>
+			Licence:
+			<span class="badge">
+				<xsl:value-of select="." />
+			</span>
+		</span>
 	</xsl:template>
 
 	<xsl:template match="local">

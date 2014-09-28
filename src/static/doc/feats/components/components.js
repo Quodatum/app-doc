@@ -1,5 +1,5 @@
 // database info
-angular.module('quodatum.doc.components', [ 'restangular'])
+angular.module('quodatum.doc.components', [ ])
 .config(
         [ '$routeProvider', 
 		function($routeProvider) {
@@ -10,6 +10,9 @@ angular.module('quodatum.doc.components', [ 'restangular'])
            }).when('/components/tree', {
                templateUrl : '/static/doc/feats/components/cmptree.xhtml',
                controller : "CmptreeCtrl"
+           }).when('/components/basex', {
+               templateUrl : '/static/doc/feats/components/basex.xhtml',
+               controller : "BasexCtrl"
            })
            ;  
 
@@ -18,8 +21,8 @@ angular.module('quodatum.doc.components', [ 'restangular'])
 
 // controllers
 .controller("CmpCtrl", [  '$routeParams', '$scope','$location',
-                             '$modal','Restangular','$http','$anchorScroll',
-           function( $routeParams, $scope,$location,$modal,Restangular,
+                             '$http','$anchorScroll',
+           function( $routeParams, $scope,$location,
         		   $http,$anchorScroll) {
 	
 	console.log("CmpCtrl");
@@ -33,8 +36,13 @@ angular.module('quodatum.doc.components', [ 'restangular'])
 	};		
 
 }])
+
 .controller("CmptreeCtrl", ['$scope',function($scope){
 	
+}])
+
+.controller("BasexCtrl", ['$scope',function($scope){
+	$scope.module="admin.xqm"
 }])
 ;
           

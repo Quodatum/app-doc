@@ -265,6 +265,8 @@
 
 	<cmp name="angular-flashr">
 		<home>https://github.com/TylerGarlick/angular.flashr</home>
+		<tagline>Flashr is a library that simulates flashing in rails in AngularJS. 
+		Essentially, it allows you to post notifications via the simple api. </tagline>
 		<depends>angularjs</depends>
 		<release version="2.0.1">
 			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js</cdn>
@@ -283,9 +285,20 @@
 	<cmp name="font-awesome">
 		<runat>browser</runat>
 		<home>http://fortawesome.github.io/Font-Awesome/</home>
-		<tagline>Font Awesome gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS. </tagline>
+		<tagline>Font Awesome gives you scalable vector icons that can instantly be customized
+	 — size, color, drop shadow, and anything that can be done with the power of CSS. </tagline>
 		<release version="4.1.0">
 			<cdn>//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css</cdn>
+		</release>
+	</cmp>
+
+	<cmp name="satellizer">
+		<runat>browser</runat>
+		<home>https://github.com/sahat/satellizer</home>
+		<tagline>Satellizer is a simple to use, end-to-end, token-based authentication module
+ for AngularJS with built-in support for Google, Facebook, LinkedIn, Twitter authentication providers, plus Email and Password sign-in method. </tagline>
+		<release version="0.7.0">
+			<cdn>//cdn.jsdelivr.net/satellizer/0.7.0/satellizer.min.js</cdn>
 		</release>
 	</cmp>
 </components>

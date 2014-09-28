@@ -13,42 +13,82 @@ declare variable $df:base:= db:system()/globaloptions/webpath/fn:string()
                              || file:dir-separator();
 
 (:~ true path from segment :)
-declare function path($path as xs:string)
+declare function webpath($path as xs:string)
  as xs:string{
  $df:base || $path
 };
 
 (:~
- : list of files 
+ : list of all appications
+ :)
+declare function apps() as xs:string*
+{
+    let $root:=$df:base
+    for $b in  file:list($root)
+    let $full:= $root || file:dir-separator() || $b
+    let $name:=file:name($full)
+    where file:is-dir($full)and fn:not($name = ('static','WEB-INF'))
+    return $name
+};
+(:~ 
+ : serialize file object
+ :) 
+declare function file($dir,$name,$isFolder) as element(_)
+{
+     let $name:=fn:translate($name,"\","/")
+     return   
+      <_ type="object">
+         <name>{$name}</name>
+         <path>{$dir || $name}</path>
+         <isdir type="boolean">{$isFolder}</isdir>
+      </_>
+};
+
+(:~
+ : list of files in directory $dir
  : @return json array {name:"gg","path:"aaa/bb",isdir:false}
  :)
 declare   
 function list($dir) as element(json) 
 {
-    let $fdir:= path($dir)
+    let $fdir:= webpath($dir)
     let $xq:=file:list($fdir)
     let $xq:=$xq
-    let $f:=function($d,$isFolder){
-             let $d:=fn:translate($d,"\","/")
-             return   
-              <_ type="object">
-                 <name>{$d}</name>
-                 <path>{$dir || $d}</path>
-                 <isdir type="boolean">{$isFolder}</isdir>
-              </_>}
     return 
     <json type="array">
-      {for $ls in $xq   
-       let $isFolder:=file:is-dir($fdir ||$ls)
-       order by $isFolder descending,fn:lower-case($ls)
-       return $f($ls,$isFolder)
+      {for $name in $xq   
+       let $isFolder:=file:is-dir($fdir ||$name)
+       order by $isFolder descending,fn:lower-case($name)
+       return file($dir,$name,$isFolder)
       }      
  </json>
 };
 
+(:~
+ : list of files in directory $dir
+ : @return json array {name:"gg","path:"aaa/bb",isdir:false}
+ :)
+declare   
+function find($dir,$pattern) as element(json) 
+{
+    let $fdir:= webpath($dir)
+    let $names:=file:list($fdir,fn:true(),$pattern)
+    return 
+    <json type="array">
+      {for $name in $names   
+       let $isFolder:=file:is-dir($fdir ||$name)
+       order by $isFolder descending,fn:lower-case($name)
+       return file($dir,$name,$isFolder)
+      }      
+ </json>
+};
+
+(:~
+ : get doc at dir as text, if xml convert to string
+ :)
 declare function read($dir) as item() 
 {
-    let $fdir:= path($dir)
+    let $fdir:= webpath($dir)
     return if(fn:doc-available($fdir))
            then fn:serialize(fn:doc($fdir))
            else if(fn:unparsed-text-available($fdir))
@@ -65,7 +105,7 @@ declare function is-text-file($path) as xs:boolean{
  : test for text
  : @see http://stackoverflow.com/questions/2644938/how-to-tell-binary-from-text-files-in-linux
  :) 
-declare function is-text($b as xs:base64Binary )
-as xs:boolean{
+declare function is-text($b as xs:base64Binary )as xs:boolean
+{
   fn:empty(bin:find($b, 0,convert:bytes-to-base64(xs:byte(0))))
 };

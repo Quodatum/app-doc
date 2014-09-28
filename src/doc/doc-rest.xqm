@@ -39,8 +39,13 @@ declare
 %output:method("json")   
 function app() 
 {
-let $items:=(<item><name>doc</name></item>,
-            <item><name>benchx</name></item>)
+let $items:=for $a in df:apps()
+            order by $a
+            return <item>
+                    <name>{$a}</name>
+                    <description>sss</description>
+                    </item>
+
 let $flds:=entity:fields("application")
 
 return dice:json-request($items,$flds)
@@ -190,16 +195,34 @@ function components($fmt as xs:string){
     
 };
 
+(:~
+ : list all components in catalog TODO
+ :)
+declare 
+%rest:GET %rest:path("doc/xqdoc")
+%restxq:query-param("path", "{$path}","")
+%restxq:query-param("fmt", "{$fmt}","html")
+%restxq:query-param("type", "{$type}","basex")   
+function basex-modules($path as xs:string,
+                        $fmt as xs:string,
+                        $type as xs:string){
+    xqdoc($type,"",$path,$fmt)
+    
+};
+
 declare
 %rest:GET %rest:path("doc/meta/cvabar/{$bar}")
 %output:method("json")
 function bar($bar){
     cva:getbar("doc",$bar)
 };
- 
+
+(:~
+ : html rendering
+ :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.3.0",
+                        "version":"0.3.1",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

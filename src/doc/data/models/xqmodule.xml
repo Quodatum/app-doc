@@ -1,0 +1,32 @@
+<entity name="xqmodule" type="element(xqdoc:xqdoc)">
+	<description>An XQuery source code module</description>
+	<namespace prefix="xqdoc">http://www.xqdoc.org/1.0</namespace>
+
+	<fields>
+		<field name="file" type="xs:string">
+			<description>file name</description>
+			<xpath>fn:substring-after(fn:base-uri($_),"abide-modules/")</xpath>
+		</field>
+		<field name="href" type="xs:string">
+			<description>ui view</description>
+			<xpath>"#/data/xqmodule/item?item=" || fn:substring-after(fn:base-uri($_),"abide-modules/")</xpath>
+		</field>
+		<field name="type" type="xs:string">
+			<description>library</description>
+			<xpath>$_/xqdoc:module/@type</xpath>
+		</field>
+		<field name="description" type="xs:string?">
+			<description>source description</description>
+			<xpath>$_/xqdoc:module/xqdoc:comment/xqdoc:description</xpath>
+		</field>
+		<field name="uri" type="xs:string?">
+			<description>module namespace</description>
+			<xpath>$_/xqdoc:module/xqdoc:uri</xpath>
+		</field>
+		<field name="name" type="xs:string?">
+			<description>module name</description>
+			<xpath>$_/xqdoc:module/xqdoc:name</xpath>
+		</field>
+	</fields>
+	<iconclass>glyphicon glyphicon-cog</iconclass>
+</entity>

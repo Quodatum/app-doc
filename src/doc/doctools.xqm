@@ -39,6 +39,14 @@ declare function uri($type as xs:string,
 };
 
 (:~
+ : list basex module file paths. used as an xqdoc source
+ :)
+ declare function basex-modules()
+ {
+ file:list($doc:basex-modules)!fn:concat($doc:basex-modules,.)
+ };
+ 
+(:~
  : return uri for $path in $app 
  : @param $app name of app e.g ."doc"
  : @param $path path

@@ -24,7 +24,7 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 			console.log("AppsCtrl2");
 			var applist = Restangular.one("data").all('app');
 			applist.getList().then(function(d) {
-				console.log("AppsCtrl2", d);
+				//console.log("AppsCtrl2", d);
 				$scope.apps = d;
 			});
 
