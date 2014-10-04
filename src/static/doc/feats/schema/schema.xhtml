@@ -1,24 +1,15 @@
-<div>
-	<div class="row" style="height:100%;">
-        <div class="col-md-3">
-        <div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
-                ya-context="context" style="height:50vh;">
-                <div ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}"
-                title="{{ node.$model.path }}">
-                <i class="fa" ng-class="node.$hasChildren?(node.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i> 
-                {{ node.$model.name }}</div>
-            </div>
-        </div>
+<div class="row" style="height: 100%;">
+	<div class="col-md-3">
+		<h4>File</h4>
+		<filepick ng-model="input.file" onselect="onfile" endpoint="data/file/list" />
+	</div>
+	<div class="col-md-3">
+		<h4>Schema</h4>
+		<filepick ng-model="input.schema" onselect="onschema" endpoint="data/file/list" />
 
-        <div class="col-md-6">        
-        <h4>Diags</h4>
-        <div>Last selected: <strong>{{context.selectedNode.$model.path}}</strong></div>
-        <div>Context: {{context | json}}</div>
-        </div>
-          <div class="col-md-3">
-          above
-        <filepick value="fred" endpoint="data/file/list"/>
-        below
-        </div>
-    </div>
+	</div>
+	<div class="col-md-6">
+		<h4>Report<button ng-click="go()>Go</button></h4>
+		<div>{{report | json}}</div>
+	</div>
 </div>

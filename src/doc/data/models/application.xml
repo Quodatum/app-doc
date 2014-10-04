@@ -18,5 +18,9 @@
             <xpath>'/static/' || $_/name  || '/logo.svg'</xpath>
         </field>
 	</fields>
+	<views>
+	<view name="list">
+	</view>
+	</views>
 	<iconclass>glyphicon glyphicon-cog</iconclass>
 </entity>

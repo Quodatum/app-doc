@@ -1,17 +1,17 @@
-<entity name="component-js" type="element(component)">
+<entity name="component-js" type="element(cmp)">
     <description>About a javascript library </description>
 	<fields>
 		<field name="name" type="xs:string">
 			<description>name</description>
 			<xpath>$_/@name</xpath>
 		</field>
-		<field name="version" type="xs:string">
+		<field name="tagline" type="xs:string">
 			<description>description</description>
-			<xpath>$_/@version</xpath>
+			<xpath>$_/tagline</xpath>
 		</field>
 		<field name="cdn" type="xs:string">
 			<description>cdn url</description>
-			<xpath>$_/cdn/@src</xpath>
+			<xpath>$_/release/cdn[1]</xpath>
 		</field>
 	</fields>
 	<iconclass>glyphicon glyphicon-cog</iconclass>

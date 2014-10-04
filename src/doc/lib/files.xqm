@@ -49,38 +49,30 @@ declare function file($dir,$name,$isFolder) as element(_)
  : @return json array {name:"gg","path:"aaa/bb",isdir:false}
  :)
 declare   
-function list($dir) as element(json) 
+function list($dir as xs:string) as element(_)*  
 {
     let $fdir:= webpath($dir)
     let $xq:=file:list($fdir)
     let $xq:=$xq
-    return 
-    <json type="array">
-      {for $name in $xq   
+    for $name in $xq   
        let $isFolder:=file:is-dir($fdir ||$name)
        order by $isFolder descending,fn:lower-case($name)
        return file($dir,$name,$isFolder)
-      }      
- </json>
 };
 
 (:~
- : list of files in directory $dir
+ : list of files below directory $dir matching pattern
  : @return json array {name:"gg","path:"aaa/bb",isdir:false}
  :)
 declare   
-function find($dir,$pattern) as element(json) 
+function find($dir as xs:string,$pattern as xs:string) as element(_)* 
 {
-    let $fdir:= webpath($dir)
-    let $names:=file:list($fdir,fn:true(),$pattern)
-    return 
-    <json type="array">
-      {for $name in $names   
+   let $fdir:= webpath($dir)
+   let $names:=file:list($fdir,fn:true(),$pattern)
+   for $name in $names   
        let $isFolder:=file:is-dir($fdir ||$name)
        order by $isFolder descending,fn:lower-case($name)
        return file($dir,$name,$isFolder)
-      }      
- </json>
 };
 
 (:~

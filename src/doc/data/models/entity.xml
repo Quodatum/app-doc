@@ -1,0 +1,38 @@
+<entity name="entity" type="element(entity)">
+    <description>About an entity i.e. something described in this framework</description>
+	<fields>
+		<field name="name" type="xs:string">
+			<description>name</description>
+			<xpath>$_/@name</xpath>
+		</field>
+		<field name="type" type="xs:string">
+			<description>xquery type. Just xs:?? for now</description>
+			<xpath>$_/@type</xpath>
+		</field>
+		<field name="description" type="xs:string">
+			<description>description</description>
+			<xpath>$_/description</xpath>
+		</field>
+		<field name="iconclass" type="xs:string">
+			<description>css class for icon</description>
+			<xpath>$_/iconclass</xpath>
+		</field>
+		<field name="nfields" type="xs:integer">
+			<description>The number of fields for this entity</description>
+			<xpath>fn:count($_/fields/field)</xpath>
+		</field>
+		<field name="fieldslink" type="xs:string">
+			<description>Links for fields description</description>
+			<xpath>fn:concat("/data/entity/",$_/@name,"/fields")</xpath>
+		</field>
+		<field name="parent" type="xs:string?">
+			<description>parent entity, if any</description>
+			<xpath>$_/parent/@name</xpath>
+		</field>
+		<field name="parentlink" type="xs:string?">
+			<description>parent entity link if any</description>
+			<xpath>fn:concat("/data/entity/",$_/parent/@name)</xpath>
+		</field>
+	</fields>
+	<iconclass>glyphicon glyphicon-tower</iconclass>
+</entity>

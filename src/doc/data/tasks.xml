@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tasks>
+	<task name="gen.model.xquery">
+	   <doc>Update models.xqm" from data/models
+	   </doc>
+		<xquery>
+import module namespace bf = 'quodatum.tools.buildfields' at "lib/entity-gen.xqm";
+
+bf:write(fn:resolve-uri("./data/models"),fn:resolve-uri("models.xqm"))
+		</xquery>
+	</task>
+	
+	<task name="gen.model.load">
+       <doc>Update models.xqm" from data/models
+       </doc>
+        <xquery>
+import module namespace bf = 'quodatum.tools.buildfields' at "lib/entity-gen.xqm";
+
+bf:write(fn:resolve-uri("./data/models"),fn:resolve-uri("models.xqm"))
+        </xquery>
+    </task>
+</tasks>

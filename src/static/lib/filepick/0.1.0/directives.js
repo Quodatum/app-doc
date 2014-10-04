@@ -16,7 +16,7 @@ angular
 							return {
 								restrict : "E",
 								scope : {
-									value : '=',
+									value : '=ngModel',
 									onselect:"&"
 								},
 								templateUrl : '../static/lib/filepick/0.1.0/filepick.html',
@@ -77,8 +77,10 @@ angular
 									} ];
 									
 									$scope.action=function(){
+										if(!$scope.context.selectedNode)return;
 										var p=$scope.context.selectedNode.$model;
 										//@see http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-3-isolate-scope-and-function-parameters
+										$scope.value=p.path;
 										$scope.onselect()($scope.context);
 									};
 									$scope.busy=false;

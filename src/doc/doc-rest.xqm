@@ -13,6 +13,7 @@ import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
 import module namespace entity = 'quodatum.models.generated' at 'models.xqm';
 import module namespace cva = 'quodatum.cva.rest' at "lib/cva.xqm";
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
+import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
 import module namespace bf = 'quodatum.tools.buildfields' at "lib/entity-gen.xqm";
 
 
@@ -25,6 +26,8 @@ declare
  %output:version("5.0")
 function doc(){
      (: update model.xqm :)
+     let $tasks:=fn:doc("data/tasks.xml")
+     
      let $x:=bf:write(fn:resolve-uri("./data/models"),
                       fn:resolve-uri("models.xqm"))
      (: @TODO check db exist app status et :)                 
@@ -61,7 +64,7 @@ declare
 %output:method("json")   
 function files($path) as element(json) 
 {
-    df:list($path)
+    <json type="array">{df:list($path)}</json>
 };
 (:~
  : list of file
@@ -222,7 +225,7 @@ function bar($bar){
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.3.2",
+                        "version":"0.3.3",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

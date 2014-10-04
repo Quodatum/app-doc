@@ -15,7 +15,7 @@
 				<ul style="overflow:scroll">
 					<xsl:for-each select="wadl:resource">
 						<xsl:sort select="@path" />
-						<li>
+						<li style="white-space:nowrap;">
 							<xsl:apply-templates select="." mode="link">
 								<xsl:with-param name="root" select="$root" />
 							</xsl:apply-templates>
@@ -66,7 +66,9 @@
 				<xsl:value-of select="substring(@path,1+string-length($root))" />
 			</span>
 		</a>
-		<xsl:call-template name="method-name" />		
+		<span class="pull-right">
+		<xsl:call-template name="method-name" />
+		</span>		
 	</xsl:template>
 
 	<xsl:template match="wadl:method">

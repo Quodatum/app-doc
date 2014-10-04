@@ -2,7 +2,7 @@
 <meta xmlns="http://basex.org/xquery/repo">
     <description>Documentation services for BaseX RESTXQ web applications.</description>
     <author>Andy Bunce</author>
-    <website>https://bitbucket.org/apb/abide</website>
+    <website>https://github.com/Quodatum/app-doc</website>
     <status>alpha</status>
     <license>Apache 2</license>
     <copyright>true</copyright>
