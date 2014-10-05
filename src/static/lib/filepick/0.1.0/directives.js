@@ -36,7 +36,9 @@ angular
 										selectedNodes : [],
 										hits : 0
 									};
-
+									$scope.spare = function(){
+											alert("hi");
+										};
 									$scope.options = {
 										hasChildrenKey : "isdir",
 
@@ -84,6 +86,8 @@ angular
 										$scope.onselect()($scope.context);
 									};
 									$scope.busy=false;
+									
+									//getChildren("/", $scope.model[0], $scope.context)
 								}
 							}
 						} ])

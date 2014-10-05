@@ -1,22 +1,25 @@
 <div>
-	<div class="input-group">
-		<span class="input-group-addon">
-		          <i class="fa"
-                ng-class="context.selectedNode.$hasChildren?(context.selectedNode.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
-</span> <input type="text"  class="form-control"
-			name="userName" ng-model="value" required>
-			<span class="input-group-btn">
-        <button class="btn btn-default" ng-disabled="busy" ng-click="action()" type="button"><i class="fa fa-share"></i>
-</button>
-      </span>
+	<div class="input-group"> 
+		<span class="input-group-btn" />
+        <button class="btn btn-default" ng-disabled="busy" ng-click="spare()"
+            type="button">
+            <i class="fa " ng-class="context.selectedNode.$hasChildren?(context.selectedNode.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
+        </button>
+        </span>
+		<input type="text" class="form-control" name="userName"
+			ng-model="value" required> <span class="input-group-btn" />
+		<button class="btn btn-default" ng-disabled="busy" ng-click="action()"
+			type="button">
+			<i class="fa fa-share"></i>
+		</button>
+		</span>
 	</div>
 	<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
-		ya-context="context" style="height: 50vh;margin-left:-1em;">
+		ya-context="context" style="height: 50vh; margin-left: -1em;">
 		<a class="nav" href="" ng-click=""
 			ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}"
-			title="{{ node.$model.path }}">
-			<i class="fa"
-				ng-class="node.$hasChildren?(node.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
+			title="{{ node.$model.path }}"> <i class="fa"
+			ng-class="node.$hasChildren?(node.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
 			{{ node.$model.name }}
 		</a>
 	</div>
