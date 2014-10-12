@@ -35,7 +35,7 @@ function doc(){
 }; 
 
 (:~
- : list of apps found on file system.
+ : List of apps found on file system.
  :)
 declare
 %rest:GET %rest:path("doc/data/app")
@@ -55,7 +55,8 @@ return dice:json-request($items,$flds)
 };
 
 (:~
- : list of direct children of dir as json array 
+ : list of direct children of $path as json array
+ : @param $path eg "/app"  
  : @return json [ {name:"gg","path:"aaa/bb",isdir:false},{}..]
  :)
 declare
@@ -66,8 +67,24 @@ function files($path) as element(json)
 {
     <json type="array">{df:list($path)}</json>
 };
+
 (:~
- : list of file
+ : list of files matching pattern as json array
+ : @param $path eg "/app"  
+ : @return json [ {name:"gg","path:"aaa/bb",isdir:false},{}..]
+ :)
+declare
+%rest:GET %rest:path("doc/data/file/find")
+%rest:query-param("pattern", "{$pattern}","")  
+%output:method("json")   
+function find($pattern) as element(json) 
+{
+    <json type="array">{df:find("/",$pattern)}</json>
+};
+
+(:~
+ : get contents of file.
+ : @param $path e.g. "/app/doc/readme.md"
  : @return html resprestation of file
  :)
 declare
@@ -185,6 +202,7 @@ function templates($app as xs:string)
 
 (:~
  : list all components in catalog
+ : @param $fmt "xml" or "html"
  :)
 declare 
 %rest:GET %rest:path("doc/components")
@@ -199,7 +217,7 @@ function components($fmt as xs:string){
 };
 
 (:~
- : list all components in catalog TODO
+ : get xquery documentation 
  :)
 declare 
 %rest:GET %rest:path("doc/xqdoc")
@@ -213,6 +231,25 @@ function basex-modules($path as xs:string,
     
 };
 
+(:~
+ : validate server xml against server xsd
+ :)
+declare 
+%rest:GET %rest:path("doc/validate")
+%restxq:query-param("xml", "{$xml}","")
+%restxq:query-param("schema", "{$schema}","")
+%output:method("json")  
+function validate($xml as xs:string,
+                  $schema as xs:string){
+    let $xml:=df:webpath($xml)!fn:trace(.,"xml ")
+    let $schema:=df:webpath($schema)!fn:trace(.,"xsd ")
+                  
+    let $errs:=validate:xsd-info(fn:doc($xml), fn:doc($schema))
+    return <json type="array">{$errs!<_>{.}</_>}</json>   
+};
+(:~
+ : @return bar as json
+ :)
 declare
 %rest:GET %rest:path("doc/meta/cvabar/{$bar}")
 %output:method("json")
@@ -225,7 +262,7 @@ function bar($bar){
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.3.3",
+                        "version":"0.3.5",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

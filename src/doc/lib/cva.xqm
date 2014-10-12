@@ -19,11 +19,12 @@ as element(json){
  : convert xml to json driven by @type="array" and convention
  :)
 declare function fixup($n){fixup($n,"object")}; 
-declare function fixup($n,$type)
+declare function fixup($n,$type as xs:string)
 {
 let $a:=<json type="{$type}">{$n/*}</json>
 return copy $c := $a
 modify (
+        (: if  type not set then set type=object :)
             for $type in $c//*[fn:not(@type)and *]
             return insert node attribute {'type'}{'object'} into $type,
             

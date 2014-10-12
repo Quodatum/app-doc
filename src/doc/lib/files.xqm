@@ -78,7 +78,7 @@ function find($dir as xs:string,$pattern as xs:string) as element(_)*
 (:~
  : get doc at dir as text, if xml convert to string
  :)
-declare function read($dir) as item() 
+declare function read($dir) as item()* 
 {
     let $fdir:= webpath($dir)
     return if(fn:doc-available($fdir))

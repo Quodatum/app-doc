@@ -60,15 +60,15 @@
 
 	<xsl:template match="wadl:resource" mode="link">
 		<xsl:param name="root" />
-		
+		<span class="pull-right">
+        <xsl:call-template name="method-name" />
+        </span> 
 		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
 			<span class="label label-info">
 				<xsl:value-of select="substring(@path,1+string-length($root))" />
 			</span>
 		</a>
-		<span class="pull-right">
-		<xsl:call-template name="method-name" />
-		</span>		
+			
 	</xsl:template>
 
 	<xsl:template match="wadl:method">

@@ -1,16 +1,20 @@
 <div>
-	<div class="input-group"> 
-		<span class="input-group-btn" />
-        <button class="btn btn-default" ng-disabled="busy" ng-click="spare()"
+	<div class="input-group"  ng-switch="view"> 
+		<span class="input-group-btn">
+        <button class="btn btn-default" ng-disabled="busy" ng-click="toggleview()"
             type="button">
-            <i class="fa " ng-class="context.selectedNode.$hasChildren?(context.selectedNode.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
-        </button>
+            <i class="fa " ng-class="(view=='tree')?'fa-folder-open-o':'fa-search-plus'"></i>
+         </button>
         </span>
-		<input type="text" class="form-control" name="userName"
-			ng-model="value" required> <span class="input-group-btn" />
+		<input type="text" class="form-control"  ng-switch-default
+			ng-model="value" required>
+		<input type="text" class="form-control" name="pattern"  ng-switch-when="find"
+            ng-model="pattern" >
+            	
+			 <span class="input-group-btn" >
 		<button class="btn btn-default" ng-disabled="busy" ng-click="action()"
 			type="button">
-			<i class="fa fa-share"></i>
+			<i class="fa " ng-class="(view=='tree')?'fa-arrow-right':'fa-arrow-down'"></i>
 		</button>
 		</span>
 	</div>

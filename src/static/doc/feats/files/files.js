@@ -16,11 +16,12 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
                            function($scope,$resource,$routeParams,$location,apiRoot) {
 	var target="../../doc/data/file/read";
 	
-	$scope.path = $routeParams.path;
+	//$scope.path = $routeParams.path?$routeParams.path:'';
+	$scope.fred="FRED";
 	$scope.include=target+"?path="+$scope.path;
 	$scope.fsel=function(context){
 		var p=context.selectedNode.$model.path;
-	
+		//$location.search('path', p);
 		$scope.path=p;
 		$scope.include=target+"?path="+$scope.path;
 	};

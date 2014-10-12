@@ -14,7 +14,7 @@ angular.module('doc', [ 'ngRoute', 'ngResource',
 				function($routeProvider, $locationProvider) {
 					console.log("APP config");
 					$routeProvider.when('/', {
-						redirectTo : '/components'
+						redirectTo : '/apps/doc'
 					}).when('/search', {
 						templateUrl : '/static/doc/templates/search.xhtml',
 						controller : "SearchCtrl"

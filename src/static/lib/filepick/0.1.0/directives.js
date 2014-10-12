@@ -17,18 +17,32 @@ angular
 								restrict : "E",
 								scope : {
 									value : '=ngModel',
-									onselect:"&"
+									onselect:"&",
+									endpoint:'=',
+									view:'@'	
 								},
 								templateUrl : '../static/lib/filepick/0.1.0/filepick.html',
+								compile: function(element, attrs){
+									console.log("compile");
+								       if (!attrs.view) { attrs.view = "tree"; }
+							
+								    },
 								controller : function($scope, $resource) {
+									$scope.busy=false;
+									$scope.view="tree";
+									$scope.pattern="*.xsd";
+									console.log("FILEPICK",$scope.endpoint,$scope.view);
+									
 									function getChildren(path, node, context) {
-										var f = $resource("data/file/list");
+										$scope.busy=true;
+										var f = $resource($scope.endpoint);
 										f.query({
 											path : path
 										}).$promise.then(function(result) {
 											node.$model.children = result;
 											node.$children = context
 													.nodifyArray(result);
+											$scope.busy=false;
 										});
 									}
 									;
@@ -36,9 +50,10 @@ angular
 										selectedNodes : [],
 										hits : 0
 									};
-									$scope.spare = function(){
-											alert("hi");
+									$scope.toggleview = function(){
+											$scope.view=($scope.view=="tree")?"find":"tree";
 										};
+									
 									$scope.options = {
 										hasChildrenKey : "isdir",
 
@@ -79,13 +94,19 @@ angular
 									} ];
 									
 									$scope.action=function(){
+										if($scope.view=="find"){
+											console.log("fid",$scope.context)
+											alert("find"+$scope.pattern);
+											
+											return;
+										};
 										if(!$scope.context.selectedNode)return;
 										var p=$scope.context.selectedNode.$model;
 										//@see http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-3-isolate-scope-and-function-parameters
 										$scope.value=p.path;
+										$scope.view="tree";
 										$scope.onselect()($scope.context);
 									};
-									$scope.busy=false;
 									
 									//getChildren("/", $scope.model[0], $scope.context)
 								}
