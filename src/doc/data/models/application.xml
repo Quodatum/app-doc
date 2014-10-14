@@ -1,4 +1,4 @@
-<entity name="application" type="element(item)">
+<entity name="application" type="element(item)" xmlns="https://github.com/Quodatum/app-doc/entity">
     <description>A RESTXQ based web application .</description>
 	<fields>
 		<field name="name" type="xs:string">
@@ -19,8 +19,7 @@
         </field>
 	</fields>
 	<views>
-	<view name="list">
-	</view>
+	<view name="list"/>
 	</views>
 	<iconclass>glyphicon glyphicon-cog</iconclass>
 </entity>

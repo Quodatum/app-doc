@@ -1,4 +1,4 @@
-<entity name="search-result" type="element(search)">
+<entity name="search-result" type="element(search)"  xmlns="https://github.com/Quodatum/app-doc/entity">
     <description>About a search result.</description>
 	<fields>
 		<field name="title" type="xs:string">

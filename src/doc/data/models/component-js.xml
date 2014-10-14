@@ -1,4 +1,4 @@
-<entity name="component-js" type="element(cmp)">
+<entity name="component-js" type="element(cmp)"  xmlns="https://github.com/Quodatum/app-doc/entity">
     <description>About a javascript library </description>
 	<fields>
 		<field name="name" type="xs:string">

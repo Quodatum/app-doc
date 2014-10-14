@@ -3,9 +3,12 @@
  :)
 module namespace bf = 'quodatum.tools.buildfields';
 declare default function namespace 'quodatum.tools.buildfields'; 
+declare namespace ent="https://github.com/Quodatum/app-doc/entity"; 
 
 (:~
- : write module from entity xml
+ : write generated xquery module from entity xml
+ : @param efolder full path to folder with entities e.g. fn:resolve-uri("./data/models")
+ : @param dest full name of xqm to create e.g. fn:resolve-uri("models.xqm")
  :)
 declare function write($efolder as xs:string,$dest as xs:string)
 {
@@ -16,7 +19,7 @@ declare function write($efolder as xs:string,$dest as xs:string)
 (:~
  : generate xquery module for given entities as a string
  :)
-declare function module($entities as element(entity)*) as xs:string
+declare function module($entities as element(ent:entity)*) as xs:string
 {
 let $src:= <text>(: entity access maps 
  : auto generated from xml files in entities folder at: {fn:current-dateTime()} 
@@ -39,21 +42,21 @@ as map(*){{
 (:~
  : generate xquery for to return field value in the format: "name"=function(){}
  :)
-declare function accessfn($f as element(field)) as xs:string
+declare function accessfn($f as element(ent:field)) as xs:string
 {
 <field>
-       "{$f/@name/fn:string()}": function($_ as element()) as {$f/@type/fn:string()} {{{$f/xpath }}}</field>
+       "{$f/@name/fn:string()}": function($_ as element()) as {$f/@type/fn:string()} {{{$f/ent:xpath }}}</field>
 };
 
-declare function generate($e as element(entity)) as xs:string
+declare function generate($e as element(ent:entity)) as xs:string
 {
-  let $fields:=for $field in $e/fields/field   
+  let $fields:=for $field in $e/ent:fields/ent:field   
                 order by $field/@name
                 return $field    
   return <field>
   "{$e/@name/fn:string()}":= map{{
      "name": "{ $e/@name/fn:string()}",
-     "description": "{ escape($e/description)}",
+     "description": "{ escape($e/ent:description)}",
      "access": map{{ {fn:string-join($fields!accessfn(.),",")} }},
      "json":= map{{ {fn:string-join($fields!jsonfn(.),",")} }}
    }}</field>
@@ -62,18 +65,18 @@ declare function generate($e as element(entity)) as xs:string
 (:~
  : @return sequence of element(entity) items for definitions at path
  :)
-declare function sources($path) as element(entity)*
+declare function sources($path as xs:string) as element(ent:entity)*
 {
  let $p:=fn:resolve-uri($path) || "/"
  return for $f in file:list($p)
         order by $f
-        return fn:doc(fn:concat($p,$f))/entity
+        return fn:doc(fn:concat($p,$f))/ent:entity
 };
 
 (:map for entity :)
-declare function build-map($entity) as xs:string
+declare function build-map($entity as element(ent:entity)) as xs:string
 {
-let $m:=for $field in $entity/fields/field   
+let $m:=for $field in $entity/ent:fields/ent:field   
         order by $field/@name
         return accessfn($field)
 return <text>
@@ -86,7 +89,7 @@ declare variable $entity:{$entity/@name/fn:string()}:=map{{ {fn:string-join($m,"
 (:~ 
  : javascript funtion to return xml for json serialization
 :)
-declare function jsonfn($f as element(field)) as xs:string{
+declare function jsonfn($f as element(ent:field)) as xs:string{
 let $name:=$f/@name/fn:string()
 let $type:=json-type($f/@type)
 return <field>
@@ -106,7 +109,7 @@ switch ($xsd)
 
 (:~ declare any namespaces found :)
 declare function build-namespaces($entities as element()*){
-  for $n in distinct-deep($entities/namespace)
+  for $n in distinct-deep($entities/ent:namespace)
   return 
 <text>declare namespace {$n/@prefix/fn:string()}='{$n}';
 </text>

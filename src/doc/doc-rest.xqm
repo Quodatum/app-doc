@@ -34,6 +34,12 @@ function doc(){
      return render("main.xq",map{})
 }; 
 
+declare
+%unit:test
+function test-gen(){
+    bf:write(fn:resolve-uri("./data/models"), fn:resolve-uri("models.xqm"))
+};
+
 (:~
  : List of apps found on file system.
  :)
@@ -262,7 +268,7 @@ function bar($bar){
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.3.5",
+                        "version":"0.4.0",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))
