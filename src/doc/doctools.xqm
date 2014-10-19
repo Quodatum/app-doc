@@ -43,7 +43,7 @@ declare function uri($type as xs:string,
  :)
  declare function basex-modules()
  {
- file:list($doc:basex-modules)!fn:concat($doc:basex-modules,.)
+ file:list($doc:basex-modules)
  };
  
 (:~

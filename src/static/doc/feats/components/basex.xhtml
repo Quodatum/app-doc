@@ -1,4 +1,9 @@
 <div>
-basex
-<div class="container-fluid" ng-include="'xqdoc?path='+module" autoscroll="true">incl</div>
+	<div ng-hide="isModule">
+		<ul>
+			<li ng-repeat="name in results"><a href="#/components/basex?module={{name}}">{{name}}</a></li>
+		</ul>
+	</div>
+	<div ng-show="isModule" class="container-fluid"
+		ng-include="'xqdoc?path='+module" autoscroll="true">incl</div>
 </div>

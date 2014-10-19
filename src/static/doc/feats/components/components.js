@@ -21,7 +21,7 @@ angular.module('quodatum.doc.components', [ ])
 .factory('Basex',
         [ '$resource',  "apiRoot", function($resource, apiRoot) {
             return {
-                api : $resource(apiRoot + 'data/files/find')
+                api : $resource(apiRoot + 'components/basex')
             }
         } ])
 // controllers
@@ -47,10 +47,16 @@ angular.module('quodatum.doc.components', [ ])
 }])
 
 // show BaseX system modules
-.controller("BasexCtrl", ['$scope','Basex',function($scope,Basex){
+.controller("BasexCtrl", ['$scope','$routeParams','Basex',function($scope,$routeParams,Basex){
 	console.log("BasexCtrl");
-	$scope.results=Basex.query({xml:"xml",xsd:"schema"});
-	$scope.module="admin.xqm"
+	$scope.module = $routeParams.module;
+	$scope.isModule=!!$scope.module;
+	if(!$scope.isModule){
+		$scope.results=Basex.api.query();
+		$scope.module="admin.xqm"
+	};
+	
+	
 }])
 ;
           

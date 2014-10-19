@@ -15,9 +15,8 @@ declare variable $static external :="/static/doc/";
 <title>doc (v{$version})</title>
 <!-- Le fav and touch icons -->
 <link rel="shortcut icon" href="{$static}icon.png"/>
-<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.css" rel="stylesheet" type="text/css" />  
+<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" type="text/css" />  
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="{$static}../lib/oci.treeview/20140305/treeview.css" rel="stylesheet" type="text/css" />
 <link href="{$static}../lib/angular-ya-treeview/0.2.2/ya-treeview.css" rel="stylesheet" type="text/css" />    
 <link href="{$static}app.css" rel="stylesheet"/>
 
@@ -34,14 +33,14 @@ declare variable $static external :="/static/doc/";
 {$body}
 
      <!-- angular -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"  ></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-resource.min.js"  ></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-cookies.min.js"  ></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-sanitize.min.js"></script> 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.min.js"></script> 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.min.js"></script> 
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"  ></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-resource.min.js"  ></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-cookies.min.js"  ></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.min.js"></script> 
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script> 
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.min.js"></script> 
     <!-- others -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"  ></script>
    

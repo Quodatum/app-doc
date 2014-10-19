@@ -14,7 +14,7 @@ import module namespace entity = 'quodatum.models.generated' at 'models.xqm';
 import module namespace cva = 'quodatum.cva.rest' at "lib/cva.xqm";
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
-import module namespace bf = 'quodatum.tools.buildfields' at "lib/entity-gen.xqm";
+
 
 
 (:~
@@ -26,18 +26,18 @@ declare
  %output:version("5.0")
 function doc(){
      (: update model.xqm :)
-     let $tasks:=fn:doc("data/tasks.xml")
-     
-     let $x:=bf:write(fn:resolve-uri("./data/models"),
-                      fn:resolve-uri("models.xqm"))
+     let $x:=do-tasks("gen.model.xquery")
      (: @TODO check db exist app status et :)                 
      return render("main.xq",map{})
 }; 
 
-declare
-%unit:test
-function test-gen(){
-    bf:write(fn:resolve-uri("./data/models"), fn:resolve-uri("models.xqm"))
+(:~ eval list of tasks
+ :)
+declare function do-tasks($names as xs:string*){
+   let $tasks:=fn:doc("data/tasks.xml")/tasks/task
+   return for $name in $names
+          let $task:=$tasks[@name=$name]/xquery
+          return eval:eval($task,5)
 };
 
 (:~
@@ -211,9 +211,9 @@ function templates($app as xs:string)
  : @param $fmt "xml" or "html"
  :)
 declare 
-%rest:GET %rest:path("doc/components")
+%rest:GET %rest:path("doc/components/browser")
 %restxq:query-param("fmt", "{$fmt}","xml")
-function components($fmt as xs:string){
+function browser-list($fmt as xs:string){
     let $d:=$doc:components
     return (
         web:method($fmt),
@@ -223,7 +223,20 @@ function components($fmt as xs:string){
 };
 
 (:~
- : get xquery documentation 
+ : names of builtin basex xquery modules
+ : @param $fmt "xml" or "html"
+ :)
+declare 
+%rest:GET %rest:path("doc/components/basex")
+%output:method("json")
+function basex-list(){
+<json type="array">{
+   doc:basex-modules()!<_>{.}</_>
+   }</json>
+};
+
+(:~
+ : get xquery documentation for $path and $type
  :)
 declare 
 %rest:GET %rest:path("doc/xqdoc")
@@ -268,7 +281,7 @@ function bar($bar){
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.4.0",
+                        "version":"0.4.1",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

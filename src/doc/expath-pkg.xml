@@ -1,9 +1,13 @@
 <package abbrev="doc" name="urn:quodatum.basex.doc" version="0.1"
 	spec="1.0" xmlns="http://expath.org/ns/pkg">
 	<title>Doc</title>
-	<dependency name="twitter-bootstrap" version="3.1.1" />
-	<dependency name="angular-ui-bootstrap" version="3.1.1" />
+	<dependency name="twitter-bootstrap" version="3.2.0" />
+	<dependency name="angularjs" version="1.2.26" />
+	<dependency name="angular-ui-bootstrap" version="0.11.0" />
 	<dependency name="restangular" version="3.1.1" />
+	<dependency name="lodash" version="2.4.1" />
 	<dependency name="font-awesome" version="4.1.0" />
+	
+	<dependency name="angular-ya-treeview" version="0.2.2" />
 	<dependency name="filepick" version="0.1.0" />
 </package>

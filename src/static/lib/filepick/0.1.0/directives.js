@@ -87,7 +87,7 @@ angular
 									};
 
 									$scope.model = [ {
-										name : 'root',
+										name : '/',
 										path : "/",
 										has_children : true,
 										children : []

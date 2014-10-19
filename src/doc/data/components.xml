@@ -34,8 +34,10 @@
 			responsive, mobile first projects on the web.
 		</tagline>
 		<licence>Apache v2.0</licence>
-		<release version="3.1.1">
-			<cdn>//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js
+		<release version="3.2.0">
+		<cdn type="css">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css
+            </cdn>
+			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js
 			</cdn>
 		</release>
 	</cmp>
@@ -98,7 +100,7 @@
 		<tagline>HTML enhanced for web apps!</tagline>
 		<licence>MIT</licence>
 		<release version="1.2.14">
-			<cdn>//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js
+			<cdn>//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js
 			</cdn>
 		</release>
 	</cmp>
@@ -110,8 +112,8 @@
 			AngularUI Team
 		</tagline>
 		<depends>angularjs</depends>
-		<release version="0.10.0">
-			<cdn>//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js
+		<release version="0.11.0">
+			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js
 			</cdn>
 		</release>
 	</cmp>
