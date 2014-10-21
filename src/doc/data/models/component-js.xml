@@ -1,5 +1,5 @@
-<entity name="component-js" type="element(cmp)"  xmlns="https://github.com/Quodatum/app-doc/entity">
-    <description>About a javascript library </description>
+<entity name="component-js" xmlns="https://github.com/Quodatum/app-doc/entity">
+	<description>About a javascript library </description>
 	<fields>
 		<field name="name" type="xs:string">
 			<description>name</description>
@@ -15,4 +15,5 @@
 		</field>
 	</fields>
 	<iconclass>glyphicon glyphicon-cog</iconclass>
+	<data type="element(cmp)"></data>
 </entity>

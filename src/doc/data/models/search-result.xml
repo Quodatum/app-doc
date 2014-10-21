@@ -1,5 +1,5 @@
-<entity name="search-result" type="element(search)"  xmlns="https://github.com/Quodatum/app-doc/entity">
-    <description>About a search result.</description>
+<entity name="search-result" xmlns="https://github.com/Quodatum/app-doc/entity">
+	<description>About a search result.</description>
 	<fields>
 		<field name="title" type="xs:string">
 			<description>title</description>
@@ -15,4 +15,5 @@
 		</field>
 	</fields>
 	<iconclass>glyphicon glyphicon-cog</iconclass>
+	<data type="element(search)"></data>
 </entity>

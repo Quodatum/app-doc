@@ -1,4 +1,4 @@
-<entity name="entity" type="element(ent:entity)"
+<entity name="entity"
 	xmlns="https://github.com/Quodatum/app-doc/entity">
 	<description>About an entity i.e. something described in this framework</description>
 	<namespace prefix="ent">https://github.com/Quodatum/app-doc/entity</namespace>
@@ -37,4 +37,5 @@
 		</field>
 	</fields>
 	<iconclass>glyphicon glyphicon-tower</iconclass>
+	   <data  type="element(ent:entity)"></data>
 </entity>

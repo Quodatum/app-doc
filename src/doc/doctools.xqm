@@ -1,7 +1,8 @@
 xquery version "3.0";
 (:~
-: xqdoc utils
+: manage documentation metadata and generation
 :
+: @copyright quodatum ltd
 : @author andy bunce
 : @since may 2014
 : @licence apache 2
@@ -17,11 +18,11 @@ import module namespace rest = 'http://exquery.org/ns/restxq';
 
 declare variable $doc:components:=fn:doc("data/components.xml")/components;
 
+declare variable $doc:repopath:=file:parent(db:system()/globaloptions/repopath);
 (:~ 
  : e.g "C:\Program Files (x86)\basex\etc\modules\"
  :)
-declare variable $doc:basex-modules:=file:parent(db:system()/globaloptions/repopath)
-                                    || "etc/modules/";
+declare variable $doc:basex-modules:=$doc:repopath || "etc/modules/";
  
 (:~
  : full file system path to 
@@ -34,7 +35,7 @@ declare function uri($type as xs:string,
   case "app" return app-uri($app,$path)
   case "static"  return static-uri($app,$path)
   case "basex" return $doc:basex-modules || $path
-  case "repo" return file:parent(db:system()/globaloptions/repopath) || $path 
+  case "repo" return $doc:repopath || $path 
   default      return fn:error(xs:QName('doc:uri'),"bad type: " || $type)
 };
 

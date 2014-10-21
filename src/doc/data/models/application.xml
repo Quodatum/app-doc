@@ -1,4 +1,4 @@
-<entity name="application" type="element(item)" xmlns="https://github.com/Quodatum/app-doc/entity">
+<entity name="application" xmlns="https://github.com/Quodatum/app-doc/entity">
     <description>A RESTXQ based web application .</description>
 	<fields>
 		<field name="name" type="xs:string">
@@ -13,13 +13,14 @@
             <description>Application link</description>
             <xpath>'/' || $_/name</xpath>
         </field>
-        <field name="logo" type="xs:string+">
-            <description>uri for the application logo</description>
-            <xpath>'/static/' || $_/name  || '/logo.svg'</xpath>
+        <field name="logo" type="xs:string?">
+            <description>uri for the application logo if exists</description>
+            <xpath>$_/logo</xpath>
         </field>
 	</fields>
 	<views>
 	<view name="list"/>
 	</views>
 	<iconclass>glyphicon glyphicon-cog</iconclass>
+    <data  type="element(item)"></data>
 </entity>

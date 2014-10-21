@@ -10,7 +10,8 @@
 					<xs:complexType>
 						<xs:simpleContent>
 							<xs:extension base="xs:string">
-								<xs:attribute type="xs:string" name="prefix" />
+								<xs:attribute type="xs:string"
+									name="prefix" />
 							</xs:extension>
 						</xs:simpleContent>
 					</xs:complexType>
@@ -18,15 +19,19 @@
 				<xs:element name="fields">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="field" maxOccurs="unbounded"
-								minOccurs="0">
+							<xs:element name="field"
+								maxOccurs="unbounded" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element type="xs:string" name="description" />
-										<xs:element type="xs:string" name="xpath" />
+										<xs:element type="xs:string"
+											name="description" />
+										<xs:element type="xs:string"
+											name="xpath" />
 									</xs:sequence>
-									<xs:attribute type="xs:string" name="name" use="optional" />
-									<xs:attribute type="xs:string" name="type" use="optional" />
+									<xs:attribute type="xs:string"
+										name="name" use="optional" />
+									<xs:attribute type="xs:string"
+										name="type" use="optional" />
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
@@ -35,16 +40,24 @@
 				<xs:element name="views" maxOccurs="1" minOccurs="0">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="view" maxOccurs="unbounded"
-								minOccurs="0">
+							<xs:element name="view"
+								maxOccurs="unbounded" minOccurs="0">
 								<xs:complexType>
-									<xs:attribute type="xs:string" name="name" use="optional" />
+									<xs:attribute type="xs:string"
+										name="name" use="optional" />
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
 				<xs:element type="xs:string" name="iconclass" />
+				<xs:element name="data">
+					<xs:complexType>
+						<xs:attribute name="type"
+							type="xs:string">
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
 			</xs:sequence>
 			<xs:attribute type="xs:string" name="name" />
 			<xs:attribute type="xs:string" name="type" />

@@ -1,4 +1,4 @@
-<entity name="xqmodule" type="element(xqdoc:xqdoc)"  xmlns="https://github.com/Quodatum/app-doc/entity">
+<entity name="xqmodule" xmlns="https://github.com/Quodatum/app-doc/entity">
 	<description>An XQuery source code module</description>
 	<namespace prefix="xqdoc">http://www.xqdoc.org/1.0</namespace>
 
@@ -29,4 +29,5 @@
 		</field>
 	</fields>
 	<iconclass>glyphicon glyphicon-cog</iconclass>
+	<data type="element(xqdoc:xqdoc)"></data>
 </entity>

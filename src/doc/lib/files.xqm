@@ -30,10 +30,13 @@ declare function apps() as xs:string*
     where file:is-dir($full)and fn:not($name = ('static','WEB-INF'))
     return $name
 };
+
 (:~ 
  : serialize file object
  :) 
-declare function file($dir,$name,$isFolder) as element(_)
+declare function file($dir,
+                    $name as xs:string,
+                    $isFolder as xs:boolean) as element(_)
 {
      let $name:=fn:translate($name,"\","/")
      return   
@@ -89,6 +92,9 @@ declare function read($dir) as item()*
 };
 
 
+(:~ 
+ : test file is text
+ :)
 declare function is-text-file($path) as xs:boolean{
     is-text(file:read-binary($path,0,1024))
 };

@@ -49,11 +49,15 @@ declare
 function app() 
 {
 let $items:=for $a in df:apps()
+            let $logo:=doc:uri("static",$a,"logo.svg")
             order by $a
             return <item>
                     <name>{$a}</name>
                     <description>sss</description>
-                    </item>
+                    {if(file:exists($logo))
+                    then <logo>{"/static/" || $a || "/logo.svg"}</logo> 
+                    else ()
+                    }</item>
 
 let $flds:=entity:fields("application")
 
