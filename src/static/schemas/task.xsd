@@ -1,0 +1,19 @@
+<xs:schema attributeFormDefault="unqualified"
+	targetNamespace="https://github.com/Quodatum/app-doc/task"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="tasks">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="task" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element type="xs:string" name="doc" />
+							<xs:element type="xs:string" name="xquery" />
+						</xs:sequence>
+						<xs:attribute type="xs:string" name="name" use="optional" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

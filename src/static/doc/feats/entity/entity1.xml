@@ -1,0 +1,23 @@
+<div>
+	<div class="fluid">
+		<ul class="breadcrumb ">
+			<li>
+				<a href="#/data/xqmodule">XQ module</a>
+				
+			</li>
+			<li>
+				{{xqmodule.name}}
+			</li>
+
+
+		</ul>
+	</div>
+
+	<div>name :{{model.name}}</div>
+	<div>description: {{model.description}}</div>
+	<div>type: {{model.type}}</div>
+	<div>
+		nfields:
+		<a href="#/{{model.fieldslink}}">{{model.nfields}}</a>
+	</div>
+</div>

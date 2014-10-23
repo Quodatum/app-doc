@@ -1,0 +1,25 @@
+<entity name="endpoint" type="element(wadl:resource)">
+    <description>A WADL type wadl:resource </description>
+    <namespace prefix="wadl">http://wadl.dev.java.net/2009/02</namespace>
+	<fields>
+		<field name="path" type="xs:string">
+			<description>path</description>
+			<xpath>$_/@path</xpath>
+		</field>
+		<field name="method" type="xs:string">
+			<description>http methods eg PUT DELETE</description>
+			<xpath>$_/wadl:method/@name</xpath>
+		</field>
+		<field name="doc" type="xs:string">
+			<description>html doc</description>
+			<xpath>if($_/wadl:method/wadl:doc) 
+			       then $_/wadl:method/wadl:doc/text()
+			       else '' </xpath>
+		</field>
+		<field name="mediatype" type="xs:string">
+			<description>mediatype</description>
+			<xpath>$_/wadl:method/wadl:response/wadl:representation/@mediaType</xpath>
+		</field>
+	</fields>
+	<iconclass>glyphicon glyphicon-cog</iconclass>
+</entity>

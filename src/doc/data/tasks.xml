@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tasks>
+<tasks xmlns="https://github.com/Quodatum/app-doc/task">
 	<task name="gen.model.xquery">
 	   <doc>Update models.xqm" from data/models
 	   </doc>
@@ -10,13 +10,18 @@ bf:write(fn:resolve-uri("./data/models"),fn:resolve-uri("models.xqm"))
 		</xquery>
 	</task>
 	
-	<task name="gen.model.load">
-       <doc>Update models.xqm" from data/models
+	<task name="data.load">
+       <doc>Create or update database from files in data 
        </doc>
         <xquery>
-import module namespace bf = 'quodatum.tools.buildfields' at "lib/entity-gen.xqm";
-
-bf:write(fn:resolve-uri("./data/models"),fn:resolve-uri("models.xqm"))
+  import module namespace dbtools = 'quodatum.dbtools'  at "lib/dbtools.xqm";
+        
+  let $app:="doc"
+  let $db:="doc-data" 
+  let $src:=$dbtools:webpath ||$app || "/data/"
+  return (db:output("ok"),
+		 dbtools:sync-from-path($db,$src)
+		 )
         </xquery>
     </task>
 </tasks>

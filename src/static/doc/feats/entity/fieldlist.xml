@@ -1,0 +1,47 @@
+<div>
+	<div class="fluid">
+		<ul class="breadcrumb ">
+			<li>
+				<a href="#/models">Models</a>
+				
+			</li>
+			<li>
+				<a href="#/models/{{fields.metadata.crumbs[0].name}}">{{fields.metadata.crumbs[0].name}}</a>
+				
+			</li>
+			<li class="active">fields ({{fields.metadata.count}})</li>
+			<ul class="nav nav-pills pull-right" style="position:relative;top:-6px">
+				<li>
+					<form class="form-inline">
+						Filter:
+						<input type="text" data-ng-model="params.q" style="width:6em;" />
+						<ng-include src="'partials/sortui.xml'"></ng-include>
+					</form>
+
+				</li>
+				<ng-include src="'partials/ui-page.xml'"></ng-include>
+			</ul>
+
+		</ul>
+	</div>
+	<table class="table table-condensed table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>XPath</th>
+				<th>Type</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="field in fields">
+				<td>
+					<a href="#/models/{{field.name}}">{{field.name}}</a>
+				</td>
+				<td>{{field.description}}</td>
+				<td>{{field.xpath}}</td>
+				<td>{{field.type}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

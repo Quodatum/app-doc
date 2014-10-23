@@ -1,0 +1,25 @@
+<div>
+<div class="fluid" >
+	<ul class="breadcrumb ">
+	  <li>
+				<a href="#/models">Models</a>
+				
+			</li>
+			<li>
+				<a href="#/models/{{model.name}}">{{model.name}}</a>
+				
+			</li>
+				<li  >
+				<a href="#/models/{{model.name}}/fields">fields</a>
+				</li>
+			<li  >this field</li>
+		<li  class="active">this field</li>
+
+	</ul>
+</div>
+
+<div>name :{{model.name}}</div>
+<div>description:	{{model.description}}</div>
+<div>type:	{{model.type}}</div>
+<div>nfields:	<a href="#/{{model.fieldslink}}">{{model.nfields}}</a></div>
+</div>

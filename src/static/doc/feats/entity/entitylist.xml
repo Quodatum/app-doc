@@ -1,0 +1,49 @@
+<div>
+	<div class="fluid">
+		<ul class="breadcrumb ">
+			<li class="active">Entities ({{models.metadata.count}})</li>
+
+			<ul class="nav nav-pills pull-right" style="position:relative;top:-6px">
+				<li>
+					<form class="form-inline">
+						Filter:
+						<input type="text" data-ng-model="params.q" style="width:6em;" />
+						<ng-include src="'partials/sortui.xml'"></ng-include>
+					</form>
+
+				</li>
+				<ng-include src="'partials/ui-page.xml'"></ng-include>
+			</ul>
+
+		</ul>
+	</div>
+	<div class="row">
+		<div ng-repeat="model in models" class="gd-model media col-sm-6 col-md-4 well">
+			<span class="badge pull-right">
+				<a href="#{{model.fieldslink}}">{{model.nfields}}</a>
+			</span>
+			
+			<div class="media-body">
+				<h4 class="media-heading">
+					<a href="#/data/entity/{{model.name}}">
+						<i class="{{model.iconclass}}"></i>
+						{{model.name}}
+					</a>
+				</h4>
+				<div class="media-body">
+					<div>
+						P:
+						<a href="#{{model.parentlink}}">{{model.parent}}</a>
+					</div>
+					<p>{{model.description}}</p>
+					<div>
+						<a href="#/data/{{model.name}}">
+							<i class="glyphicon glyphicon-list-alt" title="Data for {{model.name}}"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

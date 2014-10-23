@@ -26,19 +26,12 @@ declare
  %output:version("5.0")
 function doc(){
      (: update model.xqm :)
-     let $x:=do-tasks("gen.model.xquery")
+     let $x:=eval:do-tasks(("gen.model.xquery","data.load"))
      (: @TODO check db exist app status et :)                 
      return render("main.xq",map{})
 }; 
 
-(:~ eval list of tasks
- :)
-declare function do-tasks($names as xs:string*){
-   let $tasks:=fn:doc("data/tasks.xml")/tasks/task
-   return for $name in $names
-          let $task:=$tasks[@name=$name]/xquery
-          return eval:eval($task,5)
-};
+
 
 (:~
  : List of apps found on file system.

@@ -47,11 +47,12 @@ declare variable $static external :="/static/doc/";
     <!-- local libs -->
     <script src="{$static}../lib/angular-ya-treeview/0.2.2/ya-treeview-tpls.js"  ></script>
     <script src="{$static}../lib/filepick/0.1.0/directives.js"  ></script>   
-
+    <!-- application -->
     <script src="{$static}app.js"  ></script>
     <script src="{$static}feats/apps/apps.js"  ></script>
     <script src="{$static}feats/components/components.js"  ></script>
     <script src="{$static}feats/files/files.js"  ></script>
     <script src="{$static}feats/schema/schema.js"  ></script>
+    <script src="{$static}feats/entity/entity.js"  ></script>
 </body>
 </html>

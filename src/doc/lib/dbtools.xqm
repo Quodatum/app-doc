@@ -5,7 +5,11 @@
 :)
 
 module namespace dbtools = 'quodatum.dbtools';
-declare default function namespace 'quodatum.dbtools'; 
+declare default function namespace 'quodatum.dbtools';
+ 
+(:  trailing slash :)
+declare variable $dbtools:webpath:= db:system()/globaloptions/webpath/fn:string()
+                             || file:dir-separator();
 
 (:~ 
 : save all in db to zip
@@ -34,7 +38,8 @@ declare %updating function sync-from-path($dbname as xs:string,$path as xs:strin
 };
 
 (:~
-: update or create database from file list
+: update or create database from file list. After this the database will have a
+: matching copy of the files on the file system
 : @param $dbname name of database
 : @param $path  base file path where files are relative to en
 : @param $files file names from base
