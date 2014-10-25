@@ -26,6 +26,7 @@ declare
  %output:version("5.0")
 function doc(){
      (: update model.xqm :)
+     let $_:=fn:trace(fn:current-dateTime(),"*** START: ")
      let $x:=eval:do-tasks(("gen.model.xquery","data.load"))
      (: @TODO check db exist app status et :)                 
      return render("main.xq",map{})
@@ -41,6 +42,7 @@ declare
 %output:method("json")   
 function app() 
 {
+
 let $items:=for $a in df:apps()
             let $logo:=doc:uri("static",$a,"logo.svg")
             order by $a
@@ -51,10 +53,10 @@ let $items:=for $a in df:apps()
                     then <logo>{"/static/" || $a || "/logo.svg"}</logo> 
                     else ()
                     }</item>
+let $x:=fn:trace($items,"sss")
+let $flds:=$entity:list("application")
 
-let $flds:=entity:fields("application")
-
-return dice:json-request($items,$flds)
+return dice:response($items,$flds)
 };
 
 (:~
@@ -111,7 +113,7 @@ function search()
     let $items:=(<item><name>doc</name></item>,
                 <item><name>benchx</name></item>)
     let $flds:=entity:fields("application")
-    return dice:json-request($items,$flds)
+    return dice:response($items,$flds)
 };
 
 (:~

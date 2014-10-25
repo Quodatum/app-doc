@@ -1,5 +1,6 @@
 (:~ 
-: dice utils - sort, filter, and serialize as json..
+: dice utils - sort, filter, and serialize as json.
+: can read parameters from request: sort,start,limit.
 : @author andy bunce
 : @since mar 2013
 :)
@@ -56,65 +57,37 @@ as element(_){
 	</_>
 };
 
-(:~
- : @return json styled subsequence from items with metadata 
- : @items 
- : @param fn function to extract o/p fields from i/p node
- : @param $crumbs options breadcrumbs e.g. <_><name>ff</name><slug>aaa</slug><_>
- :)
-declare function json-limit($items as item()*,
-                            $fn as function(*),
-							$start as xs:integer,
-							$limit as xs:integer,
-							$crumbs as element(_)*)
-as element(json){
-  <json arrays="items crumbs" objects="json _" numbers="total">
-    <total>{fn:count($items)}</total>
-	{if($crumbs) then <crumbs>{$crumbs}</crumbs> else() }
-    <items>
-	    {for $item in fn:subsequence($items,1+$start,$limit)
-	    return $fn($item)}
-    </items>
-  </json>
-};
-
-declare function json-limit($items as item()*,
-                            $fn as function(*),
-							$start as xs:integer,
-							$limit as xs:integer)
-as element(json){
-  json-limit( $items ,$fn,$start,$limit,())
-};
 
 (:~ 
  : sort, slice, return json using request parameters
  : @param $items sequence of source items
  :)
-declare function json-request($items,$fields,$crumbs){
+declare function response($items,$entity as map(*),$crumbs){
+  let $total:=fn:count($items)
+  let $sort:=request:parameter("sort","")
+  let $items:= dice:sort($items,map:get($entity,"access"),$sort)
+  
   let $start:=xs:integer(fn:number(request:parameter("start","0")))
   let $limit:=xs:integer(fn:number(request:parameter("limit","30")))
-  let $sort:=request:parameter("sort","")
-  let $items:= dice:sort($items,$fields,$sort)
-   return dice:json-limit($items,
-                          dice:json-flds(?,$fields),
-                          $start,$limit,
-                          $crumbs
-                          )  
+  let $jsonf:= map:get($entity,"json")
+  let $fields:=map:keys($jsonf)
+  let $z:=fn:trace("£££","SS")
+  return 
+  <json objects="json _" >
+    <total type="number">{$total}</total>
+    <entity>{$entity("name")}</entity>
+    {if($crumbs) then <crumbs type="array">{$crumbs}</crumbs> else() }
+    <items type="array">
+        {for $item in fn:subsequence($items,1+$start,$limit)
+        return <_ >{$fields!$jsonf(.)($item)}</_>}
+    </items>
+  </json> 
 };
 
 (:~ 
  : sort, slice, return json
- : @param $items results
- : @param $fields map
- : @param @fn 
  :)
-declare function json-request($items,$fields){
-    json-request($items,$fields,())
-};
-
-declare function status($code,$reason){
-   <restxq:response>            
-       <http:response status="{$code}" reason="{$reason}"/>
-   </restxq:response>
+declare function response($items,$entity as map(*)){
+    response($items,$entity,())
 };
 

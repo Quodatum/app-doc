@@ -234,3 +234,83 @@ angular
 							};
 
 						} ])
+.directive(
+				"sortui",
+				[
+						'apiRoot',
+						function($compile, apiRoot) {
+
+							return {
+								restrict : "E",
+								scope : {
+									value : '=ngModel',
+									onselect:"&",
+									endpoint:'=',
+									view:'@'	
+								},
+								templateUrl : '../static/lib/filepick/0.1.0/sortui.html',
+								
+								controller : function($scope, $resource) {
+									$scope._setSort = function(fld) {
+										setsort(fld, (fld == $scope.field) ? !$scope.desc : true);
+									};
+									$scope.sortclick = function() {
+										var s = $scope.params.sort;
+										var desc = "-" == s.charAt(0);
+										s = s.substr(desc || "+" == s.charAt(0) ? 1 : 0);
+										$scope.params.sort = (desc ? "" : "-") + s
+									};
+
+									$scope.$watch('params.sort', function(newVal, oldVal, $scope) {
+										if (!newVal)
+											return;
+										var s = newVal.charAt(0)
+										$scope.field = newVal.substr(("-" == s || "+" == s) ? 1 : 0)
+										$scope.desc = "-" == s;
+									});
+									function setsort(fld, desc) {
+										$scope.params.sort = (desc ? "-" : "") + fld
+									}
+								}
+							}}])
+.directive(
+				"uipage",
+				[
+						'apiRoot',
+						function($compile, apiRoot) {
+
+							return {
+								restrict : "E",
+								scope : {
+									value : '=ngModel',
+									onselect:"&",
+									endpoint:'=',
+									view:'@'	
+								},
+								templateUrl : '../static/lib/filepick/0.1.0/uipage.html',
+								
+								controller : function($scope, $resource) {
+									$scope._setSort = function(fld) {
+										setsort(fld, (fld == $scope.field) ? !$scope.desc : true);
+									};
+									$scope.sortclick = function() {
+										var s = $scope.params.sort;
+										var desc = "-" == s.charAt(0);
+										s = s.substr(desc || "+" == s.charAt(0) ? 1 : 0);
+										$scope.params.sort = (desc ? "" : "-") + s
+									};
+
+									$scope.$watch('params.sort', function(newVal, oldVal, $scope) {
+										if (!newVal)
+											return;
+										var s = newVal.charAt(0)
+										$scope.field = newVal.substr(("-" == s || "+" == s) ? 1 : 0)
+										$scope.desc = "-" == s;
+									});
+									function setsort(fld, desc) {
+										$scope.params.sort = (desc ? "-" : "") + fld
+									}
+								}
+							}}])							
+;
+							

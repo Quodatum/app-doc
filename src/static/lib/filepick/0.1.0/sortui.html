@@ -1,0 +1,10 @@
+<div class="btn-group inline " >	
+	<button type="button" class="btn  btn-small " ng-click="sortclick()"
+		style="width:7em;" title="Sort direction (click to reverse)">
+		<i data-ng-class='{false:"glyphicon glyphicon-sort-by-attributes",true:"glyphicon glyphicon-sort-by-attributes-alt"}[desc]'></i>
+	{{field}}
+	</button>
+	<button type="button" class="btn btn-small " apb-dropdown="sortopts"
+		title="Sort by" style="text-align:right">
+        <i class='glyphicon glyphicon-random'></i></button>
+</div>

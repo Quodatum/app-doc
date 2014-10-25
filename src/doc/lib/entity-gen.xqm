@@ -93,7 +93,7 @@ declare function jsonfn($f as element(ent:field)) as xs:string{
 let $name:=$f/@name/fn:string()
 let $type:=json-type($f/@type)
 return <field>
-       "{$name}":=function($_ as element()) as element({$name}) {{ element {$name} {{ attribute type {{"{$type}" }},fn:data({$f/xpath }) }} }}</field>
+       "{$name}":=function($_ as element()) as element({$name}) {{ element {$name} {{ attribute type {{"{$type}" }},fn:data({$f/ent:xpath }) }} }}</field>
 };
 
 (:~ convert xs type to json

@@ -1,0 +1,22 @@
+<ul class="pager pull-right" style="margin:0px;padding-left:5px;" 
+      title="Page view">
+	
+	<li>
+		<button ng-click="params.start=0" ng-disabled="params.start==0" 
+		title="First page" class="btn btn-small">
+			<i class="glyphicon glyphicon-step-backward"></i>
+		</button>
+	</li>
+	<li>
+		<button ng-click="prevPage()" ng-disabled="params.start==0" 
+		title="Previous page"  class="btn btn-small">
+			<i class="glyphicon glyphicon-backward"></i>
+		</button>
+	</li>
+    <li>{{params.start + 1}}</li>
+	<li>
+		<button ng-click="nextPage()" title="Next page"  class="btn btn-small">
+			<i class="glyphicon glyphicon-forward"></i>
+		</button>
+	</li>
+</ul>

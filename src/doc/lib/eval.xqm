@@ -5,6 +5,8 @@
  :)
 module namespace eval = 'quodatum.eval';
 declare default function namespace 'quodatum.eval';
+declare namespace task ="https://github.com/Quodatum/app-doc/task";
+
  
 declare variable $eval:def-opts:=map{
      "permission" := "create",
@@ -15,9 +17,9 @@ declare variable $eval:def-opts:=map{
  :)
 declare function do-tasks($names as xs:string*){
    let $name:=fn:trace($names,"tasks: ")
-   let $tasks:=fn:doc("../data/tasks.xml")/tasks/task
+   let $tasks:=fn:doc("../data/tasks.xml")/task:tasks/task:task
    return for $name in $names
-          let $task:=$tasks[@name=$name]/xquery
+          let $task:=$tasks[@name=$name]/task:xquery
           let $res:=eval($task,5)
           return fn:trace($res,$name || ": ")
 };
@@ -51,7 +53,7 @@ as item()*{
      "permission" := "create",
      "timeout":=$timeout
   }
-  let $xq:= 'declare base-uri "' || fn:resolve-uri("..") ||'";&#10;' || $xq 
+  let $xq:= 'declare base-uri "' || fn:resolve-uri("..") ||'";&#10;' || $xq
   return try{
        let $t1:=prof:current-ms()
        let $x:= xquery:eval($xq,$bindings,$opts)
