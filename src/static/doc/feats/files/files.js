@@ -17,6 +17,10 @@ angular.module('quodatum.doc.files', [ 'restangular' ])
 	var target="../../doc/data/file/read";
 	
 	//$scope.path = $routeParams.path?$routeParams.path:'';
+	 $scope.tabs = [
+	                { title:'Dynamic Title 1', content:'Dynamic content 1' },
+	                { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+	              ];
 	$scope.fred="FRED";
 	$scope.include=target+"?path="+$scope.path;
 	$scope.fsel=function(context){

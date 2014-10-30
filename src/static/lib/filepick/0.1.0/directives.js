@@ -234,6 +234,8 @@ angular
 							};
 
 						} ])
+						
+// value is sortfield with direction. dropdown has options list 
 .directive(
 				"sortui",
 				[
@@ -251,6 +253,10 @@ angular
 								templateUrl : '../static/lib/filepick/0.1.0/sortui.html',
 								
 								controller : function($scope, $resource) {
+									$scope.field="XXY";
+									$scope.params={sort:"xxx"};
+									$scope.isopen=false;
+									$scope.options=["aa","bb","cccc"];
 									$scope._setSort = function(fld) {
 										setsort(fld, (fld == $scope.field) ? !$scope.desc : true);
 									};
@@ -260,7 +266,11 @@ angular
 										s = s.substr(desc || "+" == s.charAt(0) ? 1 : 0);
 										$scope.params.sort = (desc ? "" : "-") + s
 									};
-
+									$scope.fieldclick = function(aa) {
+										//$scope.field=aa;
+										$scope.params.sort=aa;
+										$scope.isopen=false;
+									};
 									$scope.$watch('params.sort', function(newVal, oldVal, $scope) {
 										if (!newVal)
 											return;

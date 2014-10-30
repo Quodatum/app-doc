@@ -6,7 +6,7 @@
 		<xquery>
 import module namespace bf = 'quodatum.tools.buildfields' at "lib/entity-gen.xqm";
 
-bf:write(fn:resolve-uri("./data/models"),fn:resolve-uri("models.xqm"))
+bf:write(fn:resolve-uri("./data/models"),fn:resolve-uri("generated/models.xqm"))
 		</xquery>
 	</task>
 	

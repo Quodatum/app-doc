@@ -10,7 +10,8 @@ import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
 import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
 import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
-import module namespace entity = 'quodatum.models.generated' at 'models.xqm';
+import module namespace entity = 'quodatum.models.generated' at 'generated/models.xqm';
+import module namespace tasks = 'quodatum.tasks.generated' at 'generated/tasks.xqm';
 import module namespace cva = 'quodatum.cva.rest' at "lib/cva.xqm";
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
@@ -45,15 +46,15 @@ function app()
 
 let $items:=for $a in df:apps()
             let $logo:=doc:uri("static",$a,"logo.svg")
+            let $logo:= if(file:exists($logo))
+                        then <logo>{"/static/" || $a || "/logo.svg"}</logo> 
+                        else ()
             order by $a
             return <item>
                     <name>{$a}</name>
-                    <description>sss</description>
-                    {if(file:exists($logo))
-                    then <logo>{"/static/" || $a || "/logo.svg"}</logo> 
-                    else ()
+                    <description>todo this</description>
+                    {$logo
                     }</item>
-let $x:=fn:trace($items,"sss")
 let $flds:=$entity:list("application")
 
 return dice:response($items,$flds)
@@ -276,11 +277,20 @@ function bar($bar){
 };
 
 (:~
+ :  run a task
+ :)
+declare %updating
+%output:method("text")  
+%rest:GET %rest:path("doc/task/{$task}")
+function dotask($task){
+    tasks:task($task)
+};
+(:~
  : html rendering
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.4.1",
+                        "version":"0.4.3",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

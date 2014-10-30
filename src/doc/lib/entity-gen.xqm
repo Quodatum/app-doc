@@ -10,7 +10,7 @@ declare namespace ent="https://github.com/Quodatum/app-doc/entity";
  : @param efolder full path to folder with entities e.g. fn:resolve-uri("./data/models")
  : @param dest full name of xqm to create e.g. fn:resolve-uri("models.xqm")
  :)
-declare function write($efolder as xs:string,$dest as xs:string)
+declare %updating function write($efolder as xs:string,$dest as xs:string)
 {
     let $src:=bf:module(bf:sources($efolder))
     return file:write-text($dest,$src)
@@ -87,13 +87,15 @@ declare variable $entity:{$entity/@name/fn:string()}:=map{{ {fn:string-join($m,"
 };
 
 (:~ 
- : javascript funtion to return xml for json serialization
+ :  return xml for suitable json serialization for field 
 :)
 declare function jsonfn($f as element(ent:field)) as xs:string{
 let $name:=$f/@name/fn:string()
 let $type:=json-type($f/@type)
+let $opt:=fn:contains($type,"?")
 return <field>
-       "{$name}":=function($_ as element()) as element({$name}) {{ element {$name} {{ attribute type {{"{$type}" }},fn:data({$f/ent:xpath }) }} }}</field>
+       "{$name}":=function($_ as element()) as element({$name})? {{ let $d:=fn:data({$f/ent:xpath })
+       return if($d)then element {$name} {{ attribute type {{"{$type}" }},$d }} else () }}</field>
 };
 
 (:~ convert xs type to json

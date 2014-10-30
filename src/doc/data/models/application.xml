@@ -5,11 +5,11 @@
 			<description>Application name</description>
 			<xpath>$_/name</xpath>
 		</field>
-		<field name="description" type="xs:string+">
+		<field name="description" type="xs:string?">
 			<description>Application description</description>
-			<xpath>'todo ' || $_/name </xpath>
+			<xpath>$_/description</xpath>
 		</field>
-		<field name="uri" type="xs:string+">
+		<field name="uri" type="xs:string?">
             <description>Application link</description>
             <xpath>'/' || $_/name</xpath>
         </field>
