@@ -1,0 +1,1 @@
+Sub folders contain the implementation of a feature.

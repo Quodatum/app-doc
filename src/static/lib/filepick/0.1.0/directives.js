@@ -248,6 +248,7 @@ angular
 									value : '=ngModel',
 									onselect:"&",
 									endpoint:'=',
+									options:"=",
 									view:'@'	
 								},
 								templateUrl : '../static/lib/filepick/0.1.0/sortui.html',
@@ -256,7 +257,7 @@ angular
 									$scope.field="XXY";
 									$scope.params={sort:"xxx"};
 									$scope.isopen=false;
-									$scope.options=["aa","bb","cccc"];
+									
 									$scope._setSort = function(fld) {
 										setsort(fld, (fld == $scope.field) ? !$scope.desc : true);
 									};

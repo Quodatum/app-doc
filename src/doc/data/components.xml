@@ -304,11 +304,11 @@
 		</release>
 	</cmp>
 	
-	<cmp name="filepick">
+	<cmp name="quodatum-directives">
         <runat>browser</runat>
-        <home>.</home>
+        <home>https://github.com/Quodatum/app-doc</home>
         <depends>angular-ya-treeview</depends>
-        <tagline>Fle selector with tree view</tagline>
+        <tagline>Set of UI controls. Includes File selector with tree view</tagline>
         <release version="0.1.0">
             <local>lib/filepick/0.1.0/directives.js</local>
         </release>

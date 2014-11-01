@@ -7,7 +7,8 @@ angular.module('doc', [ 'ngRoute', 'ngResource',
                         'quodatum.doc.components',
                         'quodatum.doc.files',
                         'quodatum.doc.schema',
-                        'quodatum.doc.tests',
+                        'quodatum.doc.directives',
+                        'quodatum.doc.tools',
                         'quodatum.directives'])
 
 .constant(

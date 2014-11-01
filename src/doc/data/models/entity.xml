@@ -25,7 +25,7 @@
 		</field>
 		<field name="fieldslink" type="xs:string">
 			<description>Links for fields description</description>
-			<xpath>fn:concat("/data/entity/",$_/@name,"/ent:fields")</xpath>
+			<xpath>fn:concat("/data/entity/",$_/@name,"/field")</xpath>
 		</field>
 		<field name="parent" type="xs:string?">
 			<description>parent entity, if any</description>

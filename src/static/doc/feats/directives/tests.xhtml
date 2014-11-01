@@ -1,0 +1,44 @@
+<div id="cloud-container">
+	<div>Directives</div>
+	<div class="row" style="height: 100%;">
+		<div class="col-md-3">
+			<ul>
+				<li ng-repeat="item in list"><a ng-click="scrollTo('{{item.name}}')">{{item.name}}</a></li>
+			</ul>
+		</div>
+		<div class="col-md-9">
+			<section>
+				<a class="anchor" id="sortui" /> <a ng-click="scrollTo('sortui')">
+					<h2>sortui</h2>
+				</a>
+
+				<p>Value is a name from a list and an ascending or descending
+					flag.</p>
+				<p>The sortui directive provide several attributes:</p>
+				<ul>
+					<li>ng-model: name of $scope member holding value</li>
+					<li>options: name of $scope member holding list of sortable
+						names</li>
+				</ul>
+				<sortui ng-model="field" options="options">sort</sortui>
+			</section>
+			<section>
+				<a class="anchor" id="uipage" /> <a ng-click="scrollTo('uipage')">
+					<h2>uipage</h2>
+				</a>
+
+				<p>Page navigation control</p>
+				<uipage>page</uipage>
+			</section>
+			<section>
+				<a class="anchor" id="filepick" /> <a
+					ng-click="scrollTo('filepick')">
+					<h2>filepick</h2>
+				</a>
+				<p>Value is a path selected from a tree ui.</p>
+				<filepick ng-model="path" endpoint="'data/file/list'"
+					onselect="fsel" />
+			</section>
+		</div>
+	</div>
+</div>

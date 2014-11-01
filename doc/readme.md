@@ -19,6 +19,13 @@ Anchor
     <xsl:value-of select="@name" />
 </a>
 
+$scope.scrollTo = function(id) {
+        //$log.log("DDDD", id);
+        $location.hash(id);
+        // call $anchorScroll()
+        $anchorScroll();
+    };
+          
 ## Framework
 An application has a name. The name must be a valid folder name 
 server uses BaseX with RESTXQ

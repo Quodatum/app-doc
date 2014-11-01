@@ -9,5 +9,5 @@
 	<dependency name="font-awesome" version="4.1.0" />
 	
 	<dependency name="angular-ya-treeview" version="0.2.2" />
-	<dependency name="filepick" version="0.1.0" />
+	<dependency name="quodatum-directives" version="0.1.0" />
 </package>

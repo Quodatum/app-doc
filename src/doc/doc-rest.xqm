@@ -290,7 +290,7 @@ function dotask($task){
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.4.3",
+                        "version":"0.4.5",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

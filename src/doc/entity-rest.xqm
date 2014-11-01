@@ -13,6 +13,7 @@ import module namespace web = 'quodatum.web.utils2' at "lib/webutils2.xqm";
 declare namespace ent="https://github.com/Quodatum/app-doc/entity"; 
 
 declare variable $model-rest:models:=db:open("doc-data")//ent:entity;
+
 (:~ 
  : return list of entities 
  :)
@@ -45,13 +46,13 @@ function model($entity) {
  : field list for model 
  :)
 declare 
-%rest:GET %rest:path("doc/data/entity/{$app}/fields")
+%rest:GET %rest:path("doc/data/entity/{$entity}/field")
 %output:method("json")    
-function field-list($app) {
- let $entity:=$entity:list("field")
-    let $items:=$model-rest:models[@name=$app]/fields/field
-	let $crumbs:=(<_><name>{$app}</name><slug>{$app}</slug></_>,
+function field-list($entity) {
+ let $fentity:=$entity:list("field")
+    let $items:=$model-rest:models[@name=$entity]/fields/field
+	let $crumbs:=(<_><name>{$entity}</name><slug>{$entity}</slug></_>,
                   <_><name>fields</name><slug>fields</slug></_>)
-    return dice:response($items,$entity,$crumbs)
+    return dice:response($items,$fentity,$crumbs)
                       
 };
