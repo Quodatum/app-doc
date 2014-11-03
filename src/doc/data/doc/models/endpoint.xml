@@ -1,6 +1,6 @@
-<entity name="endpoint" type="element(wadl:resource)">
-    <description>A WADL type wadl:resource </description>
-    <namespace prefix="wadl">http://wadl.dev.java.net/2009/02</namespace>
+<entity name="endpoint" xmlns="https://github.com/Quodatum/app-doc/entity">  
+	<description>A WADL type wadl:resource </description>
+	<namespace prefix="wadl">http://wadl.dev.java.net/2009/02</namespace>
 	<fields>
 		<field name="path" type="xs:string">
 			<description>path</description>
@@ -22,4 +22,5 @@
 		</field>
 	</fields>
 	<iconclass>glyphicon glyphicon-cog</iconclass>
+	<data type="element(wadl:resource)"></data>
 </entity>

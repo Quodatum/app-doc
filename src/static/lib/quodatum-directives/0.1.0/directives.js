@@ -21,7 +21,7 @@ angular
 									endpoint:'=',
 									view:'@'	
 								},
-								templateUrl : '../static/lib/filepick/0.1.0/filepick.html',
+								templateUrl : '../static/lib/quodatum-directives/0.1.0/filepick.html',
 								compile: function(element, attrs){
 									console.log("compile");
 								       if (!attrs.view) { attrs.view = "tree"; }
@@ -245,17 +245,16 @@ angular
 							return {
 								restrict : "E",
 								scope : {
-									value : '=ngModel',
+									params : '=ngModel',
 									onselect:"&",
 									endpoint:'=',
 									options:"=",
 									view:'@'	
 								},
-								templateUrl : '../static/lib/filepick/0.1.0/sortui.html',
+								templateUrl : '../static/lib/quodatum-directives/0.1.0/sortui.html',
 								
 								controller : function($scope, $resource) {
 									$scope.field="XXY";
-									$scope.params={sort:"xxx"};
 									$scope.isopen=false;
 									
 									$scope._setSort = function(fld) {
@@ -298,7 +297,7 @@ angular
 									endpoint:'=',
 									view:'@'	
 								},
-								templateUrl : '../static/lib/filepick/0.1.0/uipage.html',
+								templateUrl : '../static/lib/quodatum-directives/0.1.0/uipage.html',
 								
 								controller : function($scope, $resource) {
 									$scope._setSort = function(fld) {
@@ -322,6 +321,26 @@ angular
 										$scope.params.sort = (desc ? "-" : "") + fld
 									}
 								}
-							}}])							
+							}}])
+.directive('cvaBar', function() {
+  return {
+      restrict: 'AE',
+      replace: 'true',
+      scope:{
+    	  bar:"=ngModel"
+     },
+      templateUrl : '../static/lib/quodatum-directives/0.1.0/actionbar.html',
+      controller : function($scope){
+    	  console.log("cva");
+      }
+      /*
+     link: function(scope, elem, attrs) {
+    	      elem.bind('mouseover', function() {
+    	        elem.css('cursor', 'w-resize');
+    	      });
+    	    }
+    	    */	  
+  };
+})							
 ;
 							

@@ -6,6 +6,15 @@ Angular app is <html ng-app="doc" ng-controller="AppController">
 
 ## json interface
 uses dice framework
+generic request parameters
+
+| name  | default | description                 |
+|-------|---------|-----------------------------|
+| sort  |         | [+/-]field  name to sort on |
+| start | 0       | 1st,item to return          |
+| limit | 30      | max items to return         |
+
+
 
 ## cva bars 
 A UI component. Crumbs,Views,Actions
@@ -36,9 +45,14 @@ Code layout
 
 #restangular One vs All
 
+configured in app.js
+RestangularProvider.setBaseUrl('.');
+getlist looks for 
+data.metadata = {count : response.total,crumbs:".."}
+
 #metadata
 A conforming application should provide the following files at the root:
 - expath-pkg.xml
 - repo.xml The ExistDb application descriptor 
 
-
+## 

@@ -26,7 +26,7 @@ declare variable $static external :="/static/doc/";
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   }})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-39638120-1', 'auto');
+  ga('create', 'UA-39638119-1', 'auto');
 </script>   
 </head>
 <body> 
@@ -46,7 +46,7 @@ declare variable $static external :="/static/doc/";
    
     <!-- local libs -->
     <script src="{$static}../lib/angular-ya-treeview/0.2.2/ya-treeview-tpls.js"  ></script>
-    <script src="{$static}../lib/filepick/0.1.0/directives.js"  ></script>   
+    <script src="{$static}../lib/quodatum-directives/0.1.0/directives.js"  ></script>   
     <!-- application -->
     <script src="{$static}app.js"  ></script>
     <script src="{$static}feats/apps/apps.js"  ></script>

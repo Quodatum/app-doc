@@ -3,7 +3,6 @@ angular.module('quodatum.doc.components', [ ])
 .config(
         [ '$routeProvider', 
 		function($routeProvider) {
-        	console.log("quodatum.doc.components $routeProvider")
            $routeProvider.when('/components', {
                templateUrl : '/static/doc/feats/components/components.xhtml',
                controller : "CmpCtrl"

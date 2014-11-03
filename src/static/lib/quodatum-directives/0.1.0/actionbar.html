@@ -6,8 +6,8 @@
 		
 		<li ng-show="bar.views.length">
 			<div class="btn-group  btn-group-sm navbar-btn">
-				<button ng-repeat="view in bar.views" ng-click="{{view.action}}"
-					class="btn btn-default " title="{{view.title}}" ng-class="{{view.class}}">
+				<button ng-repeat="view in bar.views" ng-click="view.action"
+					class="btn btn-default " title="{{view.title}}" ng-class="view.class">
 					<i class="{{view.icon}}"></i>
 					{{view.text}}
 				</button>
@@ -18,8 +18,8 @@
 		<p class="navbar-text">:</p>
 		<div class="btn-group  btn-group-sm navbar-btn">
 			<button class="btn  "> Action:</button>
-			<button ng-repeat="action in bar.actions" ng-click="{{action.action}}"
-				class="btn btn-default " title="{{action.title}}" ng-class="{{action.class}}">
+			<button ng-repeat="action in bar.actions" ng-click="action.action"
+				class="btn btn-default " title="{{action.title}}" ng-class="action.class">
 				<i class="{{action.icon}}"></i>
 				{{action.text}}
 			</button>

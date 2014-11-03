@@ -11,8 +11,7 @@ import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
 import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
 import module namespace entity = 'quodatum.models.generated' at 'generated/models.xqm';
-import module namespace tasks = 'quodatum.tasks.generated' at 'generated/tasks.xqm';
-import module namespace cva = 'quodatum.cva.rest' at "lib/cva.xqm";
+
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
 
@@ -266,31 +265,13 @@ function validate($xml as xs:string,
     let $errs:=validate:xsd-info(fn:doc($xml), fn:doc($schema))
     return <json type="array">{$errs!<_>{.}</_>}</json>   
 };
-(:~
- : @return bar as json
- :)
-declare
-%rest:GET %rest:path("doc/meta/cvabar/{$bar}")
-%output:method("json")
-function bar($bar){
-    cva:getbar("doc",$bar)
-};
 
-(:~
- :  run a task
- :)
-declare %updating
-%output:method("text")  
-%rest:GET %rest:path("doc/task/{$task}")
-function dotask($task){
-    tasks:task($task)
-};
 (:~
  : html rendering
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.4.5",
+                        "version":"0.4.7",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

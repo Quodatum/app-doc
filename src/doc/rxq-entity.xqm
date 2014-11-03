@@ -1,5 +1,5 @@
 (:~ 
-:abide app rest interface 
+: abide app rest interface 
 : @author andy bunce
 : @since jun 2013
 :)

@@ -12,7 +12,7 @@
 	<div class="row">
 		<div ng-repeat="app in apps" class="qd-app media col-sm-6 col-md-4 well">
 			<a class="pull-left" href="{{app.uri}}"  target="app-{{app.name}}"> <img
-				class="media-object" src="{{app.logo}}" alt="{{app.name}} - no logo"
+				class="media-object" ng-src="{{app.logo}}" alt="{{app.name}} - no logo"
 				style="width: 64px; height: 64px;"></a>
 			<div class="media-body">
 				<h4 class="media-heading">{{app.name}}</h4>
