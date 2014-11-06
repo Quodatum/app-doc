@@ -3,9 +3,11 @@
  :)
 
 module namespace tasks = 'quodatum.tasks.generated';
-declare base-uri "../";
-import module namespace bf = 'quodatum.tools.buildfields' at "lib/entity-gen.xqm";
-import module namespace dbtools = 'quodatum.dbtools'  at "lib/dbtools.xqm";
+
+import module namespace bf = 'quodatum.tools.buildfields' at "../lib/entity-gen.xqm";
+import module namespace dbtools = 'quodatum.dbtools'  at "../lib/dbtools.xqm";
+
+declare variable $tasks:base-uri:=fn:resolve-uri("../");
  
 declare %updating function tasks:task($index){
  switch ($index) 
@@ -15,9 +17,12 @@ declare %updating function tasks:task($index){
 };
  
 declare %updating function tasks:task1(){
-    let $efolder:=fn:resolve-uri("./data/models")
+    let $efolder:=fn:resolve-uri("./data/models",$tasks:base-uri)
     return (
-        bf:write($efolder,fn:resolve-uri("generated/models.xqm")),
+        bf:write(
+                $efolder,
+                fn:resolve-uri("generated/models.xqm",$tasks:base-uri)
+                ),
         db:output("models.xqm updated")
     )
 };         

@@ -1,3 +1,13 @@
 <div >
-	<div>tasks</div>	
+	<div>The buttons below will run tasks that update data!</div>
+	<div class="row">
+        <div ng-repeat="task in tasks" class="qd-app media col-sm-6 col-md-4 well">
+        <i class="pull-left fa fa-camera-retro fa-5x"></i> 
+            <div class="media-body">
+                <h4 class="media-heading">{{task.name}}</h4>
+                <button ng-click="run(task.name)">Run</button>
+               
+            </div>
+        </div>
+    </div>	
 </div>

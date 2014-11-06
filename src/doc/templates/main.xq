@@ -5,6 +5,6 @@ declare variable $static external :="/static/doc/";
       <div class="center-container">
         <ng-view class="view-animate" style="position:relative;">Loading...</ng-view>
         </div>
-    
+      <div growl="growl"/>
 </div>
 

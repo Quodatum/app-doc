@@ -1,5 +1,6 @@
 (:~ 
-: abide app rest interface 
+: entity rest interface 
+: defines urls below doc/data/entity/
 : @author andy bunce
 : @since jun 2013
 :)

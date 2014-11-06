@@ -20,7 +20,7 @@ import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
  :)
 declare %updating
 %output:method("text")  
-%rest:GET %rest:path("{$app}/task/{$task}")
+%rest:POST %rest:path("{$app}/task/{$task}")
 function dotask($app,$task){
     tasks:task($task)
 };

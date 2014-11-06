@@ -32,7 +32,7 @@ declare function apps() as xs:string*
 };
 
 (:~ 
- : serialize file object
+ : serialize a file object
  :) 
 declare function file($dir,
                     $name as xs:string,

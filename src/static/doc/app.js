@@ -1,11 +1,12 @@
 angular.module(
 		'doc',
-		[ 'ngRoute', 'ngResource', 'ui.bootstrap', 'restangular',
-				'ya.treeview', 'ya.treeview.tpls', 'quodatum.entity',
-				'quodatum.doc.apps', 'quodatum.doc.components',
-				'quodatum.doc.files', 'quodatum.doc.schema',
-				'quodatum.doc.directives', 'quodatum.doc.tools',
-				'quodatum.directives' ])
+		[ 'ngRoute', 'ngResource', 'ngAnimate',
+  		'ui.bootstrap', 'restangular',
+		'ya.treeview', 'ya.treeview.tpls','angular-growl', 
+		'quodatum.entity','quodatum.doc.apps', 'quodatum.doc.components',
+		'quodatum.doc.files', 'quodatum.doc.schema',
+		'quodatum.doc.directives', 'quodatum.doc.tools',
+		'quodatum.directives' ])
 
 .constant("apiRoot", "../../doc/").config(
 		[ '$routeProvider', '$locationProvider',
@@ -68,30 +69,27 @@ angular.module(
 			};
 		} ])
 
-.factory('Search',
-		[ '$resource', '$http', "apiRoot", function($resource, $http, apiRoot) {
-			return {
-				api : $resource(apiRoot + 'search?q=:q')
-			}
-		} ])
-
 .controller(
 		"SearchCtrl",
-		[ 'Search', '$location', '$scope', '$routeParams',
-				function(Search, $location, $scope, $routeParams) {
+		[  'Restangular','$location', '$scope', '$routeParams',
+				function(Restangular,$location, $scope, $routeParams) {
 					console.log("Search", $routeParams);
 					$scope.q = $routeParams.q;
-					$scope.results = Search.api.query({
-						q : $scope.q
-					});
+					function search(q){
+						Restangular.all("search").getList({q : $scope.q})
+							.then(function(d){
+								console.log(d);
+								$scope.results=d;
+							})
+					};
+					
 					$scope.submit = function() {
 						$location.path("/search");
 					};
 					$scope.doSearch = function() {
-						$scope.results = Search.api.query({
-							q : $scope.q
-						});
+						search($scope.q);
 					};
+					search($scope.q);
 				} ])
 // information about entity
 .factory('Entities', [ function() {

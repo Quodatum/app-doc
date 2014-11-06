@@ -20,7 +20,8 @@ function xqdoc($app as xs:string,$bar as xs:string)
 };
  
 (:~
- : convert xml to json driven by @type="array" and convention
+ : transform xml to json serialable xml driven by @type="array" and convention.
+ : all namespaces are removed
  :)
 declare function fixup($n){fixup($n,"object")}; 
 declare function fixup($n,$type)
@@ -29,9 +30,10 @@ let $n:=strip-ns($n)
 let $a:=<json type="{$type}">{$n/*}</json>
 return copy $c := $a
 modify (
+            (: for nodes with no @type and have children set @type="object" :)
             for $type in $c//*[fn:not(@type)and *]
             return insert node attribute {'type'}{'object'} into $type,
-            
+            (: for node with @type="array" and children rename children to "_" :)
             for $n in $c//*[@type="array"]/*
             return rename node $n as "_"
         )

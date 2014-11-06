@@ -43,20 +43,20 @@ declare
 function app() 
 {
 
-let $items:=for $a in df:apps()
+let $searchs:=for $a in df:apps()
             let $logo:=doc:uri("static",$a,"logo.svg")
             let $logo:= if(file:exists($logo))
                         then <logo>{"/static/" || $a || "/logo.svg"}</logo> 
                         else ()
             order by $a
-            return <item>
+            return <search>
                     <name>{$a}</name>
                     <description>todo this</description>
                     {$logo
-                    }</item>
-let $flds:=$entity:list("application")
-
-return dice:response($items,$flds)
+                    }</search>
+                    
+let $entity:=$entity:list("application")
+return dice:response($searchs,$entity)
 };
 
 (:~
@@ -110,10 +110,16 @@ declare
 %output:method("json")   
 function search() 
 {
-    let $items:=(<item><name>doc</name></item>,
-                <item><name>benchx</name></item>)
-    let $flds:=entity:fields("application")
-    return dice:response($items,$flds)
+    let $results:=(<search>
+                <title>doc</title>
+                <uri>/apps/doc</uri>
+                </search>,
+                <search>
+                <title>benchx</title>
+                <uri>/apps/benchx</uri>
+            </search>)
+    let $entity:=$entity:list("search-result")
+    return dice:response($results,$entity)
 };
 
 (:~

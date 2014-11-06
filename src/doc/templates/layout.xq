@@ -17,6 +17,8 @@ declare variable $static external :="/static/doc/";
 <link rel="shortcut icon" href="{$static}icon.png"/>
 <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" type="text/css" />  
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="{$static}../lib/angular-growl/0.4.0/angular-growl.min.css" rel="stylesheet" type="text/css" />    
+
 <link href="{$static}../lib/angular-ya-treeview/0.2.2/ya-treeview.css" rel="stylesheet" type="text/css" />    
 <link href="{$static}app.css" rel="stylesheet"/>
 
@@ -45,6 +47,7 @@ declare variable $static external :="/static/doc/";
     <script src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"  ></script>
    
     <!-- local libs -->
+    <script src="{$static}../lib/angular-growl/0.4.0/angular-growl.min.js"  ></script>
     <script src="{$static}../lib/angular-ya-treeview/0.2.2/ya-treeview-tpls.js"  ></script>
     <script src="{$static}../lib/quodatum-directives/0.1.0/directives.js"  ></script>   
     <!-- application -->

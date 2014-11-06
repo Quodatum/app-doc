@@ -71,7 +71,6 @@ declare function response($items,$entity as map(*),$crumbs){
   let $limit:=xs:integer(fn:number(request:parameter("limit","30")))
   let $jsonf:= map:get($entity,"json")
   let $fields:=map:keys($jsonf)
-  let $z:=fn:trace("£££","SS")
   return 
   <json objects="json _" >
     <total type="number">{$total}</total>
