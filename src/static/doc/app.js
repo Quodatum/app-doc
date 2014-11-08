@@ -51,6 +51,11 @@ angular.module(
 						return data;
 					});
 				} ])
+// growl				
+.config(['growlProvider', function(growlProvider) {
+  growlProvider.globalPosition('bottom-right');
+  growlProvider.globalTimeToLive({success: 5000, error: -1, warning: 3000, info: 1000});
+}])
 
 .run([ "$rootScope", "$window", function($rootScope, $window) {
 	$rootScope.setTitle = function(t) {

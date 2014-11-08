@@ -11,6 +11,7 @@ import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
 import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
 import module namespace entity = 'quodatum.models.generated' at 'generated/models.xqm';
+import module namespace tasks = 'quodatum.tasks.generated'  at 'generated/tasks.xqm';
 
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
@@ -20,18 +21,30 @@ import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
 (:~
  : The doc home page as html. The UI entry point.
  :)
-declare
+declare  
  %rest:GET %rest:path("doc")
  %output:method("html")
  %output:version("5.0")
 function doc(){
      (: update model.xqm :)
      let $_:=fn:trace(fn:current-dateTime(),"*** START: ")
-     let $x:=eval:do-tasks(("gen.model.xquery","data.load"))
      (: @TODO check db exist app status et :)                 
-     return render("main.xq",map{})
-}; 
+     return if(db:exists("doc-data"))
+            then render("main.xq",map{})
+            else <rest:forward>/doc/x</rest:forward>
+};
 
+declare %updating 
+ %rest:GET %rest:path("doc/x")
+ %output:method("html")
+ %output:version("5.0")
+function doc-init(){
+     (: update model.xqm :)
+    (
+     tasks:task("1"),tasks:task("2"),
+     db:output(<rest:forward>/doc</rest:forward>)
+     )
+}; 
 
 
 (:~
@@ -277,7 +290,7 @@ function validate($xml as xs:string,
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.4.7",
+                        "version":"0.4.8",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

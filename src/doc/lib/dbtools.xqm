@@ -31,7 +31,7 @@ return $zip
 : @param $path file path contain files
 :)
 declare %updating function sync-from-path($dbname as xs:string,$path as xs:string){
-  sync-from-files($dbname,
+   sync-from-files($dbname,
                   $path,
                   file:list($path,fn:true()),
                   hof:id#1)
@@ -50,9 +50,16 @@ declare %updating function sync-from-files($dbname as xs:string,
                                            $files as xs:string*,
                                          $fn){
 let $path:=$path || file:dir-separator()
+let $files:=$files!fn:replace(.,"\\","/")
+let $files:=fn:filter($files,function($f){file:is-file(fn:concat($path,$f))})
+let $_:=fn:trace(($files),"DBNAME:")
 return if(db:exists($dbname)) then
-       (for $d in db:list($dbname) where fn:not($d=$files) return db:delete($dbname,$d),
-       for $f in $files let $full:=$fn($path || $f) return db:replace($dbname,$f,$full),
+       (for $d in db:list($dbname) 
+       where fn:not($d=$files) 
+       return db:delete($dbname,$d),
+       for $f in $files 
+       let $full:=$fn($path || $f) 
+       return db:replace($dbname,$f,$full),
        db:optimize($dbname))
        else
         let $full:=$files!fn:concat($path,.)!$fn(.) 

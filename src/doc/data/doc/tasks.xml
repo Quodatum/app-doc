@@ -6,7 +6,7 @@
 		<xquery>
 import module namespace bf = 'quodatum.tools.buildfields' at "lib/entity-gen.xqm";
 
-bf:write(fn:resolve-uri("./data/models"),fn:resolve-uri("generated/models.xqm"))
+bf:write(fn:resolve-uri("./data/doc/models"),fn:resolve-uri("generated/models.xqm"))
 		</xquery>
 	</task>
 	
@@ -18,10 +18,8 @@ bf:write(fn:resolve-uri("./data/models"),fn:resolve-uri("generated/models.xqm"))
         
   let $app:="doc"
   let $db:="doc-data" 
-  let $src:=$dbtools:webpath ||$app || "/data/"
-  return (db:output("ok"),
-		 dbtools:sync-from-path($db,$src)
-		 )
+  let $src:=$dbtools:webpath ||$app || "/data/doc/"
+  return dbtools:sync-from-path($db,$src)
         </xquery>
     </task>
 </tasks>

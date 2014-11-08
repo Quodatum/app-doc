@@ -20,12 +20,16 @@ angular.module('quodatum.doc.tools', [ 'restangular','angular-growl' ])
                           function($scope, Restangular,growl)  {
 	console.log("task control");
 	$scope.setTitle("Run Tasks");
-	growl.addWarnMessage("This adds a warn message");
+	growl.info("This adds a warn message");
 	$scope.tasks=[{name:"1"},{name:"2"}];
 	$scope.run=function(task){
 		Restangular.all("task").all(task).post().then(function(r){
 			console.log("TASK DONE");
-		})
+			growl.success(r);
+			
+		},function(r){
+			growl.error(r.data);
+			})
 	};
 
 } ])

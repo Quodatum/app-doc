@@ -17,10 +17,10 @@ declare variable $eval:def-opts:=map{
  :)
 declare function do-tasks($names as xs:string*){
    let $name:=fn:trace($names,"tasks: ")
-   let $tasks:=fn:doc("../data/tasks.xml")/task:tasks/task:task
+   let $tasks:=fn:doc("../data/doc/tasks.xml")/task:tasks/task:task
    return for $name in $names
           let $task:=$tasks[@name=$name]/task:xquery
-          let $res:=eval($task,5)
+          let $res:=eval2($task,5)
           return fn:trace($res,$name || ": ")
 };
 

@@ -35,8 +35,8 @@
 		</tagline>
 		<licence>Apache v2.0</licence>
 		<release version="3.2.0">
-		<cdn type="css">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css
-            </cdn>
+			<cdn type="css">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css
+			</cdn>
 			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js
 			</cdn>
 		</release>
@@ -261,17 +261,21 @@
 	<cmp name="toastr">
 		<home>http://codeseven.github.io/toastr/</home>
 		<release version="2.0.1">
-			<cdn>//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js</cdn>
+			<cdn>//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js
+			</cdn>
 		</release>
 	</cmp>
 
 	<cmp name="angular-flashr">
 		<home>https://github.com/TylerGarlick/angular.flashr</home>
-		<tagline>Flashr is a library that simulates flashing in rails in AngularJS. 
-		Essentially, it allows you to post notifications via the simple api. </tagline>
+		<tagline>Flashr is a library that simulates flashing in rails in
+			AngularJS.
+			Essentially, it allows you to post notifications via the simple api.
+		</tagline>
 		<depends>angularjs</depends>
 		<release version="2.0.1">
-			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js</cdn>
+			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js
+			</cdn>
 		</release>
 	</cmp>
 
@@ -280,37 +284,60 @@
 		<tagline>Yet Another Treeview for AngularJS</tagline>
 		<depends>angularjs</depends>
 		<release version="0.2.1">
-			<cdn>//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js</cdn>
+			<cdn>//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js
+			</cdn>
 		</release>
 	</cmp>
 
 	<cmp name="font-awesome">
 		<runat>browser</runat>
 		<home>http://fortawesome.github.io/Font-Awesome/</home>
-		<tagline>Font Awesome gives you scalable vector icons that can instantly be customized
-	 — size, color, drop shadow, and anything that can be done with the power of CSS. </tagline>
+		<tagline>Font Awesome gives you scalable vector icons that can
+			instantly be customized
+			— size, color, drop shadow, and anything that can be done with the
+			power of CSS.
+		</tagline>
 		<release version="4.1.0">
-			<cdn>//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css</cdn>
+			<cdn>//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css
+			</cdn>
 		</release>
 	</cmp>
 
 	<cmp name="satellizer">
 		<runat>browser</runat>
 		<home>https://github.com/sahat/satellizer</home>
-		<tagline>Satellizer is a simple to use, end-to-end, token-based authentication module
- for AngularJS with built-in support for Google, Facebook, LinkedIn, Twitter authentication providers, plus Email and Password sign-in method. </tagline>
+		<tagline>Satellizer is a simple to use, end-to-end, token-based
+			authentication module
+			for AngularJS with built-in support for Google, Facebook, LinkedIn,
+			Twitter authentication providers, plus Email and Password sign-in
+			method.
+		</tagline>
 		<release version="0.7.0">
 			<cdn>//cdn.jsdelivr.net/satellizer/0.7.0/satellizer.min.js</cdn>
 		</release>
 	</cmp>
-	
+
 	<cmp name="quodatum-directives">
-        <runat>browser</runat>
-        <home>https://github.com/Quodatum/app-doc</home>
-        <depends>angular-ya-treeview</depends>
-        <tagline>Set of UI controls. Includes File selector with tree view</tagline>
-        <release version="0.1.0">
-            <local>lib/filepick/0.1.0/directives.js</local>
-        </release>
-    </cmp>
+		<runat>browser</runat>
+		<home>https://github.com/Quodatum/app-doc</home>
+		<depends>angular-ya-treeview</depends>
+		<tagline>Set of UI controls. Includes File selector with tree view
+		</tagline>
+		<release version="0.1.0">
+			<local>lib/filepick/0.1.0/directives.js</local>
+		</release>
+	</cmp>
+
+	<cmp name="angular-growl-2">
+		<runat>browser</runat>
+		<home>https://github.com/JanStevens/angular-growl-2</home>
+		<depends>angularjs</depends>
+		<tagline>growl-like notifications for angularJS projects</tagline>
+		<release version="0.7.0">
+			<local type="css">lib/angular-growl-2/0.7.0/angular-growl.min.css
+			</local>
+			<local type="js">lib/angular-growl-2/0.7.0/angular-growl.min.js
+			</local>
+		</release>
+	</cmp>
 </components>

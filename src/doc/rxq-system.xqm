@@ -22,5 +22,5 @@ declare %updating
 %output:method("text")  
 %rest:POST %rest:path("{$app}/task/{$task}")
 function dotask($app,$task){
-    tasks:task($task)
+    (tasks:task($task),db:output("run " || $task))
 };

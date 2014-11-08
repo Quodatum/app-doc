@@ -30,7 +30,7 @@
 	</xsl:template>
 	<!-- convert package.xml to bootstrap html -->
 	<xsl:template match="/pkg:package">
-		<xsl:variable name="cmps" select="doc('data/components.xml')//cmp" />
+		<xsl:variable name="cmps" select="doc('data/doc/components.xml')//cmp" />
 		<xsl:variable name="used" select="pkg:dependency" />
 		<xsl:variable name="found" select="$cmps[@name=$used/@name]" />
 		<div class="row">

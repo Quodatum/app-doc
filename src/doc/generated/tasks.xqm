@@ -17,22 +17,19 @@ declare %updating function tasks:task($index){
 };
  
 declare %updating function tasks:task1(){
-    let $efolder:=fn:resolve-uri("./data/models",$tasks:base-uri)
-    return (
+    let $efolder:=fn:resolve-uri("./data/doc/models",$tasks:base-uri)
+    return 
         bf:write(
                 $efolder,
                 fn:resolve-uri("generated/models.xqm",$tasks:base-uri)
-                ),
-        db:output("models.xqm updated")
-    )
+                )
 };         
 
 declare %updating function tasks:task2(){
   let $app:="doc"
   let $db:="doc-data" 
-  let $src:=$dbtools:webpath ||$app || "/data/"
-  return (db:output("ok"),
-         dbtools:sync-from-path($db,$src)
-         )
+  let $src:=$dbtools:webpath ||$app || "/data/doc"
+  return dbtools:sync-from-path($db,$src)
+   
 };         
   
