@@ -1,16 +1,7 @@
 <div>
-	<div class="row form-group" role="navigation">
-		<ol class="breadcrumb navbar-left  qcrumb">
-			<li><a href="#/about" title="home"> <i
-					class="glyphicon glyphicon-home"></i>
-			</a></li>
-			<li>Apps</li>
-		</ol>
-
-	</div>
-	
+<cva-bar ng-model="bar">bar</cva-bar>
 	<div class="row">
-		<div ng-repeat="app in apps" class="qd-app media col-sm-6 col-md-4 well">
+		<div ng-repeat="app in apps" class="qd-model media col-sm-6 col-md-4 well">
 			<a class="pull-left" href="{{app.uri}}"  target="app-{{app.name}}"> <img
 				class="media-object" ng-src="{{app.logo}}" alt="{{app.name}} - no logo"
 				style="width: 64px; height: 64px;"></a>

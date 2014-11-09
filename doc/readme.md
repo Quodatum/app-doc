@@ -4,6 +4,14 @@ Web UI set in doc-rest.xqm
 UI is created in layout.xqm
 Angular app is <html ng-app="doc" ng-controller="AppController">
 
+## Framework
+An application has a name. The name must be a valid folder name 
+server uses BaseX with RESTXQ
+client uses Angularjs
+Code layout
+/app
+/static/app
+
 ## json interface
 uses dice framework
 generic request parameters
@@ -35,13 +43,7 @@ $scope.scrollTo = function(id) {
         $anchorScroll();
     };
           
-## Framework
-An application has a name. The name must be a valid folder name 
-server uses BaseX with RESTXQ
-client uses Angularjs
-Code layout
-/app
-/static/app
+
 
 #restangular One vs All
 

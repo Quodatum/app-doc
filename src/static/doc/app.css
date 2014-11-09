@@ -93,6 +93,12 @@ left: 0;;
 .ya-treeview a.nav {
 	font-size:inherit !important;
 }
-.qd-app{
-	height:100px;
+.qd-model{
+	height:120px;
+	overflow:hidden;
+}
+/* cvabar override */
+ol.qd-crumb {
+    padding-bottom: 0;
+    padding-top: 0;
 }

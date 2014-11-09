@@ -113,7 +113,7 @@ switch ($xsd)
 declare function build-namespaces($entities as element()*){
   for $n in distinct-deep($entities/ent:namespace)
   return 
-<text>declare namespace {$n/@prefix/fn:string()}='{$n}';
+<text>declare namespace {$n/@prefix/fn:string()}='{$n/@uri/fn:string()}';
 </text>
 };
 

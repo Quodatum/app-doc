@@ -1,6 +1,6 @@
 <entity name="endpoint" xmlns="https://github.com/Quodatum/app-doc/entity">  
 	<description>A WADL type wadl:resource </description>
-	<namespace prefix="wadl">http://wadl.dev.java.net/2009/02</namespace>
+	<namespace prefix="wadl" uri="http://wadl.dev.java.net/2009/02"/>
 	<fields>
 		<field name="path" type="xs:string">
 			<description>path</description>
@@ -21,6 +21,6 @@
 			<xpath>$_/wadl:method/wadl:response/wadl:representation/@mediaType</xpath>
 		</field>
 	</fields>
-	<iconclass>glyphicon glyphicon-cog</iconclass>
+	<iconclass>fa fa-exchange</iconclass>
 	<data type="element(wadl:resource)"></data>
 </entity>

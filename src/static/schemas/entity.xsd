@@ -11,7 +11,10 @@
 						<xs:simpleContent>
 							<xs:extension base="xs:string">
 								<xs:attribute type="xs:string"
-									name="prefix" />
+									name="prefix" use="required" />
+								<xs:attribute name="uri"
+									type="xs:string" use="required">
+								</xs:attribute>
 							</xs:extension>
 						</xs:simpleContent>
 					</xs:complexType>

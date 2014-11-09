@@ -11,7 +11,7 @@
 	<!-- generate module html // -->
 	<xsl:template match="/wadl:application/wadl:resources">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<ul style="overflow:scroll">
 					<xsl:for-each select="wadl:resource">
 						<xsl:sort select="@path" />
@@ -23,7 +23,7 @@
 					</xsl:for-each>
 				</ul>
 			</div>
-			<div class="col-md-9" style="height:70vh;overflow:scroll;">
+			<div class="col-md-8" style="height:70vh;overflow:scroll;">
 
 				<h2>
 					RestXQ API:

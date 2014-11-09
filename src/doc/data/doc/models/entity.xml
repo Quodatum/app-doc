@@ -1,7 +1,7 @@
 <entity name="entity"
 	xmlns="https://github.com/Quodatum/app-doc/entity">
 	<description>About an entity i.e. something described in this framework</description>
-	<namespace prefix="ent">https://github.com/Quodatum/app-doc/entity</namespace>
+	<namespace prefix="ent" uri="https://github.com/Quodatum/app-doc/entity"/>
 	<fields>
 		<field name="name" type="xs:string">
 			<description>name</description>
@@ -36,6 +36,6 @@
 			<xpath>fn:concat("/data/entity/",$_/ent:parent/@name)</xpath>
 		</field>
 	</fields>
-	<iconclass>glyphicon glyphicon-tower</iconclass>
+	<iconclass>glyphicon glyphicon-list-alt</iconclass>
 	   <data  type="element(ent:entity)"></data>
 </entity>

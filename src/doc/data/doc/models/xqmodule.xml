@@ -1,6 +1,6 @@
 <entity name="xqmodule" xmlns="https://github.com/Quodatum/app-doc/entity">
 	<description>An XQuery source code module</description>
-	<namespace prefix="xqdoc">http://www.xqdoc.org/1.0</namespace>
+	<namespace prefix="xqdoc" uri="http://www.xqdoc.org/1.0"/>
 
 	<fields>
 		<field name="file" type="xs:string">
@@ -28,6 +28,6 @@
 			<xpath>$_/xqdoc:module/xqdoc:name</xpath>
 		</field>
 	</fields>
-	<iconclass>glyphicon glyphicon-cog</iconclass>
+	<iconclass>fa fa-file-code-o</iconclass>
 	<data type="element(xqdoc:xqdoc)"></data>
 </entity>

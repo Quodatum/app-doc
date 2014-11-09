@@ -1,0 +1,20 @@
+<entity name="task" xmlns="https://github.com/Quodatum/app-doc/entity">
+	<description>A task.</description>
+	<namespace prefix="task"  uri="https://github.com/Quodatum/app-doc/task"/>
+	<fields>
+		<field name="name" type="xs:string">
+			<description>name</description>
+			<xpath>$_/@name</xpath>
+		</field>
+		<field name="description" type="xs:string">
+			<description>description</description>
+			<xpath>$_/task:description</xpath>
+		</field>
+		<field name="xquery" type="xs:string">
+            <description>xquery code for this task.</description>
+            <xpath>$_/task:xquery</xpath>
+        </field>
+	</fields>
+	<iconclass>fa fa-tasks </iconclass>
+	<data type="element(cvabar:bar)"></data>
+</entity>

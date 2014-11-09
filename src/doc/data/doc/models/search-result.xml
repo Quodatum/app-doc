@@ -14,6 +14,6 @@
 			<xpath>$_/uri</xpath>
 		</field>
 	</fields>
-	<iconclass>glyphicon glyphicon-cog</iconclass>
+	<iconclass>fa fa-question-circle</iconclass>
 	<data type="element(search)"></data>
 </entity>

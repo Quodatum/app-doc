@@ -14,6 +14,6 @@
 			<xpath>$_/release/cdn[1]</xpath>
 		</field>
 	</fields>
-	<iconclass>glyphicon glyphicon-cog</iconclass>
+	<iconclass>fa fa-puzzle-piece</iconclass>
 	<data type="element(cmp)"></data>
 </entity>

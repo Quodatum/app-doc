@@ -31,11 +31,11 @@ function doc(){
      (: @TODO check db exist app status et :)                 
      return if(db:exists("doc-data"))
             then render("main.xq",map{})
-            else <rest:forward>/doc/x</rest:forward>
+            else <rest:forward>/doc/init</rest:forward>
 };
 
 declare %updating 
- %rest:GET %rest:path("doc/x")
+ %rest:GET %rest:path("doc/init")
  %output:method("html")
  %output:version("5.0")
 function doc-init(){
@@ -68,7 +68,7 @@ let $searchs:=for $a in df:apps()
                     {$logo
                     }</search>
                     
-let $entity:=$entity:list("application")
+let $entity:=$entity:list("app")
 return dice:response($searchs,$entity)
 };
 
