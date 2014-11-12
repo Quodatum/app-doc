@@ -2,13 +2,13 @@
 angular.module('quodatum.doc.apps', [ 'restangular' ])
 
 .config([ '$routeProvider', function($routeProvider) {
-	$routeProvider.when('/apps', {
+	$routeProvider.when('/data/app', {
 		templateUrl : '/static/doc/feats/apps/apps.xhtml',
 		controller : "AppsCtrl"
-	}).when('/apps/:app', {
+	}).when('/data/app/:app', {
 		templateUrl : '/static/doc/feats/apps/app1.xhtml',
 		controller : "AppCtrl"	
-	}).when('/apps/:app/:view', {
+	}).when('/data/app/:app/:view', {
 		templateUrl : '/static/doc/feats/apps/app2.xhtml',
 		controller : "AppCtrl2"
 	});
@@ -39,11 +39,15 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 				function($scope, $routeParams, Restangular) {				
 					var app = $routeParams.app;
 					console.log("AppCtrl",app);
-					var applist = Restangular.one("data").all('app');
-					applist.getList().then(function(d) {
+					
+					var applist = Restangular.one("data").one('app',app);
+					applist.get().then(function(d) {
 						$scope.app = app;
 					});
-
+					var bar = Restangular.one("meta").one("cvabar","app-bar");
+					bar.get().then(function(d) {
+						$scope.bar = d;
+					});
 				} ])
 
 .controller(

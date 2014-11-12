@@ -14,6 +14,11 @@ body {
 	width:5em;
 	display:inline-block;
 }
+/* http://stackoverflow.com/questions/10931315/how-to-preventdefault-on-anchor-tags
+*/
+a{
+    cursor: pointer;
+}
 a.anchor {
     display: block;
     position: relative;

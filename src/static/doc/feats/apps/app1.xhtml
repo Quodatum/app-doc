@@ -4,21 +4,21 @@
             <li><a href="#/about" title="home"> <i
                     class="glyphicon glyphicon-home"></i>
             </a></li>
-            <li><a href="#/apps">Apps
+            <li><a href="#/data/app">App
             </a></li>
             <li><span class="label label-primary"> {{app}} </span></li>
             <li>
                 <div class="btn-group btn-group-sm">
-                    <a href="#apps/{{app}}/wadl"
+                    <a href="#/data/app/{{app}}/wadl"
                         ng-class="{'btn-primary':view=='wadl'}"
                         class="btn btn-default btn-sm">Wadl</a> <a
-                        href="#apps/{{app}}/xqdoc"
+                        href="#/data/app/{{app}}/xqdoc"
                         ng-class="{'btn-primary':view=='xqdoc'}"
                         class="btn btn-default btn-sm">XQdoc</a> <a
-                        href="#apps/{{app}}/components"
+                        href="#/data/app/{{app}}/components"
                         ng-class="{'btn-primary':view=='components'}"
                         class="btn btn-default btn-sm">Components</a> <a
-                        href="#apps/{{app}}/templates"
+                        href="#/data/app/{{app}}/templates"
                         ng-class="{'btn-primary':view=='templates'}"
                         class="btn btn-default btn-sm">Templates</a>
                 </div>
@@ -27,5 +27,6 @@
         </ol>
    
     </div>
-	{{app}}
+    <cva-bar ng-model="bar">bar</cva-bar>
+	TODO {{app}}
 </div>

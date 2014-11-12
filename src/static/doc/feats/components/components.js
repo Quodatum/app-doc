@@ -3,13 +3,13 @@ angular.module('quodatum.doc.components', [ ])
 .config(
         [ '$routeProvider', 
 		function($routeProvider) {
-           $routeProvider.when('/components', {
+           $routeProvider.when('/data/component-js', {
                templateUrl : '/static/doc/feats/components/components.xhtml',
                controller : "CmpCtrl"
-           }).when('/components/tree', {
+           }).when('/data/component-js/tree', {
                templateUrl : '/static/doc/feats/components/cmptree.xhtml',
                controller : "CmptreeCtrl"
-           }).when('/components/basex', {
+           }).when('/data/component-js/basex', {
                templateUrl : '/static/doc/feats/components/basex.xhtml',
                controller : "BasexCtrl"
            })

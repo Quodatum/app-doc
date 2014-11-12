@@ -13,7 +13,7 @@ angular.module(
 				function($routeProvider, $locationProvider) {
 					console.log("APP config");
 					$routeProvider.when('/', {
-						redirectTo : '/apps/doc'
+						redirectTo : '/data/app/doc'
 					}).when('/search', {
 						templateUrl : '/static/doc/templates/search.xhtml',
 						controller : "SearchCtrl"

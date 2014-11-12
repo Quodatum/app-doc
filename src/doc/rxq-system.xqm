@@ -24,3 +24,16 @@ declare %updating
 function dotask($app,$task){
     (tasks:task($task),db:output("run " || $task))
 };
+
+(:~
+ :  run a task
+ :)
+declare %updating
+%output:method("text")  
+%rest:POST %rest:path("{$app}/post")
+function dopost($app){
+    let $n:=db:open("doc-data","/state.xml")/state
+   
+    return (replace value of node $n/hits with 1+$n/hits,
+            db:output(1+$n/hits))
+};

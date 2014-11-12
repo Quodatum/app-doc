@@ -3,7 +3,9 @@
 	<div class="row" style="height: 100%;">
 		<div class="col-md-3">
 			<ul>
-				<li ng-repeat="item in list"><a ng-click="scrollTo(item.name)">{{item.name}}</a></li>
+				<li ng-repeat="item in list">
+				<a  ng-click="scrollTo(item.name)">{{item.name}}</a>
+				</li>
 			</ul>
 		</div>
 		<div class="col-md-9">
@@ -18,6 +20,7 @@
                         </li>
                 </ul>
 				<cva-bar ng-model="bar">bar</cva-bar>
+				<pre>{{bar| json}}</pre>
 			</section>
 			<section>
 				<a class="anchor" id="sortui" /> <a ng-click="scrollTo('sortui')">
