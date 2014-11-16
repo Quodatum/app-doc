@@ -14,7 +14,7 @@ import module namespace tasks = 'quodatum.tasks.generated' at 'generated/tasks.x
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
 
-
+declare variable $dr:state as element(state):=db:open("doc-data","/state.xml")/state;
 (:~
  :  run a task
  :)
@@ -26,14 +26,21 @@ function dotask($app,$task){
 };
 
 (:~
- :  run a task
+ :  ping incr counter
  :)
 declare %updating
 %output:method("text")  
-%rest:POST %rest:path("{$app}/post")
+%rest:POST %rest:path("{$app}/ping")
 function dopost($app){
-    let $n:=db:open("doc-data","/state.xml")/state
-   
-    return (replace value of node $n/hits with 1+$n/hits,
-            db:output(1+$n/hits))
+    (replace value of node $dr:state/hits with 1+$dr:state/hits,
+            db:output(1+$dr:state/hits))
+};
+(:~
+ :  ping incr counter
+ :)
+declare 
+%output:method("text")  
+%rest:GET %rest:path("{$app}/ping")
+function dostate($app){
+  $dr:state/hits
 };

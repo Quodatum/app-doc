@@ -7,9 +7,9 @@
             <title>Home</title>
         </link>
 		<link>
-			<text>Hello</text>
-			<href>#</href>
-			<title>List of suites</title>
+			<text>path-frag</text>
+			<href>#/path</href>
+			<title>A crumb in the trail</title>
 		</link>
 		<link>
 			<text>{{activesuite}}</text>
@@ -20,14 +20,14 @@
 	<views type="array">
 		<command>
 			<text>View1</text>
-			<action>setView('grid')</action>
+			<action>doSomething('grid')</action>
 			<icon>glyphicon glyphicon-th</icon>
-			<title>view data as grid</title>
+			<title>click to select some view on current data</title>
 			<class>{'btn-primary':view=='grid'}</class>
 		</command>
 		<command>
 			<text>View2</text>
-			<action>setView('graph')</action>
+			<action>doSomething('graph')</action>
 			<icon>glyphicon glyphicon-signal</icon>
 			<title>view data as chart</title>
 			<class>{'btn-primary':view=='graph'}</class>

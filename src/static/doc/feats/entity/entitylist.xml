@@ -38,8 +38,11 @@
 					<p>{{model.description}}</p>
 					<div>
 						<a href="#/data/{{model.name}}">
-							<i class="glyphicon glyphicon-list-alt" title="Data for {{model.name}}"></i>
+							<i class="glyphicon glyphicon-list-alt" title="Entity description for {{model.name}}"></i>
 						</a>
+						<a href="./data/{{model.name}}" target="json">
+                            <i class="fa fa-angle-double-left" title="Json data for {{model.name}}"></i>
+                        </a>
 					</div>
 				</div>
 			</div>

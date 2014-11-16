@@ -9,7 +9,7 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 		templateUrl : '/static/doc/feats/apps/app1.xhtml',
 		controller : "AppCtrl"	
 	}).when('/data/app/:app/:view', {
-		templateUrl : '/static/doc/feats/apps/app2.xhtml',
+		templateUrl : '/static/doc/feats/apps/app-view.xhtml',
 		controller : "AppCtrl2"
 	});
 
@@ -21,7 +21,7 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 		[ "$scope", "Restangular", function($scope, Restangular) {
 
 			console.log("AppsCtrl2");
-			var bar = Restangular.one("meta").one("cvabar","app-bar");
+			var bar = Restangular.one("meta").one("cvabar","apps-bar");
 			bar.get().then(function(d) {
 				$scope.bar = d;
 			});

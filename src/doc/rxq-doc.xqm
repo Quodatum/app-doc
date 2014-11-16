@@ -53,7 +53,7 @@ function doc-init(){
 declare
 %rest:GET %rest:path("doc/data/app")
 %output:method("json")   
-function app() 
+function apps() 
 {
 
 let $searchs:=for $a in df:apps()
@@ -70,6 +70,17 @@ let $searchs:=for $a in df:apps()
                     
 let $entity:=$entity:list("app")
 return dice:response($searchs,$entity)
+};
+
+(:~
+ : detail of app found on file system.
+ :)
+declare
+%rest:GET %rest:path("doc/data/app/{$app}")
+%output:method("json")   
+function app($app) 
+{
+    <json type="object"><foo>{$app}</foo></json>
 };
 
 (:~
@@ -290,7 +301,7 @@ function validate($xml as xs:string,
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.4.8",
+                        "version":"0.4.9",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

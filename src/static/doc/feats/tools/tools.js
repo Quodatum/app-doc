@@ -25,7 +25,7 @@ angular.module('quodatum.doc.tools', [ 'restangular', 'angular-growl' ])
 				function($scope, Restangular, growl) {
 					console.log("task control");
 					$scope.setTitle("Run Tasks");
-					growl.info("This adds a warn message");
+					growl.info("This page uses angular growl for notifications");
 					$scope.tasks = [ {
 						name : "1"
 					}, {
@@ -49,10 +49,18 @@ angular.module('quodatum.doc.tools', [ 'restangular', 'angular-growl' ])
                           "growl",
                           function($scope,Restangular,growl) {
 	console.log("post control");
-	$scope.go = function() {
-		Restangular.all("post").post().then(function(r) {
-			console.log("POST DONE");
-			growl.success(r);
+	$scope.get = function() {
+		var _start = performance.now();
+		Restangular.one("ping").get().then(function(r) {
+			var _time = Math.floor(performance.now()- _start);
+			growl.success(r,{title:'GET  ' + _time + ' ms.'});
+		});
+	};
+	$scope.incr = function() {
+		var _start = performance.now();
+		Restangular.all("ping").post().then(function(r) {
+			var _time = Math.floor(performance.now()- _start);
+			growl.success(r,{title:'POST  ' + _time + ' ms.'});
 		});
 	};
 } ]);

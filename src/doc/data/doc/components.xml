@@ -34,10 +34,10 @@
 			responsive, mobile first projects on the web.
 		</tagline>
 		<licence>Apache v2.0</licence>
-		<release version="3.2.0">
-			<cdn type="css">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css
+		<release version="3.3.1">
+			<cdn type="css">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.css
 			</cdn>
-			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js
+			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js
 			</cdn>
 		</release>
 	</cmp>

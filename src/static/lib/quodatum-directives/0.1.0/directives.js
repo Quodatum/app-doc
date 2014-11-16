@@ -166,74 +166,6 @@ angular
 						}
 					};
 				})
-		.directive(
-				'apbDropdown',
-				[
-						'$parse',
-						'$compile',
-						'$timeout',
-						function($parse, $compile, $timeout) {
-							'use strict';
-
-							var buildTemplate = function(items, ul) {
-								if (!ul)
-									ul = [
-											'<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">',
-											'</ul>' ];
-								angular
-										.forEach(
-												items,
-												function(item, index) {
-													var li = '<li>'
-															+ '<a tabindex="-1"  ng-click="_setSort(\''
-															+ item.field
-															+ '\')">'
-															+ (item.label || '')
-															+ '</a>';
-													li += '</li>';
-													ul.splice(index + 1, 0, li);
-												});
-								ul
-										.splice(1, 0,
-												'<li class="disabled"><a tabindex="-1" href="#">Sort by...</a></li>');
-								return ul;
-							};
-
-							return {
-								restrict : 'EA',
-								scope : true,
-								link : function postLink(scope, iElement,
-										iAttrs) {
-
-									var getter = $parse(iAttrs.apbDropdown), items = getter(scope);
-
-									// Defer after any ngRepeat rendering
-									$timeout(function() {
-
-										if (!angular.isArray(items)) {
-											// @todo?
-										}
-
-										var dropdown = angular
-												.element(buildTemplate(items)
-														.join(''));
-										dropdown.insertAfter(iElement);
-
-										// Compile dropdown-menu
-										$compile(
-												iElement
-														.next('ul.dropdown-menu'))
-												(scope);
-
-									});
-
-									iElement.addClass('dropdown-toggle').attr(
-											'data-toggle', "dropdown");
-
-								}
-							};
-
-						} ])
 						
 // value is sortfield with direction. dropdown has options list 
 .directive(
@@ -332,6 +264,10 @@ angular
       templateUrl : '../static/lib/quodatum-directives/0.1.0/actionbar.html',
       controller : function($scope){
     	  console.log("cva");
+    		$scope.$watch('bar', function(newVal, oldVal, $scope) {
+    			console.log("NEWBAR",newVal);
+    		});
+				
       }
       /*
      link: function(scope, elem, attrs) {

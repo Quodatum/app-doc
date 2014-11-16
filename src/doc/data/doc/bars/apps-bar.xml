@@ -1,0 +1,32 @@
+<bar xmlns="https://github.com/Quodatum/app-doc/cvabar">
+	<name>apps-bar</name>
+	<crumbs type="array">
+		<link>
+			<text></text>
+			<icon>glyphicon glyphicon-home </icon>
+			<href>#/about</href>
+			<title>Home</title>
+		</link>
+		<link>
+			<text>Apps</text>
+			<href>#/data/app</href>
+			<title>list of apps</title>
+		</link>
+	</crumbs>
+	
+	<actions type="array">
+		<command>
+			<text>TODO</text>
+			<action>setView('run')</action>
+			<icon>glyphicon glyphicon-forward</icon>
+			<title>setup a timing run</title>
+		</command>
+		<command>
+			<text>THIS</text>
+			<action>setView('save')</action>
+			<icon>glyphicon glyphicon-saved</icon>
+			<title>save timing data to library</title>
+		</command>
+		
+	</actions>
+</bar>
