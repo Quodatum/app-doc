@@ -154,13 +154,12 @@ declare
 %rest:GET %rest:path("doc/app/{$app}/server/xqdoc")
 %restxq:query-param("path", "{$path}","")
 %restxq:query-param("fmt", "{$fmt}","html")
-%restxq:query-param("type", "{$type}")   
-function xqdoc($type ,
+%restxq:query-param("type", "{$type}","app")   
+function xqdoc($type as xs:string,
                 $app as xs:string,
                 $path as xs:string,
                 $fmt as xs:string) 
 {
-    let $type:=($type,"app")[1]
     let $uri:=doc:uri($type,$app,$path)
     let $_:=fn:trace(($type,$app,$path),"uri: ")
     return if(fn:unparsed-text-available($uri))
@@ -185,10 +184,16 @@ function xqdoc($type ,
  :)
 declare 
 %rest:GET %rest:path("doc/app/{$app}/server/wadl")
-%output:method("html")  
-function wadl($app as xs:string) 
+%output:method("html")
+%restxq:query-param("path", "{$path}","")
+%restxq:query-param("fmt", "{$fmt}","html")  
+function wadl($app as xs:string,
+              $path as xs:string,
+              $fmt as xs:string) 
 {
-  doc:wadl-html("/" || $app) 
+  let $w:=doc:wadl-under("/" || $app)
+  let $r:=if($fmt="html")then doc:wadl-html($w,"/" || $app) else $w
+  return (web:method($fmt),$r) 
 }; 
 
 (:~

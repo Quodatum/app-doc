@@ -28,6 +28,13 @@
 				<h2>
 					RestXQ API:
 					<xsl:value-of select="$root" />
+					<small class="pull-right">
+                        wadl.xml
+                        <a href="../../doc/app/{$root}/server/wadl?fmt=xml"
+                            target="dn">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </small>
 				</h2>
 
 				<xsl:for-each select="wadl:resource">

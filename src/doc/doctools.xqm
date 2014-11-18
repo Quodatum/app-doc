@@ -100,13 +100,13 @@ declare function components-html($pkg as element())
 
 
 (:~
- : return html report for entries starting with $root
+ : return html report for WADL entries supplied
+ : @param $root leading path segment to be dropped  from report
  :)
-declare function wadl-html($root)
+declare function wadl-html($wadl,$root as xs:string)
 {
-    let $doc:=wadl-under($root)
     let $params:=map { "root" := $root }
-    return xslt:transform($doc,fn:resolve-uri("wadl.xsl"),$params)
+    return xslt:transform($wadl,fn:resolve-uri("wadl.xsl"),$params)
 };
 
 (:~
