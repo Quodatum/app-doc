@@ -19,7 +19,7 @@ angular
 									value : '=ngModel',
 									onselect:"&",
 									endpoint:'=',
-									view:'@'	
+									view:'@'	// tree or find
 								},
 								templateUrl : '../static/lib/quodatum-directives/0.1.0/filepick.html',
 								compile: function(element, attrs){
@@ -27,13 +27,14 @@ angular
 								       if (!attrs.view) { attrs.view = "tree"; }
 							
 								    },
-								controller : function($scope, $resource) {
+								controller : function($scope, $resource,$timeout) {
 									$scope.busy=false;
 									$scope.view="tree";
 									$scope.pattern="*.xsd";
 									console.log("FILEPICK",$scope.endpoint,$scope.view);
 									
 									function getChildren(path, node, context) {
+										console.log("getChildren");
 										$scope.busy=true;
 										var f = $resource($scope.endpoint);
 										f.query({
@@ -109,6 +110,12 @@ angular
 									};
 									
 									//getChildren("/", $scope.model[0], $scope.context)
+									 $timeout(
+											 function( ) {
+											 console.log( "$evalAsync" );
+											 getChildren("/",$scope.context.rootNode,$scope.context);
+											 }
+											 ); 
 								}
 							}
 						} ])
@@ -263,11 +270,7 @@ angular
      },
       templateUrl : '../static/lib/quodatum-directives/0.1.0/actionbar.html',
       controller : function($scope){
-    	  console.log("cva");
-    		$scope.$watch('bar', function(newVal, oldVal, $scope) {
-    			console.log("NEWBAR",newVal);
-    		});
-				
+    	  
       }
       /*
      link: function(scope, elem, attrs) {

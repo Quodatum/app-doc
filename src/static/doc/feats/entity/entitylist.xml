@@ -1,20 +1,23 @@
 <div>
-	<div class="fluid">
-		<ul class="breadcrumb ">
+	<div class="navbar" role="toolbar">
+		<ul class="breadcrumb navbar-nav">
 			<li class="active">Entities ({{models.metadata.count}})</li>
+			<li>
 
-			<ul class="nav nav-pills pull-right" style="position:relative;top:-6px">
-				<li>
-					<form class="form-inline">
-						Filter:
-						<input type="text" data-ng-model="params.q" style="width:6em;" />
-						<sortui ng-model="params" options="options">sort</sortui>
-					</form>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav nav-pills pull-right" style="position:relative;top:-6px">
+			<li>
+				<form class="form-inline">
+					Filter:
+					<input type="text" data-ng-model="params.q" style="width:6em;" />
+					<sortui ng-model="params" options="options">sort</sortui>
+				</form>
 
-				</li>
+			</li>
+			<li>
 				<uipage>page</uipage>
-			</ul>
-
+			</li>
 		</ul>
 	</div>
 	<div class="row">
@@ -22,7 +25,7 @@
 			<span class="badge pull-right">
 				<a href="#{{model.fieldslink}}">{{model.nfields}}</a>
 			</span>
-			
+
 			<div class="media-body">
 				<h4 class="media-heading">
 					<a href="#/data/entity/{{model.name}}">
@@ -41,8 +44,8 @@
 							<i class="glyphicon glyphicon-list-alt" title="Entity description for {{model.name}}"></i>
 						</a>
 						<a href="./data/{{model.name}}" target="json">
-                            <i class="fa fa-angle-double-left" title="Json data for {{model.name}}"></i>
-                        </a>
+							<i class="fa fa-angle-double-left" title="Json data for {{model.name}}"></i>
+						</a>
 					</div>
 				</div>
 			</div>

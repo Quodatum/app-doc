@@ -53,7 +53,14 @@
 					<h2>filepick</h2>
 				</a>
 				<p>Value is a path selected from a tree ui.</p>
-				<filepick ng-model="path" endpoint="'data/file/list'"
+				<ul>
+                    <li>ng-model: name of $scope member holding path value
+                        {sort:"[+/-]field}</li>
+                    <li>endpoint: url supplying data</li>
+                </ul>
+                <div>Path:{{path}}</div>
+                <div>endpoint:{{endpoint}}</div>
+				<filepick ng-model="path" endpoint="endpoint"
 					onselect="fsel" />
 			</section>
 

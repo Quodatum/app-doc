@@ -196,7 +196,7 @@
 
 	<cmp name="stacktrace">
 		<runat>browser</runat>
-		<home>http://stacktracejs.com/</home>
+		<home>http://www.stacktracejs.com/</home>
 		<tagline>Framework-agnostic, micro-library for getting
 			stack traces in
 			all web browsers.

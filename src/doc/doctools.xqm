@@ -13,7 +13,6 @@ declare default function namespace 'quodatum.doc';
 declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
 
-import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
 import module namespace rest = 'http://exquery.org/ns/restxq';
 
 declare variable $doc:components:=fn:doc("data/doc/components.xml")/components;

@@ -1,5 +1,5 @@
 // database info
-angular.module('quodatum.doc.directives', [ 'restangular' ])
+angular.module('quodatum.doc.directives', [ 'restangular', 'angular-growl' ])
 
 .config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/directives', {
@@ -13,8 +13,8 @@ angular.module('quodatum.doc.directives', [ 'restangular' ])
 // controllers
 .controller(
 		"TestCtrl",
-		[ "$scope", "$location", "$anchorScroll","Restangular",
-				function($scope, $location, $anchorScroll,Restangular) {
+		[ "$scope", "$location", "$anchorScroll","Restangular","growl",
+				function($scope, $location, $anchorScroll,Restangular,growl) {
 					console.log("testcontrol");
 					$scope.scrollTo = function(id) {
 						$location.hash(id);
@@ -29,7 +29,7 @@ angular.module('quodatum.doc.directives', [ 'restangular' ])
 					}, {
 						name : 'cva'
 					} ];
-					
+					$scope.endpoint='data/file/list';
 					var bar = Restangular.one("meta").one("cvabar","test-bar");
 					bar.get().then(function(d) {
 						$scope.bar = d;
@@ -37,7 +37,7 @@ angular.module('quodatum.doc.directives', [ 'restangular' ])
 					
 					$scope.path = "/test";
 					$scope.fsel = function() {
-						alert("hi");
+						growl.info("onselect event");
 					};
 
 					$scope.params = {

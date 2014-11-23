@@ -10,4 +10,5 @@
 	<dependency name="angular-growl-2" version="0.7.0" />
 	<dependency name="angular-ya-treeview" version="0.2.2" />
 	<dependency name="quodatum-directives" version="0.1.0" />
+	<dependency name="stacktrace" version="0.6.0" />
 </package>

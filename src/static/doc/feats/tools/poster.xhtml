@@ -1,5 +1,19 @@
-<div >
+<div>
 	<div>poster</div>
 	<button ng-click="get()" class="btn btn-default">Get count</button>
 	<button ng-click="incr()" class="btn btn-default">Update count</button>
+	<div class="row">
+		Before
+		<tree-mendous nodes="model" select-mode="single">
+		<ul class="list-unstyled">
+			<li ng-repeat="item in nodes"  tree-expand="expandFn(item)" tree-select>
+			<span class="label">{{$expanded}}</span>
+			<span ng-class="{selectedNode:$selected}">{{item.label}}</span> 
+			<tree-branch
+					nodes="item.children" ng-show="$expanded">AA</tree-branch>
+			</li>
+		</ul>
+		</tree-mendous>
+		After
+	</div>
 </div>

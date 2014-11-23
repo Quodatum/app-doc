@@ -1,45 +1,58 @@
 <xs:schema attributeFormDefault="unqualified"
 	elementFormDefault="qualified" targetNamespace="https://github.com/Quodatum/app-doc/cva"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Q1="https://github.com/Quodatum/app-doc/cva">
 	<xs:element name="bar">
 		<xs:complexType>
-			<xs:sequence>
+            <xs:annotation>
+            	<xs:documentation>for json serialization</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
 				<xs:element type="xs:string" name="name" />
 				<xs:element name="crumbs">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="link" maxOccurs="unbounded"
-								minOccurs="0">
+							<xs:element name="link"
+								maxOccurs="unbounded" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element type="xs:string" name="icon" minOccurs="0" />
-										<xs:element type="xs:string" name="text" minOccurs="0" />
-										<xs:element type="xs:string" name="href" />
-										<xs:element type="xs:string" name="title" />
+										<xs:element type="xs:string"
+											name="icon" minOccurs="0" />
+										<xs:element type="xs:string"
+											name="text" minOccurs="0" />
+										<xs:element type="xs:string"
+											name="href" />
+										<xs:element type="xs:string"
+											name="title" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
-						<xs:attribute type="xs:string" name="type" />
+						<xs:attribute name="type" use="required" fixed="array" type="Q1:typeObjectType">
+						</xs:attribute>
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="views">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="command" maxOccurs="unbounded"
-								minOccurs="0">
+							<xs:element name="command"
+								maxOccurs="unbounded" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element type="xs:string" name="text" />
-										<xs:element type="xs:string" name="action" />
-										<xs:element type="xs:string" name="icon" />
-										<xs:element type="xs:string" name="title" />
-										<xs:element type="xs:string" name="class" />
+										<xs:element type="xs:string"
+											name="text" />
+										<xs:element type="xs:string"
+											name="action" />
+										<xs:element type="xs:string"
+											name="icon" />
+										<xs:element type="xs:string"
+											name="title" />
+										<xs:element type="xs:string"
+											name="class" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
-						<xs:attribute type="xs:string" name="type" />
+						<xs:attribute type="Q1:typeArrayType" name="type" />
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="actions">
@@ -48,10 +61,14 @@
 							<xs:element name="command">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element type="xs:string" name="text" />
-										<xs:element type="xs:string" name="action" />
-										<xs:element type="xs:string" name="icon" />
-										<xs:element type="xs:string" name="title" />
+										<xs:element type="xs:string"
+											name="text" />
+										<xs:element type="xs:string"
+											name="action" />
+										<xs:element type="xs:string"
+											name="icon" />
+										<xs:element type="xs:string"
+											name="title" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
@@ -62,4 +79,16 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
+	<xs:simpleType name="typeArrayType">
+		<xs:annotation>
+			<xs:documentation>JSON serialization aid</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="array"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+    <xs:attribute name="type" type="string" fixed="array"></xs:attribute>
 </xs:schema>
