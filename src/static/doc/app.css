@@ -108,7 +108,10 @@ ol.qd-crumb {
     padding-top: 0;
 }
 /* treemendus */
-/* .active  bootstrap */
+tree-mendous .active {
+ background-color: red;
+}
+
 .selected {
   background-color: yellow;
   font-weight: bold;  

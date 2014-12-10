@@ -1,35 +1,48 @@
 <div class="navbar" role="toolbar">
 	<ol class="breadcrumb qd-crumb navbar-left">
 		<li ng-repeat="crumb in bar.crumbs">
-		<a href="{{crumb.href}}" title="{{crumb.title}}" ng-show="!$last"><i
-				class="{{crumb.icon}}"></i>{{crumb.text}}</a>
-				<span class="label label-primary" ng-show="$last">
-				<i class="{{crumb.icon}}"></i>
-				{{crumb.text}}</span>
-		</li>
+		    <a href="{{crumb.href}}"
+			title="{{crumb.title}}" ng-show="!$last"><i
+				class="{{crumb.icon}}"></i><span ng-bind-template="{{crumb.text}}"></span></a>
+			<span class="label label-primary" ng-show="$last"> <i
+				class="{{crumb.icon}}"></i> {{crumb.text}}
+		</span></li>
 		<li ng-show="bar.views.length">
-		 <div class="btn-group btn-group-sm ">
-                <a ng-repeat="view in bar.views" ng-click="view.action"
-                    class="btn btn-default " title="{{view.title}}"
-                    ng-class="view.class">
-                    <i class="{{view.icon}}"></i>
-                     {{view.text}}
-                </a>
-               
-            </div>
+			<div class="btn-group btn-group-sm ">
+				<a ng-repeat="view in bar.views" ng-click="view.action"
+					class="btn btn-default " title="{{view.title}}"
+					ng-class="view.class"> <i class="{{view.icon}}"></i>
+					{{view.text}}
+				</a>
+
+			</div>
 		</li>
 	</ol>
 
 	<ul class="nav navbar-nav navbar" ng-show="bar.actions.length">
-	       <p class="navbar-text"><super>Actions:</super></p>
-			<div class="btn-group  btn-group-sm ">
-				
-				<button ng-repeat="action in bar.actions" ng-click="action.action"
-					class="btn btn-default " title="{{action.title}}"
-					ng-class="action.class">
-					<i class="{{action.icon}}"></i> {{action.text}}
-				</button>
-			</div>
-		<li title="{{bar.name}}" ><i class="fa fa-question-circle navbar-text"></i></li>
+		<p class="navbar-text">
+			<super>Actions:</super>
+		</p>
+		<div class="btn-group  btn-group-sm ">
+
+			<button ng-repeat="action in bar.actions" ng-click="action.action"
+				class="btn btn-default " title="{{action.title}}"
+				ng-class="action.class">
+				<i class="{{action.icon}}"></i> {{action.text}}
+			</button>
+		</div>
+		<li title="{{bar.name}}"><i
+			class="fa fa-question-circle navbar-text"></i></li>
 	</ul>
+	  <ul class="nav nav-pills pull-right"  style="position:relative;top:-6px">
+            <li>
+            <form class="form-inline">
+                Filter:
+                <input type="text"  data-ng-model="params.q" style="width:6em;"  />
+                 <sortui>sortui</sortui>
+                 </form>
+                  
+            </li>
+            <uipage>page</uipage>
+        </ul>
 </div>

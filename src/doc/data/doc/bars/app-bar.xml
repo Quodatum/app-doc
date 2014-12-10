@@ -13,8 +13,8 @@
 			<title>list of apps</title>
 		</link>
 		<link>
-            <text>{{app}}</text>
-            <href>#/data/app/{{app}}</href>
+            <text>A{{item.name}}Z</text>
+            <href>#/data/app/{{item.name}}</href>
             <title>this app</title>
         </link>
 	</crumbs>

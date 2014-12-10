@@ -58,7 +58,9 @@ declare function generate($e as element(ent:entity)) as xs:string
      "name": "{ $e/@name/fn:string()}",
      "description": "{ escape($e/ent:description)}",
      "access": map{{ {fn:string-join($fields!accessfn(.),",")} }},
-     "json":= map{{ {fn:string-join($fields!jsonfn(.),",")} }}
+     "json":= map{{ {fn:string-join($fields!jsonfn(.),",")} }},
+      "data":= function() as {$e/ent:data/@type/fn:string(.)}*
+       {{ {let $a:=$e/ent:data/fn:string() return if($a)then $a else "()"} }}
    }}</field>
 };
 
@@ -67,6 +69,7 @@ declare function generate($e as element(ent:entity)) as xs:string
  :)
 declare function sources($path as xs:string) as element(ent:entity)*
 {
+let $_:=fn:trace($path,"DD")
  let $p:=fn:resolve-uri($path) || "/"
  return for $f in file:list($p)
         order by $f

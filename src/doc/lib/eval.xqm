@@ -64,3 +64,28 @@ as item()*{
         (-1 ,$err:code)
       }
 };
+
+(:~
+ : execute updating expression
+ : return sequence head() is elapsed time or -1 if error, tail() is result or error code
+ :)
+declare  
+function update($xq as xs:string,$base as xs:string,$timeout as xs:double)
+as item()*{
+ let $bindings:=map{}
+ let $opts:=map {
+     "permission" := "create",
+     "timeout":=$timeout
+  }
+  let $xq:= 'declare base-uri "' || $base ||'";&#10;' || $xq
+   let $xq:=fn:trace($xq,"TASK")
+  return try{
+       let $t1:=prof:current-ms()
+       let $x:= xquery:update($xq,$bindings,$opts)
+       let $t:=(prof:current-ms()-$t1) div 1000
+       return ($t,$x)
+      }catch * 
+      {
+        (-1 ,$err:code)
+      }
+};

@@ -261,16 +261,18 @@ angular
 									}
 								}
 							}}])
-.directive('cvaBar', function() {
+.directive('cvaBar',['$interpolate', function($interpolate) {
   return {
       restrict: 'AE',
       replace: 'true',
-      scope:{
-    	  bar:"=ngModel"
-     },
+     
       templateUrl : '../static/lib/quodatum-directives/0.1.0/actionbar.html',
       controller : function($scope){
-    	  
+    	  $scope.eval=function(exp){   		  
+    		  var r=$interpolate(exp)({item:$scope.item});
+    		  console.log("eval ",exp,"#",r,"#",$scope.item);
+    		  return r;
+    	  };
       }
       /*
      link: function(scope, elem, attrs) {
@@ -280,6 +282,7 @@ angular
     	    }
     	    */	  
   };
-})							
+}])
+							
 ;
 							

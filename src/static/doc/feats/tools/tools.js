@@ -37,7 +37,7 @@ angular
 								name : "3"
 							} ];
 							$scope.run = function(task) {
-								Restangular.all("task").all(task).post().then(
+								Restangular.all("task2").all(task).post().then(
 										function(r) {
 											console.log("TASK DONE");
 											growl.success(r);

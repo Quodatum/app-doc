@@ -42,7 +42,8 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 					
 					var applist = Restangular.one("data").one('app',app);
 					applist.get().then(function(d) {
-						$scope.app = app;
+						$scope.app = d.item;
+						console.log(">>",d);
 					});
 					var bar = Restangular.one("meta").one("cvabar","app-bar");
 					bar.get().then(function(d) {

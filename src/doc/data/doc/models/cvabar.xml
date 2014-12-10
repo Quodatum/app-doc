@@ -1,5 +1,5 @@
 <entity name="cvabar" xmlns="https://github.com/Quodatum/app-doc/entity">
-	<description>Crumbs,Views and Actions.</description>
+	<description>Interface definition Crumbs,Views and Actions.</description>
 	<namespace prefix="cvabar"  uri="https://github.com/Quodatum/app-doc/cvabar"/>
 	<fields>
 		<field name="name" type="xs:string">
@@ -13,5 +13,5 @@
 		
 	</fields>
 	<iconclass>fa fa-minus-square-o</iconclass>
-	<data type="element(cvabar:bar)"></data>
+	<data type="element(cvabar:bar)">db:open("doc-data")//cvabar:bar</data>
 </entity>

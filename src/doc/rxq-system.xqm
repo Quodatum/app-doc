@@ -26,6 +26,32 @@ function dotask($app,$task){
 };
 
 (:~
+ :  run a task
+ :)
+declare  
+%output:method("text")  
+%rest:POST %rest:path("{$app}/task2/{$task}")
+function dotask2($app,$task){
+   let $xq:=get-task($task)
+   
+   return eval:update($xq,get-base($app),5)
+};
+
+declare function get-base($app as xs:string){
+ let $w:=file:path-to-uri(db:system()/globaloptions/webpath)
+ return $w || $app || "/tasks/file"
+};
+
+declare function get-task($name){
+ let $f:=fn:resolve-uri(
+    "tasks/task" || $name || ".xqm"
+  )
+ 
+  let $xq:= fn:unparsed-text($f)
+  return $xq 
+};
+
+(:~
  :  ping incr counter
  :)
 declare %updating
@@ -44,3 +70,4 @@ declare
 function dostate($app){
   $dr:state/hits
 };
+

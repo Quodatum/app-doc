@@ -6,19 +6,19 @@
             </a></li>
             <li><a href="#/data/app">App
             </a></li>
-            <li><span class="label label-primary"> {{app}} </span></li>
+            <li><span class="label label-primary"> {{app.name}} </span></li>
             <li>
                 <div class="btn-group btn-group-sm">
-                    <a href="#/data/app/{{app}}/wadl"
+                    <a href="#/data/app/{{app.name}}/wadl"
                         ng-class="{'btn-primary':view=='wadl'}"
                         class="btn btn-default btn-sm">Wadl</a> <a
-                        href="#/data/app/{{app}}/xqdoc"
+                        href="#/data/app/{{app.name}}/xqdoc"
                         ng-class="{'btn-primary':view=='xqdoc'}"
                         class="btn btn-default btn-sm">XQdoc</a> <a
-                        href="#/data/app/{{app}}/components"
+                        href="#/data/app/{{app.name}}/components"
                         ng-class="{'btn-primary':view=='components'}"
                         class="btn btn-default btn-sm">Components</a> <a
-                        href="#/data/app/{{app}}/templates"
+                        href="#/data/app/{{app.name}}/templates"
                         ng-class="{'btn-primary':view=='templates'}"
                         class="btn btn-default btn-sm">Templates</a>
                 </div>
@@ -30,5 +30,5 @@
     <div class="row form-group" role="navigation">
     <cva-bar ng-model="bar">bar</cva-bar>
     </div>
-	TODO {{app}}
+	TODO {{app.name}}
 </div>

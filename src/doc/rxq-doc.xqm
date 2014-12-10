@@ -52,26 +52,30 @@ function doc-init(){
  :)
 declare
 %rest:GET %rest:path("doc/data/app")
-%output:method("json")   
+%output:method("json")
 function apps() 
 {
 
 let $searchs:=for $a in df:apps()
-            let $logo:=doc:uri("static",$a,"logo.svg")
-            let $logo:= if(file:exists($logo))
-                        then <logo>{"/static/" || $a || "/logo.svg"}</logo> 
-                        else ()
             order by $a
-            return <search>
-                    <name>{$a}</name>
-                    <description>todo this</description>
-                    {$logo
-                    }</search>
+            return app-json($a)
                     
 let $entity:=$entity:list("app")
-return dice:response($searchs,$entity)
+let $_:= dice:response($searchs,$entity)
+return fn:trace($_,"json")
 };
 
+declare function app-json($app as xs:string) as element(item){
+    let $logo:=doc:uri("static",$app,"logo.svg")
+    let $logo:= if(file:exists($logo))
+                then <logo>{"/static/" || $app || "/logo.svg"}</logo> 
+                else ()
+     return <item type="object">
+                    <name>{$app}</name>
+                    <description>todo this</description>
+                    {$logo
+                    }</item>            
+};
 (:~
  : detail of app found on file system.
  :)
@@ -80,7 +84,20 @@ declare
 %output:method("json")   
 function app($app) 
 {
-    <json type="object"><foo>{$app}</foo></json>
+    <json type="object">{app-json($app)}</json>
+};
+
+(:~
+ : default entity lister
+ :)
+declare
+%rest:GET %rest:path("doc/data/{$entity}")
+%output:method("json")   
+function entity-data($entity as xs:string) 
+{
+    let $entity:=$entity:list($entity)
+    let $results:=$entity("data")()
+    return dice:response($results,$entity)
 };
 
 (:~
@@ -306,7 +323,7 @@ function validate($xml as xs:string,
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.4.9",
+                        "version":"0.5.0",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))
