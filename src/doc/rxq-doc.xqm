@@ -102,7 +102,7 @@ function entity-data($entity as xs:string)
 
 (:~
  : list of direct children of $path as json array
- : @param $path eg "/app"  
+ : @param $path path to list the children of eg "/app"  
  : @return json [ {name:"gg","path:"aaa/bb",isdir:false},{}..]
  :)
 declare
@@ -208,7 +208,7 @@ function wadl($app as xs:string,
               $path as xs:string,
               $fmt as xs:string) 
 {
-  let $w:=doc:wadl-under("/" || $app)
+  let $w:=doc:wadl-under( $app)
   let $r:=if($fmt="html")then doc:wadl-html($w,"/" || $app) else $w
   return (web:method($fmt),$r) 
 }; 
@@ -239,22 +239,20 @@ function client-components($app as xs:string,
  :)
 declare 
 %rest:GET %rest:path("doc/app/{$app}/client/templates")
-%output:method("html")  
+%output:method("json")  
 function templates($app as xs:string) 
 {
-    let $path:=doc:static-uri($app,"templates/")
-    let $path:=fn:trace($path,"path::::")
-    let $list:=file:list($path,fn:true())
-    return <div>{
-     for $t in $list
+   <json type="array">{
+     for $t in doc:templates($app)
+     let $path:=doc:static-uri($app,"templates/") || $t
      order by fn:lower-case($t)
      
-      return <div>
-      
-      <iframe src="/static/{$app}/templates/{$t}">zz</iframe>
-      <a href="/static/{$app}/templates/{$t}">{$t}</a>
-      </div>
-      }</div>
+      return <_ type="object">
+      <name>{$t}</name>
+      <path>/static/{$app}/templates/{$t}</path>
+      <src>{file:read-text($path)}</src>
+      </_>
+      }</json>
 }; 
 
 (:~

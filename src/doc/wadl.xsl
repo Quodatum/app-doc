@@ -72,7 +72,7 @@
         </span> 
 		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
 			<span class="label label-info">
-				<xsl:value-of select="substring(@path,1+string-length($root))" />
+				<xsl:value-of select="substring(@path,1)" />
 			</span>
 		</a>
 			

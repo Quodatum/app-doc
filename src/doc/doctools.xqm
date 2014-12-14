@@ -105,6 +105,7 @@ declare function components-html($pkg as element())
 declare function wadl-html($wadl,$root as xs:string)
 {
     let $params:=map { "root" := $root }
+     let $_:=fn:trace($root,"WADL ")
     return xslt:transform($wadl,fn:resolve-uri("wadl.xsl"),$params)
 };
 
@@ -118,4 +119,12 @@ declare function wadl-under($root)
            delete node $s//wadl:resource[fn:not(fn:starts-with(@path,$root))] 
         )
     return $s
+};
+
+declare function templates($app as xs:string){
+    let $path:= static-uri($app,"templates/")
+    
+    let $list:=file:list($path,fn:true())
+    let $_:=fn:trace($list,"path::::")
+return $list
 };

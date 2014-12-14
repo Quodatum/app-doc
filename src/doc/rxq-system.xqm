@@ -10,20 +10,10 @@
 module namespace dr = 'quodatum.system.rest';
 declare default function namespace 'quodatum.system.rest'; 
 
-import module namespace tasks = 'quodatum.tasks.generated' at 'generated/tasks.xqm';
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
 
 declare variable $dr:state as element(state):=db:open("doc-data","/state.xml")/state;
-(:~
- :  run a task
- :)
-declare %updating
-%output:method("text")  
-%rest:POST %rest:path("{$app}/task/{$task}")
-function dotask($app,$task){
-    (tasks:task($task),db:output("run " || $task))
-};
 
 (:~
  :  run a task
@@ -32,8 +22,7 @@ declare
 %output:method("text")  
 %rest:POST %rest:path("{$app}/task2/{$task}")
 function dotask2($app,$task){
-   let $xq:=get-task($task)
-   
+   let $xq:=get-task($task)  
    return eval:update($xq,get-base($app),5)
 };
 
@@ -43,10 +32,7 @@ declare function get-base($app as xs:string){
 };
 
 declare function get-task($name){
- let $f:=fn:resolve-uri(
-    "tasks/task" || $name || ".xqm"
-  )
- 
+  let $f:=fn:resolve-uri("tasks/task" || $name || ".xq")
   let $xq:= fn:unparsed-text($f)
   return $xq 
 };

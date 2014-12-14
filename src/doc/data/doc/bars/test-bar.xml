@@ -1,5 +1,6 @@
 <bar xmlns="https://github.com/Quodatum/app-doc/cvabar">
 	<name>test-bar</name>
+	<list>true</list>
 	<crumbs type="array">
 	   <link>
             <icon>glyphicon glyphicon-home</icon>

@@ -1,10 +1,11 @@
 <bar xmlns="https://github.com/Quodatum/app-doc/cvabar">
 	<name>app-bar</name>
+	<list>false</list>
 	<crumbs type="array">
 		<link>
 			<text>Suites</text>
-			<href>#</href>
 			<icon>glyphicon glyphicon-th</icon>
+			<href>#</href>			
 			<title>List of suites</title>
 		</link>
 		<link>
