@@ -70,7 +70,7 @@ angular.module('quodatum.entity', [ 'restangular'])
 	
 	console.log("ModelCtrl");
 	Restangular.one("data")
-			 .one("entity", $routeParams.model)
+			 .one("entity", $routeParams.model).get()
 			 .then(function(d){$scope.model=d});
 	
 }])
@@ -80,7 +80,7 @@ angular.module('quodatum.entity', [ 'restangular'])
 	
 	console.log("FieldCtrl");
 	Restangular.one("data")
-                 .one("entity", $routeParams.model)
+                 .one("entity", $routeParams.model).get()
                  .then(function(d){$scope.model=d});
 	
 }])		

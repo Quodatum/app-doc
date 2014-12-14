@@ -27,8 +27,12 @@ angular
 						function($scope, Restangular, growl) {
 							console.log("task control");
 							$scope.setTitle("Run Tasks");
-							growl
-									.info("This page uses angular growl for notifications");
+							growl.info("This page uses angular growl for notifications");
+							
+							Restangular.all("task").all()
+							.getList().then(function(d) {
+								console.log(">>",d);
+							});
 							$scope.tasks = [ {
 								name : "1"
 							}, {
@@ -37,7 +41,7 @@ angular
 								name : "3"
 							} ];
 							$scope.run = function(task) {
-								Restangular.all("task2").all(task).post().then(
+								Restangular.all("task").all(task).post().then(
 										function(r) {
 											console.log("TASK DONE");
 											growl.success(r);

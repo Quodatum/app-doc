@@ -1,5 +1,5 @@
-declare  variable $body external;
-declare  variable $version external;
+declare  variable $body external :="{body}";
+declare  variable $version external :="{verson}";
 declare variable $base external :="/doc/";
 declare variable $static external :="/static/doc/";
 

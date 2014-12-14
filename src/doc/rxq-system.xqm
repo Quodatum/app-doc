@@ -9,18 +9,28 @@
  :)
 module namespace dr = 'quodatum.system.rest';
 declare default function namespace 'quodatum.system.rest'; 
+declare namespace xqdoc="http://www.xqdoc.org/1.0";
 
-import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
+import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
 
 declare variable $dr:state as element(state):=db:open("doc-data","/state.xml")/state;
 
 (:~
+ :  list tasks
+ :)
+declare  
+%output:method("json")  
+%rest:GET %rest:path("{$app}/task")
+function listtasks($app){
+   <json type="array"/>
+};
+(:~
  :  run a task
  :)
 declare  
 %output:method("text")  
-%rest:POST %rest:path("{$app}/task2/{$task}")
+%rest:POST %rest:path("{$app}/task/{$task}")
 function dotask2($app,$task){
    let $xq:=get-task($task)  
    return eval:update($xq,get-base($app),5)
