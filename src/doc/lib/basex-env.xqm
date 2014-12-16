@@ -37,9 +37,9 @@ declare function getProperty($name as xs:string) as xs:string{
 :)
 declare function memory()as map(*){
 map{
-    "memory.free":=Runtime:freeMemory(Runtime:getRuntime()),
-    "memory.max":=Runtime:maxMemory(Runtime:getRuntime()),
-    "memory.total":=Runtime:totalMemory(Runtime:getRuntime())
+    "memory.free": Runtime:freeMemory(Runtime:getRuntime()),
+    "memory.max": Runtime:maxMemory(Runtime:getRuntime()),
+    "memory.total": Runtime:totalMemory(Runtime:getRuntime())
     }
 };
 

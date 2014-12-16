@@ -9,8 +9,8 @@ declare namespace task ="https://github.com/Quodatum/app-doc/task";
 
  
 declare variable $eval:def-opts:=map{
-     "permission" := "create",
-     "timeout":=5
+     "permission" :  "create",
+     "timeout": 5
  };
   
 (:~ eval list of tasks
@@ -50,8 +50,8 @@ declare function eval($xq as xs:string,$timeout as xs:double)
 as item()*{
  let $bindings:=map{}
  let $opts:=map {
-     "permission" := "create",
-     "timeout":=$timeout
+     "permission" : "create",
+     "timeout":$timeout
   }
   let $xq:= 'declare base-uri "' || fn:resolve-uri("..") ||'";&#10;' || $xq
   return try{
@@ -74,14 +74,14 @@ function update($xq as xs:string,$base as xs:string,$timeout as xs:double)
 as item()*{
  let $bindings:=map{}
  let $opts:=map {
-     "permission" := "create",
-     "timeout":=$timeout
+     "permission" : "create",
+     "timeout":$timeout
   }
   let $xq:= 'declare base-uri "' || $base ||'";&#10;' || $xq
    let $xq:=fn:trace($xq,"TASK")
   return try{
        let $t1:=prof:current-ms()
-       let $x:= xquery:update($xq,$bindings,$opts)
+       let $x:= xquery:eval($xq,$bindings,$opts)
        let $t:=(prof:current-ms()-$t1) div 1000
        return ($t,$x)
       }catch * 

@@ -54,12 +54,12 @@ declare function generate($e as element(ent:entity)) as xs:string
                 order by $field/@name
                 return $field    
   return <field>
-  "{$e/@name/fn:string()}":= map{{
+  "{$e/@name/fn:string()}": map{{
      "name": "{ $e/@name/fn:string()}",
      "description": "{ escape($e/ent:description)}",
      "access": map{{ {fn:string-join($fields!accessfn(.),",")} }},
-     "json":= map{{ {fn:string-join($fields!jsonfn(.),",")} }},
-      "data":= function() as {$e/ent:data/@type/fn:string(.)}*
+     "json": map{{ {fn:string-join($fields!jsonfn(.),",")} }},
+      "data": function() as {$e/ent:data/@type/fn:string(.)}*
        {{ {let $a:=$e/ent:data/fn:string() return if($a)then $a else "()"} }}
    }}</field>
 };
@@ -83,7 +83,7 @@ let $m:=for $field in $entity/ent:fields/ent:field
         order by $field/@name
         return accessfn($field)
 return <text>
-declare variable $entity:{$entity/@name/fn:string()}:=map{{ {fn:string-join($m,",")}
+declare variable $entity:{$entity/@name/fn:string()}: map{{ {fn:string-join($m,",")}
 }};
 
 </text>        
@@ -97,7 +97,7 @@ let $name:=$f/@name/fn:string()
 let $type:=json-type($f/@type)
 let $opt:=fn:contains($type,"?")
 return <field>
-       "{$name}":=function($_ as element()) as element({$name})? {{ let $d:=fn:data({$f/ent:xpath })
+       "{$name}": function($_ as element()) as element({$name})? {{ let $d:=fn:data({$f/ent:xpath })
        return if($d)then element {$name} {{ attribute type {{"{$type}" }},$d }} else () }}</field>
 };
 

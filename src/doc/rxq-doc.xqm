@@ -321,7 +321,7 @@ function validate($xml as xs:string,
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.5.0",
+                        "version":"0.5.1",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

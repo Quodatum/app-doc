@@ -82,7 +82,7 @@ declare function xqdoc($type as xs:string,
     let $uri:=uri($type,$app,$path)
     let $doc:=inspect:xqdoc($uri)
     let $r:=if($fmt="html") then 
-               let $params:=map { "path" := $path,"app":=$app }
+               let $params:=map { "path" : $path,"app":$app }
                return xslt:transform($doc,fn:resolve-uri("xqdoc.xsl"),$params)
            else $doc
     return $r       
@@ -104,7 +104,7 @@ declare function components-html($pkg as element())
  :)
 declare function wadl-html($wadl,$root as xs:string)
 {
-    let $params:=map { "root" := $root }
+    let $params:=map { "root" : $root }
      let $_:=fn:trace($root,"WADL ")
     return xslt:transform($wadl,fn:resolve-uri("wadl.xsl"),$params)
 };
