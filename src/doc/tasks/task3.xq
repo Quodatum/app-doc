@@ -8,5 +8,5 @@ let $db:="doc-data"
 let $src:=fn:resolve-uri("..")
 let $files:=file:list($src,fn:true(),"*.xqm,*.xq")
 for $file in $files
-let $doc:=inspect:xqdoc($file)
-return  $doc
+let $doc:=inspect:xqdoc($src ||$file)
+return  db:replace($db,"/modules/" || $file,$doc)

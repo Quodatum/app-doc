@@ -31,6 +31,11 @@ declare function basex-minversion($minver as xs:string) as xs:boolean{
 declare function getProperty($name as xs:string) as xs:string{
     sys:getProperty($name)
 };
+
+declare function getOption($name as xs:string)
+as xs:string{
+db:system()/localoptions/*[fn:name(.)=$name]
+};
 (: 
  : memory status
  :http://javarevisited.blogspot.co.uk/2012/01/find-max-free-total-memory-in-java.html

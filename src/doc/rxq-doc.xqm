@@ -97,6 +97,7 @@ function entity-data($entity as xs:string)
 {
     let $entity:=$entity:list($entity)
     let $results:=$entity("data")()
+    let $_:=fn:trace($results,"entity RESULTS ")
     return dice:response($results,$entity)
 };
 

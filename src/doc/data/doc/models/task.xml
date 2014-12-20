@@ -1,20 +1,26 @@
 <entity name="task" xmlns="https://github.com/Quodatum/app-doc/entity">
 	<description>A task.</description>
 	<namespace prefix="task"  uri="https://github.com/Quodatum/app-doc/task"/>
+	<namespace prefix="xqdoc" uri="http://www.xqdoc.org/1.0"/>
 	<fields>
 		<field name="name" type="xs:string">
 			<description>name</description>
-			<xpath>$_/@name</xpath>
+			<xpath>$_/xqdoc:module/xqdoc:uri</xpath>
 		</field>
 		<field name="description" type="xs:string">
 			<description>description</description>
-			<xpath>$_/task:description</xpath>
+			<xpath>$_/xqdoc:module/xqdoc:comment/xqdoc:description</xpath>
 		</field>
 		<field name="xquery" type="xs:string">
             <description>xquery code for this task.</description>
-            <xpath>$_/task:xquery</xpath>
+            <xpath>'todo'</xpath>
         </field>
 	</fields>
 	<iconclass>fa fa-tasks </iconclass>
-	<data type="element(cvabar:bar)"></data>
+	<data type="element(xqdoc:xqdoc)">
+db:open("doc-data")//xqdoc:xqdoc[
+  xqdoc:namespaces/xqdoc:namespace/@uri="https://github.com/Quodatum/app-doc/task"
+ and xqdoc:module/@type="main"
+]
+</data>
 </entity>

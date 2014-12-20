@@ -42,7 +42,7 @@ declare function get-base($app as xs:string){
 };
 
 declare function get-task($name){
-  let $f:=fn:resolve-uri("tasks/task" || $name || ".xq")
+  let $f:=fn:resolve-uri("tasks/" || $name )
   let $xq:= fn:unparsed-text($f)
   return $xq 
 };
@@ -67,3 +67,10 @@ function dostate($app){
   $dr:state/hits
 };
 
+declare function tasks(){
+db:open("doc-data")//xqdoc:xqdoc[
+  xqdoc:namespaces/xqdoc:namespace/@uri="https://github.com/Quodatum/app-doc/task"
+ and xqdoc:module/@type="main"
+] 
+/xqdoc:module/xqdoc:uri
+};

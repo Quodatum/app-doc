@@ -29,9 +29,10 @@ angular
 							$scope.setTitle("Run Tasks");
 							growl.info("This page uses angular growl for notifications");
 							
-							Restangular.all("task").all()
+							Restangular.one("data").all("task")
 							.getList().then(function(d) {
 								console.log(">>",d);
+								$scope.tasks=d;
 							});
 							$scope.tasks = [ {
 								name : "1"

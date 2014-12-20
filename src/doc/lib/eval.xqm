@@ -1,5 +1,6 @@
 (:~ 
  :execute xquery code from string
+ : *** REQUIRES MIXUPDATES = true
  :@author Andy Bunce
  :@version 0.1
  :)
@@ -78,10 +79,10 @@ as item()*{
      "timeout":$timeout
   }
   let $xq:= 'declare base-uri "' || $base ||'";&#10;' || $xq
-   let $xq:=fn:trace($xq,"TASK")
+   let $xq:=fn:trace($xq,"eval:update")
   return try{
        let $t1:=prof:current-ms()
-       let $x:= xquery:eval($xq,$bindings,$opts)
+       let $x:= xquery:update($xq,$bindings,$opts)
        let $t:=(prof:current-ms()-$t1) div 1000
        return ($t,$x)
       }catch * 

@@ -2,7 +2,7 @@
     <description>A RESTXQ based web application.</description>
 	<fields>
 		<field name="name" type="xs:string">
-			<description>Application name</description>
+			<description>Application name.</description>
 			<xpath>$_/name</xpath>
 		</field>
 		<field name="description" type="xs:string?">
