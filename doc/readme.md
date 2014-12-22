@@ -59,3 +59,5 @@ A conforming application should provide the following files at the root:
 in static 
 - logo.svg
 ## 
+
+#tasks

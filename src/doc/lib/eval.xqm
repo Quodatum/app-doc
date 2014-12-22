@@ -87,6 +87,17 @@ as item()*{
        return ($t,$x)
       }catch * 
       {
-        (-1 ,$err:code)
+        let $e:=fn:string-join((
+             fn:local-name-from-QName( $err:code),
+             $err:value,
+             " module: '",
+             $err:module,
+             "' (",
+             fn:string($err:line-number),
+             ",",
+             fn:string($err:column-number),
+             ")"
+       ))
+        return (-1 ,$e)
       }
 };

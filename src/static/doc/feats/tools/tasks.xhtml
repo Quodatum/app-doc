@@ -1,7 +1,8 @@
 <div >
-	<div>The buttons below will run tasks that update data!</div>
+<cva-bar ng-model="bar">bar</cva-bar>
 	<div class="row">
-        <div ng-repeat="task in tasks" class="qd-app media col-sm-6 col-md-4 well">
+        <div ng-repeat="task in tasks" class="media col-sm-6 col-md-4 ">
+         <div class="qd-model well">
         <i class="pull-left fa fa-camera-retro fa-5x"></i> 
             <div class="media-body">
                 <h4 class="media-heading">{{task.name}}</h4>
@@ -9,6 +10,7 @@
                 <button ng-click="run(task.name)" class="btn btn-default">Run</button>
                
             </div>
+        </div>
         </div>
     </div>	
 </div>

@@ -27,20 +27,17 @@ angular
 						function($scope, Restangular, growl) {
 							console.log("task control");
 							$scope.setTitle("Run Tasks");
+							$scope.params={start:0};
 							growl.info("This page uses angular growl for notifications");
-							
+							var bar = Restangular.one("meta").one("cvabar","tasks-bar");
+							bar.get().then(function(d) {
+								$scope.bar = d;
+							});
 							Restangular.one("data").all("task")
 							.getList().then(function(d) {
-								console.log(">>",d);
 								$scope.tasks=d;
 							});
-							$scope.tasks = [ {
-								name : "1"
-							}, {
-								name : "2"
-							},{
-								name : "3"
-							} ];
+							
 							$scope.run = function(task) {
 								Restangular.all("task").all(task).post().then(
 										function(r) {

@@ -11,7 +11,7 @@ import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
 import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
 import module namespace entity = 'quodatum.models.generated' at 'generated/models.xqm';
-import module namespace tasks = 'quodatum.tasks.generated'  at 'generated/tasks.xqm';
+import module namespace  qsr = 'quodatum.system.rest' at 'rxq-system.xqm';
 
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
@@ -41,7 +41,9 @@ declare %updating
 function doc-init(){
      (: update model.xqm :)
     (
-     tasks:task("1"),tasks:task("2"),
+     qsr:dotask2("doc","task1.xq"), 
+     qsr:dotask2("doc","task2.xq"), 
+     qsr:dotask2("doc","task3.xq"),
      db:output(<rest:forward>/doc</rest:forward>)
      )
 }; 
@@ -322,7 +324,7 @@ function validate($xml as xs:string,
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.5.1",
+                        "version":"0.5.2",
                         "static":"/static/doc/"
                     }
     let $map:=map:new(($map,$defaults))

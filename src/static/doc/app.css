@@ -102,6 +102,9 @@ left: 0;;
 	height:160px;
 	overflow:hidden;
 }
+.qd-app{
+	min-height:180px;
+}
 /* cvabar override */
 ol.qd-crumb {
     padding-bottom: 0;

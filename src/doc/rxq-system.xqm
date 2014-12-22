@@ -33,7 +33,8 @@ declare
 %rest:POST %rest:path("{$app}/task/{$task}")
 function dotask2($app,$task){
    let $xq:=get-task($task)  
-   return eval:update($xq,get-base($app),5)
+   let $r:= eval:update($xq,get-base($app),5)
+   return $r
 };
 
 declare function get-base($app as xs:string){
@@ -41,7 +42,8 @@ declare function get-base($app as xs:string){
  return $w || $app || "/tasks/file"
 };
 
-declare function get-task($name){
+(:~ xquery src for name :)
+declare function get-task($name) as xs:string{
   let $f:=fn:resolve-uri("tasks/" || $name )
   let $xq:= fn:unparsed-text($f)
   return $xq 
