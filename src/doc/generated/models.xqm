@@ -59,7 +59,7 @@ declare variable $entity:list:=map {
        "name": function($_ as element()) as element(name)? { let $d:=fn:data($_/cvabar:name)
        return if($d)then element name { attribute type {"string" },$d } else () } },
       "data": function() as element(cvabar:bar)*
-       { db:open("doc-data")//cvabar:bar }
+       { db:open("doc-doc")//cvabar:bar }
    },
   "endpoint": map{
      "name": "endpoint",
@@ -149,7 +149,7 @@ declare variable $entity:list:=map {
        "xquery": function($_ as element()) as element(xquery)? { let $d:=fn:data('todo')
        return if($d)then element xquery { attribute type {"string" },$d } else () } },
       "data": function() as element(xqdoc:xqdoc)*
-       { db:open("doc-data")//xqdoc:xqdoc[
+       { db:open("doc-doc")//xqdoc:xqdoc[
   xqdoc:namespaces/xqdoc:namespace/@uri="https://github.com/Quodatum/app-doc/task"
  and xqdoc:module/@type="main"
 ] }

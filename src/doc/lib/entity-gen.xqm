@@ -93,18 +93,35 @@ declare variable $entity:{$entity/@name/fn:string()}: map{{ {fn:string-join($m,"
  :  return xml for suitable json serialization for field 
 :)
 declare function jsonfn($f as element(ent:field)) as xs:string{
-let $name:=$f/@name/fn:string()
-let $type:=json-type($f/@type)
-let $opt:=fn:contains($type,"?")
-return <field>
-       "{$name}": function($_ as element()) as element({$name})? {{ let $d:=fn:data({$f/ent:xpath })
-       return if($d)then element {$name} {{ attribute type {{"{$type}" }},$d }} else () }}</field>
+    let $name:=$f/@name/fn:string()
+    let $type:=json-type($f/@type)
+    let $json-type:=if($type="element") then "string" else $type
+    let $opt:=fn:contains($type,"?")
+    (: generate json xml :)
+    let $simple:=function() as xs:string{
+                <field>(: {$type} :)
+                        let $d:=fn:data({$f/ent:xpath })
+                        return if($d)
+                              then element {$name} {{ attribute type {{"{$json-type}" }},$d }} 
+                              else ()</field>
+                }
+    (: serialize when element :)
+    let $element:=function() as xs:string{
+                <field>element {$name} {{ attribute type {{"string"}},fn:serialize({$f/ent:xpath})}}</field>
+                } 
+                           
+    return <field>
+           "{$name}": function($_ as element()) as element({$name})? {{
+            {if($type="element") then $element() else $simple()} }}</field>
 };
+
+
 
 (:~ convert xs type to json
 :)
 declare function json-type($xsd as xs:string) as xs:string{
-switch ($xsd) 
+switch ($xsd)
+   case "element()" return "element" 
    case "xs:boolean" return "boolean"
    case "xs:integer" return "number"
    case "xs:float" return "number"

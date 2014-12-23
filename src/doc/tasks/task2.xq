@@ -1,5 +1,5 @@
 (:~
- : Create or update database "doc-data" from files in the folder data/doc 
+ : Create or update database "doc-doc" from files in the folder data/doc 
  :)
 
 declare namespace task="https://github.com/Quodatum/app-doc/task";

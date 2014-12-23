@@ -29,7 +29,7 @@ function doc(){
      (: update model.xqm :)
      let $_:=fn:trace(fn:current-dateTime(),"*** START: ")
      (: @TODO check db exist app status et :)                 
-     return if(db:exists("doc-data"))
+     return if(db:exists("doc-doc"))
             then render("main.xq",map{})
             else <rest:forward>/doc/init</rest:forward>
 };

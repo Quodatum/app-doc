@@ -13,5 +13,5 @@
 		
 	</fields>
 	<iconclass>fa fa-minus-square-o</iconclass>
-	<data type="element(cvabar:bar)">db:open("doc-data")//cvabar:bar</data>
+	<data type="element(cvabar:bar)">db:open("doc-doc")//cvabar:bar</data>
 </entity>

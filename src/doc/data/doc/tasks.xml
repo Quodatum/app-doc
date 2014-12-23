@@ -11,14 +11,14 @@ bf:write(fn:resolve-uri("./data/doc/models"),fn:resolve-uri("generated/models.xq
 	</task>
 	
 	<task name="data.load">
-       <description>Create or update database "doc-data" from files in the folder
+       <description>Create or update database "doc-doc" from files in the folder
        data 
        </description>
         <xquery>
   import module namespace dbtools = 'quodatum.dbtools'  at "lib/dbtools.xqm";
         
   let $app:="doc"
-  let $db:="doc-data" 
+  let $db:="doc-doc" 
   let $src:=$dbtools:webpath ||$app || "/data/doc/"
   return dbtools:sync-from-path($db,$src)
         </xquery>

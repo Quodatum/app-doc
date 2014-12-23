@@ -18,7 +18,7 @@
 	</fields>
 	<iconclass>fa fa-tasks </iconclass>
 	<data type="element(xqdoc:xqdoc)">
-db:open("doc-data")//xqdoc:xqdoc[
+db:open("doc-doc")//xqdoc:xqdoc[
   xqdoc:namespaces/xqdoc:namespace/@uri="https://github.com/Quodatum/app-doc/task"
  and xqdoc:module/@type="main"
 ]
