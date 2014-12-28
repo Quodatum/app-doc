@@ -34,6 +34,9 @@ function doc(){
             else <rest:forward>/doc/init</rest:forward>
 };
 
+(:~
+ : Initialise system by runnning tasks 1-3
+ :)
 declare %updating 
  %rest:GET %rest:path("doc/init")
  %output:method("html")
@@ -187,11 +190,13 @@ function xqdoc($type as xs:string,
                 let $r:=doc:xqdoc($type,$app,$path,$fmt)
                 return (web:method($fmt),$r)
            else
-             <div> 
-               <div>'{$uri}' not found
-               <a href="#apps/{$app}/xqdoc?path=benchx-rest.xqm">bench-rest.xqm</a>
-               <a href="#apps/{$app}/xqdoc?path=doc-rest.xqm">doc-rest.xqm</a>
-               <a href="#apps/{$app}/xqdoc?type=basex&amp;path=file.xqm">files.xqm</a>
+                let $mods:=("rxq-doc.xqm","doc-rest.xqm")
+                return <div> 
+               <div>'{$uri}' not found</div>
+               <div>
+               {for $mod in $mods
+               return <a href="#data/app/{$app}/xqdoc?path={$mod}">{$mod}</a>
+               }
                </div>
                <filepick value="fred" endpoint="data/file/list"/>   
                </div> 
@@ -324,10 +329,10 @@ function validate($xml as xs:string,
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.5.2",
+                        "version":"0.5.3",
                         "static":"/static/doc/"
                     }
-    let $map:=map:new(($map,$defaults))
+    let $map:=map:merge(($map,$defaults))
     return ($web:html5,txq:render(
                 fn:resolve-uri("./templates/" || $template)
                 ,$map

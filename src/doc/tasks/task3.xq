@@ -1,5 +1,6 @@
 (:~
- : update database with generated xquery documentation (xqdoc) 
+ : update database "doc-{$app}" with generated xquery documentation (xqdoc)
+ :  
  :)
 declare namespace task="https://github.com/Quodatum/app-doc/task";
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
@@ -12,7 +13,8 @@ declare function local:xqdoc($path as xs:string){
      <xqdoc:xqdoc type="err">{$path}</xqdoc:xqdoc>
     }
 };
-let $db:="doc-doc" 
+let $app:="doc"
+let $db:="doc-" || $app
 let $src:=fn:resolve-uri("..")
 
 let $files:=file:list($src,fn:true(),"*.xqm,*.xq")

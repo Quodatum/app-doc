@@ -110,12 +110,12 @@ angular
 									};
 									
 									//getChildren("/", $scope.model[0], $scope.context)
-									 $timeout(
-											 function( ) {
-											 console.log( "$evalAsync" );
-											 getChildren("/",$scope.context.rootNode,$scope.context);
-											 }
-											 ); 
+//									 $timeout(
+//											 function( ) {
+//											 console.log( "$evalAsync" );
+//											 getChildren("/",$scope.context.rootNode,$scope.context);
+//											 }
+//											 ); 
 								}
 							}
 						} ])

@@ -2,14 +2,12 @@
 	<div class="fluid">
 		<ul class="breadcrumb ">
 			<li>
-				<a href="#/data/xqmodule">XQ module</a>
+				<a href="#/data/entity">Entities</a>
 				
 			</li>
 			<li>
-				{{xqmodule.name}}
+				{{model.name}}
 			</li>
-
-
 		</ul>
 	</div>
 

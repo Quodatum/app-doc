@@ -50,6 +50,6 @@ map{
 
 (:~ useful java properties :)
 declare function about() as map(*){
- let $c:= map:new($env:core!map:entry(.,sys:getProperty(.)))
- return map:new(($c,memory()))
+ let $c:= map:merge($env:core!map:entry(.,sys:getProperty(.)))
+ return map:merge(($c,memory()))
 };

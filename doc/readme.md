@@ -4,6 +4,7 @@ Web UI set in doc-rest.xqm
 UI is created in layout.xqm
 Angular app is <html ng-app="doc" ng-controller="AppController">
 
+
 ## Framework
 An application has a name. The name must be a valid folder name 
 server uses BaseX with RESTXQ
@@ -61,3 +62,5 @@ in static
 ## 
 
 #tasks
+Are Xquery updating expressions that create or update databases. 
+They reference "https://github.com/Quodatum/app-doc/task"

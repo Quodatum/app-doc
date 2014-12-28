@@ -20,7 +20,7 @@ import module namespace xquery = "http://basex.org/modules/xquery";
 : @return updated doc from map
 :)
 declare function render($template as xs:string,$map as map(*)){
-let $map:=map:new(($map,map{"partial": partial(?,?,?,$map,$template)}))
+let $map:=map:merge(($map,map{"partial": partial(?,?,?,$map,$template)}))
 return xquery:invoke($template,$map)
 };
  
@@ -31,7 +31,7 @@ return xquery:invoke($template,$map)
 :)
 declare function render($template as xs:string,$map as map(*),$layout as xs:string){
 let $content:=render($template,$map)
-let $map:=map:new(($map,map{"body": $content}))
+let $map:=map:merge(($map,map{"body": $content}))
 return render($layout,$map)
 };
  
@@ -41,6 +41,6 @@ return render($layout,$map)
 :)
 declare function partial($part as xs:string,$name,$seq,$map,$base){
 for $s in $seq
-let $map:=map:new(($map,map{$name: $s}))
+let $map:=map:merge(($map,map{$name: $s}))
 return render(fn:resolve-uri($part,$base),$map)
 };
