@@ -3,7 +3,7 @@
 	<title>Doc</title>
 	<dependency name="twitter-bootstrap" version="3.2.0" />
 	<dependency name="angularjs" version="1.2.26" />
-	<dependency name="angular-ui-bootstrap" version="0.11.0" />
+	<dependency name="angular-ui-bootstrap" version="0.12.0" />
 	<dependency name="restangular" version="3.1.1" />
 	<dependency name="lodash" version="2.4.1" />
 	<dependency name="font-awesome" version="4.1.0" />

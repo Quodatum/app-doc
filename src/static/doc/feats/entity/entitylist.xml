@@ -28,7 +28,7 @@
 
 			<div class="media-body">
 				<h4 class="media-heading">
-					<a href="#/data/entity/{{model.name}}">
+					<a href="#/data/entity/{{model.name}}" title="About this entity">
 						<i class="{{model.iconclass}}"></i>
 						{{model.name}}
 					</a>
@@ -41,7 +41,7 @@
 					<p>{{model.description}}</p>
 					<div>
 						<a href="#/data/{{model.name}}">
-							<i class="glyphicon glyphicon-list-alt" title="Entity description for {{model.name}}"></i>
+							<i class="glyphicon glyphicon-list-alt" title="List of {{model.name}}"></i>
 						</a>
 						<a href="./data/{{model.name}}" target="json">
 							<i class="fa fa-angle-double-left" title="Json data for {{model.name}}"></i>
