@@ -44,9 +44,9 @@ declare %updating
 function doc-init(){
      (: update model.xqm :)
     (
-     qsr:dotask2("doc","task1.xq"), 
-     qsr:dotask2("doc","task2.xq"), 
-     qsr:dotask2("doc","task3.xq"),
+     qsr:dotask2("doc","generate-app-db.xq"), 
+     qsr:dotask2("doc","generate-model-xqm.xq"), 
+     qsr:dotask2("doc","load-app-code.xq"),
      db:output(<rest:forward>/doc</rest:forward>)
      )
 }; 

@@ -112,8 +112,8 @@
 			AngularUI Team
 		</tagline>
 		<depends>angularjs</depends>
-		<release version="0.11.0">
-			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js
+		<release version="0.12.0">
+			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.min.js
 			</cdn>
 		</release>
 	</cmp>
@@ -340,4 +340,28 @@
 			</local>
 		</release>
 	</cmp>
+	
+	<cmp name="AngularLogExtender">
+        <runat>browser</runat>
+        <home>https://github.com/lwhiteley/AngularLogExtender</home>
+        <depends>angularjs</depends>
+        <tagline>AngularLogExtender is an AngularJS module that extends the Angular $log functionality. </tagline>
+        <release version="0.0.10">
+            
+            <local type="js">lib/AngularLogExtender/0.0.10/log-ex-unobtrusive.min.js
+            </local>
+        </release>
+    </cmp>
+    
+        <cmp name="smart-table">
+        <runat>browser</runat>
+        <home>https://github.com/lorenzofox3/Smart-Table</home>
+        <depends>angularjs</depends>
+        <tagline>Smart table is an Angularjs module to easily display data in a table with a set of built in features such filtering,sorting, etc in a declarative way.</tagline>
+        <release version="1.4.9">
+            
+            <local type="js">lib/smart-table/1.4.9/smart-table.min.js
+            </local>
+        </release>
+    </cmp>
 </components>

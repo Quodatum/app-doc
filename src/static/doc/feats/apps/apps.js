@@ -7,7 +7,13 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 		controller : "AppsCtrl"
 	}).when('/data/app/:app', {
 		templateUrl : '/static/doc/feats/apps/app1.xhtml',
-		controller : "AppCtrl"	
+		controller : "AppCtrl"
+	}).when('/data/app/:app/client', {
+      templateUrl : '/static/doc/feats/apps/client.xhtml',
+      controller : "AppCtrl2"
+	}).when('/data/app/:app/server', {
+      templateUrl : '/static/doc/feats/apps/server.xhtml',
+      controller : "AppCtrl2"       
 	}).when('/data/app/:app/:view', {
 		templateUrl : '/static/doc/feats/apps/app-view.xhtml',
 		controller : "AppCtrl2"

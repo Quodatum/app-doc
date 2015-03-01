@@ -99,12 +99,22 @@ left: 0;;
 	font-size:inherit !important;
 }
 .qd-model{
-	height:160px;
+	height:140px;
 	overflow:hidden;
 }
 .qd-app{
-	min-height:180px;
+	min-height:160px;
 }
+.qd-ltext{
+    font-size:30pt;
+}
+.qd-icon{
+    padding:1px !important;
+    margin:6px;
+    width:64px;
+    height:64px;
+}
+
 /* cvabar override */
 ol.qd-crumb {
     padding-bottom: 0;

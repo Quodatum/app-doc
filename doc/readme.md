@@ -61,6 +61,3 @@ in static
 - logo.svg
 ## 
 
-#tasks
-Are Xquery updating expressions that create or update databases. 
-They reference "https://github.com/Quodatum/app-doc/task"

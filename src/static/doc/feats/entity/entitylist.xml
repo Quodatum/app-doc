@@ -22,8 +22,10 @@
 	</div>
 	<div class="row">
 		<div ng-repeat="model in models" class="qd-model media col-sm-6 col-md-4 well">
-			<span class="badge pull-right">
-				<a href="#{{model.fieldslink}}">{{model.nfields}}</a>
+			<span class="pull-right">
+				<a href="#/data/entity/{{model.name}}" title="About this entity">
+                        <i class="glyphicon glyphicon-wrench"></i>
+                    </a>    
 			</span>
 
 			<div class="media-body">
@@ -31,22 +33,21 @@
 					<a href="#/data/entity/{{model.name}}" title="About this entity">
 						<i class="{{model.iconclass}}"></i>
 						{{model.name}}
-					</a>
+					</a>					
+                    <a href="#{{model.parentlink}}">{{model.parent}}</a>
 				</h4>
 				<div class="media-body">
+					
 					<div>
-						P:
-						<a href="#{{model.parentlink}}">{{model.parent}}</a>
-					</div>
-					<p>{{model.description}}</p>
-					<div>
-						<a href="#/data/{{model.name}}">
-							<i class="glyphicon glyphicon-list-alt" title="List of {{model.name}}"></i>
-						</a>
-						<a href="./data/{{model.name}}" target="json">
-							<i class="fa fa-angle-double-left" title="Json data for {{model.name}}"></i>
-						</a>
-					</div>
+                        <a href="#/data/{{model.name}}" class="pull-left qd-icon">
+                            <i class="qd-ltext glyphicon glyphicon-list-alt" title="Data for {{model.name}}"></i>
+                        </a>
+                        <div>{{model.description}}</div>
+                        <div><a href="./data/{{model.name}}" target="json">
+                            <i class="fa fa-angle-double-left" title="Json data for {{model.name}}"></i>
+                        </a></div>
+                    </div>
+					
 				</div>
 			</div>
 		</div>
