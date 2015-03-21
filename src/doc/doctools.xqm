@@ -88,8 +88,14 @@ declare function static-uri(
 declare function xqdoc($type as xs:string,
                         $path as xs:string)
 as element(xqdoc:xqdoc){
-        inspect:xqdoc(if($type="basex") then basex-modules($path) 
+        let $doc:=inspect:xqdoc(if($type="basex") then basex-modules($path) 
                       else $path)
+        return copy $c := $doc
+                modify (
+                  for $d in $c//xqdoc:description
+                  return replace node $d with <xqdoc:description>{fn:parse-xml-fragment($d)}</xqdoc:description>
+                   )
+                 return $c                            
 };
 
 

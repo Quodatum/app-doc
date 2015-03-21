@@ -5,8 +5,14 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/02/xpath-functions"
 	exclude-result-prefixes="xs xqdoc fn" version="2.0">
 
-    <xsl:param name="app" as="xs:string" />
+	<xsl:param name="app" as="xs:string" />
 	<xsl:param name="path" as="xs:string" />
+	<!-- IdentityTransform -->
+	<xsl:template match="/ | @* | node()">
+		<xsl:copy>
+			<xsl:apply-templates select="@* | node()" />
+		</xsl:copy>
+	</xsl:template>
 
 	<!-- generate module html // -->
 	<xsl:template match="//xqdoc:xqdoc">
@@ -22,15 +28,15 @@
 
 					<xsl:apply-templates select="xqdoc:module/xqdoc:name" />
 					(
-					<xsl:apply-templates select="xqdoc:module/@type" />
+					<xsl:value-of select="xqdoc:module/@type" />
 					module)
 					<small class="pull-right">
-                        xqdoc
-                        <a href="../../doc/app/{$app}/server/xqdoc?fmt=xml&amp;path={$path}"
-                            target="dn" title="{$path}">
-                            <i class="glyphicon glyphicon-save"></i>
-                        </a>
-                    </small>
+						xqdoc
+						<a href="../../doc/app/{$app}/server/xqdoc?fmt=xml&amp;path={$path}"
+							target="dn" title="{$path}">
+							<i class="glyphicon glyphicon-save"></i>
+						</a>
+					</small>
 				</h2>
 				<table>
 					<tr>
@@ -48,7 +54,8 @@
 							<b>Description:</b>
 						</td>
 						<td>
-							<xsl:apply-templates select="xqdoc:module/xqdoc:comment/xqdoc:description" />
+							<xsl:apply-templates
+								select="xqdoc:module/xqdoc:comment/xqdoc:description" />
 						</td>
 					</tr>
 					<tr>
@@ -72,7 +79,8 @@
 							<b>Imports:</b>
 						</td>
 						<td>
-							<xsl:apply-templates select="//xqdoc:import" mode="link"/>
+							<xsl:apply-templates select="//xqdoc:import"
+								mode="link" />
 						</td>
 					</tr>
 				</table>
@@ -151,7 +159,7 @@
 				<b>Description:</b>
 			</td>
 			<td>
-				<xsl:value-of select="." />
+				<xsl:apply-templates select="*" />
 			</td>
 		</tr>
 	</xsl:template>
@@ -198,7 +206,7 @@
 		<xsl:for-each select="$cmps">
 			<xsl:sort select="lower-case(xqdoc:name)" />
 			<span>
-			<xsl:apply-templates select="." mode="link" />
+				<xsl:apply-templates select="." mode="link" />
 			</span>
 		</xsl:for-each>
 	</xsl:template>
@@ -210,13 +218,13 @@
 		</a>
 	</xsl:template>
 
-    <xsl:template match="xqdoc:import" mode="link">
-        <a ng-click="scrollTo('cmp-{xqdoc:uri}')" class="label label-info"
-            style="cursor:pointer;" title="{xqdoc:comment/xqdoc:description}">
-            <xsl:value-of select="xqdoc:uri" />
-        </a>
-    </xsl:template>
-    
+	<xsl:template match="xqdoc:import" mode="link">
+		<a ng-click="scrollTo('cmp-{xqdoc:uri}')" class="label label-info"
+			style="cursor:pointer;" title="{xqdoc:comment/xqdoc:description}">
+			<xsl:value-of select="xqdoc:uri" />
+		</a>
+	</xsl:template>
+
 	<xsl:template match="xqdoc:variable" mode="link">
 		<a ng-click="scrollTo('cmp-{xqdoc:name}')" class="label label-info"
 			style="cursor:pointer;" title="{xqdoc:comment/xqdoc:description}">
