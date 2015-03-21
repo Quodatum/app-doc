@@ -10,7 +10,7 @@ declare default function namespace 'quodatum.model.rest';
 
 import module namespace entity ='quodatum.models.generated' at "generated/models.xqm";
 import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm"; 
-import module namespace web = 'quodatum.web.utils2' at "lib/webutils2.xqm";
+import module namespace web = 'quodatum.web.utils3' at "lib/webutils.xqm";
 declare namespace ent="https://github.com/Quodatum/app-doc/entity"; 
 
 declare variable $model-rest:models:=db:open("doc-doc")//ent:entity;

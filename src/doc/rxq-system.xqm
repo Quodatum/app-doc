@@ -29,11 +29,12 @@ function listtasks($app){
  :  run a task
  :)
 declare  
-%output:method("text")  
+%output:method("text") 
 %rest:POST %rest:path("{$app}/task/{$task}")
-function dotask2($app,$task){
+function dotask2($app,$task as xs:string){
    let $xq:=get-task($task)  
    let $r:= eval:update($xq,get-base($app),5)
+   
    return $r
 };
 

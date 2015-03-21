@@ -4,12 +4,13 @@
  :@version 0.1
  :)
 module namespace dr = 'quodatum.doc.rest';
-declare default function namespace 'quodatum.doc.rest'; 
-
+declare default function namespace 'quodatum.doc.rest';
+ 
+import module namespace cnf = 'quodatum.app.config' at 'config.xqm';
 import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
 import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
 import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
-import module namespace web = 'quodatum.web.utils2' at 'lib/webutils2.xqm';
+import module namespace web = 'quodatum.web.utils3' at 'lib/webutils.xqm';
 import module namespace entity = 'quodatum.models.generated' at 'generated/models.xqm';
 import module namespace  qsr = 'quodatum.system.rest' at 'rxq-system.xqm';
 
@@ -42,12 +43,17 @@ declare %updating
  %output:method("html")
  %output:version("5.0")
 function doc-init(){
-     (: update model.xqm :)
-    (
-     qsr:dotask2("doc","generate-app-db.xq"), 
-     qsr:dotask2("doc","generate-model-xqm.xq"), 
-     qsr:dotask2("doc","load-app-code.xq"),
-     db:output(<rest:forward>/doc</rest:forward>)
+     (: update model.xqm  :)
+     if(db:exists("doc")) then (
+         qsr:dotask2("doc","generate-model-xqm.xq"), 
+         qsr:dotask2("doc","load-app-code.xq"),
+         cnf:write-log("~~~~~~run tasks"),
+         db:output(<rest:forward>/doc</rest:forward>)
+         
+     )else (
+         cnf:write-log("~~~~~~create db"),
+         qsr:dotask2("doc","generate-app-db.xq"),
+         db:output(<rest:forward>/doc/init</rest:forward>) 
      )
 }; 
 
@@ -172,6 +178,8 @@ function search()
 (:~
  : show xqdoc for $path in $app
  : @param fmt: 'xml' or 'html'
+ : @param path:  eg 'admin.xqm'
+  : @param type:  eg 'app' 'static' 'basex' 'repo'
  :)
 declare 
 %rest:GET %rest:path("doc/app/{$app}/server/xqdoc")
@@ -187,7 +195,7 @@ function xqdoc($type as xs:string,
     let $_:=fn:trace(($type,$app,$path),"uri: ")
     return if(fn:unparsed-text-available($uri))
            then
-                let $r:=doc:xqdoc($type,$app,$path,$fmt)
+                let $r:=doc:xqdoc($type,$uri)
                 return (web:method($fmt),$r)
            else
                 let $mods:=("rxq-doc.xqm","doc-rest.xqm")
@@ -286,7 +294,8 @@ function browser-list($fmt as xs:string){
 declare 
 %rest:GET %rest:path("doc/components/basex")
 %output:method("json")
-function basex-list(){
+function basex-list()
+{
 <json type="array">{
    doc:basex-modules()!<_>{.}</_>
    }</json>
@@ -300,11 +309,17 @@ declare
 %restxq:query-param("path", "{$path}","")
 %restxq:query-param("fmt", "{$fmt}","html")
 %restxq:query-param("type", "{$type}","basex")   
-function basex-modules($path as xs:string,
-                        $fmt as xs:string,
-                        $type as xs:string){
-    xqdoc($type,"",$path,$fmt)
+function xq-modules($path as xs:string,
+                    $fmt as xs:string,
+                    $type as xs:string)
+{
     
+    let $xqdoc:=doc:xqdoc( $type ,$path)
+    let $r:=if($fmt="html") then 
+               let $params:=map { "path" : $path,"app":"none" }
+               return xslt:transform($xqdoc,fn:resolve-uri("xqdoc.xsl"),$params)
+           else $xqdoc
+    return (web:method($fmt),$r) 
 };
 
 (:~
@@ -329,11 +344,11 @@ function validate($xml as xs:string,
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.5.4",
+                        "version":"0.6",
                         "static":"/static/doc/"
                     }
     let $map:=map:merge(($map,$defaults))
-    return ($web:html5,txq:render(
+    return (web:method("html"),txq:render(
                 fn:resolve-uri("./templates/" || $template)
                 ,$map
                 ,fn:resolve-uri("./templates/layout.xq")

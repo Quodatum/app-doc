@@ -197,7 +197,9 @@
 		<xsl:param name="cmps" />
 		<xsl:for-each select="$cmps">
 			<xsl:sort select="lower-case(xqdoc:name)" />
+			<span>
 			<xsl:apply-templates select="." mode="link" />
+			</span>
 		</xsl:for-each>
 	</xsl:template>
 

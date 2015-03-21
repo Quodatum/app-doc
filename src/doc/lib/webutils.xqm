@@ -4,41 +4,12 @@
 : @since oct 2012
 :)
 
-module namespace web = 'quodatum.web.utils2';
-declare default function namespace 'quodatum.web.utils2'; 
+module namespace web = 'quodatum.web.utils3';
+declare default function namespace 'quodatum.web.utils3'; 
 
 declare namespace rest = 'http://exquery.org/ns/restxq';
 import module namespace session ="http://basex.org/modules/session";
 
-declare variable $web:html5:=
-<restxq:response>
-    <output:serialization-parameters>
-        <output:method value="html"/>
-        <output:version value="5.0"/>
-    </output:serialization-parameters>
-   <http:response>
-       <http:header name="apb" value='test'/> 
-    </http:response>
-</restxq:response>;
-
-declare variable $web:xml:=
-<restxq:response>
-    <output:serialization-parameters>
-        <output:method value="xml"/>
-    </output:serialization-parameters>
-   <http:response>
-       <http:header name="apb" value='test'/> 
-    </http:response>
-</restxq:response>;
-
-(:~ headers for serialisation  :) 
-declare function method($method as xs:string){
-switch ($method) 
-   case "xml" return $web:xml
-   case "html5" return $web:html5
-   case "html" return $web:html5
-   default return fn:error(xs:QName('web:method'),"bad method") 
-};
 
 (:~
 : execute function fn if session has loggedin user with matching role else 401
@@ -94,32 +65,6 @@ declare function http-created($location,$response){
    )
 };
 
-(:~
-: REST created http://restpatterns.org/HTTP_Status_Codes/201_-_Created
-:)
-declare updating function Uhttp-created($location,$response){
-   db:output((
-   <restxq:response>            
-       <http:response status="201" >
-           <http:header name="Location" value="{$location}"/>
-       </http:response>
-   </restxq:response>,
-   $response
-   ))
-};
-
-(:~
-: redirect to ..
-:)
-declare function redirect($url as xs:string) 
- {
-        <rest:response>         
-           <http:response status="303" >
-             <http:header name="Location" value="{$url}"/>
-           </http:response>                      
-       </rest:response>
-};
-
 
 (:~ CORS header with download option :) 
 declare function headers($attachment,$response){
@@ -138,9 +83,18 @@ declare function zip-download($zipname,$data){
     (download-response("raw",$zipname), $data)
 };
 
+(:~ headers for download  :) 
+declare function method($method as xs:string){
+<restxq:response>
+    <output:serialization-parameters>
+        <output:method value="{$method}"/>
+    </output:serialization-parameters>
+</restxq:response>
+};
 
 (:~ headers for download  :) 
 declare function download-response($method,$filename){
+
 <restxq:response>
     <output:serialization-parameters>
         <output:method value="{$method}"/>
@@ -149,4 +103,38 @@ declare function download-response($method,$filename){
        <http:header name="Content-Disposition" value='attachment;filename="{$filename}"'/> 
     </http:response>
 </restxq:response>
+};
+
+(:~
+ : transform xml to json serialable xml driven by @type="array" and convention.
+ : all namespaces are removed
+ :)
+declare function fixup($n){fixup($n,"object")}; 
+declare function fixup($n,$type)
+{
+let $n:=strip-ns($n)
+let $a:=<json type="{$type}">{$n/*}</json>
+return copy $c := $a
+modify (
+            (: for nodes with no @type and have children set @type="object" :)
+            for $type in $c//*[fn:not(@type)and *]
+            return insert node attribute {'type'}{'object'} into $type,
+            (: for node with @type="array" and children rename children to "_" :)
+            for $n in $c//*[@type="array"]/*
+            return rename node $n as "_"
+        )
+return $c
+};
+
+declare function strip-ns($n as node()) as node() {
+  if($n instance of element()) then (
+    element { fn:local-name($n) } {
+      $n/@*,
+      $n/node()/strip-ns(.)
+    }
+  ) else if($n instance of document-node()) then (
+    document { $n/node() }
+  ) else (
+    $n
+  )
 };

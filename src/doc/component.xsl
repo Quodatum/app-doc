@@ -4,9 +4,11 @@
 	<xsl:template match="/components">
 		<div class="row">
 			<div class="col-md-2">
-				<xsl:call-template name="list">
-					<xsl:with-param name="cmps" select="cmp" />
-				</xsl:call-template>
+
+					<xsl:call-template name="list">
+						<xsl:with-param name="cmps" select="cmp" />
+					</xsl:call-template>
+
 			</div>
 			<div class="col-md-10" style="height:70vh;overflow:scroll;">
 				<h2>
@@ -150,10 +152,13 @@
 
 	<xsl:template name="list">
 		<xsl:param name="cmps" />
-		<xsl:for-each select="$cmps">
-			<xsl:sort select="lower-case(@name)" />
-			<xsl:apply-templates select="." mode="link" />
-		</xsl:for-each>
+		
+			<xsl:for-each select="$cmps">
+				<xsl:sort select="lower-case(@name)" />
+				<span >
+					<xsl:apply-templates select="." mode="link" />
+				</span>
+			</xsl:for-each>
 	</xsl:template>
 
 	<xsl:template match="cmp" mode="link">
@@ -161,6 +166,7 @@
 			style="cursor:pointer;" title="{tagline}">
 			<xsl:value-of select="@name" />
 		</a>
+
 	</xsl:template>
 
 	<xsl:template match="@*|node()">

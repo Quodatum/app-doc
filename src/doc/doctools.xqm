@@ -12,6 +12,7 @@ module namespace doc = 'quodatum.doc';
 declare default function namespace 'quodatum.doc';
 declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
+declare namespace xqdoc="http://www.xqdoc.org/1.0";
 
 import module namespace rest = 'http://exquery.org/ns/restxq';
 
@@ -21,7 +22,7 @@ declare variable $doc:repopath:=file:parent(db:system()/globaloptions/repopath);
 (:~ 
  : e.g "C:\Program Files (x86)\basex\etc\modules\"
  :)
-declare variable $doc:basex-modules:=$doc:repopath || "etc/modules/";
+declare variable $doc:basex-modules:=$doc:repopath || "etc/modules.zip";
  
 (:~
  : full file system path to 
@@ -33,7 +34,7 @@ declare function uri($type as xs:string,
   switch ($type)
   case "app" return app-uri($app,$path)
   case "static"  return static-uri($app,$path)
-  case "basex" return $doc:basex-modules || $path
+  case "basex" return doc:basex-modules ($path)
   case "repo" return $doc:repopath || $path 
   default      return fn:error(xs:QName('doc:uri'),"bad type: " || $type)
 };
@@ -41,11 +42,21 @@ declare function uri($type as xs:string,
 (:~
  : list basex module file paths. used as an xqdoc source
  :)
- declare function basex-modules()
+ declare function basex-modules() as xs:string*
  {
- file:list($doc:basex-modules)
+  archive:entries(file:read-binary($doc:basex-modules))!text()
  };
  
+(:~
+ :  xqdoc for a basex system module 
+  : @param $source file name for module e.g admin.xqm
+ :)
+ declare function basex-modules($module as xs:string) as xs:string
+ {
+  archive:extract-text(file:read-binary($doc:basex-modules),$module)
+ };
+ 
+
 (:~
  : return uri for $path in $app 
  : @param $app name of app e.g ."doc"
@@ -72,20 +83,13 @@ declare function static-uri(
 (:~
  : xqdoc as xml or html
  : @param $app name of the app e.g "doc"
- : @param $src path to the source an app uri
+ : @param $path path to the source an app uri
  :)
 declare function xqdoc($type as xs:string,
-                        $app as xs:string,
-                        $path as xs:string,
-                        $fmt as xs:string)
-{
-    let $uri:=uri($type,$app,$path)
-    let $doc:=inspect:xqdoc($uri)
-    let $r:=if($fmt="html") then 
-               let $params:=map { "path" : $path,"app":$app }
-               return xslt:transform($doc,fn:resolve-uri("xqdoc.xsl"),$params)
-           else $doc
-    return $r       
+                        $path as xs:string)
+as element(xqdoc:xqdoc){
+        inspect:xqdoc(if($type="basex") then basex-modules($path) 
+                      else $path)
 };
 
 
