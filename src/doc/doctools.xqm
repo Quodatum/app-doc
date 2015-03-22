@@ -44,7 +44,9 @@ declare function uri($type as xs:string,
  :)
  declare function basex-modules() as xs:string*
  {
-  archive:entries(file:read-binary($doc:basex-modules))!text()
+  for $name in archive:entries(file:read-binary($doc:basex-modules))!text()
+  order by $name
+  return $name
  };
  
 (:~
@@ -88,7 +90,7 @@ declare function static-uri(
 declare function xqdoc($type as xs:string,
                         $path as xs:string)
 as element(xqdoc:xqdoc){
-        let $doc:=inspect:xqdoc(if($type="basex") then basex-modules($path) 
+        let $doc:=xqdoc_(if($type="basex") then basex-modules($path) 
                       else $path)
         return copy $c := $doc
                 modify (
@@ -98,13 +100,20 @@ as element(xqdoc:xqdoc){
                  return $c                            
 };
 
+declare function xqdoc_($path as xs:string){
+    try{
+        inspect:xqdoc($path)
+    } catch * {
+     <xqdoc:xqdoc type="err">{$path}</xqdoc:xqdoc>
+    }
+};
 
 (:~
  : html report for components referenced in package
  :)
 declare function components-html($pkg as element())
 {
-    xslt:transform($pkg,fn:doc("component.xsl"))  
+    xslt:transform($pkg,"xslt/component.xsl")  
 };
 
 
@@ -116,7 +125,7 @@ declare function wadl-html($wadl,$root as xs:string)
 {
     let $params:=map { "root" : $root }
      let $_:=fn:trace($root,"WADL ")
-    return xslt:transform($wadl,fn:resolve-uri("wadl.xsl"),$params)
+    return xslt:transform($wadl,"xslt/wadl.xsl",$params)
 };
 
 (:~

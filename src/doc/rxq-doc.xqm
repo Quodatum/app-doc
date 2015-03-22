@@ -30,7 +30,7 @@ function doc(){
      (: update model.xqm :)
      let $_:=fn:trace(fn:current-dateTime(),"*** START: ")
      (: @TODO check db exist app status et :)                 
-     return if(db:exists("doc-doc"))
+     return if(db:exists("doc-doc") )
             then render("main.xq",map{})
             else <rest:forward>/doc/init</rest:forward>
 };
@@ -45,7 +45,6 @@ declare %updating
 function doc-init(){
      (: update model.xqm  :)
      if(db:exists("doc")) then (
-         qsr:dotask2("doc","generate-model-xqm.xq"), 
          qsr:dotask2("doc","load-app-code.xq"),
          cnf:write-log("~~~~~~run tasks"),
          db:output(<rest:forward>/doc</rest:forward>)
@@ -317,7 +316,7 @@ function xq-modules($path as xs:string,
     let $xqdoc:=doc:xqdoc( $type ,$path)
     let $r:=if($fmt="html") then 
                let $params:=map { "path" : $path,"app":"none" }
-               return xslt:transform($xqdoc,fn:resolve-uri("xqdoc.xsl"),$params)
+               return xslt:transform($xqdoc,fn:resolve-uri("xslt/xqdoc.xsl"),$params)
            else $xqdoc
     return (web:method($fmt),$r) 
 };

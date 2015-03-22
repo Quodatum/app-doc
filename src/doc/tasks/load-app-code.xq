@@ -1,28 +1,23 @@
 (:~
  : update database "doc-{$app}" with generated xquery documentation (xqdoc)
- :  
+ : for all *,xq and *.xqm files in app 
  :)
 declare namespace task="https://github.com/Quodatum/app-doc/task";
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
-import module namespace dbtools = 'quodatum.dbtools'  at "../lib/dbtools.xqm";
 
-declare function local:xqdoc($path as xs:string){
-    try{
-        inspect:xqdoc($path)
-    } catch * {
-     <xqdoc:xqdoc type="err">{$path}</xqdoc:xqdoc>
-    }
-};
+import module namespace dbtools = 'quodatum.dbtools'  at "../lib/dbtools.xqm";
+import module namespace doc = 'quodatum.doc' at "../doctools.xqm";
+
+
 let $app:="doc"
 let $db:="doc-" || $app
 let $src:=fn:resolve-uri("..")
 
 let $files:=file:list($src,fn:true(),"*.xqm,*.xq")
-return (
-        for $file in $files
-        let $_:=fn:trace($src ||$file,"____")
-        let $doc:=local:xqdoc($src ||$file)
-        return  
-        db:replace($db,"/modules/" || $file,$doc),
-         db:output("xqdoc to db")
-         )
+for $file in $files
+let $_:=fn:trace($src ||$file,"____")
+let $doc:=doc:xqdoc("app",$src ||$file)
+return (  
+      db:replace($db,"/modules/" || $file,$doc),
+      db:output($file || " added xqdoc to db")
+       )

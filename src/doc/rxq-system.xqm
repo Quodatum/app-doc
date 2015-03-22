@@ -14,7 +14,14 @@ declare namespace xqdoc="http://www.xqdoc.org/1.0";
 import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
 
+declare variable $dr:db as xs:string:="doc-doc";
+
 declare variable $dr:state as element(state):=db:open("doc-doc","/state.xml")/state;
+declare variable $dr:tasks as element(xqdoc:xqdoc)*:=db:open("doc-doc")//xqdoc:xqdoc[
+  xqdoc:namespaces/xqdoc:namespace/@uri="https://github.com/Quodatum/app-doc/task"
+ and xqdoc:module/@type="main"
+]; 
+
 
 (:~
  :  list tasks
@@ -70,10 +77,12 @@ function dostate($app){
   $dr:state/hits
 };
 
+(:~ 
+ :all task names
+ :)
 declare function tasks(){
-db:open("doc-doc")//xqdoc:xqdoc[
-  xqdoc:namespaces/xqdoc:namespace/@uri="https://github.com/Quodatum/app-doc/task"
- and xqdoc:module/@type="main"
-] 
-/xqdoc:module/xqdoc:uri
+    for $t in $dr:tasks
+    let $name:=$t/xqdoc:module/xqdoc:uri
+    order by $name
+    return $name
 };
