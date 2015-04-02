@@ -1,26 +1,26 @@
 // app info
-angular.module('quodatum.doc.apps', [ 'restangular' ])
+angular.module('quodatum.doc.xqm', [ 'restangular','quodatum.services' ])
 
 .config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/data/app', {
 		templateUrl : '/static/doc/feats/apps/apps.xhtml',
-		controller : "AppsCtrl"
+		controller : "XqmsCtrl"
 	}).when('/data/app/:app', {
 		templateUrl : '/static/doc/feats/apps/app1.xhtml',
-		controller : "AppCtrl"	
+		controller : "XqmCtrl"	
 	}).when('/data/app/:app/:view', {
 		templateUrl : '/static/doc/feats/apps/app-view.xhtml',
-		controller : "AppCtrl2"
+		controller : "XqmCtrl2"
 	});
 
 } ])
 
 
 // controllers
-.controller("AppsCtrl",
+.controller("XqmsCtrl",
 		[ "$scope", "Restangular", function($scope, Restangular) {
 
-			console.log("AppsCtrl2");
+			console.log("XqmCtrl2");
 			var bar = Restangular.one("meta").one("cvabar","apps-bar");
 			bar.get().then(function(d) {
 				$scope.bar = d;
@@ -34,7 +34,7 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 		} ])
 
 .controller(
-		"AppCtrl",
+		"XqmCtrl",
 		[ "$scope", "$routeParams", "Restangular",
 				function($scope, $routeParams, Restangular) {				
 					var app = $routeParams.app;
@@ -52,9 +52,9 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 				} ])
 
 .controller(
-		'AppCtrl2',
-		[ "$scope", "$routeParams", "$location", "$anchorScroll", "$log",
-				function($scope, $routeParams, $location, $anchorScroll, $log) {
+		'XqmCtrl2',
+		[ "$scope", "$routeParams", "ScrollService", "$log","$location",
+				function($scope, $routeParams, ScrollService, $log,$location) {
 					$log.log("View:", $routeParams.view);
 					var app = $routeParams.app;
 					var map = {
@@ -78,10 +78,5 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 					$scope.inc = target;
 					console.log("TAR",target);
 					$scope.setTitle("docs");
-					$scope.scrollTo = function(id) {
-						$log.log("Scroll: ", id);
-						$location.hash(id);
-						// call $anchorScroll()
-						$anchorScroll();
-					};
+					$scope.scrollTo = ScrollService.scrollTo;
 				} ]);

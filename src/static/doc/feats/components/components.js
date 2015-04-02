@@ -1,5 +1,5 @@
 // database info
-angular.module('quodatum.doc.components', [ ])
+angular.module('quodatum.doc.components', ['quodatum.services' ])
 .config(
         [ '$routeProvider', 
 		function($routeProvider) {
@@ -16,7 +16,8 @@ angular.module('quodatum.doc.components', [ ])
            ;  
 
       }])
- 
+
+
 .factory('Basex',
         [ '$resource',  "apiRoot", function($resource, apiRoot) {
             return {
@@ -25,20 +26,13 @@ angular.module('quodatum.doc.components', [ ])
         } ])
         
 // controllers
-.controller("CmpCtrl", [  '$routeParams', '$scope','$location',
-                             '$http','$anchorScroll',
-           function( $routeParams, $scope,$location,
-        		   $http,$anchorScroll) {
+.controller("CmpCtrl", [  '$routeParams', '$scope','ScrollService',                          
+           function( $routeParams, $scope,ScrollService) {
 	
-	console.log("CmpCtrl");
-	//$scope.setTitle("Coomponents");
+	console.log("CmpCtrlXX");
+	// $scope.setTitle("Coomponents");
 	
-	$scope.scrollTo = function(id) {
-		//$log.log("DDDD", id);
-		$location.hash(id);
-		// call $anchorScroll()
-		$anchorScroll();
-	};		
+	$scope.scrollTo = ScrollService.scrollTo;
 
 }])
 
@@ -47,7 +41,8 @@ angular.module('quodatum.doc.components', [ ])
 }])
 
 // show BaseX system modules
-.controller("BasexCtrl", ['$scope','$routeParams','Basex',function($scope,$routeParams,Basex){
+.controller("BasexCtrl", ['$scope','$routeParams','Basex','ScrollService',
+                          function($scope,$routeParams,Basex,ScrollService){
 	console.log("BasexCtrl");
 	$scope.module = $routeParams.module;
 	$scope.isModule=!!$scope.module;
@@ -55,7 +50,7 @@ angular.module('quodatum.doc.components', [ ])
 		$scope.results=Basex.api.query();
 		$scope.module="admin.xqm"
 	};
-	
+	$scope.scrollTo = ScrollService.scrollTo;
 	
 }])
 ;

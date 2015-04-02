@@ -53,11 +53,13 @@ declare variable $static external :="/static/doc/";
     <script src="{$static}../lib/quodatum-directives/0.1.0/directives.js"  ></script>   
     <!-- application -->
     <script src="{$static}app.js"  ></script>
+     <script src="{$static}services.js"  ></script>
     <script src="{$static}feats/apps/apps.js"  ></script>
     <script src="{$static}feats/components/components.js"  ></script>
     <script src="{$static}feats/files/files.js"  ></script>
     <script src="{$static}feats/schema/schema.js"  ></script>
     <script src="{$static}feats/entity/entity.js"  ></script>
+    <script src="{$static}feats/xqmodules/xqm.js"  ></script>
     <script src="{$static}feats/tools/tools.js"  ></script>
     <script src="{$static}feats/directives/directives.js"  ></script>
 </body>

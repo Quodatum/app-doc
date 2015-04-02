@@ -343,7 +343,7 @@ function validate($xml as xs:string,
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.6",
+                        "version":"0.6.1",
                         "static":"/static/doc/"
                     }
     let $map:=map:merge(($map,$defaults))

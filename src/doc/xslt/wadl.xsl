@@ -68,6 +68,7 @@
 	<xsl:template match="wadl:resource" mode="link">
 		<xsl:param name="root" />
 		<span class="pull-right">
+		<span class="badge badge-default">J</span>
         <xsl:call-template name="method-name" />
         </span> 
 		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">

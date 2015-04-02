@@ -4,7 +4,7 @@ angular.module(
   		'ui.bootstrap', 'restangular',
 		'ya.treeview', 'ya.treeview.tpls','angular-growl', 
 		'quodatum.entity','quodatum.doc.apps', 'quodatum.doc.components',
-		'quodatum.doc.files', 'quodatum.doc.schema',
+		'quodatum.doc.files', 'quodatum.doc.xqm', 'quodatum.doc.schema',
 		'quodatum.doc.directives', 'quodatum.doc.tools',
 		'quodatum.directives' ])
 
@@ -62,6 +62,7 @@ angular.module(
 		$window.document.title = t;
 	};
 } ])
+
 
 .controller("AppController",
 		[ "$scope", "$location", function($scope, $location) {

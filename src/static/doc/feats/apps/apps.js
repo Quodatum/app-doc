@@ -1,5 +1,5 @@
 // app info
-angular.module('quodatum.doc.apps', [ 'restangular' ])
+angular.module('quodatum.doc.apps', [ 'restangular','quodatum.services' ])
 
 .config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/data/app', {
@@ -59,8 +59,8 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 
 .controller(
 		'AppCtrl2',
-		[ "$scope", "$routeParams", "$location", "$anchorScroll", "$log",
-				function($scope, $routeParams, $location, $anchorScroll, $log) {
+		[ "$scope", "$routeParams",  "ScrollService","$log",
+				function($scope, $routeParams, ScrollService,$log) {
 					$log.log("View:", $routeParams.view);
 					var app = $routeParams.app;
 					var map = {
@@ -84,10 +84,5 @@ angular.module('quodatum.doc.apps', [ 'restangular' ])
 					$scope.inc = target;
 					console.log("TAR",target);
 					$scope.setTitle("docs");
-					$scope.scrollTo = function(id) {
-						$log.log("Scroll: ", id);
-						$location.hash(id);
-						// call $anchorScroll()
-						$anchorScroll();
-					};
+					$scope.scrollTo = ScrollService.scrollTo
 				} ]);
