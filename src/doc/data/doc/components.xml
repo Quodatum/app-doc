@@ -41,7 +41,19 @@
 			</cdn>
 		</release>
 	</cmp>
-
+    <cmp name="twitter-bootstrap-css">
+        <runat>browser</runat>
+        <home>http://getbootstrap.com/</home>
+        <tagline>The most popular front-end framework for developing
+            responsive, mobile first projects on the web.
+        </tagline>
+        <licence>Apache v2.0</licence>
+        <release version="3.3.4">
+            <cdn type="css">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.css
+            </cdn>
+        </release>
+    </cmp>
+    
 	<cmp name="moment">
 		<runat>browser</runat>
 
@@ -164,6 +176,12 @@
 		<release version="1.2.0">
 			<local>lib/angular-hotkeys/1.2.0/hotkeys.min.js</local>
 		</release>
+		<release version="1.4.5">
+		<cdn type="css">//cdnjs.cloudflare.com/ajax/libs/angular-hotkeys/1.4.5/hotkeys.css
+            </cdn>
+            <cdn type="js">//cdnjs.cloudflare.com/ajax/libs/angular-hotkeys/1.4.5/hotkeys.js
+            </cdn>
+        </release>
 	</cmp>
 
 	<cmp name="ng-google-chart">

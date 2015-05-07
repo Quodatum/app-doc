@@ -279,9 +279,15 @@ declare
 %restxq:query-param("fmt", "{$fmt}","xml")
 function browser-list($fmt as xs:string){
     let $d:=$doc:components
+    let $generate:=map{
+        "xml":map{"get":hof:id#1},
+        "html":map{"get":doc:components-html#1},
+         "svg":map{"get":doc:components-svg#1,"method":"xml"}
+    }
+    let $tfmt:=$generate($fmt)
     return (
-        web:method($fmt),
-        if($fmt="xml") then $d else doc:components-html($d)
+        web:method($tfmt?method),
+        $tfmt?get($d)
     )
     
 };

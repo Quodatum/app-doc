@@ -18,10 +18,10 @@ angular.module('quodatum.doc.components', ['quodatum.services' ])
       }])
 
 
-.factory('Basex',
+.factory('API',
         [ '$resource',  "apiRoot", function($resource, apiRoot) {
             return {
-                api : $resource(apiRoot + 'components/basex')
+                basex : $resource(apiRoot + 'components/basex')
             }
         } ])
         
@@ -37,17 +37,17 @@ angular.module('quodatum.doc.components', ['quodatum.services' ])
 }])
 
 .controller("CmptreeCtrl", ['$scope',function($scope){
-	
+  console.log("svg here");
 }])
 
 // show BaseX system modules
-.controller("BasexCtrl", ['$scope','$routeParams','Basex','ScrollService',
-                          function($scope,$routeParams,Basex,ScrollService){
+.controller("BasexCtrl", ['$scope','$routeParams','API','ScrollService',
+                          function($scope,$routeParams,API,ScrollService){
 	console.log("BasexCtrl");
 	$scope.module = $routeParams.module;
 	$scope.isModule=!!$scope.module;
 	if(!$scope.isModule){
-		$scope.results=Basex.api.query();
+		$scope.results=API.basex.query();
 		$scope.module="admin.xqm"
 	};
 	$scope.scrollTo = ScrollService.scrollTo;

@@ -1,13 +1,13 @@
 <xsl:stylesheet version="2.0" xmlns:pkg="http://expath.org/ns/pkg"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- convert components.xml to bootstrap html -->
+	<!-- convert components.xml to bootstrap html match on /components for catalog -->
 	<xsl:template match="/components">
 		<div class="row">
 			<div class="col-md-2">
 
-					<xsl:call-template name="list">
-						<xsl:with-param name="cmps" select="cmp" />
-					</xsl:call-template>
+				<xsl:call-template name="list">
+					<xsl:with-param name="cmps" select="cmp" />
+				</xsl:call-template>
 
 			</div>
 			<div class="col-md-10" style="height:70vh;overflow:scroll;">
@@ -32,7 +32,8 @@
 	</xsl:template>
 	<!-- convert package.xml to bootstrap html -->
 	<xsl:template match="/pkg:package">
-		<xsl:variable name="cmps" select="doc('../data/doc/components.xml')//cmp" />
+		<xsl:variable name="cmps"
+			select="doc('../data/doc/components.xml')//cmp" />
 		<xsl:variable name="used" select="pkg:dependency" />
 		<xsl:variable name="found" select="$cmps[@name=$used/@name]" />
 		<div class="row">
@@ -71,11 +72,8 @@
 					<a ng-click="scrollTo('cmp-{@name}')">
 						<xsl:value-of select="@name" />
 					</a>
-					<xsl:for-each select="release" />
-					<span class="badge">
-						<xsl:value-of select="release/@version" />
-					</span>
-
+					<xsl:apply-templates select="release/@version"/>
+		
 					<span class="pull-right">
 						<a href="{home}" target="benchx-doc" class="badge" title="{@name} {home}">
 							<i class="fa fa-external-link"></i>
@@ -111,14 +109,25 @@
 							select="//cmp[@name=current()/depends]" />
 					</xsl:call-template>
 				</div>
-				<h5>Versions</h5>
+				<h5>
+					Versions
+					<span class="badge ">
+						<xsl:value-of select="count(release)" />
+					</span>
+				</h5>
 				<ul>
 					<xsl:apply-templates select="release" />
 				</ul>
 			</div>
 		</div>
 	</xsl:template>
-
+	
+	<xsl:template match="@version">
+		<span class="badge">
+			<xsl:value-of select="." />
+		</span>
+	</xsl:template>
+	
 	<xsl:template match="licence">
 		<span>
 			Licence:
@@ -128,45 +137,46 @@
 		</span>
 	</xsl:template>
 
-	<xsl:template match="local">
-		Local:
-		<xsl:apply-templates select="*" />
-	</xsl:template>
-
-	<xsl:template match="cdn">
-		CDN:
-		<xsl:apply-templates select="*" />
-	</xsl:template>
 
 	<xsl:template match="release">
 		<li>
-			<xsl:value-of select="@version" />
-			<div>
-				CDN:
-				<a href="{cdn}">
-					<xsl:value-of select="cdn" />
-				</a>
-			</div>
+			<xsl:apply-templates select="@version"/>
+			<xsl:apply-templates select="cdn|local" />
 		</li>
+	</xsl:template>
+
+	<xsl:template match="cdn">
+		<div>
+			CDN
+			<xsl:value-of select="@type" />
+			<xsl:value-of select="." />
+		</div>
+	</xsl:template>
+
+	<xsl:template match="local">
+		<div>
+			Local
+			<xsl:value-of select="@type" />
+			<xsl:value-of select="." />
+		</div>
 	</xsl:template>
 
 	<xsl:template name="list">
 		<xsl:param name="cmps" />
-		
-			<xsl:for-each select="$cmps">
-				<xsl:sort select="lower-case(@name)" />
-				<span >
-					<xsl:apply-templates select="." mode="link" />
-				</span>
-			</xsl:for-each>
+
+		<xsl:for-each select="$cmps">
+			<xsl:sort select="lower-case(@name)" />
+			<span>
+				<xsl:apply-templates select="." mode="link" />
+			</span>
+		</xsl:for-each>
 	</xsl:template>
 
 	<xsl:template match="cmp" mode="link">
 		<a ng-click="scrollTo('cmp-{@name}')" class="label label-info"
-			style="cursor:pointer;" title="{tagline}">
+			style="cursor:pointer;" title="{normalize-space(tagline)}">
 			<xsl:value-of select="@name" />
 		</a>
-
 	</xsl:template>
 
 	<xsl:template match="@*|node()">

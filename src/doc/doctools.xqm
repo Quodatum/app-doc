@@ -116,6 +116,13 @@ declare function components-html($pkg as element())
     xslt:transform($pkg,"xslt/component.xsl")  
 };
 
+(:~
+ : svg graph for components referenced in package
+ :)
+declare function components-svg($pkg as element())
+{
+    xslt:transform($pkg,"xslt/component.xsl")  
+};
 
 (:~
  : return html report for WADL entries supplied
