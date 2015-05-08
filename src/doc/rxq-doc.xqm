@@ -285,8 +285,9 @@ function browser-list($fmt as xs:string){
          "svg":map{"get":doc:components-svg#1,"method":"xml"}
     }
     let $tfmt:=$generate($fmt)
+    let $method:=($tfmt?method,$fmt)[1]
     return (
-        web:method($tfmt?method),
+        web:method($fmt),
         $tfmt?get($d)
     )
     
