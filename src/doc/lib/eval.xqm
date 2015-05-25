@@ -54,7 +54,7 @@ as item()*{
      "permission" : "create",
      "timeout":$timeout
   }
-  let $xq:= 'declare base-uri "' || fn:resolve-uri("..") ||'";&#10;' || $xq
+  let $xq:= 'declare base-uri "' || fn:resolve-uri("../a") ||'";&#10;' || $xq
   return try{
        let $t1:=prof:current-ms()
        let $x:= xquery:eval($xq,$bindings,$opts)
@@ -70,9 +70,9 @@ as item()*{
  : execute updating expression
  : return sequence head() is elapsed time or -1 if error, tail() is result or error code
  :)
-declare  
+declare  %updating
 function update($xq as xs:string,$base as xs:string,$timeout as xs:double)
-as item()*{
+{
  let $bindings:=map{}
  let $opts:=map {
      "permission" : "create",
@@ -82,22 +82,23 @@ as item()*{
    let $xq:=fn:trace($xq,"eval:update")
   return try{
        let $t1:=prof:current-ms()
-       let $x:= xquery:update($xq,$bindings,$opts)
+       let $x:= () (:xquery:update($xq,$bindings,$opts) :)
        let $t:=(prof:current-ms()-$t1) div 1000
-       return ($t,$x)
+       return map{"":xquery:update($xq,$bindings,$opts),
+                    "time":(prof:current-ms()-$t1) div 1000
+                    }
       }catch * 
       {
-        let $e:=fn:string-join((
-             fn:local-name-from-QName( $err:code),
-             $err:value,
-             " module: '",
-             $err:module,
-             "' (",
-             fn:string($err:line-number),
-             ",",
-             fn:string($err:column-number),
-             ")"
-       ))
-        return (-1 ,$e)
+         map{"error":map{
+               "code":$err:code,
+               "description":$err:description,
+               "value":$err:value,
+               "module":$err:module,
+               "line-number":$err:line-number,
+                "column-number":$err:column-number,
+               "additional":$err:additional
+               }
+            }
+    
       }
 };

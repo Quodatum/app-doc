@@ -223,7 +223,7 @@ function wadl($app as xs:string,
               $path as xs:string,
               $fmt as xs:string) 
 {
-  let $w:=doc:wadl-under( $app)
+  let $w:=doc:wadl-under(rest:wadl(), $app)
   let $r:=if($fmt="html")then doc:wadl-html($w,"/" || $app) else $w
   return (web:method($fmt),$r) 
 }; 
@@ -308,6 +308,18 @@ function basex-list()
 };
 
 (:~
+ : wadl for system need permisioning
+ :)
+declare 
+%rest:GET %rest:path("doc/wadl")
+%output:method("xml")
+function wadl()
+{
+rest:wadl()
+};
+
+
+(:~
  : get xquery documentation for $path and $type
  :)
 declare 
@@ -350,7 +362,7 @@ function validate($xml as xs:string,
  :) 
 declare function render($template,$map){
     let $defaults:=map{
-                        "version":"0.6.1",
+                        "version":"0.6.2",
                         "static":"/static/doc/"
                     }
     let $map:=map:merge(($map,$defaults))

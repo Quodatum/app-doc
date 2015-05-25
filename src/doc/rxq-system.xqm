@@ -42,7 +42,7 @@ function dotask2($app,$task as xs:string){
    let $xq:=get-task($task)  
    let $r:= eval:update($xq,get-base($app),5)
    
-   return $r
+   return "ok"
 };
 
 declare function get-base($app as xs:string){

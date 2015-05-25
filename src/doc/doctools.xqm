@@ -131,19 +131,22 @@ declare function components-svg($pkg as element())
 declare function wadl-html($wadl,$root as xs:string)
 {
     let $params:=map { "root" : $root }
-     let $_:=fn:trace($root,"WADL ")
+     let $_:=fn:trace($root,"WADL-html ")
     return xslt:transform($wadl,"xslt/wadl.xsl",$params)
 };
 
 (:~
  : wadl entries with paths starting at root
  :)
-declare function wadl-under($root)
+declare function wadl-under($wadl as element(wadl:application),
+                            $root as xs:string) as element(wadl:application)
 {
-    copy $s:=rest:wadl()
-    modify(
-           delete node $s//wadl:resource[fn:not(fn:starts-with(@path,$root))] 
-        )
+ copy $s:=$wadl
+   modify(
+           delete node $s//wadl:resource[fn:not(
+                                fn:starts-with(@path,$root) or fn:starts-with( @path,"/" || root)
+                                )] 
+        )  
     return $s
 };
 
