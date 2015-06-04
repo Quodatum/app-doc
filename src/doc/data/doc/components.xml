@@ -41,19 +41,19 @@
 			</cdn>
 		</release>
 	</cmp>
-    <cmp name="twitter-bootstrap-css">
-        <runat>browser</runat>
-        <home>http://getbootstrap.com/</home>
-        <tagline>The most popular front-end framework for developing
-            responsive, mobile first projects on the web.
-        </tagline>
-        <licence>Apache v2.0</licence>
-        <release version="3.3.4">
-            <cdn type="css">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.css
-            </cdn>
-        </release>
-    </cmp>
-    
+	<cmp name="twitter-bootstrap-css">
+		<runat>browser</runat>
+		<home>http://getbootstrap.com/</home>
+		<tagline>The most popular front-end framework for developing
+			responsive, mobile first projects on the web.
+		</tagline>
+		<licence>Apache v2.0</licence>
+		<release version="3.3.4">
+			<cdn type="css">//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.css
+			</cdn>
+		</release>
+	</cmp>
+
 	<cmp name="moment">
 		<runat>browser</runat>
 
@@ -177,11 +177,11 @@
 			<local>lib/angular-hotkeys/1.2.0/hotkeys.min.js</local>
 		</release>
 		<release version="1.4.5">
-		<cdn type="css">//cdnjs.cloudflare.com/ajax/libs/angular-hotkeys/1.4.5/hotkeys.css
-            </cdn>
-            <cdn type="js">//cdnjs.cloudflare.com/ajax/libs/angular-hotkeys/1.4.5/hotkeys.js
-            </cdn>
-        </release>
+			<cdn type="css">//cdnjs.cloudflare.com/ajax/libs/angular-hotkeys/1.4.5/hotkeys.css
+			</cdn>
+			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/angular-hotkeys/1.4.5/hotkeys.js
+			</cdn>
+		</release>
 	</cmp>
 
 	<cmp name="ng-google-chart">
@@ -288,7 +288,8 @@
 		<home>https://github.com/TylerGarlick/angular.flashr</home>
 		<tagline>Flashr is a library that simulates flashing in rails in
 			AngularJS.
-			Essentially, it allows you to post notifications via the simple api.
+			Essentially, it allows you to post notifications via the
+			simple api.
 		</tagline>
 		<depends>angularjs</depends>
 		<release version="2.0.1">
@@ -312,7 +313,8 @@
 		<home>http://fortawesome.github.io/Font-Awesome/</home>
 		<tagline>Font Awesome gives you scalable vector icons that can
 			instantly be customized
-			— size, color, drop shadow, and anything that can be done with the
+			— size, color, drop shadow, and anything that
+			can be done with the
 			power of CSS.
 		</tagline>
 		<release version="4.1.0">
@@ -326,8 +328,10 @@
 		<home>https://github.com/sahat/satellizer</home>
 		<tagline>Satellizer is a simple to use, end-to-end, token-based
 			authentication module
-			for AngularJS with built-in support for Google, Facebook, LinkedIn,
-			Twitter authentication providers, plus Email and Password sign-in
+			for AngularJS with built-in support for Google,
+			Facebook, LinkedIn,
+			Twitter authentication providers, plus Email and
+			Password sign-in
 			method.
 		</tagline>
 		<release version="0.7.0">
@@ -358,28 +362,57 @@
 			</local>
 		</release>
 	</cmp>
-	
+
 	<cmp name="AngularLogExtender">
+		<runat>browser</runat>
+		<home>https://github.com/lwhiteley/AngularLogExtender</home>
+		<depends>angularjs</depends>
+		<tagline>AngularLogExtender is an AngularJS module that extends the
+			Angular $log functionality. </tagline>
+		<release version="0.0.10">
+
+			<local type="js">lib/AngularLogExtender/0.0.10/log-ex-unobtrusive.min.js
+			</local>
+		</release>
+	</cmp>
+
+	<cmp name="smart-table">
+		<runat>browser</runat>
+		<home>https://github.com/lorenzofox3/Smart-Table</home>
+		<depends>angularjs</depends>
+		<tagline>Smart table is an Angularjs module to easily display data in
+			a table with a set of built in features such filtering,sorting, etc
+			in a declarative way.</tagline>
+		<release version="1.4.9">
+
+			<local type="js">lib/smart-table/1.4.9/smart-table.min.js
+			</local>
+		</release>
+	</cmp>
+
+	<cmp name="angular-ui-router">
+		<runat>browser</runat>
+		<home>http://angular-ui.github.io/ui-router/site</home>
+		<depends>angularjs</depends>
+		<tagline>The de-facto solution to flexible routing with nested views
+			in AngularJS</tagline>
+		<release version="0.2.15">
+
+			<cdn type="js">//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js
+			</cdn>
+		</release>
+	</cmp>
+	
+	<cmp name="angular-breadcrumb">
         <runat>browser</runat>
-        <home>https://github.com/lwhiteley/AngularLogExtender</home>
-        <depends>angularjs</depends>
-        <tagline>AngularLogExtender is an AngularJS module that extends the Angular $log functionality. </tagline>
-        <release version="0.0.10">
-            
-            <local type="js">lib/AngularLogExtender/0.0.10/log-ex-unobtrusive.min.js
-            </local>
-        </release>
-    </cmp>
-    
-        <cmp name="smart-table">
-        <runat>browser</runat>
-        <home>https://github.com/lorenzofox3/Smart-Table</home>
-        <depends>angularjs</depends>
-        <tagline>Smart table is an Angularjs module to easily display data in a table with a set of built in features such filtering,sorting, etc in a declarative way.</tagline>
-        <release version="1.4.9">
-            
-            <local type="js">lib/smart-table/1.4.9/smart-table.min.js
-            </local>
+        <home>http://ncuillery.github.io/angular-breadcrumb</home>
+        <depends>angular-ui-router</depends>
+        <tagline>angular-breadcrumb is a module for AngularJS, which generates a breadcrumb for any page of your application. 
+        It is strongly based on the UI-router framework and its hierarchical tree of states.</tagline>
+        <release version="0.4.0">
+
+            <cdn type="js">//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js
+            </cdn>
         </release>
     </cmp>
 </components>
