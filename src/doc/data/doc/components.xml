@@ -411,7 +411,7 @@
         It is strongly based on the UI-router framework and its hierarchical tree of states.</tagline>
         <release version="0.4.0">
 
-            <cdn type="js">//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js
+            <cdn type="js">https://cdn.rawgit.com/ncuillery/angular-breadcrumb/v0.4.0/dist/angular-breadcrumb.js
             </cdn>
         </release>
     </cmp>

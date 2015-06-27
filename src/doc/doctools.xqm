@@ -144,7 +144,7 @@ declare function wadl-under($wadl as element(wadl:application),
  copy $s:=$wadl
    modify(
            delete node $s//wadl:resource[fn:not(
-                                fn:starts-with(@path,$root) or fn:starts-with( @path,"/" || root)
+                                fn:starts-with(@path,$root) or fn:starts-with( @path,"/" || $root)
                                 )] 
         )  
     return $s
