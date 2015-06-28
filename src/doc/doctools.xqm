@@ -14,15 +14,13 @@ declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
 
-import module namespace rest = 'http://exquery.org/ns/restxq';
-
 declare variable $doc:components:=fn:doc("data/doc/components.xml")/components;
 
 declare variable $doc:repopath:=file:parent(db:system()/globaloptions/repopath);
 (:~ 
  : e.g "C:\Program Files (x86)\basex\etc\modules\"
  :)
-declare variable $doc:basex-modules:=$doc:repopath || "etc/modules.zip";
+declare variable $doc:basex-modules:=db:list("doc-doc","basex.xqm");
  
 (:~
  : full file system path to 
@@ -34,7 +32,7 @@ declare function uri($type as xs:string,
   switch ($type)
   case "app" return app-uri($app,$path)
   case "static"  return static-uri($app,$path)
-  case "basex" return doc:basex-modules ($path)
+  case "basex" return  $path
   case "repo" return $doc:repopath || $path 
   default      return fn:error(xs:QName('doc:uri'),"bad type: " || $type)
 };
@@ -44,7 +42,7 @@ declare function uri($type as xs:string,
  :)
  declare function basex-modules() as xs:string*
  {
-  for $name in archive:entries(file:read-binary($doc:basex-modules))!text()
+  for $name in $doc:basex-modules!fn:substring-after(.,"/")
   order by $name
   return $name
  };
@@ -53,9 +51,9 @@ declare function uri($type as xs:string,
  :  xqdoc for a basex system module 
   : @param $source file name for module e.g admin.xqm
  :)
- declare function basex-modules($module as xs:string) as xs:string
+ declare function basex-xqdoc($module as xs:string) as element(xqdoc:xqdoc)
  {
-  archive:extract-text(file:read-binary($doc:basex-modules),$module)
+  db:open("doc-doc","basex.xqm/" || $module)/xqdoc:xqdoc
  };
  
 
@@ -90,8 +88,8 @@ declare function static-uri(
 declare function xqdoc($type as xs:string,
                         $path as xs:string)
 as element(xqdoc:xqdoc){
-        let $doc:=xqdoc_(if($type="basex") then basex-modules($path) 
-                      else $path)
+        let $doc:=if($type="basex") then basex-xqdoc($path) 
+                      else xqdoc_($path)
         return copy $c := $doc
                 modify (
                   for $d in $c//xqdoc:description
@@ -131,7 +129,6 @@ declare function components-svg($pkg as element())
 declare function wadl-html($wadl,$root as xs:string)
 {
     let $params:=map { "root" : $root }
-     let $_:=fn:trace($root,"WADL-html ")
     return xslt:transform($wadl,"xslt/wadl.xsl",$params)
 };
 
@@ -145,7 +142,7 @@ declare function wadl-under($wadl as element(wadl:application),
    modify(
            delete node $s//wadl:resource[fn:not(
                                 fn:starts-with(@path,$root) or fn:starts-with( @path,"/" || $root)
-                                )] 
+                                )]  (: @TODO regx :)
         )  
     return $s
 };

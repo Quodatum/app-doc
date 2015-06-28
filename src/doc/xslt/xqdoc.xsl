@@ -38,7 +38,7 @@
 						</a>
 					</small>
 				</h2>
-				<table>
+				<table class="table table-bordered">
 					<tr>
 						<td>
 							<b>URI:</b>
@@ -129,7 +129,7 @@
 			</a>
 
 		</h3>
-		<table>
+		<table class="table table-bordered">
 			<xsl:apply-templates select="xqdoc:parameters" />
 
 			<tr>

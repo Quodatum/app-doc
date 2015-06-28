@@ -192,21 +192,10 @@ function xqdoc($type as xs:string,
 {
     let $uri:=doc:uri($type,$app,$path)
     let $_:=fn:trace(($type,$app,$path),"uri: ")
-    return if(fn:unparsed-text-available($uri))
-           then
+    return 
                 let $r:=doc:xqdoc($type,$uri)
                 return (web:method($fmt),$r)
-           else
-                let $mods:=("rxq-doc.xqm","doc-rest.xqm")
-                return <div> 
-               <div>'{$uri}' not found</div>
-               <div>
-               {for $mod in $mods
-               return <a href="#data/app/{$app}/xqdoc?path={$mod}">{$mod}</a>
-               }
-               </div>
-               <filepick value="fred" endpoint="data/file/list"/>   
-               </div> 
+           
 };
 
 
