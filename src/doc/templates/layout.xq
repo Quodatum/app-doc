@@ -47,6 +47,7 @@ declare variable $static external :="/static/doc/";
     <script src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"  ></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/stacktrace.js/0.6.0/stacktrace.min.js"></script>   
     <!-- local libs -->
+    <script src="{$static}../lib/interceptor400.js"></script>
     <script src="{$static}../lib/angular-treemendous-0.2.3/angular-treemendous.js"  ></script>
     <script src="{$static}../lib/angular-growl-2/0.7.0/angular-growl.min.js"  ></script>
     <script src="{$static}../lib/angular-ya-treeview/0.2.2/ya-treeview-tpls.js"  ></script>

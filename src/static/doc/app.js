@@ -6,7 +6,7 @@ angular.module(
 		'quodatum.entity','quodatum.doc.apps', 'quodatum.doc.components',
 		'quodatum.doc.files', 'quodatum.doc.xqm', 'quodatum.doc.schema',
 		'quodatum.doc.directives', 'quodatum.doc.tools',
-		'quodatum.directives' ])
+		'quodatum.directives',"quodatum.Error"])
 
 .constant("apiRoot", "../../doc/").config(
 		[ '$routeProvider', '$locationProvider',

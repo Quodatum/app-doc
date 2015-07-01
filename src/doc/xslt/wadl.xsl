@@ -29,12 +29,11 @@
 					RestXQ API:
 					<xsl:value-of select="$root" />
 					<small class="pull-right">
-                        wadl.xml
-                        <a href="../../doc/app/{$root}/server/wadl?fmt=xml"
-                            target="dn">
-                            <i class="glyphicon glyphicon-save"></i>
-                        </a>
-                    </small>
+						wadl.xml
+						<a href="../../doc/app/{$root}/server/wadl?fmt=xml" target="dn">
+							<i class="glyphicon glyphicon-save"></i>
+						</a>
+					</small>
 				</h2>
 
 				<xsl:for-each select="wadl:resource">
@@ -47,10 +46,7 @@
 									<xsl:with-param name="root" select="$root" />
 								</xsl:apply-templates>
 
-								<p class="pull-right">
-									<xsl:apply-templates
-										select="wadl:method/wadl:response/wadl:representation" />
-								</p>
+								
 							</h4>
 
 						</div>
@@ -67,16 +63,16 @@
 
 	<xsl:template match="wadl:resource" mode="link">
 		<xsl:param name="root" />
-		<span class="pull-right">
-		<span class="badge badge-default">J</span>
-        <xsl:call-template name="method-name" />
-        </span> 
+		<span class="pull-right">		
+				<xsl:apply-templates select="wadl:method/wadl:response/wadl:representation" />
+		</span>
+		<xsl:call-template name="method-name" />
 		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
-			<span class="label label-info">
+			<span class="">
 				<xsl:value-of select="substring(@path,1)" />
 			</span>
 		</a>
-			
+
 	</xsl:template>
 
 	<xsl:template match="wadl:method">
@@ -87,8 +83,30 @@
 
 
 	<xsl:template match="wadl:representation">
-		<span class="label label-default">
-			<xsl:value-of select="@mediaType" />
+	    <xsl:variable name="mediaType" select="@mediaType"/>
+		<span class="badge badge-default" title="{$mediaType}">
+		<xsl:choose>
+                <xsl:when test="$mediaType='text/html'">
+                    <xsl:text>H</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mediaType='application/octet-stream'">
+                     <xsl:text>B</xsl:text>
+                    </xsl:when>
+                     <xsl:when test="$mediaType='application/xml'">
+                     <xsl:text>X</xsl:text>
+                    </xsl:when>
+                     <xsl:when test="$mediaType='text/plain'">
+                     <xsl:text>T</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mediaType='application/json'">
+                     <xsl:text>J</xsl:text>
+                    </xsl:when>
+                     <xsl:when test="$mediaType='image/svg+xml'">
+                     <xsl:text>S</xsl:text>
+                    </xsl:when>
+                    
+                    <xsl:otherwise>?</xsl:otherwise>
+			</xsl:choose>
 		</span>
 	</xsl:template>
 
@@ -123,6 +141,7 @@
 
 	</xsl:template>
 
+	<!-- generate span with method name eg GET -->
 	<xsl:template name="method-name">
 		<xsl:variable name="name" select="wadl:method/@name" />
 		<span>
@@ -143,7 +162,7 @@
 				</xsl:otherwise>
 			</xsl:choose>
 			</xsl:attribute>
-			<xsl:value-of select="wadl:method/@name" />
+			<xsl:value-of select="(wadl:method/@name,'(all)')[1]" />
 		</span>
 	</xsl:template>
 </xsl:stylesheet>

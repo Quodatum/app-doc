@@ -16,7 +16,7 @@ import module namespace  qsr = 'quodatum.system.rest' at 'rxq-system.xqm';
 
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
-
+import module namespace rest = "http://exquery.org/ns/restxq";
 
 
 (:~
@@ -212,7 +212,7 @@ function wadl($app as xs:string,
               $path as xs:string,
               $fmt as xs:string) 
 {
-  let $w:=doc:wadl-under(rest:wadl(), $app)
+  let $w:=doc:wadl-under( $app)
   let $r:=if($fmt="html")then doc:wadl-html($w,"/" || $app) else $w
   return (web:method($fmt),$r) 
 }; 
