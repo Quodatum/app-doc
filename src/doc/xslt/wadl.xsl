@@ -64,9 +64,9 @@
 	<xsl:template match="wadl:resource" mode="link">
 		<xsl:param name="root" />
 		<span class="pull-right">		
-				<xsl:apply-templates select="wadl:method/wadl:response/wadl:representation" />
+				<xsl:apply-templates select="wadl:method/wadl:response" mode="mediaType"/>
 		</span>
-		<xsl:call-template name="method-name" />
+		<xsl:apply-templates select="wadl:method" mode="name"/>
 		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
 			<span class="">
 				<xsl:value-of select="substring(@path,1)" />
@@ -82,8 +82,8 @@
 	</xsl:template>
 
 
-	<xsl:template match="wadl:representation">
-	    <xsl:variable name="mediaType" select="@mediaType"/>
+	<xsl:template match="wadl:representation" mode="mediaType">
+	    <xsl:variable name="mediaType" select="wadl:representation/@mediaType"/>
 		<span class="badge badge-default" title="{$mediaType}">
 		<xsl:choose>
                 <xsl:when test="$mediaType='text/html'">
@@ -142,8 +142,8 @@
 	</xsl:template>
 
 	<!-- generate span with method name eg GET -->
-	<xsl:template name="method-name">
-		<xsl:variable name="name" select="wadl:method/@name" />
+	<xsl:template match="wadl:method" mode="name">
+		<xsl:variable name="name" select="@name" />
 		<span>
 			<xsl:attribute name="class">
 		<xsl:text>wadl-method label </xsl:text>

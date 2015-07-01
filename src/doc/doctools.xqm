@@ -140,13 +140,14 @@ declare function wadl-html($wadl,$root as xs:string)
 declare function wadl-under($root as xs:string) as element(wadl:application)
 {
   
-  copy $s:=rest:wadl()
+(:  copy $s:=rest:wadl()
    modify(
            delete node $s//wadl:resource[fn:not(
                                 fn:starts-with(@path,$root) or fn:starts-with( @path,"/" || $root)
                                 )]  (: @TODO regx :)
         )  
-    return $s 
+    return $s :)
+    rest:wadl()
 };
 
 declare function templates($app as xs:string){
