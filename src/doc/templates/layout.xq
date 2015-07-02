@@ -2,6 +2,8 @@ declare  variable $body external :="{body}";
 declare  variable $version external :="{verson}";
 declare variable $base external :="/doc/";
 declare variable $static external :="/static/doc/";
+declare variable $incl-css as element()* external :=();
+declare variable $incl-js as element()* external :=();
 
 <html ng-app="doc" ng-controller="AppController">
 <head>
@@ -15,11 +17,8 @@ declare variable $static external :="/static/doc/";
 <title>doc (v{$version})</title>
 <!-- Le fav and touch icons -->
 <link rel="shortcut icon" href="{$static}icon.png"/>
-<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet" type="text/css" />  
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="{$static}../lib/angular-growl-2/0.7.0/angular-growl.min.css" rel="stylesheet" type="text/css" />    
-
-<link href="{$static}../lib/angular-ya-treeview/0.2.2/ya-treeview.css" rel="stylesheet" type="text/css" />    
+<!-- component css -->
+{$incl-css}
 <link href="{$static}app.css" rel="stylesheet"/>
 
 <script type="text/javascript">
@@ -34,24 +33,8 @@ declare variable $static external :="/static/doc/";
 <body> 
 {$body}
 
-     <!-- angular -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"  ></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-resource.min.js"  ></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-cookies.min.js"  ></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.min.js"></script> 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script> 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.min.js"></script> 
-    <!-- others -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"  ></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/stacktrace.js/0.6.0/stacktrace.min.js"></script>   
-    <!-- local libs -->
-    <script src="{$static}../lib/interceptor400.js"></script>
-    <script src="{$static}../lib/angular-treemendous-0.2.3/angular-treemendous.js"  ></script>
-    <script src="{$static}../lib/angular-growl-2/0.7.0/angular-growl.min.js"  ></script>
-    <script src="{$static}../lib/angular-ya-treeview/0.2.2/ya-treeview-tpls.js"  ></script>
-    <script src="{$static}../lib/quodatum-directives/0.1.0/directives.js"  ></script>   
+ <!-- start component js -->
+    {$incl-js}
     <!-- application -->
     <script src="{$static}app.js"  ></script>
      <script src="{$static}services.js"  ></script>

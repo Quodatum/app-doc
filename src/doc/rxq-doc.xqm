@@ -351,9 +351,12 @@ function validate($xml as xs:string,
  : html rendering
  :) 
 declare function render($template,$map){
+   let $incl:=fn:doc("./templates/includes.xml")/includes
     let $defaults:=map{
-                        "version":"0.6.2",
-                        "static":"/static/doc/"
+                        "version":"?",
+                        "static":"/static/doc/",
+                        "incl-css":$incl/css/*,
+                        "incl-js":$incl/js/*
                     }
     let $map:=map:merge(($map,$defaults))
     return (web:method("html"),txq:render(
