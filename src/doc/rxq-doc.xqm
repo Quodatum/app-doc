@@ -5,7 +5,7 @@
  :)
 module namespace dr = 'quodatum.doc.rest';
 declare default function namespace 'quodatum.doc.rest';
- 
+
 import module namespace cnf = 'quodatum.app.config' at 'config.xqm';
 import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
 import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
@@ -45,6 +45,7 @@ declare %updating
 function doc-init(){
      (: update model.xqm  :)
      if(db:exists("doc")) then (
+         cnf:write-log("load-app-code~~~~~~~~~~~"),
          qsr:dotask2("doc","load-app-code.xq"),
          cnf:write-log("~~~~~~run tasks"),
          db:output(<rest:forward>/doc</rest:forward>)
@@ -212,7 +213,7 @@ function wadl($app as xs:string,
               $path as xs:string,
               $fmt as xs:string) 
 {
-  let $w:=doc:wadl-under( $app)
+  let $w:=doc:wadl-under(rest:wadl(), $app)
   let $r:=if($fmt="html")then doc:wadl-html($w,"/" || $app) else $w
   return (web:method($fmt),$r) 
 }; 

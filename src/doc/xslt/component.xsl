@@ -10,7 +10,7 @@
 				</xsl:call-template>
 
 			</div>
-			<div class="col-md-10" style="height:70vh;overflow:scroll;">
+			<div class="col-md-10">
 				<h2>
 					Components (
 					<xsl:value-of select="count(cmp)" />
@@ -36,13 +36,27 @@
 			select="doc('../data/doc/components.xml')//cmp" />
 		<xsl:variable name="used" select="pkg:dependency" />
 		<xsl:variable name="found" select="$cmps[@name=$used/@name]" />
+		<xsl:variable name="missing" select="$used[not(@name=$cmps/@name)]" />
 		<div class="row">
 			<div class="col-md-2">
 				<xsl:call-template name="list">
 					<xsl:with-param name="cmps" select="$found" />
 				</xsl:call-template>
+				<xsl:if test="$missing">
+					<div>
+						Missing
+						<span class="badge">
+							<xsl:value-of select="count($missing)" />
+						</span>
+					</div>
+					<xsl:for-each select="$missing">
+						<div>
+							<xsl:value-of select="@name" />
+						</div>
+					</xsl:for-each>
+				</xsl:if>
 			</div>
-			<div class="col-md-10" style="height:70vh;overflow:scroll;">
+			<div class="col-md-10" >
 				<h3>
 					Components used
 					<span class="label label-default">
@@ -72,8 +86,8 @@
 					<a ng-click="scrollTo('cmp-{@name}')">
 						<xsl:value-of select="@name" />
 					</a>
-					<xsl:apply-templates select="release/@version"/>
-		
+					<xsl:apply-templates select="release/@version" />
+
 					<span class="pull-right">
 						<a href="{home}" target="benchx-doc" class="badge" title="{@name} {home}">
 							<i class="fa fa-external-link"></i>
@@ -121,13 +135,13 @@
 			</div>
 		</div>
 	</xsl:template>
-	
+
 	<xsl:template match="@version">
 		<span class="badge">
 			<xsl:value-of select="." />
 		</span>
 	</xsl:template>
-	
+
 	<xsl:template match="licence">
 		<span>
 			Licence:
@@ -140,7 +154,7 @@
 
 	<xsl:template match="release">
 		<li>
-			<xsl:apply-templates select="@version"/>
+			<xsl:apply-templates select="@version" />
 			<xsl:apply-templates select="cdn|local" />
 		</li>
 	</xsl:template>
@@ -163,18 +177,17 @@
 
 	<xsl:template name="list">
 		<xsl:param name="cmps" />
-
-		<xsl:for-each select="$cmps">
-			<xsl:sort select="lower-case(@name)" />
-			<span>
+		<div class="list-group">
+			<xsl:for-each select="$cmps">
+				<xsl:sort select="lower-case(@name)" />
 				<xsl:apply-templates select="." mode="link" />
-			</span>
-		</xsl:for-each>
+			</xsl:for-each>
+		</div>
 	</xsl:template>
 
 	<xsl:template match="cmp" mode="link">
-		<a ng-click="scrollTo('cmp-{@name}')" class="label label-info"
-			style="cursor:pointer;" title="{normalize-space(tagline)}">
+		<a ng-click="scrollTo('cmp-{@name}')" title="{normalize-space(tagline)}"
+			class="list-group-item">
 			<xsl:value-of select="@name" />
 		</a>
 	</xsl:template>

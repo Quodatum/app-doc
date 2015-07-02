@@ -10,7 +10,7 @@ xquery version "3.0";
  
 module namespace doc = 'quodatum.doc';
 declare default function namespace 'quodatum.doc';
-import module namespace rest = "http://exquery.org/ns/restxq";
+
 
 declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
@@ -137,17 +137,17 @@ declare function wadl-html($wadl,$root as xs:string)
 (:~
  : wadl entries with paths starting at root
  :)
-declare function wadl-under($root as xs:string) as element(wadl:application)
+declare function wadl-under($wadl as element(wadl:application)
+                            ,$root as xs:string) as element(wadl:application)
 {
   
-(:  copy $s:=rest:wadl()
+  copy $s:=$wadl
    modify(
            delete node $s//wadl:resource[fn:not(
                                 fn:starts-with(@path,$root) or fn:starts-with( @path,"/" || $root)
                                 )]  (: @TODO regx :)
         )  
-    return $s :)
-    rest:wadl()
+    return $s 
 };
 
 declare function templates($app as xs:string){
