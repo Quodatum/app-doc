@@ -1,10 +1,18 @@
 (:~ 
  : file system tools
  :@author Andy Bunce
- :@version 0.1
+ :@version 0.2
  :)
 module namespace df = 'quodatum.doc.file';
-declare default function namespace 'quodatum.doc.file'; 
+declare default function namespace 'quodatum.doc.file';
+
+(:~
+ : list of files matching glob below $src
+ :)
+declare function dir($src as xs:string,$glob as xs:string)
+{   
+file:list($src,fn:true(),"*.xqm,*.xq")=>fn:filter(function ($f){file:is-file($src || $f)})
+};
 
 (:~
  : path to webapps with trailing slash 

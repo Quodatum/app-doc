@@ -37,5 +37,5 @@
 		</field>
 	</fields>
 	<iconclass>glyphicon glyphicon-list-alt</iconclass>
-	   <data  type="element(ent:entity)"></data>
+	   <data  type="element(ent:entity)">db:open("doc-doc")//ent:entity</data>
 </entity>

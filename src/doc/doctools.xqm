@@ -95,7 +95,7 @@ as element(xqdoc:xqdoc){
         return copy $c := $doc
                 modify (
                   for $d in $c//xqdoc:description
-                  return replace node $d with <xqdoc:description>{fn:parse-xml-fragment($d)}</xqdoc:description>
+                  return replace node $d with <xqdoc:description>{$d}</xqdoc:description>
                    )
                  return $c                            
 };
