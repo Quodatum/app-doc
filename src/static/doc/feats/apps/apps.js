@@ -35,6 +35,12 @@ angular.module('quodatum.doc.apps',
             templateUrl : '/static/doc/feats/apps/server.xhtml',
             controller : "AppCtrl2"
           })
+          .state('app.item.wadl', {
+            url : "/rest",
+            templateUrl : function ($stateParams){
+              return '/doc/data/app/' + $stateParams.app + '/server/wadl';
+            }
+          })
             .state('app.item.view', {
             url : "/view",
             templateUrl : '/static/doc/feats/apps/app-view.xhtml',
