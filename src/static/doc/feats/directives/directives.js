@@ -1,8 +1,11 @@
 // database info
-angular.module('quodatum.doc.directives', [ 'restangular', 'angular-growl' ])
+angular.module('quodatum.doc.directives', [ 'ui.router','restangular', 'angular-growl' ])
+.config(   [ '$stateProvider', '$urlRouterProvider',
+        function($stateProvider, $urlRouterProvider) {
+          $stateProvider
 
-.config([ '$routeProvider', function($routeProvider) {
-	$routeProvider.when('/directives', {
+          .state('directives', {
+            url : "/directives",
 		templateUrl : '/static/doc/feats/directives/tests.xhtml',
 		reloadOnSearch : false,
 		controller : "TestCtrl"

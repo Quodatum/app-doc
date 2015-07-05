@@ -15,7 +15,7 @@
 		</div>
 		<div class="collapse navbar-collapse" ng-class="{'in':!navCollapsed}">
 			<ul class="nav navbar-nav">
-				<li><a href="#/data/app"><i class="fa fa-desktop"></i> Apps</a></li>
+				<li><a ui-sref="app.index"><i class="fa fa-desktop"></i> Apps</a></li>
 				<li class="dropdown" dropdown="dropdown"><a href="#" class="dropdown-toggle" 
 				dropdown-toggle="dropdown-toggle"
 					data-toggle="dropdown"> System <b class="caret"></b>
@@ -25,16 +25,16 @@
 						<li role="presentation" class="dropdown-header">Server</li>
 						  <li><a href="/doc/wadl" target="_new"><i class="fa fa-file-code-o"></i>
                                 WADL</a></li>
-						<li><a href="#/data/component/basex"><i class="fa fa-file-code-o"></i>
+						<li><a ui-sref="component.basex"><i class="fa fa-file-code-o"></i>
 								System modules</a></li>
 						<li role="presentation" class="divider"></li>
 						<li role="presentation" class="dropdown-header">Client</li>
-						<li><a href="#/data/component"><i class="fa fa-puzzle-piece"></i>
+						<li><a  ui-sref="component.index"><i class="fa fa-puzzle-piece"></i>
 								Components</a></li>
-						<li><a href="#/data/component/tree"><i class="fa fa-cog"></i>
+						<li><a ui-sref="component.tree"><i class="fa fa-cog"></i>
 								Component tree</a></li>
 						<li role="presentation" class="divider"></li>
-						<li><a href="#/data/entity" tabindex="-1"> <i
+						<li><a ui-sref="entity" tabindex="-1"> <i
 								class="glyphicon glyphicon-list-alt"></i> Entities
 						</a></li>
 					</ul></li>
@@ -43,15 +43,16 @@
 					data-toggle="dropdown" dropdown-toggle="dropdown-toggle"> Tools <b class="caret"></b>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="#/files"><i class="fa fa-folder-open"></i>
+						<li><a ui-sref="files"><i class="fa fa-folder-open"></i>
 								Files</a></li>
-						<li><a href="#/schema"><i class="fa fa-code"></i> Schema</a></li>
-						<li><a href="#/poster"><i class="fa fa-exchange"></i>
+						<li><a ui-sref="schema"><i class="fa fa-code"></i> Schema</a></li>
+						<li><a ui-sref="poster"><i class="fa fa-exchange"></i>
 								Poster</a></li>
 						<li role="presentation" class="divider"></li>
-						<li><a href="#/tasks"><i class="fa fa-tasks"></i>
+						<li><a ui-sref="tasks"><i class="fa fa-tasks"></i>
 								Tasks</a></li>
 					</ul></li>
+					
 			</ul>
 			<div class="col-sm-3 col-md-3 pull-left">
 				<form class="navbar-form" role="search" ng-submit="doSearch()">
@@ -69,15 +70,16 @@
 
 			</div>
 			<ul class="nav navbar-nav navbar-right">
+			    <li><p class="navbar-text" title="state:{{$state.current.name}}: {{$stateParams}}">{{$state.current.name}}</p></li>
 				<li class="dropdown" dropdown="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" dropdown-toggle="dropdown-toggle"> About <b class="caret"></b>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="#/directives"  tabindex="-1"><i class="fa fa-plus-square"></i>
+						<li><a ui-sref="directives"  tabindex="-1"><i class="fa fa-plus-square"></i>
 								Directives</a></li>
 
 						<li class="divider"></li>
-						<li><a href="#/about" tabindex="-1"> <i
+						<li><a ui-sref="about" tabindex="-1"> <i
 								class="glyphicon glyphicon-info-sign"></i> About Doc
 						</a></li>
 					</ul></li>

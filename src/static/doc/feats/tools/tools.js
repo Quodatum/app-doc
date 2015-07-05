@@ -1,27 +1,38 @@
 // database info
 angular.module('quodatum.doc.tools',
-    [ 'restangular', 'angular-growl', 'treemendous' ])
+    [ 'ui.router', 'restangular', 'angular-growl', 'treemendous' ]).config(
+    [ '$stateProvider', '$urlRouterProvider',
+        function($stateProvider, $urlRouterProvider) {
+          $stateProvider
 
-.config([ '$routeProvider', function($routeProvider) {
-  console.log("$routeProvider quodatum.doc.tests");
-  $routeProvider.when('/tasks', {
-    templateUrl : '/static/doc/feats/tools/tasks.xhtml',
-    reloadOnSearch : false,
-    controller : "TaskCtrls"
-  })
+          .state('tasks', {
+            url : "/tasks",
+            abstract : true,
+            template : '<ui-view>tasks</ui-view>'
+          })
 
-  .when('/tasks/:task', {
-    templateUrl : '/static/doc/feats/tools/task.xhtml',
-    reloadOnSearch : false,
-    controller : "TaskCtrl"
+          .state('tasks.index', {
+            url : "",
+            templateUrl : '/static/doc/feats/tools/tasks.xhtml',
+            reloadOnSearch : false,
+            controller : "TaskCtrls"
+          })
 
-  }).when('/poster', {
-    templateUrl : '/static/doc/feats/tools/poster.xhtml',
-    reloadOnSearch : false,
-    controller : "PostCtrl"
-  });
+          .state('tasks.item', {
+            url : "/:task",
+            templateUrl : '/static/doc/feats/tools/task.xhtml',
+            reloadOnSearch : false,
+            controller : "TaskCtrl"
+          })
 
-} ])
+          .state('poster', {
+            url : "/poster",
+            templateUrl : '/static/doc/feats/tools/poster.xhtml',
+            reloadOnSearch : false,
+            controller : "PostCtrl"
+          })
+
+        } ])
 
 // controllers
 .controller("TaskCtrls",
@@ -51,17 +62,17 @@ angular.module('quodatum.doc.tools',
       };
 
     } ])
-    
+
 // details of a task
 .controller(
     "TaskCtrl",
-    [ "$scope", "Restangular", "$routeParams", "growl",
-        function($scope, Restangular, $routeParams, growl) {
+    [ "$scope", "Restangular", "$stateParams", "growl",
+        function($scope, Restangular, $stateParams, growl) {
           console.log("task control");
-          var task = $routeParams.task;
+          var task = $stateParams.task;
           $scope.setTitle("Run Task" + task);
         } ])
-        
+
 // test update read and increment a counter
 .controller("PostCtrl",
     [ "$scope", "Restangular", "growl", function($scope, Restangular, growl) {

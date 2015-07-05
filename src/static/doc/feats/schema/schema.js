@@ -1,12 +1,16 @@
 // database info
-angular.module('quodatum.doc.schema', [ 'restangular' ])
+angular.module('quodatum.doc.schema', [ 'ui.router','restangular' ])
+.config(
+  [ '$stateProvider', '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider) {
+              $stateProvider
 
-.config([ '$routeProvider', function($routeProvider) {
-	console.log("$routeProvider quodatum.doc.schema");
-	$routeProvider.when('/schema', {
-		templateUrl : '/static/doc/feats/schema/schema.xhtml',
-		controller : "SchemaCtrl"
-	});
+              .state('schema', {
+                url : "/schema",
+                templateUrl : '/static/doc/feats/schema/schema.xhtml',
+                controller : "SchemaCtrl"
+              })
+              
 
 } ]).factory('Validate',
 		[ '$resource', "apiRoot", function($resource, apiRoot) {
