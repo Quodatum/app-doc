@@ -1,10 +1,10 @@
 angular.module(
     'doc',
-    [ 'ui.router', 'ngResource', 'ngAnimate', 'ui.bootstrap', 'restangular',
+    [ 'ui.router', 'ngResource', 'ngAnimate','ngSanitize', 'ui.bootstrap', 'restangular',
         'ya.treeview', 'ya.treeview.tpls', 'angular-growl', 'quodatum.entity',
         'quodatum.doc.apps', 'quodatum.doc.components', 'quodatum.doc.files',
         'quodatum.doc.xqm', 'quodatum.doc.schema', 'quodatum.doc.directives',
-        'quodatum.doc.tools', 'quodatum.directives', "quodatum.Error" ])
+        'quodatum.doc.tools', 'quodatum.directives', 'quodatum.config' ])
 
 .constant("apiRoot", "../../doc/")
 
@@ -38,7 +38,7 @@ angular.module(
           // use the HTML5 History API
           // $locationProvider.html5Mode(true);
         } ])
-
+/*
 .config(
     [
         'RestangularProvider',
@@ -104,7 +104,13 @@ angular.module(
     }
   ]
 )
-
+ .filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+            return $sce.trustAsHtml(text);
+        };
+    }])
+    
+*/    
 .controller("AppController",
     [ "$scope", "$location", function($scope, $location) {
       console.log("AppController");

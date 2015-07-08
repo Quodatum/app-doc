@@ -41,6 +41,27 @@ angular.module('quodatum.doc.apps',
               return '/doc/data/app/' + $stateParams.app + '/server/wadl';
             }
           })
+           .state('app.item.components', {
+            url : "/components",
+            templateUrl : function ($stateParams){
+              return '/doc/data/app/' + $stateParams.app + '/client/components';
+            }
+          })
+           .state('app.item.templates', {
+            url : "/templates",
+            templateUrl : function ($stateParams){
+              return '/doc/data/app/' + $stateParams.app + '/client/templates';
+            }
+          })
+          
+          .state('app.item.xqdoc', {
+            url : "/xqdoc",
+            templateUrl : function ($stateParams){
+              return '/doc/data/app/' + $stateParams.app + '/server/xqdoc';
+            }
+          })
+          
+     
             .state('app.item.view', {
             url : "/view",
             templateUrl : '/static/doc/feats/apps/app-view.xhtml',
