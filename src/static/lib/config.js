@@ -1,8 +1,8 @@
-// Standard angular config
+// Standard config for core components
 // adds http error handler
 // http://www.webdeveasy.com/interceptors-in-angularjs-and-useful-examples/
 
-angular.module('quodatum.config', ['ngSanitize','restangular','ui.router','angular-growl'])
+angular.module('quodatum.config', ['ngSanitize','restangular','ui.router','angular-growl', 'ncy-angular-breadcrumb'])
 
 .config(function($httpProvider) {
   $httpProvider.interceptors.push('Interceptor400');
@@ -69,6 +69,20 @@ angular.module('quodatum.config', ['ngSanitize','restangular','ui.router','angul
   });
 } ])
 
+.config(function($breadcrumbProvider) {
+    $breadcrumbProvider.setOptions({
+      prefixStateName: 'about',
+//      template: '<ol class="breadcrumb">'+
+//  '<li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract">'+
+//    '<i class="{{step.ncyBreadcrumbIcon}}"></i><a ng-switch-when="false" href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a>'+
+//    '<span ng-switch-when="true">{{step.ncyBreadcrumbLabel}}</span>'+
+//  '</li>'+
+// '</ol>'
+      template:"bootstrap3",
+      includeAbstract:true
+    });
+  })
+  
 .run([ "$rootScope", "$window", function($rootScope, $window) {
   $rootScope.setTitle = function(t) {
     $window.document.title = t;

@@ -1,7 +1,8 @@
 angular.module(
     'doc',
     [ 'ui.router', 'ngResource', 'ngAnimate','ngSanitize', 'ui.bootstrap', 'restangular',
-        'ya.treeview', 'ya.treeview.tpls', 'angular-growl', 'quodatum.entity',
+        'ya.treeview', 'ya.treeview.tpls', 'angular-growl', 'ncy-angular-breadcrumb',
+		'quodatum.entity',
         'quodatum.doc.apps', 'quodatum.doc.components', 'quodatum.doc.files',
         'quodatum.doc.xqm', 'quodatum.doc.schema', 'quodatum.doc.directives',
         'quodatum.doc.tools', 'quodatum.directives', 'quodatum.config' ])
@@ -26,7 +27,8 @@ angular.module(
 
           .state('about', {
             url : "/about",
-            templateUrl : '/static/doc/templates/about.xhtml'
+            templateUrl : '/static/doc/templates/about.xhtml',
+			 ncyBreadcrumb: { label: 'BOUT',icon:'glyphicon glyphicon-home'}
           })
 
           .state('404', {

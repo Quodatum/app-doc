@@ -1,0 +1,39 @@
+<div>
+    <div class="row form-group" role="navigation" ncy-breadcrumb="">
+    </div>
+<div class="row">
+
+		<div class="panel  panel-info panel-body col-md-4">
+			<div class="panel-heading">
+				<h3 class="panel-title">{{app.name}}</h3>
+			</div>
+			<div class="panel-body table-responsive">
+				<img class="media-object" ng-src="{{app.logo}}" alt="{{app.name}} - no logo"
+					style="width: 64px; height: 64px;"/> Description:{{app.description}} </div>
+		</div>
+
+		<div class=" col-md-4">
+			<div class="panel  panel-info panel-body">
+				<div class="panel-heading">
+					<h3 class="panel-title">Client*</h3>
+				</div>
+				<div class="panel-body table-responsive">
+					<a ui-sref="app.item.component" class="btn btn-default btn-sm">Components</a>
+					<a ui-sref="app.item.templates" class="btn btn-default btn-sm">Templates</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="panel  panel-info panel-body">
+				<div class="panel-heading">
+					<h3 class="panel-title">Server</h3>
+				</div>
+				<div class="panel-body table-responsive">
+					<a ui-sref="app.item.wadl" class="btn btn-default btn-sm">Wadl</a>
+					<a ui-sref="app.item.xqdoc" class="btn btn-default btn-sm">XQdoc</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>

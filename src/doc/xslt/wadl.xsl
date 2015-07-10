@@ -66,13 +66,13 @@
 		<span class="pull-right">		
 				<xsl:apply-templates select="wadl:method/wadl:response" mode="mediaType"/>
 		</span>
-		<xsl:apply-templates select="wadl:method" mode="name"/>
+		
 		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
 			<span class="">
 				<xsl:value-of select="substring(@path,1)" />
 			</span>
 		</a>
-
+        <xsl:apply-templates select="wadl:method" mode="name"/>
 	</xsl:template>
 
 	<xsl:template match="wadl:method">
@@ -83,7 +83,7 @@
 
 
 	<xsl:template match="wadl:representation" mode="mediaType">
-	    <xsl:variable name="mediaType" select="wadl:representation/@mediaType"/>
+	    <xsl:variable name="mediaType" select="@mediaType"/>
 		<span class="badge badge-default" title="{$mediaType}">
 		<xsl:choose>
                 <xsl:when test="$mediaType='text/html'">
@@ -117,7 +117,8 @@
 				<thead>
 					<tr>
 						<th>Parameter</th>
-						<th>Value</th>
+						<th>Style</th>
+						<th>Type</th>
 						<th>Description</th>
 					</tr>
 				</thead>
@@ -128,11 +129,13 @@
 							<xsl:value-of select="@name" />
 						</td>
 						<td>
-							<input type="text" name="{@name}" />
 							<xsl:value-of select="@style" />
 						</td>
 						<td>
-							?
+							<xsl:value-of select="@type" />
+						</td>
+						<td>
+							<xsl:copy-of select="wadl:doc/*" />
 						</td>
 					</tr>
 				</xsl:for-each>
@@ -162,7 +165,7 @@
 				</xsl:otherwise>
 			</xsl:choose>
 			</xsl:attribute>
-			<xsl:value-of select="(wadl:method/@name,'(all)')[1]" />
+			<xsl:value-of select="(@name,'(all)')[1]" />
 		</span>
 	</xsl:template>
 </xsl:stylesheet>

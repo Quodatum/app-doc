@@ -10,26 +10,38 @@ angular.module('quodatum.doc.apps',
           .state('app', {
             url : "/data/app",
             abstract : true,
-            template : '<ui-view>library</ui-view>'
+            template : '<ui-view>App list</ui-view>',
+            ncyBreadcrumb: { skip:true}
           })
 
           .state('app.index', {
             url : "",
             templateUrl : '/static/doc/feats/apps/apps.xhtml',
-            controller : "AppsCtrl"
+            controller : "AppsCtrl",
+		    ncyBreadcrumb: { label: 'Apps'}
           })
 
           .state('app.item', {
             url : "/:app",
-            templateUrl : '/static/doc/feats/apps/app1.xhtml',
-            controller : "AppCtrl"
+			abstract : true,
+			template : '<ui-view>App detail</ui-view>',
+            ncyBreadcrumb: { label: '{{app.name}}'}
           })
-          
+		  
+           .state('app.item.index', {
+            url : "",
+			templateUrl : '/static/doc/feats/apps/app-index.xhtml',
+			controller : "AppCtrl",
+			ncyBreadcrumb: { label: 'is {{app.name}}',parent: 'app.index'}
+          })
+		  
            .state('app.item.client', {
             url : "/client",
             templateUrl : '/static/doc/feats/apps/client.xhtml',
-            controller : "AppCtrl2"
+            controller : "AppCtrl2",
+			ncyBreadcrumb: { label: 'is {{app}',parent: 'app.index' }
           })
+		  
             .state('app.item.server', {
             url : "/server",
             templateUrl : '/static/doc/feats/apps/server.xhtml',
@@ -38,35 +50,33 @@ angular.module('quodatum.doc.apps',
           .state('app.item.wadl', {
             url : "/rest",
             templateUrl : function ($stateParams){
-              return '/doc/data/app/' + $stateParams.app + '/server/wadl';
+              return '/doc/app/' + $stateParams.app + '/server/wadl';
+            },
+			ncyBreadcrumb: { label: 'is {{app}',parent: 'app.index' }
+          })
+           .state('app.item.component', {
+            url : "/component",
+            templateUrl : function ($stateParams){
+              return '/doc/app/' + $stateParams.app + '/client/components';
             }
           })
-           .state('app.item.components', {
-            url : "/components",
+           .state('app.item.template', {
+            url : "/template",
             templateUrl : function ($stateParams){
-              return '/doc/data/app/' + $stateParams.app + '/client/components';
-            }
-          })
-           .state('app.item.templates', {
-            url : "/templates",
-            templateUrl : function ($stateParams){
-              return '/doc/data/app/' + $stateParams.app + '/client/templates';
-            }
+              return '/doc/app/' + $stateParams.app + '/client/templates';
+            },
+			ncyBreadcrumb: { label: 'is {{app}',parent: 'app.index' }
           })
           
           .state('app.item.xqdoc', {
             url : "/xqdoc",
             templateUrl : function ($stateParams){
               return '/doc/data/app/' + $stateParams.app + '/server/xqdoc';
-            }
+            },
+			ncyBreadcrumb: { label: 'is {{app}',parent: 'app.index' }
           })
           
-     
-            .state('app.item.view', {
-            url : "/view",
-            templateUrl : '/static/doc/feats/apps/app-view.xhtml',
-            controller : "AppCtrl2"
-          })
+
         } ])
 
 
@@ -75,10 +85,7 @@ angular.module('quodatum.doc.apps',
     [ "$scope", "Restangular", function($scope, Restangular) {
 
       console.log("AppsCtrl2");
-      var bar = Restangular.one("meta").one("cvabar", "apps-bar");
-      bar.get().then(function(d) {
-        $scope.bar = d;
-      });
+   
       var applist = Restangular.one("data").all('app');
       applist.getList().then(function(d) {
         // console.log("AppsCtrl2", d);
@@ -98,10 +105,6 @@ angular.module('quodatum.doc.apps',
           applist.get().then(function(d) {
             $scope.app = d.item;
             console.log(">>", d);
-          });
-          var bar = Restangular.one("meta").one("cvabar", "app-bar");
-          bar.get().then(function(d) {
-            $scope.bar = d;
           });
         } ])
 
