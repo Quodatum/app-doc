@@ -15,7 +15,7 @@ declare %updating function write-log($text as xs:string){
     admin:write-log("[" || $cnf:name || "] " || $text)
 }; 
 
-(:~ config values :)
+(:~ config values for render :)
 declare  function settings(){
    map{
     "version":$cnf:package/@version/fn:string(),

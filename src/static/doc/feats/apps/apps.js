@@ -52,13 +52,17 @@ angular.module('quodatum.doc.apps',
             templateUrl : function ($stateParams){
               return '/doc/app/' + $stateParams.app + '/server/wadl';
             },
-			ncyBreadcrumb: { label: 'is {{app}',parent: 'app.index' }
+           
+			ncyBreadcrumb: { label: 'is {{app}',parent: 'app.index' },
+			controller:"ScrollCtrl"
           })
            .state('app.item.component', {
             url : "/component",
             templateUrl : function ($stateParams){
               return '/doc/app/' + $stateParams.app + '/client/components';
-            }
+            },
+            ncyBreadcrumb: { label: 'is {{app}',parent: 'app.index' },
+            controller:"ScrollCtrl"
           })
            .state('app.item.template', {
             url : "/template",

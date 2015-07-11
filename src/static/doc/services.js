@@ -14,6 +14,19 @@ angular.module(
     };
 }])
 
+ // controllers
+    .controller(
+        // provides scrolling controller
+        "ScrollCtrl",
+        [ '$stateParams', '$scope', 'ScrollService', 
+            function($stateParams, $scope, ScrollService) {
+
+              console.log("Scroll controller: ");
+              // $scope.setTitle("Coomponents");
+
+              $scope.scrollTo = ScrollService.scrollTo;
+
+            } ])
 // http://odetocode.com/blogs/scott/archive/2014/09/10/a-journey-with-trusted-html-in-angularjs.aspx
 .directive("compileHtml", function($parse, $sce, $compile) {
     return {

@@ -14,7 +14,7 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
               .state('component.index', {
                 url : "",
                 templateUrl : '/static/doc/feats/components/components.xhtml',
-                controller : "CmpCtrl"
+                controller : "ScrollCtrl"
               })
               
               .state('component.tree', {
@@ -42,18 +42,6 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
     } ])
 
     // controllers
-    .controller(
-        "CmpCtrl",
-        [ '$stateParams', '$scope', 'ScrollService',
-            function($stateParams, $scope, ScrollService) {
-
-              console.log("CmpCtrlXX");
-              // $scope.setTitle("Coomponents");
-
-              $scope.scrollTo = ScrollService.scrollTo;
-
-            } ])
-
     .controller("CmptreeCtrl", [ '$scope', function($scope) {
       console.log("svg here");
     } ])
