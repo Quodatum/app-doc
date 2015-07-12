@@ -18,12 +18,12 @@ angular.module(
     .controller(
         // provides scrolling controller
         "ScrollCtrl",
-        [ '$stateParams', '$scope', 'ScrollService', 
+        [ '$stateParams', '$scope', 'ScrollService',
             function($stateParams, $scope, ScrollService) {
 
-              console.log("Scroll controller: ");
+              console.log("Scroll controller: ",$stateParams);
               // $scope.setTitle("Coomponents");
-
+              $scope.inc='/doc/app/' + $stateParams.app + '/view/'+$stateParams.view;
               $scope.scrollTo = ScrollService.scrollTo;
 
             } ])

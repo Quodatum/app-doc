@@ -10,6 +10,17 @@
 
 	<!-- generate module html // -->
 	<xsl:template match="/wadl:application/wadl:resources">
+	<div>
+	   <h2>
+                    RestXQ API:
+                    <xsl:value-of select="$root" />
+                    <small class="pull-right">
+                        wadl.xml
+                        <a href="../../doc/app/{$root}/view/wadl?fmt=xml" target="dn">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </small>
+                </h2>
 		<div class="row">
 			<div class="col-md-4">
 				<ul style="overflow:scroll">
@@ -25,16 +36,7 @@
 			</div>
 			<div class="col-md-8" style="height:70vh;overflow:scroll;">
 
-				<h2>
-					RestXQ API:
-					<xsl:value-of select="$root" />
-					<small class="pull-right">
-						wadl.xml
-						<a href="../../doc/app/{$root}/server/wadl?fmt=xml" target="dn">
-							<i class="glyphicon glyphicon-save"></i>
-						</a>
-					</small>
-				</h2>
+			
 
 				<xsl:for-each select="wadl:resource">
 					<xsl:sort select="@path" />
@@ -58,6 +60,7 @@
 					</div>
 				</xsl:for-each>
 			</div>
+		</div>
 		</div>
 	</xsl:template>
 
@@ -135,7 +138,7 @@
 							<xsl:value-of select="@type" />
 						</td>
 						<td>
-							<xsl:copy-of select="wadl:doc/*" />
+							<xsl:value-of select="wadl:doc" />
 						</td>
 					</tr>
 				</xsl:for-each>

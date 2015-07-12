@@ -2,6 +2,12 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!-- convert components.xml to bootstrap html match on /components for catalog -->
 	<xsl:template match="/components">
+	<div>
+	<h2>  Components (
+                    <xsl:value-of select="count(cmp)" />
+                    )
+      </h2>
+                
 		<div class="row">
 			<div class="col-md-2">
 
@@ -11,11 +17,7 @@
 
 			</div>
 			<div class="col-md-10">
-				<h2>
-					Components (
-					<xsl:value-of select="count(cmp)" />
-					)
-				</h2>
+				
 				<div>
 					<xsl:apply-templates select="cmp">
 						<xsl:sort select="lower-case(@name)" />
@@ -29,7 +31,10 @@
 				</xsl:for-each>
 			</div>
 		</div>
+		</div>
 	</xsl:template>
+	
+	
 	<!-- convert package.xml to bootstrap html -->
 	<xsl:template match="/pkg:package">
 		<xsl:variable name="cmps"
@@ -37,6 +42,20 @@
 		<xsl:variable name="used" select="pkg:dependency" />
 		<xsl:variable name="found" select="$cmps[@name=$used/@name]" />
 		<xsl:variable name="missing" select="$used[not(@name=$cmps/@name)]" />
+		<div>
+		<h2>
+                    Components used
+                    <span class="label label-default">
+                        <xsl:value-of select="count($used)" />
+                    </span>
+                    <small class="pull-right">
+                        package.xml
+                        <a href="../../doc/app/{@abbrev}/client/components?fmt=xml"
+                            target="dn">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </small>
+                </h2>
 		<div class="row">
 			<div class="col-md-2">
 				<xsl:call-template name="list">
@@ -57,24 +76,13 @@
 				</xsl:if>
 			</div>
 			<div class="col-md-10" >
-				<h3>
-					Components used
-					<span class="label label-default">
-						<xsl:value-of select="count($used)" />
-					</span>
-					<small class="pull-right">
-						package.xml
-						<a href="../../doc/app/{@abbrev}/client/components?fmt=xml"
-							target="dn">
-							<i class="glyphicon glyphicon-save"></i>
-						</a>
-					</small>
-				</h3>
+				
 				<xsl:apply-templates select="$found">
 					<xsl:sort select="lower-case(@name)" />
 				</xsl:apply-templates>
 			</div>
 		</div>
+	   </div>
 	</xsl:template>
 
 

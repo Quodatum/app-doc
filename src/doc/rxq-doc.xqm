@@ -182,7 +182,7 @@ function search()
   : @param type:  eg 'app' 'static' 'basex' 'repo'
  :)
 declare 
-%rest:GET %rest:path("doc/app/{$app}/server/xqdoc")
+%rest:GET %rest:path("doc/app/{$app}/view/xqdoc")
 %restxq:query-param("path", "{$path}","")
 %restxq:query-param("fmt", "{$fmt}","html")
 %restxq:query-param("type", "{$type}","app")   
@@ -205,7 +205,7 @@ function xqdoc($type as xs:string,
  : show xqdoc for rest api
  :)
 declare 
-%rest:GET %rest:path("doc/app/{$app}/server/wadl")
+%rest:GET %rest:path("doc/app/{$app}/view/wadl")
 %output:method("html")
 %restxq:query-param("path", "{$path}","")
 %restxq:query-param("fmt", "{$fmt}","html")  
@@ -223,7 +223,7 @@ function wadl($app as xs:string,
  : @parameter $fmt xml or html
  :)
 declare 
-%rest:GET %rest:path("doc/app/{$app}/client/components")
+%rest:GET %rest:path("doc/app/{$app}/view/component")
 %restxq:query-param("fmt", "{$fmt}","html")
 %output:method("html")  
 function client-components($app as xs:string,
@@ -243,7 +243,7 @@ function client-components($app as xs:string,
  : show list templates
  :)
 declare 
-%rest:GET %rest:path("doc/app/{$app}/client/templates")
+%rest:GET %rest:path("doc/app/{$app}/view/template")
 %output:method("json")  
 function templates($app as xs:string) 
 {

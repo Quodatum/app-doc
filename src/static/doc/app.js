@@ -28,7 +28,7 @@ angular.module(
           .state('about', {
             url : "/about",
             templateUrl : '/static/doc/templates/about.xhtml',
-			 ncyBreadcrumb: { label: 'BOUT',icon:'glyphicon glyphicon-home'}
+			 ncyBreadcrumb: { label: 'HOME',icon:'glyphicon glyphicon-home'}
           })
 
           .state('404', {

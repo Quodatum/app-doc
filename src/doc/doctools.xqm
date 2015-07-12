@@ -150,10 +150,12 @@ declare function wadl-under($wadl as element(wadl:application)
     return $s 
 };
 
-declare function templates($app as xs:string){
+declare function templates($app as xs:string)
+{
     let $path:= static-uri($app,"templates/")
-    
-    let $list:=file:list($path,fn:true())
-    let $_:=fn:trace($list,"path::::")
-return $list
+    return if(file:is-dir($path)) then
+                let $list:=file:list($path,fn:true())
+                let $_:=fn:trace($list,"path::::")
+                return $list
+            else ()
 };
