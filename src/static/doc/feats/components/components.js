@@ -17,6 +17,11 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
                 controller : "ScrollCtrl"
               })
               
+               .state('component.item', {
+                url : "/:name",
+                templateUrl : '/static/doc/feats/components/comp1.xhtml',
+                controller : "CompCtrl"
+              })
               .state('component.tree', {
                 url : "/tree",
                 templateUrl : '/static/doc/feats/components/cmptree.xhtml',
@@ -46,6 +51,11 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
       console.log("svg here");
     } ])
 
+     // controllers
+    .controller("CompCtrl", [ '$scope', function($scope) {
+      console.log("CompCtrl");
+    } ])
+    
     // show BaseX system modules
     .controller(
         "BasexCtrl",

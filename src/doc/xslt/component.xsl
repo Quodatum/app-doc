@@ -1,11 +1,17 @@
 <xsl:stylesheet version="2.0" xmlns:pkg="http://expath.org/ns/pkg"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- convert components.xml to bootstrap html match on /components for catalog -->
+	<!-- 
+	convert components.xml to bootstrap html match on /components for catalog 
+	assumes bootstrap,
+	        angular,
+	        $scope.scrollTo,
+	        
+	-->
 	<xsl:template match="/components">
 	<div>
-	<h2>  Components (
-                    <xsl:value-of select="count(cmp)" />
-                    )
+	<h2>  Components <span class="label label-default">
+                        <xsl:value-of select="count(cmp)" />
+                    </span>
       </h2>
                 
 		<div class="row">
@@ -94,6 +100,9 @@
 					<a ng-click="scrollTo('cmp-{@name}')">
 						<xsl:value-of select="@name" />
 					</a>
+					<a ui-sref="component.item({{name:'{@name}'}})">
+                        Detail
+                    </a>
 					<xsl:apply-templates select="release/@version" />
 
 					<span class="pull-right">

@@ -1,7 +1,16 @@
 <div>
 	<div>poster</div>
+	<div class="row">
 	<button ng-click="get()" class="btn btn-default">Get count</button>
+	<span class="badge badge-default">{{getMs}}</span>
+	</div>
+	<div class="row">
 	<button ng-click="incr()" class="btn btn-default">Update count</button>
+	<span class="badge badge-default">{{postMs}}</span>
+	 <label>Rep:
+    <input type="checkbox" ng-model="checkboxModel.value1">
+  </label><br/>
+	</div>
 	<div class="row">
 		Before
 		<tree-mendous nodes="model" select-mode="single">

@@ -80,18 +80,19 @@ angular.module('quodatum.doc.tools',
       $scope.get = function() {
         var _start = performance.now();
         Restangular.one("ping").get().then(function(r) {
-          var _time = Math.floor(performance.now() - _start);
+          $scope.getMs= Math.floor(performance.now() - _start);
+          
           growl.success(r, {
-            title : 'GET  ' + _time + ' ms.'
+            title : 'GET  ' + $scope.getMs + ' ms.'
           });
         });
       };
       $scope.incr = function() {
         var _start = performance.now();
         Restangular.all("ping").post().then(function(r) {
-          var _time = Math.floor(performance.now() - _start);
+          $scope.postMs = Math.floor(performance.now() - _start);
           growl.success(r, {
-            title : 'POST  ' + _time + ' ms.'
+            title : 'POST  ' +  $scope.postMs + ' ms.'
           });
         });
       };
