@@ -80,7 +80,7 @@ declare function app-json($app as xs:string) as element(item){
     let $logo:=doc:uri("static",$app,"logo.svg")
     let $logo:= if(file:exists($logo))
                 then <logo>{"/static/" || $app || "/logo.svg"}</logo> 
-                else ()
+                else <logo>{"/static/" || "doc" || "/nologo.svg"}</logo> 
      return <item type="object">
                     <name>{$app}</name>
                     <description>todo this</description>
@@ -199,7 +199,21 @@ function xqdoc($type as xs:string,
            
 };
 
-
+(:~
+ : show xqdoc for rest api 
+ : @TODO permission
+ :)
+declare 
+%rest:GET %rest:path("doc/wadl")
+%output:method("html")
+%restxq:query-param("fmt", "{$fmt}","html")  
+function wadl-full(
+              $fmt as xs:string) 
+{
+  let $w:=rest:wadl()
+  let $r:=if($fmt="html")then doc:wadl-html($w,"/" ) else $w
+  return (web:method($fmt),$r) 
+}; 
  
 (:~
  : show xqdoc for rest api
@@ -295,17 +309,6 @@ function basex-list()
 <json type="array">{
    doc:basex-modules()!<_>{.}</_>
    }</json>
-};
-
-(:~
- : wadl for system need permisioning
- :)
-declare 
-%rest:GET %rest:path("doc/wadl")
-%output:method("xml")
-function wadl()
-{
-rest:wadl()
 };
 
 

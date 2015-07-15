@@ -38,6 +38,13 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
                 templateUrl : '/static/doc/feats/components/basex.xhtml',
                 controller : "BasexCtrl"
               })
+			  .state('wadl', {
+                url : "/data/wadl",
+           templateUrl : '/static/doc/feats/components/wadl-view.xhtml', 
+            ncyBreadcrumb: { label: 'wadl' },
+            controller:"ScrollCtrl"
+               
+              })
             } ])
 
     .factory('API', [ '$resource', "apiRoot", function($resource, apiRoot) {

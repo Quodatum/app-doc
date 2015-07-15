@@ -7,23 +7,34 @@
 
 	<!-- root is initial path to ignore -->
 	<xsl:param name="root" as="xs:string" />
-
+   
 	<!-- generate module html // -->
 	<xsl:template match="/wadl:application/wadl:resources">
 	<div>
 	   <h2>
                     RestXQ API:
                     <xsl:value-of select="$root" />
+                    <span class="badge badge-default"><xsl:value-of select="count(//wadl:resource)"/></span>
                     <small class="pull-right">
                         wadl.xml
+                        <xsl:choose>
+                        <xsl:when test="$root='/'">
+                        <a href="../../doc/wadl?fmt=xml" target="dn">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                        </xsl:when>
+                        <xsl:otherwise>
                         <a href="../../doc/app/{$root}/view/wadl?fmt=xml" target="dn">
                             <i class="glyphicon glyphicon-save"></i>
                         </a>
+                        </xsl:otherwise>
+                        </xsl:choose>
+                        
                     </small>
                 </h2>
 		<div class="row">
 			<div class="col-md-4">
-				<ul style="overflow:scroll">
+				<ul  class="list-unstyled">
 					<xsl:for-each select="wadl:resource">
 						<xsl:sort select="@path" />
 						<li style="white-space:nowrap;">
@@ -35,9 +46,6 @@
 				</ul>
 			</div>
 			<div class="col-md-8" style="height:70vh;overflow:scroll;">
-
-			
-
 				<xsl:for-each select="wadl:resource">
 					<xsl:sort select="@path" />
 					<div class="panel panel-default">

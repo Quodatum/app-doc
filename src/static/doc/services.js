@@ -23,7 +23,11 @@ angular.module(
 
               console.log("Scroll controller: ",$stateParams);
               // $scope.setTitle("Coomponents");
+			  if($stateParams.app){
               $scope.inc='/doc/app/' + $stateParams.app + '/view/'+$stateParams.view;
+			  }else{
+			   $scope.inc='/doc/wadl';
+			  };
               $scope.scrollTo = ScrollService.scrollTo;
 
             } ])

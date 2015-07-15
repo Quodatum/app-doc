@@ -1,15 +1,19 @@
 <div>
-    <div class="row form-group" role="navigation" ncy-breadcrumb="">
+    <div class="row" role="navigation" >
+	 <div ncy-breadcrumb="" class="col-md-4"></div> 
+	 <sortui ng-model="params" options="options">sorted</sortui>
     </div>
 <div class="row">
 
 		<div class="panel  panel-info panel-body col-md-4">
 			<div class="panel-heading">
-				<h3 class="panel-title">{{app.name}}</h3>
+				<h1 >
+				<img class="media-object" ng-src="{{app.logo}}" alt="{{app.name}} - no logo"
+                    style="width: 64px; height: 64px;"/>
+				{{app.name}}</h1>
 			</div>
 			<div class="panel-body table-responsive">
-				<img class="media-object" ng-src="{{app.logo}}" alt="{{app.name}} - no logo"
-					style="width: 64px; height: 64px;"/> Description:{{app.description}} </div>
+				 Description:{{app.description}} </div>
 		</div>
 
 		<div class=" col-md-4">
