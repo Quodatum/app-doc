@@ -8,18 +8,21 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
               .state('component', {
                 url : "/data/component",
                 abstract : true,
+                ncyBreadcrumb: { skip:true},
                 template : '<ui-view>library</ui-view>'
               })
               
               .state('component.index', {
                 url : "",
                 templateUrl : '/static/doc/feats/components/components.xhtml',
+                ncyBreadcrumb: { label: 'components' },
                 controller : "ScrollCtrl"
               })
               
                .state('component.item', {
                 url : "/:name",
                 templateUrl : '/static/doc/feats/components/comp1.xhtml',
+                ncyBreadcrumb: { label: '{{$stateParams.name}}',parent: 'component.index' },
                 controller : "CompCtrl"
               })
               .state('component.tree', {

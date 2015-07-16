@@ -243,14 +243,11 @@ declare
 function client-components($app as xs:string,
                         $fmt as xs:string) 
 {
-  let $s:="expath-pkg.xml"
-  let $pkg:=doc:app-uri($app,$s)
-  return if (fn:not(fn:doc-available($pkg)))
-         then fn:error(xs:QName('dr:package'),$pkg || " not found")
-         else let $doc:=fn:doc($pkg) 
-              return if($fmt="xml") 
-                      then (web:download-response("xml", $s),$doc)
-                      else doc:components-html($doc/*)    
+  let $pkg:=doc:app-uri($app,"expath-pkg.xml")
+  return if (fn:doc-available($pkg))
+         then let $doc:=fn:doc($pkg) 
+              return doc:component-render($doc,$fmt)
+         else fn:error(xs:QName('dr:package'),$pkg || " not found")   
 }; 
 
 (:~
@@ -283,17 +280,7 @@ declare
 %restxq:query-param("fmt", "{$fmt}","xml")
 function browser-list($fmt as xs:string){
     let $d:=$doc:components
-    let $generate:=map{
-        "xml":map{"get":hof:id#1},
-        "html":map{"get":doc:components-html#1},
-         "svg":map{"get":doc:components-svg#1,"method":"xml"}
-    }
-    let $tfmt:=$generate($fmt)
-    let $method:=($tfmt?method,$fmt)[1]
-    return (
-        web:method($fmt),
-        $tfmt?get($d)
-    )
+    return doc:component-render($d,$fmt)
     
 };
 

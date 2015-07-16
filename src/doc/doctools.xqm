@@ -10,7 +10,7 @@ xquery version "3.0";
  
 module namespace doc = 'quodatum.doc';
 declare default function namespace 'quodatum.doc';
-
+import module namespace web = 'quodatum.web.utils3' at 'lib/webutils.xqm';
 
 declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
@@ -108,6 +108,16 @@ declare function xqdoc_($path as xs:string){
     }
 };
 
+declare function component-render($doc,
+                        $fmt as xs:string) 
+{
+  let $render:=map{"xml": function($doc){web:download-response("xml", "expath-pkg.xml"),$doc},
+                  "svg":function($doc){web:svg-response(),components-svg($doc)},       
+                 "html":function($doc){doc:components-html($doc/*)}
+            }
+   return $render?($fmt,"html")[1]($doc) 
+}; 
+
 (:~
  : html report for components referenced in package
  :)
@@ -121,7 +131,7 @@ declare function components-html($pkg as element())
  :)
 declare function components-svg($pkg as element())
 {
-    xslt:transform($pkg,"xslt/component.xsl")  
+    <svg><text>TEST SVG</text></svg>
 };
 
 (:~

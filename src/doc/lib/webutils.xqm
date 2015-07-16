@@ -4,7 +4,7 @@
 : @since oct 2012
 :)
 
-module namespace web = 'quodatum.web.utils3';
+module namespace qweb = 'quodatum.web.utils3';
 declare default function namespace 'quodatum.web.utils3'; 
 
 declare namespace rest = 'http://exquery.org/ns/restxq';
@@ -138,3 +138,8 @@ declare function strip-ns($n as node()) as node() {
     $n
   )
 };
+
+declare function svg-response(){
+    web:response-header(map { 'media-type': "image/svg+xml",
+                              'method':"xml"})
+}; 
