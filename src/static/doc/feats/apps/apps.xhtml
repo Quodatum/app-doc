@@ -1,6 +1,8 @@
 <div>
-    <div class="row form-group" role="navigation" ncy-breadcrumb="">
-	</div>
+     <div class="row" role="navigation" >
+     <div ncy-breadcrumb="" class="col-md-6"></div> 
+     <div class="col-md-6"><sortui ng-model="params" options="options" class="pull-right">sorted</sortui></div>
+    </div>
 	<div class="row">
 		<div ng-repeat="app in apps" class="media col-sm-6 col-md-4 ">
 		  <div class="qd-model well">

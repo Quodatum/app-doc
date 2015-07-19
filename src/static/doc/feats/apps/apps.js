@@ -38,41 +38,42 @@ angular.module('quodatum.doc.apps',
           
            .state('app.item.client', {
             url : "/client",
-            templateUrl : '/static/doc/feats/apps/client.xhtml',
-            controller : "AppCtrl2",
-			ncyBreadcrumb: { label: 'is {{app}}',parent: 'app.index' }
+            abstract : true,
+            template : '<ui-view>client</ui-view>',
+            ncyBreadcrumb: { label: 'client',parent: 'app.item.index' }
           })
 		  
             .state('app.item.server', {
             url : "/server",
-            templateUrl : '/static/doc/feats/apps/server.xhtml',
-            controller : "AppCtrl2"
+            abstract : true,
+            template : '<ui-view>server</ui-view>',
+            ncyBreadcrumb: { label: 'server',parent: 'app.item.index' }
           })
         
-           .state('app.item.component', {
+           .state('app.item.client.component', {
              url : "/:view",
              templateUrl : '/static/doc/feats/apps/app-view.xhtml', 
-             ncyBreadcrumb: { label: 'view: {{$stateParams.view}}',parent: 'app.item.index' },
+             ncyBreadcrumb: { label: 'view: {{$stateParams.view}}' },
              controller:"ScrollCtrl"
           })
-           .state('app.item.template', {
+           .state('app.item.client.template', {
              url : "/:view",
              templateUrl : '/static/doc/feats/apps/app-view.xhtml', 
-             ncyBreadcrumb: { label: 'view: {{$stateParams.view}}',parent: 'app.item.index' },
+             ncyBreadcrumb: { label: 'view: {{$stateParams.view}}' },
              controller:"ScrollCtrl"
           })
           
-          .state('app.item.xqdoc', {
+          .state('app.item.server.xqdoc', {
             url : "/:view",
             templateUrl : '/static/doc/feats/apps/app-view.xhtml', 
-            ncyBreadcrumb: { label: 'view: {{$stateParams.view}}',parent: 'app.item.index' },
+            ncyBreadcrumb: { label: 'view: {{$stateParams.view}}' },
             controller:"ScrollCtrl"
           })
           
-          .state('app.item.wadl', {
+          .state('app.item.server.wadl', {
             url : "/:view",
             templateUrl : '/static/doc/feats/apps/app-view.xhtml', 
-            ncyBreadcrumb: { label: 'view: {{$stateParams.view}}',parent: 'app.item.index' },
+            ncyBreadcrumb: { label: 'view: {{$stateParams.view}}' },
             controller:"ScrollCtrl"
           })
         } ])

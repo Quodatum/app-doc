@@ -2,7 +2,9 @@
 <!-- basex wadl o/p to html with bootstrap -->
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:wadl="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/02/xpath-functions"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+	xmlns:fn="http://www.w3.org/2005/02/xpath-functions"
+	xmlns:qdfun="http://quodatum.com/functions"
 	exclude-result-prefixes="xs wadl fn" version="2.0">
 
 	<!-- root is initial path to ignore -->
@@ -12,7 +14,7 @@
 	<xsl:template match="/wadl:application/wadl:resources">
 	<div>
 	   <h2>
-                    RestXQ API:
+                    RestXQ APi:
                     <xsl:value-of select="$root" />
                     <span class="badge badge-default"><xsl:value-of select="count(//wadl:resource)"/></span>
                     <small class="pull-right">
@@ -179,4 +181,11 @@
 			<xsl:value-of select="(@name,'(all)')[1]" />
 		</span>
 	</xsl:template>
+	
+	<!-- Compare two strings ignoring case, returning same
+       values as compare(). -->
+  <xsl:function name="qdfun:fixuri">
+    <xsl:param name="uri"/>
+    <xsl:value-of select="if(starts-with($uri,'/'))then $uri else concat('/',$uri)"/>
+  </xsl:function>
 </xsl:stylesheet>

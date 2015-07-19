@@ -16,7 +16,7 @@ declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
 
-declare variable $doc:components:=fn:doc("data/doc/components.xml")/components;
+declare variable $doc:components as element():=fn:doc("data/doc/components.xml")/components;
 
 declare variable $doc:repopath:=file:parent(db:system()/globaloptions/repopath);
 (:~ 
@@ -108,18 +108,19 @@ declare function xqdoc_($path as xs:string){
     }
 };
 
-declare function component-render($doc,
+declare function component-render($doc as element(),
                         $fmt as xs:string) 
 {
   let $render:=map{"xml": function($doc){web:download-response("xml", "expath-pkg.xml"),$doc},
                   "svg":function($doc){web:svg-response(),components-svg($doc)},       
-                 "html":function($doc){doc:components-html($doc/*)}
+                 "html":function($doc){doc:components-html($doc)}
             }
    return $render?($fmt,"html")[1]($doc) 
 }; 
 
 (:~
  : html report for components referenced in package
+ :@param $pkg package or component
  :)
 declare function components-html($pkg as element())
 {
@@ -131,7 +132,10 @@ declare function components-html($pkg as element())
  :)
 declare function components-svg($pkg as element())
 {
-    <svg><text>TEST SVG</text></svg>
+   <svg height="100" width="100">
+  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+  Sorry, your browser does not support inline SVG.  
+</svg> 
 };
 
 (:~

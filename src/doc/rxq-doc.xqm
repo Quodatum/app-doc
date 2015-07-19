@@ -210,7 +210,7 @@ declare
 function wadl-full(
               $fmt as xs:string) 
 {
-  let $w:=rest:wadl()
+  let $w:=doc:wadl-under(rest:wadl(), "")
   let $r:=if($fmt="html")then doc:wadl-html($w,"/" ) else $w
   return (web:method($fmt),$r) 
 }; 
@@ -245,7 +245,7 @@ function client-components($app as xs:string,
 {
   let $pkg:=doc:app-uri($app,"expath-pkg.xml")
   return if (fn:doc-available($pkg))
-         then let $doc:=fn:doc($pkg) 
+         then let $doc:=fn:doc($pkg)/* 
               return doc:component-render($doc,$fmt)
          else fn:error(xs:QName('dr:package'),$pkg || " not found")   
 }; 
@@ -277,7 +277,8 @@ function templates($app as xs:string)
  :)
 declare 
 %rest:GET %rest:path("doc/components/browser")
-%restxq:query-param("fmt", "{$fmt}","xml")
+%output:method("html") 
+%restxq:query-param("fmt", "{$fmt}","html")
 function browser-list($fmt as xs:string){
     let $d:=$doc:components
     return doc:component-render($d,$fmt)

@@ -25,10 +25,10 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
                 ncyBreadcrumb: { label: '{{$stateParams.name}}',parent: 'component.index' },
                 controller : "CompCtrl"
               })
-              .state('component.tree', {
-                url : "/tree",
+              .state('component.index.view', {
+                url : "?view",
                 templateUrl : '/static/doc/feats/components/cmptree.xhtml',
-                controller : "CmptreeCtrl"
+                controller : "ScrollCtrl"
               })
               
               .state('component.basex', {
