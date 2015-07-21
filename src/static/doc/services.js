@@ -16,7 +16,8 @@ angular.module(
 
  // controllers
     .controller(
-        // provides scrolling controller
+        // provides scrolling controller use params app,view
+        // 
         "ScrollCtrl",
         [ '$stateParams', '$scope', 'ScrollService',
             function($stateParams, $scope, ScrollService) {

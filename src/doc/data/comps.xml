@@ -1,0 +1,1715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns:pkg="http://expath.org/ns/pkg">
+	<h2>
+		Components
+		<span class="label label-default">34</span>
+	</h2>
+	<div class="row">
+		<div class="col-md-2">
+			<div class="list-group">
+				<a class="list-group-item" ng-click="scrollTo('cmp-ace')"
+					title="Ace is an embeddable code editor written in JavaScript.">ace</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-angular-breadcrumb')"
+					title="angular-breadcrumb is a module for AngularJS, which generates a breadcrumb for any page of your application. It is strongly based on the UI-router framework and its hierarchical tree of states.">angular-breadcrumb</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-angular-charts')"
+					title="angular directives for commonly used d3 charts">angular-charts</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-angular-flashr')"
+					title="Flashr is a library that simulates flashing in rails in AngularJS. Essentially, it allows you to post notifications via the simple api.">angular-flashr</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-angular-growl-2')"
+					title="growl-like notifications for angularJS projects">angular-growl-2</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-angular-hotkeys')"
+					title="Configuration-centric keyboard shortcuts for your angular apps">angular-hotkeys</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-angular-moment')"
+					title="Angular.JS directives for Moment.JS (timeago alternative)">angular-moment</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-angular-tree-control')"
+					title="The AngularJS tree component.">angular-tree-control</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-angular-ui-bootstrap')"
+					title="Bootstrap components written in pure AngularJS by the AngularUI Team">angular-ui-bootstrap</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-angular-ui-router')"
+					title="The de-facto solution to flexible routing with nested views in AngularJS">angular-ui-router</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-angular-ya-treeview')"
+					title="Yet Another Treeview for AngularJS">angular-ya-treeview</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+					title="HTML enhanced for web apps!">angularjs</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-AngularLogExtender')"
+					title="AngularLogExtender is an AngularJS module that extends the Angular $log functionality.">AngularLogExtender</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-async')"
+					title="Async utilities for node and the browser">async</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-d3')" title="Data driven documents">d3</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-FileSaver')"
+					title="An HTML5 saveAs() FileSaver implementation">FileSaver</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-font-awesome')"
+					title="Font Awesome gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS.">font-awesome</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-jquery')"
+					title="jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.">jquery</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-lodash')"
+					title="A utility library delivering consistency, customization, performance, & extras.">lodash</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-moment')"
+					title="A javascript date library for parsing, validating, manipulating, and formatting dates.">moment</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-ng-google-chart')"
+					title="Google Chart Tools AngularJS Directive Module">ng-google-chart</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-ngStorage')"
+					title="localStorage and sessionStorage done right for AngularJS.">ngStorage</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-oci.treeview')"
+					title="AngularJS tree directive with subdirective for extending node behavior">oci.treeview</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-quodatum-directives')"
+					title="Set of UI controls. Includes File selector with tree view">quodatum-directives</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-restangular')"
+					title="AngularJS service to handle Rest API Restful Resources properly and easily">restangular</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-satellizer')"
+					title="Satellizer is a simple to use, end-to-end, token-based authentication module for AngularJS with built-in support for Google, Facebook, LinkedIn, Twitter authentication providers, plus Email and Password sign-in method.">satellizer</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-saxon-he')"
+					title="basic XSLT 2.0 processor">saxon-he</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-scrollTo')"
+					title="A simple scrollTo directive using $anchorScroll. The directive also catches the locationChangeStart event thus preventing a page reload.">scrollTo</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-smart-table')"
+					title="Smart table is an Angularjs module to easily display data in a table with a set of built in features such filtering,sorting, etc in a declarative way.">smart-table</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-stacktrace')"
+					title="Framework-agnostic, micro-library for getting stack traces in all web browsers.">stacktrace</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-toastr')"
+					title="">toastr</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-twitter-bootstrap')"
+					title="The most popular front-end framework for developing responsive, mobile first projects on the web.">twitter-bootstrap</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-twitter-bootstrap-css')"
+					title="The most popular front-end framework for developing responsive, mobile first projects on the web.">twitter-bootstrap-css</a>
+				<a class="list-group-item" ng-click="scrollTo('cmp-ui-ace')"
+					title="">ui-ace</a>
+			</div>
+		</div>
+		<div class="col-md-10">
+			<div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-ace" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-ace')">ace</a>
+							<a ui-sref="component.item({name:'ace'})"> Detail </a>
+							<span class="badge">01.08.2014</span>
+							<span class="pull-right">
+								<a class="badge" href="http://ace.c9.io/" target="benchx-doc"
+									title="ace http://ace.c9.io/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Ace is an embeddable code editor written in JavaScript.</p>
+						<span>
+							Licence:
+							<span class="badge">BSD</span>
+						</span>
+						<span>
+							Runat:
+							<span class="badge"></span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">01.08.2014</span>
+								<div> Local lib/ace/01.08.2014</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-angular-breadcrumb" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-angular-breadcrumb')">angular-breadcrumb</a>
+							<a ui-sref="component.item({name:'angular-breadcrumb'})"> Detail </a>
+							<span class="badge">0.4.0</span>
+							<span class="pull-right">
+								<a class="badge" href="http://ncuillery.github.io/angular-breadcrumb"
+									target="benchx-doc"
+									title="angular-breadcrumb http://ncuillery.github.io/angular-breadcrumb">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>angular-breadcrumb is a module for AngularJS, which generates a
+							breadcrumb for any page of your application. It is strongly based
+							on the UI-router framework and its hierarchical tree of states.</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-ui-router')"
+									title="The de-facto solution to flexible routing with nested views in AngularJS">angular-ui-router</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.4.0</span>
+								<div> CDN
+									jshttps://cdn.rawgit.com/ncuillery/angular-breadcrumb/v0.4.0/dist/angular-breadcrumb.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-angular-charts" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-angular-charts')">angular-charts</a>
+							<a ui-sref="component.item({name:'angular-charts'})"> Detail </a>
+							<span class="badge">0.2.1</span>
+							<span class="pull-right">
+								<a class="badge" href="http://chinmaymk.github.io/angular-charts/"
+									target="benchx-doc"
+									title="angular-charts http://chinmaymk.github.io/angular-charts/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>angular directives for commonly used d3 charts</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-d3')"
+									title="Data driven documents">d3</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.2.1</span>
+								<div> Local lib/angular-charts/0.2.1/angular-charts.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-angular-flashr" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-angular-flashr')">angular-flashr</a>
+							<a ui-sref="component.item({name:'angular-flashr'})"> Detail </a>
+							<span class="badge">2.0.1</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/TylerGarlick/angular.flashr"
+									target="benchx-doc"
+									title="angular-flashr https://github.com/TylerGarlick/angular.flashr">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Flashr is a library that simulates flashing in rails in
+							AngularJS. Essentially, it allows you to post notifications via
+							the simple api.</p>
+						<span>
+							Runat:
+							<span class="badge"></span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">2.0.1</span>
+								<div> CDN
+									js//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-angular-growl-2" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-angular-growl-2')">angular-growl-2</a>
+							<a ui-sref="component.item({name:'angular-growl-2'})"> Detail </a>
+							<span class="badge">0.7.0</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/JanStevens/angular-growl-2"
+									target="benchx-doc"
+									title="angular-growl-2 https://github.com/JanStevens/angular-growl-2">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>growl-like notifications for angularJS projects</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.7.0</span>
+								<div> Local csslib/angular-growl-2/0.7.0/angular-growl.min.css</div>
+								<div> Local jslib/angular-growl-2/0.7.0/angular-growl.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-angular-hotkeys" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-angular-hotkeys')">angular-hotkeys</a>
+							<a ui-sref="component.item({name:'angular-hotkeys'})"> Detail </a>
+							<span class="badge">1.2.0</span>
+							<span class="badge">1.4.5</span>
+							<span class="pull-right">
+								<a class="badge" href="http://chieffancypants.github.io/angular-hotkeys/"
+									target="benchx-doc"
+									title="angular-hotkeys http://chieffancypants.github.io/angular-hotkeys/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Configuration-centric keyboard shortcuts for your angular apps</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">2</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">1.2.0</span>
+								<div> Local lib/angular-hotkeys/1.2.0/hotkeys.min.js</div>
+							</li>
+							<li>
+								<span class="badge">1.4.5</span>
+								<div> CDN
+									css//cdnjs.cloudflare.com/ajax/libs/angular-hotkeys/1.4.5/hotkeys.css</div>
+								<div> CDN
+									js//cdnjs.cloudflare.com/ajax/libs/angular-hotkeys/1.4.5/hotkeys.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-angular-moment" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-angular-moment')">angular-moment</a>
+							<a ui-sref="component.item({name:'angular-moment'})"> Detail </a>
+							<span class="badge">0.7.0</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/urish/angular-moment"
+									target="benchx-doc" title="angular-moment https://github.com/urish/angular-moment">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Angular.JS directives for Moment.JS (timeago alternative)</p>
+						<span>
+							Licence:
+							<span class="badge">MIT</span>
+						</span>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-moment')"
+									title="A javascript date library for parsing, validating, manipulating, and formatting dates.">moment</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.7.0</span>
+								<div> CDN
+									//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.7.0/angular-moment.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-angular-tree-control" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-angular-tree-control')">angular-tree-control</a>
+							<a ui-sref="component.item({name:'angular-tree-control'})"> Detail </a>
+							<span class="badge">0.2.0</span>
+							<span class="pull-right">
+								<a class="badge" href="http://wix.github.io/angular-tree-control/"
+									target="benchx-doc"
+									title="angular-tree-control http://wix.github.io/angular-tree-control/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>The AngularJS tree component.</p>
+						<span>
+							Licence:
+							<span class="badge">MIT</span>
+						</span>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.2.0</span>
+								<div> Local
+									csslib/angular-tree-control/0.2.0/css/tree-control.css</div>
+								<div> Local jslib/angular-tree-control/0.2.0/tree-control.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-angular-ui-bootstrap" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-angular-ui-bootstrap')">angular-ui-bootstrap</a>
+							<a ui-sref="component.item({name:'angular-ui-bootstrap'})"> Detail </a>
+							<span class="badge">0.12.0</span>
+							<span class="pull-right">
+								<a class="badge" href="http://angular-ui.github.io/bootstrap/"
+									target="benchx-doc"
+									title="angular-ui-bootstrap http://angular-ui.github.io/bootstrap/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Bootstrap components written in pure AngularJS by the AngularUI
+							Team</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.12.0</span>
+								<div> CDN
+									js//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-angular-ui-router" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-angular-ui-router')">angular-ui-router</a>
+							<a ui-sref="component.item({name:'angular-ui-router'})"> Detail </a>
+							<span class="badge">0.2.15</span>
+							<span class="pull-right">
+								<a class="badge" href="http://angular-ui.github.io/ui-router/site"
+									target="benchx-doc"
+									title="angular-ui-router http://angular-ui.github.io/ui-router/site">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>The de-facto solution to flexible routing with nested views in
+							AngularJS</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-breadcrumb')"
+									title="angular-breadcrumb is a module for AngularJS, which generates a breadcrumb for any page of your application. It is strongly based on the UI-router framework and its hierarchical tree of states.">angular-breadcrumb</a>
+							</div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.2.15</span>
+								<div> CDN
+									js//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-angular-ya-treeview" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-angular-ya-treeview')">angular-ya-treeview</a>
+							<a ui-sref="component.item({name:'angular-ya-treeview'})"> Detail </a>
+							<span class="badge">0.2.1</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/ca77y/angular-ya-treeview"
+									target="benchx-doc"
+									title="angular-ya-treeview https://github.com/ca77y/angular-ya-treeview">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Yet Another Treeview for AngularJS</p>
+						<span>
+							Runat:
+							<span class="badge"></span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-quodatum-directives')"
+									title="Set of UI controls. Includes File selector with tree view">quodatum-directives</a>
+							</div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.2.1</span>
+								<div> CDN
+									//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-angularjs" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-angularjs')">angularjs</a>
+							<a ui-sref="component.item({name:'angularjs'})"> Detail </a>
+							<span class="badge">1.2.14</span>
+							<span class="pull-right">
+								<a class="badge" href="https://angularjs.org/" target="benchx-doc"
+									title="angularjs https://angularjs.org/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>HTML enhanced for web apps!</p>
+						<span>
+							Licence:
+							<span class="badge">MIT</span>
+						</span>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-charts')"
+									title="angular directives for commonly used d3 charts">angular-charts</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-flashr')"
+									title="Flashr is a library that simulates flashing in rails in AngularJS. Essentially, it allows you to post notifications via the simple api.">angular-flashr</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-growl-2')"
+									title="growl-like notifications for angularJS projects">angular-growl-2</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-hotkeys')"
+									title="Configuration-centric keyboard shortcuts for your angular apps">angular-hotkeys</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-moment')"
+									title="Angular.JS directives for Moment.JS (timeago alternative)">angular-moment</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-ui-bootstrap')"
+									title="Bootstrap components written in pure AngularJS by the AngularUI Team">angular-ui-bootstrap</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-ui-router')"
+									title="The de-facto solution to flexible routing with nested views in AngularJS">angular-ui-router</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-ya-treeview')"
+									title="Yet Another Treeview for AngularJS">angular-ya-treeview</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-AngularLogExtender')"
+									title="AngularLogExtender is an AngularJS module that extends the Angular $log functionality.">AngularLogExtender</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-ng-google-chart')"
+									title="Google Chart Tools AngularJS Directive Module">ng-google-chart</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-ngStorage')"
+									title="localStorage and sessionStorage done right for AngularJS.">ngStorage</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-oci.treeview')"
+									title="AngularJS tree directive with subdirective for extending node behavior">oci.treeview</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-restangular')"
+									title="AngularJS service to handle Rest API Restful Resources properly and easily">restangular</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-scrollTo')"
+									title="A simple scrollTo directive using $anchorScroll. The directive also catches the locationChangeStart event thus preventing a page reload.">scrollTo</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-smart-table')"
+									title="Smart table is an Angularjs module to easily display data in a table with a set of built in features such filtering,sorting, etc in a declarative way.">smart-table</a>
+							</div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">1.2.14</span>
+								<div> CDN
+									//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-AngularLogExtender" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-AngularLogExtender')">AngularLogExtender</a>
+							<a ui-sref="component.item({name:'AngularLogExtender'})"> Detail </a>
+							<span class="badge">0.0.10</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/lwhiteley/AngularLogExtender"
+									target="benchx-doc"
+									title="AngularLogExtender https://github.com/lwhiteley/AngularLogExtender">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>AngularLogExtender is an AngularJS module that extends the
+							Angular $log functionality.</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.0.10</span>
+								<div> Local
+									jslib/AngularLogExtender/0.0.10/log-ex-unobtrusive.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-async" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-async')">async</a>
+							<a ui-sref="component.item({name:'async'})"> Detail </a>
+							<span class="badge">0.8.0</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/caolan/async"
+									target="benchx-doc" title="async https://github.com/caolan/async">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Async utilities for node and the browser</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.8.0</span>
+								<div> CDN //cdnjs.cloudflare.com/ajax/libs/async/0.8.0/async.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-d3" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-d3')">d3</a>
+							<a ui-sref="component.item({name:'d3'})"> Detail </a>
+							<span class="badge">3.4.6</span>
+							<span class="pull-right">
+								<a class="badge" href="http://d3js.org/" target="benchx-doc"
+									title="d3 http://d3js.org/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Data driven documents</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-charts')"
+									title="angular directives for commonly used d3 charts">angular-charts</a>
+							</div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">3.4.6</span>
+								<div> CDN //cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-FileSaver" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-FileSaver')">FileSaver</a>
+							<a ui-sref="component.item({name:'FileSaver'})"> Detail </a>
+							<span class="badge"></span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/eligrey/FileSaver.js/"
+									target="benchx-doc" title="FileSaver https://github.com/eligrey/FileSaver.js/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>An HTML5 saveAs() FileSaver implementation</p>
+						<span>
+							Runat:
+							<span class="badge"></span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge"></span>
+								<div> Local jslib/FileSaver.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-font-awesome" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-font-awesome')">font-awesome</a>
+							<a ui-sref="component.item({name:'font-awesome'})"> Detail </a>
+							<span class="badge">4.1.0</span>
+							<span class="pull-right">
+								<a class="badge" href="http://fortawesome.github.io/Font-Awesome/"
+									target="benchx-doc"
+									title="font-awesome http://fortawesome.github.io/Font-Awesome/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Font Awesome gives you scalable vector icons that can instantly
+							be customized — size, color, drop shadow, and anything that can
+							be done with the power of CSS.</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">4.1.0</span>
+								<div> CDN
+									//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-jquery" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-jquery')">jquery</a>
+							<a ui-sref="component.item({name:'jquery'})"> Detail </a>
+							<span class="badge">2.0.2</span>
+							<span class="pull-right">
+								<a class="badge" href="http://jquery.com/" target="benchx-doc"
+									title="jquery http://jquery.com/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>jQuery is a fast, small, and feature-rich JavaScript library.
+							It makes things like HTML document traversal and manipulation,
+							event handling, animation, and Ajax much simpler with an
+							easy-to-use API that works across a multitude of browsers.</p>
+						<span>
+							Licence:
+							<span class="badge">MIT</span>
+						</span>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">2.0.2</span>
+								<div> CDN
+									//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-lodash" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-lodash')">lodash</a>
+							<a ui-sref="component.item({name:'lodash'})"> Detail </a>
+							<span class="badge">2.4.1</span>
+							<span class="pull-right">
+								<a class="badge" href="http://lodash.com/" target="benchx-doc"
+									title="lodash http://lodash.com/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>A utility library delivering consistency, customization,
+							performance, & extras.</p>
+						<span>
+							Licence:
+							<span class="badge">MIT</span>
+						</span>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-restangular')"
+									title="AngularJS service to handle Rest API Restful Resources properly and easily">restangular</a>
+							</div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">2.4.1</span>
+								<div> CDN
+									js//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-moment" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-moment')">moment</a>
+							<a ui-sref="component.item({name:'moment'})"> Detail </a>
+							<span class="badge">2.6.0</span>
+							<span class="pull-right">
+								<a class="badge" href="http://momentjs.com/" target="benchx-doc"
+									title="moment http://momentjs.com/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>A javascript date library for parsing, validating,
+							manipulating, and formatting dates.</p>
+						<span>
+							Licence:
+							<span class="badge">MIT</span>
+						</span>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-moment')"
+									title="Angular.JS directives for Moment.JS (timeago alternative)">angular-moment</a>
+							</div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">2.6.0</span>
+								<div> CDN
+									//cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment-with-langs.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-ng-google-chart" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-ng-google-chart')">ng-google-chart</a>
+							<a ui-sref="component.item({name:'ng-google-chart'})"> Detail </a>
+							<span class="badge">0.0.9</span>
+							<span class="pull-right">
+								<a class="badge" href="http://bouil.github.io/angular-google-chart/#/fat"
+									target="benchx-doc"
+									title="ng-google-chart http://bouil.github.io/angular-google-chart/#/fat">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Google Chart Tools AngularJS Directive Module</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.0.9</span>
+								<div> Local lib/googlechart/0.0.9/ng-google-chart.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-ngStorage" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-ngStorage')">ngStorage</a>
+							<a ui-sref="component.item({name:'ngStorage'})"> Detail </a>
+							<span class="badge">0.3.0</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/gsklee/ngStorage"
+									target="benchx-doc" title="ngStorage https://github.com/gsklee/ngStorage">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>localStorage and sessionStorage done right for AngularJS.</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.3.0</span>
+								<div> Local lib/ngStorage/0.3.0/ngStorage.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-oci.treeview" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-oci.treeview')">oci.treeview</a>
+							<a ui-sref="component.item({name:'oci.treeview'})"> Detail </a>
+							<span class="badge">2040305</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/objectcomputing/oci.treeview"
+									target="benchx-doc"
+									title="oci.treeview https://github.com/objectcomputing/oci.treeview">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>AngularJS tree directive with subdirective for extending node
+							behavior</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">2040305</span>
+								<div> Local jslib/oci.treeview/2040305/treeview.min.js</div>
+								<div> Local csslib/oci.treeview/2040305/treeview.css</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-quodatum-directives" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-quodatum-directives')">quodatum-directives</a>
+							<a ui-sref="component.item({name:'quodatum-directives'})"> Detail </a>
+							<span class="badge">0.1.0</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/Quodatum/app-doc"
+									target="benchx-doc"
+									title="quodatum-directives https://github.com/Quodatum/app-doc">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Set of UI controls. Includes File selector with tree view</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angular-ya-treeview')"
+									title="Yet Another Treeview for AngularJS">angular-ya-treeview</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.1.0</span>
+								<div> Local lib/filepick/0.1.0/directives.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-restangular" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-restangular')">restangular</a>
+							<a ui-sref="component.item({name:'restangular'})"> Detail </a>
+							<span class="badge">1.3.1</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/mgonto/restangular"
+									target="benchx-doc" title="restangular https://github.com/mgonto/restangular">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>AngularJS service to handle Rest API Restful Resources properly
+							and easily</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+								<a class="list-group-item" ng-click="scrollTo('cmp-lodash')"
+									title="A utility library delivering consistency, customization, performance, & extras.">lodash</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">1.3.1</span>
+								<div> CDN
+									js//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-satellizer" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-satellizer')">satellizer</a>
+							<a ui-sref="component.item({name:'satellizer'})"> Detail </a>
+							<span class="badge">0.7.0</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/sahat/satellizer"
+									target="benchx-doc" title="satellizer https://github.com/sahat/satellizer">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Satellizer is a simple to use, end-to-end, token-based
+							authentication module for AngularJS with built-in support for
+							Google, Facebook, LinkedIn, Twitter authentication providers,
+							plus Email and Password sign-in method.</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.7.0</span>
+								<div> CDN //cdn.jsdelivr.net/satellizer/0.7.0/satellizer.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-saxon-he" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-saxon-he')">saxon-he</a>
+							<a ui-sref="component.item({name:'saxon-he'})"> Detail </a>
+							<span class="pull-right">
+								<a class="badge" href="http://www.saxonica.com/welcome/welcome.xml"
+									target="benchx-doc" title="saxon-he http://www.saxonica.com/welcome/welcome.xml">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>basic XSLT 2.0 processor</p>
+						<span>
+							Runat:
+							<span class="badge">basex</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">0</span>
+						</h5>
+						<ul></ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-scrollTo" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-scrollTo')">scrollTo</a>
+							<a ui-sref="component.item({name:'scrollTo'})"> Detail </a>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/khalilravanna/scrollTo"
+									target="benchx-doc" title="scrollTo https://github.com/khalilravanna/scrollTo">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>A simple scrollTo directive using $anchorScroll. The directive
+							also catches the locationChangeStart event thus preventing a page
+							reload.</p>
+						<span>
+							Licence:
+							<span class="badge">MIT</span>
+						</span>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">0</span>
+						</h5>
+						<ul></ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-smart-table" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-smart-table')">smart-table</a>
+							<a ui-sref="component.item({name:'smart-table'})"> Detail </a>
+							<span class="badge">1.4.9</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/lorenzofox3/Smart-Table"
+									target="benchx-doc" title="smart-table https://github.com/lorenzofox3/Smart-Table">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Smart table is an Angularjs module to easily display data in a
+							table with a set of built in features such filtering,sorting, etc
+							in a declarative way.</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group">
+								<a class="list-group-item" ng-click="scrollTo('cmp-angularjs')"
+									title="HTML enhanced for web apps!">angularjs</a>
+							</div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">1.4.9</span>
+								<div> Local jslib/smart-table/1.4.9/smart-table.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-stacktrace" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-stacktrace')">stacktrace</a>
+							<a ui-sref="component.item({name:'stacktrace'})"> Detail </a>
+							<span class="badge">0.6.0</span>
+							<span class="pull-right">
+								<a class="badge" href="http://www.stacktracejs.com/" target="benchx-doc"
+									title="stacktrace http://www.stacktracejs.com/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Framework-agnostic, micro-library for getting stack traces in
+							all web browsers.</p>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">0.6.0</span>
+								<div> CDN lib/stacktrace/0.6.0</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-toastr" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-toastr')">toastr</a>
+							<a ui-sref="component.item({name:'toastr'})"> Detail </a>
+							<span class="badge">2.0.1</span>
+							<span class="pull-right">
+								<a class="badge" href="http://codeseven.github.io/toastr/"
+									target="benchx-doc" title="toastr http://codeseven.github.io/toastr/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p></p>
+						<span>
+							Runat:
+							<span class="badge"></span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">2.0.1</span>
+								<div> CDN
+									//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-twitter-bootstrap" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-twitter-bootstrap')">twitter-bootstrap</a>
+							<a ui-sref="component.item({name:'twitter-bootstrap'})"> Detail </a>
+							<span class="badge">3.3.1</span>
+							<span class="pull-right">
+								<a class="badge" href="http://getbootstrap.com/" target="benchx-doc"
+									title="twitter-bootstrap http://getbootstrap.com/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>The most popular front-end framework for developing responsive,
+							mobile first projects on the web.</p>
+						<span>
+							Licence:
+							<span class="badge">Apache v2.0</span>
+						</span>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">3.3.1</span>
+								<div> CDN
+									css//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.css</div>
+								<div> CDN
+									js//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-twitter-bootstrap-css" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-twitter-bootstrap-css')">twitter-bootstrap-css</a>
+							<a ui-sref="component.item({name:'twitter-bootstrap-css'})"> Detail </a>
+							<span class="badge">3.3.4</span>
+							<span class="pull-right">
+								<a class="badge" href="http://getbootstrap.com/" target="benchx-doc"
+									title="twitter-bootstrap-css http://getbootstrap.com/">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p>The most popular front-end framework for developing responsive,
+							mobile first projects on the web.</p>
+						<span>
+							Licence:
+							<span class="badge">Apache v2.0</span>
+						</span>
+						<span>
+							Runat:
+							<span class="badge">browser</span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">3.3.4</span>
+								<div> CDN
+									css//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.css</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a id="cmp-ui-ace" class="anchor"></a>
+							<a ng-click="scrollTo('cmp-ui-ace')">ui-ace</a>
+							<a ui-sref="component.item({name:'ui-ace'})"> Detail </a>
+							<span class="badge">01.08.2014</span>
+							<span class="pull-right">
+								<a class="badge" href="https://github.com/angular-ui/ui-ace"
+									target="benchx-doc" title="ui-ace https://github.com/angular-ui/ui-ace">
+									<i class="fa fa-external-link"></i>
+									Home
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<p></p>
+						<span>
+							Runat:
+							<span class="badge"></span>
+						</span>
+						<div>
+							Used by:
+							<div class="list-group"></div>
+						</div>
+						<div>
+							Depends on:
+							<div class="list-group"></div>
+						</div>
+						<h5>
+							Versions
+							<span class="badge ">1</span>
+						</h5>
+						<ul>
+							<li>
+								<span class="badge">01.08.2014</span>
+								<div> CDN lib/ace/01.08.2014</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<h2>Errors</h2>
+			<span class="label label-danger">java</span>
+		</div>
+	</div>
+</div>

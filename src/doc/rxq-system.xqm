@@ -28,8 +28,8 @@ declare variable $dr:tasks as element(xqdoc:xqdoc)*:=db:open("doc-doc")//xqdoc:x
  :)
 declare  
 %output:method("json")  
-%rest:GET %rest:path("{$app}/task")
-function listtasks($app){
+%rest:GET %rest:path("/doc/task")
+function listtasks(){
    <json type="array"/>
 };
 (:~
@@ -37,10 +37,11 @@ function listtasks($app){
  :)
 declare  
 %output:method("text") 
-%rest:POST %rest:path("{$app}/task/{$task}")
-function dotask2($app,$task as xs:string){
+%rest:POST %rest:path("/doc/task/{$task}")
+ %rest:query-param("app", "{$app}","doc")
+function dotask2($app as xs:string,$task as xs:string){
    let $xq:=get-task($task)  
-   let $r:= eval:update($xq,get-base($app),5)
+   let $r:= eval:update($xq,get-base("doc"),5)
    
    return "ok"
 };
@@ -62,8 +63,8 @@ declare function get-task($name) as xs:string{
  :)
 declare %updating
 %output:method("text")  
-%rest:POST %rest:path("{$app}/ping")
-function dopost($app){
+%rest:POST %rest:path("/doc/ping")
+function dopost(){
     (replace value of node $dr:state/hits with 1+$dr:state/hits,
             db:output(1+$dr:state/hits))
 };
@@ -72,8 +73,8 @@ function dopost($app){
  :)
 declare 
 %output:method("text")  
-%rest:GET %rest:path("{$app}/ping")
-function dostate($app){
+%rest:GET %rest:path("/doc/ping")
+function dostate(){
   $dr:state/hits
 };
 

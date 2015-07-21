@@ -137,4 +137,8 @@ tree-mendous .active {
   background-color: #aaddff;
   font-weight: bold;  
 }
-
+/* http://stackoverflow.com/a/26495054/3210344 */
+.label-as-badge { 
+border-radius: 1em;
+ padding: 3px 7px; 
+ }

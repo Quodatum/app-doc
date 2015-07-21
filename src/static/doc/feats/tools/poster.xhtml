@@ -1,27 +1,54 @@
 <div>
-	<div>poster</div>
+	<div class="row form-group" role="navigation" ncy-breadcrumb="">
+    </div>
 	<div class="row">
-	<button ng-click="get()" class="btn btn-default">Get count</button>
-	<span class="badge badge-default">{{getMs}}</span>
-	</div>
-	<div class="row">
-	<button ng-click="incr()" class="btn btn-default">Update count</button>
-	<span class="badge badge-default">{{postMs}}</span>
-	 <label>Rep:
-    <input type="checkbox" ng-model="checkboxModel.value1">
-  </label><br/>
+		<table class="table .col-md-6">
+			<thead>
+				<tr>
+					<th>Option</th>
+					<th>Time</th>
+					<th>Repeat</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr>
+					<td>
+						<button ng-click="incr()" class="btn btn-default">Update count</button>
+					</td>
+					<td>
+						<span class="badge badge-default">{{postMs}}</span>
+					</td>
+					<td>
+						<input type="checkbox" ng-model="checkboxModel.value1"/>
+					</td>
+				</tr>
+                <tr>
+                    <td>
+                        <button ng-click="get()" class="btn btn-default">Get count</button>
+                    </td>
+                    <td>
+                        <span class="badge badge-default">{{getMs}}</span>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="checkboxModel.value1"/>
+                    </td>
+                </tr>
+			</tbody>
+		</table>
 	</div>
 	<div class="row">
 		Before
 		<tree-mendous nodes="model" select-mode="single">
-		<ul class="list-unstyled">
-			<li ng-repeat="item in nodes"  tree-expand="expandFn(item)" tree-select>
-			<span class="label">{{$expanded}}</span>
-			<span ng-class="{selectedNode:$selected}">{{item.label}}</span> 
-			<tree-branch
-					nodes="item.children" ng-show="$expanded">AA</tree-branch>
-			</li>
-		</ul>
+			<ul class="list-unstyled">
+				<li ng-repeat="item in nodes" tree-expand="expandFn(item)"
+					tree-select="tree-select">
+					<span class="label">{{$expanded}}</span>
+					<span ng-class="{selectedNode:$selected}">{{item.label}}</span>
+					<tree-branch nodes="item.children" ng-show="$expanded">AA
+					</tree-branch>
+				</li>
+			</ul>
 		</tree-mendous>
 		After
 	</div>

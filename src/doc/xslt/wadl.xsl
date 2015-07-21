@@ -14,9 +14,10 @@
 	<xsl:template match="/wadl:application/wadl:resources">
 	<div>
 	   <h2>
-                    RestXQ APi:
+                   
                     <xsl:value-of select="$root" />
-                    <span class="badge badge-default"><xsl:value-of select="count(//wadl:resource)"/></span>
+					 RestXQ API:
+                    <span class="label label-default label-as-badge"><xsl:value-of select="count(//wadl:resource)"/></span>
                     <small class="pull-right">
                         wadl.xml
                         <xsl:choose>
@@ -38,7 +39,7 @@
 			<div class="col-md-4">
 				<ul  class="list-unstyled">
 					<xsl:for-each select="wadl:resource">
-						<xsl:sort select="@path" />
+						<xsl:sort select="qdfun:fixuri(@path)" />
 						<li style="white-space:nowrap;">
 							<xsl:apply-templates select="." mode="link">
 								<xsl:with-param name="root" select="$root" />
@@ -49,7 +50,7 @@
 			</div>
 			<div class="col-md-8" style="height:70vh;overflow:scroll;">
 				<xsl:for-each select="wadl:resource">
-					<xsl:sort select="@path" />
+					<xsl:sort select="qdfun:fixuri(@path)" />
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
@@ -82,7 +83,7 @@
 		
 		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
 			<span class="">
-				<xsl:value-of select="substring(@path,1)" />
+				<xsl:value-of select="qdfun:fixuri(@path)" />
 			</span>
 		</a>
         <xsl:apply-templates select="wadl:method" mode="name"/>
@@ -182,10 +183,9 @@
 		</span>
 	</xsl:template>
 	
-	<!-- Compare two strings ignoring case, returning same
-       values as compare(). -->
+	<!-- Add leading / to path if not present -->
   <xsl:function name="qdfun:fixuri">
-    <xsl:param name="uri"/>
+    <xsl:param name="uri" as="xs:string"/>
     <xsl:value-of select="if(starts-with($uri,'/'))then $uri else concat('/',$uri)"/>
   </xsl:function>
 </xsl:stylesheet>
