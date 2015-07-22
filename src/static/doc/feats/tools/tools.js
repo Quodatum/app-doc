@@ -8,20 +8,23 @@ angular.module('quodatum.doc.tools',
           .state('tasks', {
             url : "/tasks",
             abstract : true,
-            template : '<ui-view>tasks</ui-view>'
+            template : '<ui-view>tasks</ui-view>',
+            ncyBreadcrumb: { skip:true},
           })
 
           .state('tasks.index', {
             url : "",
             templateUrl : '/static/doc/feats/tools/tasks.xhtml',
             reloadOnSearch : false,
-            controller : "TaskCtrls"
+            controller : "TaskCtrls",
+            ncyBreadcrumb: { label: 'tasks' },
           })
 
           .state('tasks.item', {
             url : "/:task",
             templateUrl : '/static/doc/feats/tools/task.xhtml',
             reloadOnSearch : false,
+            ncyBreadcrumb: { label: '{{$stateParams.task}}',parent: 'tasks.index' },
             controller : "TaskCtrl"
           })
 
@@ -43,10 +46,7 @@ angular.module('quodatum.doc.tools',
         start : 0
       };
       growl.info("This page uses angular growl for notifications");
-      var bar = Restangular.one("meta").one("cvabar", "tasks-bar");
-      bar.get().then(function(d) {
-        $scope.bar = d;
-      });
+      
       Restangular.one("data").all("task").getList().then(function(d) {
         $scope.tasks = d;
       });

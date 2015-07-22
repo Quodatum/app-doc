@@ -1,5 +1,8 @@
 # State management
 
+Uses `ui-router` and `angular-breadcrumb`
+
+## define states
 add .states to module. Below is typical structure
 
 ````
@@ -21,8 +24,10 @@ add .states to module. Below is typical structure
                 url : "/:name",
                 templateUrl : '/static/doc/feats/components/comp1.xhtml',
                 ncyBreadcrumb: { label: '{{$stateParams.name}}',parent: 'component.index' },
-                 },
                 controller : "CompCtrl"
     })
 ````
-  
+ ## breadcrumbs
+ ````
+    <cva-bar ng-model="bar">bar</cva-bar>
+ ````

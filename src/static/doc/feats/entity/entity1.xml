@@ -1,21 +1,13 @@
 <div>
+	<cva-bar ng-model="bar">bar</cva-bar>
 	<div class="fluid">
-		<ul class="breadcrumb ">
-			<li>
-				<a href="#/data/entity">Entities</a>
-				
-			</li>
-			<li>
-				{{model.name}}
-			</li>
-		</ul>
-	</div>
 
-	<div>name :{{model.name}}</div>
-	<div>description: {{model.description}}</div>
-	<div>type: {{model.type}}</div>
-	<div>
-		nfields:
-		<a href="#/{{model.fieldslink}}">{{model.nfields}}</a>
+		<div>name :{{model.name}}</div>
+		<div>description: {{model.description}}</div>
+		<div>type: {{model.type}}</div>
+		<div>
+			nfields:
+			<a href="#/{{model.fieldslink}}">{{model.nfields}}</a>
+		</div>
 	</div>
 </div>

@@ -10,7 +10,7 @@ xquery version "3.0";
  
 module namespace doc = 'quodatum.doc';
 declare default function namespace 'quodatum.doc';
-import module namespace web = 'quodatum.web.utils3' at 'lib/webutils.xqm';
+import module namespace web = 'quodatum.web.utils4' at 'lib/webutils.xqm';
 
 declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";

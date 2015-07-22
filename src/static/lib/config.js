@@ -78,8 +78,7 @@ angular.module('quodatum.config', ['ngSanitize','restangular','ui.router','angul
 //    '<span ng-switch-when="true">{{step.ncyBreadcrumbLabel}}</span>'+
 //  '</li>'+
 // '</ol>'
-      template:"bootstrap3",
-      includeAbstract:true
+      template:"bootstrap3"
     });
   })
   

@@ -10,7 +10,7 @@ import module namespace cnf = 'quodatum.app.config' at 'config.xqm';
 import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
 import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
 import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
-import module namespace web = 'quodatum.web.utils3' at 'lib/webutils.xqm';
+import module namespace web = 'quodatum.web.utils4' at 'lib/webutils.xqm';
 import module namespace entity = 'quodatum.models.generated' at 'generated/models.xqm';
 import module namespace  qsr = 'quodatum.system.rest' at 'rxq-system.xqm';
 
@@ -247,7 +247,7 @@ function client-components($app as xs:string,
   return if (fn:doc-available($pkg))
          then let $doc:=fn:doc($pkg)/* 
               return doc:component-render($doc,$fmt)
-         else fn:error(xs:QName('dr:package'),$pkg || " not found")   
+         else <div>"expath-pkg.xml" not found.)</div>   
 }; 
 
 (:~

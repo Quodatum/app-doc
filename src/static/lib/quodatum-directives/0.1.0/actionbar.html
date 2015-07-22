@@ -1,25 +1,9 @@
-<div class="navbar" role="toolbar">
-	<ol class="breadcrumb qd-crumb navbar-left">
-		<li ng-repeat="crumb in bar.crumbs">
-		    <a href="{{crumb.href}}"
-			title="{{crumb.title}}" ng-show="!$last"><i
-				class="{{crumb.icon}}"></i><span ng-bind-template="{{crumb.text}}"></span></a>
-			<span class="label label-primary" ng-show="$last"> <i
-				class="{{crumb.icon}}"></i> {{crumb.text}}
-		</span></li>
-		<li ng-show="bar.views.length">
-			<div class="btn-group btn-group-sm ">
-				<a ng-repeat="view in bar.views" ng-click="view.action"
-					class="btn btn-default " title="{{view.title}}"
-					ng-class="view.class"> <i class="{{view.icon}}"></i>
-					{{view.text}}
-				</a>
+<div class="navbar " role="toolbar"  title="NOT WORKING" >
+   <ul class="nav navbar-nav navbar" >
+   	<div ncy-breadcrumb="">crumbs</div>
+   </ul>
 
-			</div>
-		</li>
-	</ol>
-
-	<ul class="nav navbar-nav navbar" ng-show="bar.actions.length">
+	<ul class="nav navbar-nav navbar "  ng-show="false" >
 		<p class="navbar-text">
 			<super>Actions:</super>
 		</p>
@@ -34,7 +18,7 @@
 		<li title="{{bar.name}}"><i
 			class="fa fa-question-circle navbar-text"></i></li>
 	</ul>
-	  <ul class="nav nav-pills pull-right"  ng-show="bar.list=='true'"
+	  <ul class="nav nav-pills pull-right  bg-danger"   
 	  style="position:relative;top:-6px">
             <li>
             <form class="form-inline">
@@ -44,6 +28,8 @@
                  </form>
                   
             </li>
+			<li>
             <uipage>page</uipage>
+			</li>
         </ul>
 </div>

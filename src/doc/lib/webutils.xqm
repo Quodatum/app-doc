@@ -4,32 +4,14 @@
 : @since oct 2012
 :)
 
-module namespace qweb = 'quodatum.web.utils3';
-declare default function namespace 'quodatum.web.utils3'; 
+module namespace qweb = 'quodatum.web.utils4';
+declare default function namespace 'quodatum.web.utils4'; 
 
 declare namespace rest = 'http://exquery.org/ns/restxq';
-import module namespace session ="http://basex.org/modules/session";
 
 
-(:~
-: execute function fn if session has loggedin user with matching role else 401
-:)
-declare function role-check($role as xs:string,$fn){
-  let $uid:=session:get("uid")
-  return if($uid) then
-        $fn()
-         else http-auth("Whizz apb auth",())
-};
 
-(:~ return user of raise error if none
-: @TODO role check
-:)
-declare function user($role as xs:string){
-  let $uid:=session:get("uid")
-  return if($uid) then
-        $uid
-        else fn:error(xs:QName('web:session-user'),"not logged in") 
-};
+
 
 declare function status($code,$reason){
    <rest:response>            

@@ -10,8 +10,7 @@ angular.module('quodatum.doc.apps',
           .state('app', {
             url : "/data/app",
             abstract : true,
-            template : '<ui-view>App list</ui-view>',
-            ncyBreadcrumb: { skip:true}
+            template : '<ui-view>App list</ui-view>'
           })
 
           .state('app.index', {
