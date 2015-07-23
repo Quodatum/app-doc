@@ -261,6 +261,8 @@ angular
 									}
 								}
 							}}])
+							
+//	breadcrumbs,filter,sort,page						
 .directive('cvaBar',['$interpolate', function($interpolate) {
   return {
       restrict: 'AE',

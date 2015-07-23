@@ -25,10 +25,12 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
                 ncyBreadcrumb: { label: '{{$stateParams.name}}',parent: 'component.index' },
                 controller : "CompCtrl"
               })
-              .state('component.index.view', {
+              
+              .state('component.tree', {
                 url : "?view",
                 templateUrl : '/static/doc/feats/components/cmptree.xhtml',
-                controller : "ScrollCtrl"
+                controller : "TreeCtrl",
+                ncyBreadcrumb: { label: 'tree',parent: 'component.index' }
               })
               
               .state('component.basex', {
@@ -64,6 +66,10 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
      // controllers
     .controller("CompCtrl", [ '$scope', function($scope) {
       console.log("CompCtrl");
+    } ])
+  
+     .controller("TreeCtrl", [ '$scope', function($scope) {
+      console.log("TreeCtrl",$scope.$stateParams);
     } ])
     
     // show BaseX system modules

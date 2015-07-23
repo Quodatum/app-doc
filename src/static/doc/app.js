@@ -13,7 +13,12 @@ angular.module(
     [ '$stateProvider', '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
           $stateProvider
-
+		  
+          .state('home', {
+            url : "",
+            controller : "HomeCtrl"
+          })
+		  
           .state('search', {
             url : "/search",
             templateUrl : '/static/doc/templates/search.xhtml',
@@ -28,19 +33,25 @@ angular.module(
           .state('about', {
             url : "/about",
             templateUrl : '/static/doc/templates/about.xhtml',
-			 ncyBreadcrumb: { label: 'HOME',icon:'glyphicon glyphicon-home'}
+			 ncyBreadcrumb: { label: 'Home',icon:'glyphicon glyphicon-home'}
           })
 
           .state('404', {
             url : "/404",
             templateUrl : '/static/doc/templates/404.xhtml'
           });
-          $urlRouterProvider.when('', '/about');  
+        //  $urlRouterProvider.when('', '/about');  
           $urlRouterProvider.otherwise('/404');  
           // use the HTML5 History API
           // $locationProvider.html5Mode(true);
         } ])
-
+		
+.controller("HomeCtrl",
+    [ "$scope", "$location", function($scope, $location) {
+      console.log("HomeCtrl");
+     $location.path('/about')
+    } ])
+	
 .controller("AppController",
     [ "$scope", "$location", function($scope, $location) {
       console.log("AppController");
