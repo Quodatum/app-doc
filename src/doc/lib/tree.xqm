@@ -7,11 +7,11 @@ declare default function namespace 'quodatum.data.tree';
 (:~
  : convert path(s) to tree
  :)
-declare function trees($a as xs:string*)
+declare function trees($paths as xs:string*)
 {
-fn:fold-right($a,
+fn:fold-left($paths,
              (),
-             function($a,$b){merge(tree($a),$b)}
+             function($result,$path){merge(tree($path),$result)}
             )
 };
  
@@ -39,6 +39,7 @@ as element(item)
  : merge 
  :)
 declare %private function merge($a1 as element(item)?,$a2 as element(item)?)
+as element(item)+
 {
  if($a1/name=$a2/name) then
       let $n1:=$a1/children/item/name
