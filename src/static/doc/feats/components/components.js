@@ -12,25 +12,25 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
                 template : '<ui-view>library</ui-view>'
               })
               
-              .state('component.index', {
-                url : "",
+              .state('component.items', {
+                url : "/items",
                 templateUrl : '/static/doc/feats/components/components.xhtml',
                 ncyBreadcrumb: { label: 'components' },
                 controller : "ScrollCtrl"
               })
               
-               .state('component.item', {
+               .state('component.items.item', {
                 url : "/:name",
                 templateUrl : '/static/doc/feats/components/comp1.xhtml',
-                ncyBreadcrumb: { label: '{{$stateParams.name}}',parent: 'component.index' },
+                ncyBreadcrumb: { label: '{{$stateParams.name}}' },
                 controller : "CompCtrl"
               })
               
               .state('component.tree', {
-                url : "?view",
+			    url:"/tree",
                 templateUrl : '/static/doc/feats/components/cmptree.xhtml',
                 controller : "TreeCtrl",
-                ncyBreadcrumb: { label: 'tree',parent: 'component.index' }
+                ncyBreadcrumb: { label: 'tree',parent: 'component.items' }
               })
               
               .state('component.basex', {

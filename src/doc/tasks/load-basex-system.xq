@@ -11,7 +11,7 @@ let $app:="doc"
 let $db:="doc-" || $app
 
 for $name in doc:basex-modules()
-let $xqdoc:=doc:xqdoc("basex",$name)
+let $xqdoc:=doc:xqdoc("app",$name)
 return (
         db:replace($db,"/basex/" || $name,$xqdoc),
         db:output($name || " added xqdoc to db")

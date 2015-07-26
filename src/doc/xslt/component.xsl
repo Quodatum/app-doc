@@ -100,7 +100,7 @@
 					<a ng-click="scrollTo('cmp-{@name}')">
 						<xsl:value-of select="@name" />
 					</a>
-					<a ui-sref="component.item({{name:'{@name}'}})">
+					<a ui-sref="component.items.item({{name:'{@name}'}})">
                         Detail
                     </a>
 					<xsl:apply-templates select="release/@version" />

@@ -90,19 +90,20 @@ declare function static-uri(
 declare function xqdoc($type as xs:string,
                         $path as xs:string)
 as element(xqdoc:xqdoc){
-        let $doc:=if($type="basex") then basex-xqdoc($path) 
-                      else xqdoc_($path)
-        return copy $c := $doc
+        if($type="basex") 
+        then basex-xqdoc($path) 
+        else xqdoc_($path)                   
+};
+
+(:~ get xqdoc for path, parse descriptions, trap errors  :)
+declare  function xqdoc_($path as xs:string) as element(xqdoc:xqdoc){
+    try{
+       copy $c :=  inspect:xqdoc($path)
                 modify (
                   for $d in $c//xqdoc:description
                   return replace node $d with <xqdoc:description>{$d}</xqdoc:description>
                    )
-                 return $c                            
-};
-
-declare function xqdoc_($path as xs:string){
-    try{
-        inspect:xqdoc($path)
+                 return $c   
     } catch * {
      <xqdoc:xqdoc type="err">{$path}</xqdoc:xqdoc>
     }

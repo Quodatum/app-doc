@@ -1,9 +1,8 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-07-03T23:07:09.041+01:00 
+ : auto generated from xml files in entities folder at: 2015-07-24T14:33:30.262+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
-declare namespace cvabar='https://github.com/Quodatum/app-doc/cvabar';
 declare namespace wadl='http://wadl.dev.java.net/2009/02';
 declare namespace ent='https://github.com/Quodatum/app-doc/entity';
 declare namespace task='https://github.com/Quodatum/app-doc/task';
@@ -74,24 +73,6 @@ declare variable $entity:list:=map {
                               else () } },
       "data": function() as element(cmp)*
        { () }
-   },
-  "cvabar": map{
-     "name": "cvabar",
-     "description": "Interface definition Crumbs,Views and Actions.",
-     "access": map{ 
-       "doc": function($_ as element()) as element() {$_},
-       "name": function($_ as element()) as xs:string {$_/cvabar:name} },
-     "json": map{ 
-           "doc": function($_ as element()) as element(doc)? {
-            element doc { attribute type {"string"},fn:serialize($_)} },
-           "name": function($_ as element()) as element(name)? {
-            (: string :)
-                        let $d:=fn:data($_/cvabar:name)
-                        return if($d)
-                              then element name { attribute type {"string" },$d } 
-                              else () } },
-      "data": function() as element(cvabar:bar)*
-       { db:open("doc-doc")//cvabar:bar }
    },
   "endpoint": map{
      "name": "endpoint",
