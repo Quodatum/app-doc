@@ -1,3 +1,6 @@
+(:~ 
+ : convert paths as strings to tree node structure
+:)
 module namespace tree = 'quodatum.data.tree';
 declare default function namespace 'quodatum.data.tree'; 
 
@@ -10,7 +13,8 @@ fn:fold-right($a,
              (),
              function($a,$b){merge(tree($a),$b)}
             )
-}; 
+};
+ 
 declare %private function build($name as xs:string,
                                 $items as element(item)*)
 as element(item)
@@ -22,6 +26,7 @@ as element(item)
  :  convert path form to tree
  :)
 declare function tree($path as xs:string)
+as element(item)
 {
   fn:fold-right(
     fn:filter(fn:tokenize($path,"/"), fn:boolean#1),
