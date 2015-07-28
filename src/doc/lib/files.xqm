@@ -11,7 +11,8 @@ declare default function namespace 'quodatum.doc.file';
  :)
 declare function dir($src as xs:string,$glob as xs:string)
 {   
-file:list($src,fn:true(),"*.xqm,*.xq")=>fn:filter(function ($f){file:is-file($src || $f)})
+file:list($src,fn:true(),"*.xqm,*.xq")
+=>fn:filter(function ($f){file:is-file($src || $f)})
 };
 
 (:~

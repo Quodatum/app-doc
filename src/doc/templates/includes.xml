@@ -1,7 +1,7 @@
 <includes>
 	<css>
 		<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet" type="text/css" />  
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
 <link href="/static/lib/angular-growl-2/0.7.0/angular-growl.min.css" rel="stylesheet" type="text/css" />    
 
 <link href="/static/lib/angular-ya-treeview/0.2.2/ya-treeview.css" rel="stylesheet" type="text/css" />    

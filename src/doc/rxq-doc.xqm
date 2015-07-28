@@ -160,11 +160,12 @@ function read($path) as element()
  :)
 declare
 %rest:GET %rest:path("doc/search")
-%output:method("json")   
-function search() 
+%output:method("json") 
+%rest:query-param("q", "{$q}")  
+function search($q) 
 {
     let $results:=(<search>
-                <title>doc</title>
+                <title>searching for {$q}</title>
                 <uri>/apps/doc</uri>
                 </search>,
                 <search>

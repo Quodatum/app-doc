@@ -20,7 +20,7 @@ angular.module(
           })
 		  
           .state('search', {
-            url : "/search",
+            url : "/search?q",
             templateUrl : '/static/doc/templates/search.xhtml',
             controller : "SearchCtrl"
           })
@@ -67,11 +67,12 @@ angular.module(
     "SearchCtrl",
     [ 'Restangular', '$location', '$scope', '$stateParams',
         function(Restangular, $location, $scope, $stateParams) {
-          console.log("Search", $stateParams);
-          $scope.q = $stateParams.q;
+          console.log("Search Init", $stateParams);
+          $scope.search.q = $stateParams.q;
           function search(q) {
+            console.log("search:",$scope.search );
             Restangular.all("search").getList({
-              q : $scope.q
+              q : $scope.search.q
             }).then(function(d) {
               console.log(d);
               $scope.results = d;
@@ -79,13 +80,10 @@ angular.module(
           }
           ;
 
-          $scope.submit = function() {
-            $location.path("/search");
-          };
           $scope.doSearch = function() {
-            search($scope.q);
+            search($scope.search.q);
           };
-          search($scope.q);
+          search($scope.search.q);
         } ])
 // information about entity
 .factory('Entities', [ function() {

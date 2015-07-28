@@ -14,10 +14,8 @@ let $src:=fn:resolve-uri("..")
 let $_:=fn:trace($src ,"src:__")
 
 let $files:=df:dir($src,"*.xqm,*.xq")
-for $file in $files
-
-let $doc:=doc:xqdoc("app",$src ||$file)
-return (  
-      db:replace($db,"/modules/" || $file,$doc),
-      db:output($file || " added xqdoc to db")
-       )
+return (db:output(count($files) || " files added xqdoc to db"),
+        for $file in $files   
+        let $doc:=doc:xqdoc("app",$src ||$file)
+        return db:replace($db,"/modules/" || $file,$doc)
+        )
