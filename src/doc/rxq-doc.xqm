@@ -44,7 +44,7 @@ declare %updating
  %output:version("5.0")
 function doc-init(){
      (: update model.xqm  :)
-     if(db:exists("doc")) then (
+     if(db:exists("doc-doc")) then (
          cnf:write-log("load-app-code~~~~~~~~~~~"),
          qsr:dotask2("doc","load-app-code.xq"),
          cnf:write-log("~~~~~~run tasks"),

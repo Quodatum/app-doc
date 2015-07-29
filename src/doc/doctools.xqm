@@ -11,6 +11,7 @@ xquery version "3.0";
 module namespace doc = 'quodatum.doc';
 declare default function namespace 'quodatum.doc';
 import module namespace web = 'quodatum.web.utils4' at 'lib/webutils.xqm';
+import module namespace svggen = 'quodatum.doc.svg' at 'svggen.xqm';
 
 declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
@@ -105,15 +106,37 @@ declare  function xqdoc_($path as xs:string) as element(xqdoc:xqdoc){
                    )
                  return $c   
     } catch * {
-     <xqdoc:xqdoc type="err">{$path}</xqdoc:xqdoc>
+      let $e:=map{
+               "code":$err:code,
+               "description":$err:description,
+               "value":$err:value,
+               "module":$err:module,
+               "line-number":$err:line-number,
+               "column-number":$err:column-number,
+               "additional":$err:additional
+               }
+     return <xqdoc:xqdoc type="err" path="{$path}">{map:serialize($e)}</xqdoc:xqdoc>
     }
 };
+
+(:~
+ :  xqdoc for restxq functions in module doc
+ :)
+declare function rxq-fns($xqd as element(xqdoc:xqdoc)) as element(xqdoc:function)*
+{
+  let $pre:=$xqd//xqdoc:namespaces/xqdoc:namespace[@uri="http://exquery.org/ns/restxq"]
+  return if($pre) then
+                  let $t:=$pre/@prefix || ":" || "path" 
+                  return $xqd//xqdoc:function[.//xqdoc:annotation/@name=$t]
+         else ()   
+};
+
 
 declare function component-render($doc as element(),
                         $fmt as xs:string) 
 {
   let $render:=map{"xml": function($doc){web:download-response("xml", "expath-pkg.xml"),$doc},
-                  "svg":function($doc){web:svg-response(),components-svg($doc)},       
+                  "svg":function($doc){web:svg-response(),svggen:components($doc)},       
                  "html":function($doc){doc:components-html($doc)}
             }
    return $render?($fmt,"html")[1]($doc) 
@@ -128,16 +151,7 @@ declare function components-html($pkg as element())
     xslt:transform($pkg,"xslt/component.xsl")  
 };
 
-(:~
- : svg graph for components referenced in package
- :)
-declare function components-svg($pkg as element())
-{
-   <svg height="100" width="100">
-  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-  Sorry, your browser does not support inline SVG.  
-</svg> 
-};
+
 
 (:~
  : return html report for WADL entries supplied
@@ -154,8 +168,7 @@ declare function wadl-html($wadl,$root as xs:string)
  :)
 declare function wadl-under($wadl as element(wadl:application)
                             ,$root as xs:string) as element(wadl:application)
-{
-  
+{  
   copy $s:=$wadl
    modify(
            delete node $s//wadl:resource[fn:not(

@@ -1,23 +1,15 @@
 <div>
-<div class="navbar " role="toolbar"  title="NOT WORKING" >
+<div class="navbar " role="toolbar"   >
    <ul class="nav navbar-nav navbar" >
     <div ncy-breadcrumb="">crumbs</div>
    </ul>
 
-    <ul class="nav navbar-nav navbar "  ng-show="true" >
-        <p class="navbar-text">
-            <super>Actions:</super>
-        </p>
-        <div class="btn-group  btn-group-sm ">
-
-            <button ng-repeat="action in bar.actions" ng-click="action.action"
-                class="btn btn-default " title="{{action.title}}"
-                ng-class="action.class">
-                <i class="{{action.icon}}"></i> {{action.text}}
-            </button>
+    <ul class="nav navbar-nav "  ng-show="true" >
+      
+        <div class="btn-group  btn-group-sm ">         
+           <a ui-sref="component.tree" class="btn btn-default">Tree</a>
         </div>
-        <li title="{{bar.name}}"><i
-            class="fa fa-question-circle navbar-text"></i></li>
+      
     </ul>
       <ul class="nav nav-pills pull-right  bg-danger"   
       style="position:relative;top:-6px">

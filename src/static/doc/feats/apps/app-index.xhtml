@@ -1,19 +1,19 @@
-<div>
-    <div class="row" role="navigation" >
-     <div ncy-breadcrumb="" class="col-md-6"></div> 
-     <div class="col-md-6"><sortui ng-model="params" options="options" class="pull-right">sorted</sortui></div>
-    </div>
-<div class="row">
+<div class="container">
+	<div  class="row" role="navigation">
+		<div ncy-breadcrumb="" class="col-md-6">breadcrumbs</div>
+		<div class="col-md-6">
+			<sortui ng-model="params" options="options" class="pull-right">sorted</sortui>
+		</div>
+	</div>
+	<div class="row">
 
 		<div class="panel  panel-info panel-body col-md-4">
 			<div class="panel-heading">
-				<h1 >
-				<img class="media-object" ng-src="{{app.logo}}" alt="{{app.name}} - no logo"
-                    style="width: 64px; height: 64px;"/>
-				{{app.name}}</h1>
+				<h1>
+					<img class="media-object" ng-src="{{app.logo}}" alt="{{app.name}} - no logo"
+						style="width: 64px; height: 64px;"/> {{app.name}}</h1>
 			</div>
-			<div class="panel-body table-responsive">
-				 Description:{{app.description}} </div>
+			<div class="panel-body table-responsive"> Description:{{app.description}} </div>
 		</div>
 
 		<div class=" col-md-4">
@@ -22,9 +22,18 @@
 					<h3 class="panel-title">Client</h3>
 				</div>
 				<div class="panel-body table-responsive">
-					<a ui-sref="app.item.client.component({view:'component'})" class="btn btn-default btn-sm">Components</a>
-					<a ui-sref="app.item.client.template({view:'template'})" class="btn btn-default btn-sm">Templates</a>
+					<ul class="nav nav-pills ">
+						<li>
+							<a ui-sref="app.item.client.component({view:'component'})"
+								class="btn btn-default btn-sm">Components</a>
+						</li>
+						<li>
+							<a ui-sref="app.item.client.template({view:'template'})"
+								class="btn btn-default btn-sm">Templates</a>
+						</li>
+					</ul>
 				</div>
+
 			</div>
 		</div>
 
@@ -34,10 +43,12 @@
 					<h3 class="panel-title">Server</h3>
 				</div>
 				<div class="panel-body table-responsive">
-					<a ui-sref="app.item.server.wadl({view:'wadl'})" class="btn btn-default btn-sm">Wadl</a>
-					<a ui-sref="app.item.server.xqdoc({view:'xqdoc'})" class="btn btn-default btn-sm">XQdoc</a>
+					<a ui-sref="app.item.server.wadl({view:'wadl'})" class="btn btn-default btn-sm"
+						>Wadl</a>
+					<a ui-sref="app.item.server.xqdoc({view:'xqdoc'})"
+						class="btn btn-default btn-sm">XQdoc</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
+</div>
