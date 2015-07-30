@@ -1,4 +1,4 @@
-<package abbrev="doc" name="urn:quodatum.basex.doc" version="0.5.18"
+<package abbrev="doc" name="urn:quodatum.basex.doc" version="0.5.20"
 	spec="1.0" xmlns="http://expath.org/ns/pkg">
 	<title>Web app Documentation</title>
 	<dependency name="twitter-bootstrap-css" version="3.3.4" />
@@ -12,5 +12,5 @@
 	<dependency name="quodatum-directives" version="0.1.0" />
 	<dependency name="stacktrace" version="0.6.0" />
 	<dependency name="angular-ui-router" version="0.2.15"/>
-	<dependency name="ncy-angular-breadcrumb" version="0.4.0"/>
+	<dependency name="angular-breadcrumb" version="0.4.0"/>
 </package>

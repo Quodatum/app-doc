@@ -1,21 +1,22 @@
 <div >
    <cva-bar ng-model="bar">bar</cva-bar>
 	<div class="row">
-        <div ng-repeat="task in tasks" class="media col-sm-6 col-md-4 ">
-         <div class="qd-model well">
-        <i class="pull-left fa fa-camera-retro fa-5x"></i> 
-            <div class="media-body">
-                <h4 class="media-heading">
-                 <button ng-click="run(task.name)" title="Run task" class="btn btn-default pull-right ">
-                  <i class="fa fa-play-circle"></i>
-                 </button>
-                 {{task.name}}
-                 </h4>
-                <p>{{task.description}}</p>
-               
-               
-            </div>
-        </div>
+	<div ng-repeat="task in tasks" class="media col-sm-6 col-md-4 ">
+		<div class="qd-model well">
+			<i class="pull-left fa fa-camera-retro fa-5x"></i>
+			<div class="media-body">
+				<h4 class="media-heading">
+					<button ng-click="run(task.name)" title="Run task"
+						class="btn btn-default pull-right ">
+						<i class="fa fa-play-circle"></i>
+					</button>
+					{{task.name}}
+				</h4>
+				<p>{{task.description}}</p>
+
+
+			</div>
+		</div>
         </div>
     </div>	
 </div>
