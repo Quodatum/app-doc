@@ -136,7 +136,7 @@ declare function component-render($doc as element(),
                         $fmt as xs:string) 
 {
   let $render:=map{"xml": function($doc){web:download-response("xml", "expath-pkg.xml"),$doc},
-                  "svg":function($doc){web:svg-response(),svggen:components($doc)},       
+                  "svg":function($doc){web:svg-response(),svggen:generate($doc)},       
                  "html":function($doc){doc:components-html($doc)}
             }
    return $render?($fmt,"html")[1]($doc) 

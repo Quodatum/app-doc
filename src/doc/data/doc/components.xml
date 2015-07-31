@@ -271,6 +271,8 @@
 
 	<cmp name="ui-ace">
 		<home>https://github.com/angular-ui/ui-ace</home>
+		<depends>angularjs</depends>
+		<depends>ace</depends>
 		<release version="01.08.2014">
 			<cdn>lib/ace/01.08.2014</cdn>
 		</release>

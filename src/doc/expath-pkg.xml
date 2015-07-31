@@ -1,4 +1,4 @@
-<package abbrev="doc" name="urn:quodatum.basex.doc" version="0.5.20"
+<package abbrev="doc" name="urn:quodatum.basex.doc" version="0.6.00"
 	spec="1.0" xmlns="http://expath.org/ns/pkg">
 	<title>Web app Documentation</title>
 	<dependency name="twitter-bootstrap-css" version="3.3.4" />
