@@ -26,11 +26,18 @@ declare variable $svggen:simple:=
     <edge   from="c" to="d" fontname="Arial" fontsize="9" label="edge5"/>
 </graph>;
 
+declare variable $svggen:cmps:=
+<graph  xmlns="http://www.martin-loetzsch.de/DOTML" rankdir="LR">    
+    <node   id="a" label="cmps" fontsize="9" fontname="Arial"/>
+  </graph>;
+  
 declare function generate($pkg as element())
 as element()
 {
-$svggen:simple
+let $dot:=if ( fn:name($pkg)="components")then $svggen:cmps
+   else $svggen:simple
 
+return $dot
 !dotml:to-dot(.)
 !ex-graphviz:to-svg(.)
 !ex-graphviz:autosize(*)

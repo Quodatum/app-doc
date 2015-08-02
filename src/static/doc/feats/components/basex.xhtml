@@ -5,7 +5,12 @@
 
 	<div ng-hide="isModule">
 		<ul>
-			<li ng-repeat="name in results"><a href="#/data/component/basex?module={{name}}">{{name}}</a></li>
+			<li ng-repeat="name in results">
+			<a href="#/data/component/basex/module?name={{name}}">{{name}}</a>
+			namespace:
+			<a href="#/data/component/basex/module?name={{name}}">{{name}}</a>
+			
+			</li>
 		</ul>
 	</div>
 	<div ng-show="isModule" class="container-fluid"

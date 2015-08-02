@@ -7,9 +7,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 xmlns:fn="http://www.w3.org/2005/02/xpath-functions"
 exclude-result-prefixes="xs doc fn"
 version="2.0">
-
-
-
+<!-- Standalone xqdoc:xqdoc transform -->
 <xsl:param name="source" as="xs:string"/>
 
   <!-- generate module html //-->

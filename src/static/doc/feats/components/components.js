@@ -35,13 +35,21 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
               
               .state('component.basex', {
                 url : "/basex",
+                abstract:true,
+                ncyBreadcrumb: { skip:true},
+                template : '<ui-view>basex</ui-view>'
+              })
+               .state('component.basex.index', {
+                url : "",
                 templateUrl : '/static/doc/feats/components/basex.xhtml',
-                controller : "BasexCtrl"
+                controller : "BasexCtrl",
+                ncyBreadcrumb: { label: 'basex modules' }
               })
               .state('component.basex.module', {
-                url : "?module",
+                url : "/module?name",
                 templateUrl : '/static/doc/feats/components/basex.xhtml',
-                controller : "BasexCtrl"
+                controller : "BasexCtrl",
+                ncyBreadcrumb: { label: '{{$stateParams.name}}',parent: 'component.basex.index' }
               })
 			  .state('wadl', {
                 url : "/data/wadl",
@@ -78,7 +86,7 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
         [ '$scope', '$stateParams', 'API', 'ScrollService',
             function($scope, $stateParams, API, ScrollService) {
               console.log("BasexCtrl");
-              $scope.module = $stateParams.module;
+              $scope.module = $stateParams.name;
               $scope.isModule = !!$scope.module;
               if (!$scope.isModule) {
                 $scope.results = API.basex.query();
