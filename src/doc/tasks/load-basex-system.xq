@@ -9,10 +9,10 @@ import module namespace doc = 'quodatum.doc' at "../doctools.xqm";
 
 let $app:="doc"
 let $db:="doc-" || $app
-
-for $name in doc:basex-modules()
-let $xqdoc:=doc:xqdoc("app",$name)
-return (
-        db:replace($db,"/basex/" || $name,$xqdoc),
-        db:output($name || " added xqdoc to db")
-        )
+let $files:=doc:basex-modules()
+return ( 
+  db:output(count($files) || " files added xqdoc to db"),
+  for  $name in $files
+  let $xqdoc:=doc:xqdoc("app",$name)
+  return db:replace($db,"/basex/" || $name,$xqdoc)
+  )

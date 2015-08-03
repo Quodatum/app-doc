@@ -49,15 +49,9 @@
 							</code>
 						</td>
 					</tr>
-					<tr>
-						<td>
-							<b>Description:</b>
-						</td>
-						<td>
-							<xsl:apply-templates
-								select="xqdoc:module/xqdoc:comment/xqdoc:description" />
-						</td>
-					</tr>
+					<xsl:apply-templates
+						select="xqdoc:module/xqdoc:comment/xqdoc:description" />
+					
 					<tr>
 						<td>
 							<b>Author:</b>
@@ -159,7 +153,7 @@
 				<b>Description:</b>
 			</td>
 			<td>
-				<xsl:apply-templates select="*" />
+				<xsl:apply-templates  />
 			</td>
 		</tr>
 	</xsl:template>

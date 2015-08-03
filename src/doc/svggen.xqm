@@ -30,17 +30,29 @@ declare variable $svggen:cmps:=
 <graph  xmlns="http://www.martin-loetzsch.de/DOTML" rankdir="LR">    
     <node   id="a" label="cmps" fontsize="9" fontname="Arial"/>
   </graph>;
+
+declare function dump($item){
+ ($item,file:write("junk.txt",$item))
+};
   
 declare function generate($pkg as element())
 as element()
 {
-let $dot:=if ( fn:name($pkg)="components")then $svggen:cmps
-   else $svggen:simple
-
+let $fix:=function($n as xs:string){fn:translate($n,"-.","__")}
+let $dot:=if ( fn:name($pkg) ne "components")then $svggen:simple 
+   else <dotml:graph  rankdir="LR">  
+		{for $c in $pkg/cmp
+		 let $id:=$fix($c/@name)
+		 return (<dotml:node id="{$id}" label="{$c/@name}"/>
+				  ,for $d in $c/depends
+				 return <dotml:edge from="{$id}" to="{$fix($d)}"/>  )
+		     }
+        </dotml:graph>
+		
 return $dot
-!dotml:to-dot(.)
+!dotml:to-dot(.) 
 !ex-graphviz:to-svg(.)
-!ex-graphviz:autosize(*)
+!ex-graphviz:autosize(*) 
 };
 
 

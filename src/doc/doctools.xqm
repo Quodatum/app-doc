@@ -100,10 +100,10 @@ as element(xqdoc:xqdoc){
 declare  function xqdoc_($path as xs:string) as element(xqdoc:xqdoc){
     try{
        copy $c :=  inspect:xqdoc($path)
-                modify (
-                  for $d in $c//xqdoc:description
-                  return replace node $d with <xqdoc:description>{$d}</xqdoc:description>
-                   )
+               modify (
+                (:  for $d in $c//xqdoc:description
+                  return replace node $d with <xqdoc:description>{fn:parse-xml-fragment($d/*)}</xqdoc:description> :)
+                   )  
                  return $c   
     } catch * {
       let $e:=map{

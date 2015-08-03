@@ -15,7 +15,6 @@ import module namespace entity = 'quodatum.models.generated' at 'generated/model
 import module namespace  qsr = 'quodatum.system.rest' at 'rxq-system.xqm';
 
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
-import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
 import module namespace rest = "http://exquery.org/ns/restxq";
 
 

@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-08-02T21:20:39.637+01:00 
+ : auto generated from xml files in entities folder at: 2015-08-03T14:14:58.764+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -182,10 +182,17 @@ declare variable $entity:list:=map {
      "name": "search-result",
      "description": "About a search result.",
      "access": map{ 
+       "sref": function($_ as element()) as xs:string {"app.item.index({'name':'benchx'})"},
        "title": function($_ as element()) as xs:string {$_/title},
        "type": function($_ as element()) as xs:string {$_/type},
        "uri": function($_ as element()) as xs:string {$_/uri} },
      "json": map{ 
+           "sref": function($_ as element()) as element(sref)? {
+            (: string :)
+                        let $d:=fn:data("app.item.index({'name':'benchx'})")
+                        return if($d)
+                              then element sref { attribute type {"string" },$d } 
+                              else () },
            "title": function($_ as element()) as element(title)? {
             (: string :)
                         let $d:=fn:data($_/title)
