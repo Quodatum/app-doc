@@ -7,22 +7,23 @@ module namespace df = 'quodatum.doc.file';
 declare default function namespace 'quodatum.doc.file';
 
 (:~
- : list of files matching glob below $src
- :)
-declare function dir($src as xs:string,$glob as xs:string)
-{   
-file:list($src,fn:true(),"*.xqm,*.xq")
-=>fn:filter(function ($f){file:is-file($src || $f)})
-};
-
-(:~
  : path to webapps with trailing slash 
  :)
 declare variable $df:base:= db:system()/globaloptions/webpath/fn:string()
                              || file:dir-separator();
 
+(:~
+ : list of files matching glob below $src
+ :)
+declare function df:dir($src as xs:string,$glob as xs:string)
+{   
+file:list($src,fn:true(),"*.xqm,*.xq")
+=>fn:filter(function ($f){file:is-file($src || $f)})
+};
+
+
 (:~ true path from segment :)
-declare function webpath($path as xs:string)
+declare function df:webpath($path as xs:string)
  as xs:string{
  $df:base || $path
 };

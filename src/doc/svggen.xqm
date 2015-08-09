@@ -39,13 +39,14 @@ declare function generate($pkg as element())
 as element()
 {
 let $fix:=function($n as xs:string){fn:translate($n,"-.","__")}
-let $dot:=if ( fn:name($pkg) ne "components")then $svggen:simple 
-   else <dotml:graph  rankdir="LR">  
-		{for $c in $pkg/cmp
+let $dot:= 
+ <dotml:graph  rankdir="LR" fontname="Arial" label="Components"> 
+		{(for $c in $pkg/cmp
 		 let $id:=$fix($c/@name)
-		 return (<dotml:node id="{$id}" label="{$c/@name}"/>
-				  ,for $d in $c/depends
-				 return <dotml:edge from="{$id}" to="{$fix($d)}"/>  )
+		 return <dotml:node id="{$id}" label="{$c/@name}" shape="box" style="filled" fillcolor="yellow"
+		 URL="javascript:alert('{$c/@name}')" />,
+		 for $d in $pkg/cmp/depends
+		 return <dotml:edge from="{$fix($d/../@name)}" to="{$fix($d)}"/>  )
 		     }
         </dotml:graph>
 		

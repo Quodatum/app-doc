@@ -1,35 +1,20 @@
 <div class="navbar " role="toolbar"  >
-   <ul class="nav navbar-nav navbar" >
-   	<div ncy-breadcrumb="">crumbs</div>
-   </ul>
-
-	<ul class="nav navbar-nav navbar "  ng-show="false" >
-		<p class="navbar-text">
-			<super>Actions:</super>
-		</p>
-		<div class="btn-group  btn-group-sm ">
-
-			<button ng-repeat="action in bar.actions" ng-click="action.action"
-				class="btn btn-default " title="{{action.title}}"
-				ng-class="action.class">
-				<i class="{{action.icon}}"></i> {{action.text}}
-			</button>
-		</div>
-		<li title="{{bar.name}}"><i
-			class="fa fa-question-circle navbar-text"></i></li>
-	</ul>
-	  <ul class="nav nav-pills pull-right  bg-danger"   title="NOT WORKING" 
-	  style="position:relative;top:-6px">
-            <li>
-            <form class="form-inline">
-                Filter:
-                <input type="text"  data-ng-model="params.q" style="width:6em;"  />
-                 <sortui>sortui</sortui>
-                 </form>
-                  
-            </li>
-			<li>
-            <uipage>page</uipage>
-			</li>
+        <ul class="nav navbar-nav navbar">
+            <div ncy-breadcrumb="">crumbs</div>
         </ul>
-</div>
+
+        <ul class="nav nav-pills pull-right  bg-danger" title="Not working yet"
+        style="position:relative;top:-6px">
+            <li>
+                <form class="form-inline">
+                    Filter:
+                    <input type="text" data-ng-model="params.q" style="width:6em;" />
+                    <sortui>sortui</sortui>
+                </form>
+
+            </li>
+            <li>
+                <uipage>page</uipage>
+            </li>
+        </ul>
+    </div>

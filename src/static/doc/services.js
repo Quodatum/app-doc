@@ -16,8 +16,9 @@ angular.module(
 
  // controllers
     .controller(
-        // provides scrolling controller use params app,view
-        // 
+        // provides scrolling controller 
+        // uses params app,view
+        // to set inc also sets scrollTo
         "ScrollCtrl",
         [ '$stateParams', '$scope', 'ScrollService',
             function($stateParams, $scope, ScrollService) {
@@ -50,5 +51,8 @@ angular.module(
             });
         }
     }
-});
+})
+
+
+;
 

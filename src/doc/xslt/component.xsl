@@ -97,19 +97,19 @@
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					<a class="anchor" id="cmp-{@name}"></a>
-					<a ng-click="scrollTo('cmp-{@name}')">
-						<xsl:value-of select="@name" />
-					</a>
+					
 					<a ui-sref="component.item({{name:'{@name}'}})">
-                        Detail
+                        <xsl:value-of select="@name" />
                     </a>
-					<xsl:apply-templates select="release/@version" />
-
+                    <span class="badge">
+                        <xsl:value-of select="runat" />
+                    </span>
 					<span class="pull-right">
 						<a href="{home}" target="benchx-doc" class="badge" title="{@name} {home}">
 							<i class="fa fa-external-link"></i>
 							Home
 						</a>
+						<a ng-click="scrollTo('cmp-{@name}')">#</a>
 					</span>
 				</h4>
 			</div>
@@ -118,13 +118,6 @@
 					<xsl:value-of select="tagline" />
 				</p>
 				<xsl:apply-templates select="licence" />
-
-				<span>
-					Runat:
-					<span class="badge">
-						<xsl:value-of select="runat" />
-					</span>
-				</span>
 
 				<div>
 					Used by:

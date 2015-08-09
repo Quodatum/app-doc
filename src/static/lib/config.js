@@ -2,7 +2,10 @@
 // adds http error handler
 // http://www.webdeveasy.com/interceptors-in-angularjs-and-useful-examples/
 
-angular.module('quodatum.config', ['ngSanitize','restangular','ui.router','angular-growl', 'ncy-angular-breadcrumb'])
+angular.module(
+    'quodatum.config',
+    [ 'ngSanitize', 'restangular', 'ui.router', 'angular-growl',
+        'ncy-angular-breadcrumb' ])
 
 .config(function($httpProvider) {
   $httpProvider.interceptors.push('Interceptor400');
@@ -70,18 +73,20 @@ angular.module('quodatum.config', ['ngSanitize','restangular','ui.router','angul
 } ])
 
 .config(function($breadcrumbProvider) {
-    $breadcrumbProvider.setOptions({
-      prefixStateName: 'about',
-//      template: '<ol class="breadcrumb">'+
-//  '<li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract">'+
-//    '<i class="{{step.ncyBreadcrumbIcon}}"></i><a ng-switch-when="false" href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a>'+
-//    '<span ng-switch-when="true">{{step.ncyBreadcrumbLabel}}</span>'+
-//  '</li>'+
-// '</ol>'
-      template:"bootstrap3"
-    });
-  })
-  
+  $breadcrumbProvider.setOptions({
+    prefixStateName : 'about',
+    // template: '<ol class="breadcrumb">'+
+    // '<li ng-repeat="step in steps" ng-class="{active: $last}"
+    // ng-switch="$last || !!step.abstract">'+
+    // '<i class="{{step.ncyBreadcrumbIcon}}"></i><a ng-switch-when="false"
+    // href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a>'+
+    // '<span ng-switch-when="true">{{step.ncyBreadcrumbLabel}}</span>'+
+    // '</li>'+
+    // '</ol>'
+    template : "bootstrap3"
+  });
+})
+
 .run([ "$rootScope", "$window", function($rootScope, $window) {
   $rootScope.setTitle = function(t) {
     $window.document.title = t;
@@ -90,33 +95,43 @@ angular.module('quodatum.config', ['ngSanitize','restangular','ui.router','angul
 
 // ui-router
 .run(
-  [ '$rootScope', '$state', '$stateParams',
-    function ($rootScope,   $state,   $stateParams) {
+    [
+        '$rootScope',
+        '$state',
+        '$stateParams',
+        function($rootScope, $state, $stateParams) {
 
-    // It's very handy to add references to $state and $stateParams to the
-    // $rootScope
-    // so that you can access them from any scope within your applications.For
-    // example,
-    // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the
-    // <li>
-    // to active whenever 'contacts.list' or one of its decendents is active.
-    $rootScope.$state = $state;
-    $rootScope.$stateParams = $stateParams;
-    
+          // It's very handy to add references to $state and $stateParams to the
+          // $rootScope
+          // so that you can access them from any scope within your
+          // applications.For
+          // example,
+          // <li ng-class="{ active: $state.includes('contacts.list') }"> will
+          // set the
+          // <li>
+          // to active whenever 'contacts.list' or one of its decendents is
+          // active.
+          $rootScope.$state = $state;
+          $rootScope.$stateParams = $stateParams;
 
-    $rootScope.$on('$stateNotFound', 
-    function(event, unfoundState, fromState, fromParams){ 
-        console.log(unfoundState.to); // "lazy.state"
-        console.log(unfoundState.toParams); // {a:1, b:2}
-        console.log(unfoundState.options); // {inherit:false} + default options
-    });
-    
-    $rootScope.$on("$stateChangeError", console.log.bind(console));
-    }
-  ]
-)
- .filter('to_trusted', ['$sce', function($sce){
-        return function(text) {
-            return $sce.trustAsHtml(text);
-        };
-    }])
+          $rootScope.$on('$stateNotFound', function(event, unfoundState,
+              fromState, fromParams) {
+            console.log(unfoundState.to); // "lazy.state"
+            console.log(unfoundState.toParams); // {a:1, b:2}
+            console.log(unfoundState.options); // {inherit:false} + default
+                                                // options
+          });
+
+          $rootScope.$on("$stateChangeError", console.log.bind(console));
+          
+          $rootScope.$on('$stateChangeSuccess', function(event, toState,
+              toParams, fromState, fromParams) {
+            console.log("STATE:", toState.name, toParams)
+          });
+        }
+
+    ]).filter('to_trusted', [ '$sce', function($sce) {
+  return function(text) {
+    return $sce.trustAsHtml(text);
+  };
+} ])

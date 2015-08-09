@@ -19,7 +19,7 @@ declare namespace xqdoc="http://www.xqdoc.org/1.0";
 
 declare variable $doc:components as element():=fn:doc("data/doc/components.xml")/components;
 
-declare variable $doc:repopath:=file:parent(db:system()/globaloptions/repopath);
+declare variable $doc:repopath:=db:system()/globaloptions/repopath;
 (:~ 
  : e.g "C:\Program Files (x86)\basex\etc\modules\"
  :)

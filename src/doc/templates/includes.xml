@@ -32,7 +32,8 @@
           <!-- others -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"  ></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/stacktrace.js/0.6.0/stacktrace.min.js"></script>   
+    <script src="//cdnjs.cloudflare.com/ajax/libs/stacktrace.js/0.6.0/stacktrace.min.js"></script>
+    <script src="//cdn.rawgit.com/FlussoBV/NgDexie/v0.0.15/build/ngDexie.js"></script>   
     <!-- local libs -->
     <script src="/static/lib/config.js"></script>
     <script src="/static/lib/angular-treemendous-0.2.3/angular-treemendous.js"  ></script>

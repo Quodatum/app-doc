@@ -21,6 +21,6 @@
 	<views>
 	<view name="list"/>
 	</views>
-	<iconclass>fa fa-home </iconclass>
+	<iconclass>fa fa-desktop</iconclass>
     <data  type="element(item)"></data>
 </entity>
