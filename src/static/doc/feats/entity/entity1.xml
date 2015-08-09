@@ -1,13 +1,28 @@
 <div>
-	<cva-bar ng-model="bar">bar</cva-bar>
+	<div class="navbar " role="toolbar"  >
+        <ul class="nav navbar-nav navbar">
+            <div ncy-breadcrumb="">crumbs</div>
+        </ul>
+        </div>
 	<div class="fluid">
-
-		<div>name :{{model.name}}</div>
-		<div>description: {{model.description}}</div>
-		<div>type: {{model.type}}</div>
-		<div>
-			nfields:
-			<a href="#/{{model.fieldslink}}">{{model.nfields}}</a>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="{{model.iconclass}}"></i>
+					{{model.name}}
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div>description: {{model.description}}</div>
+				<div>type: {{model.type}}</div>
+				<div>
+					nfields:
+					<a href="#/{{model.fieldslink}}">{{model.nfields}}</a>
+				</div>
+				<div>
+                    iconclass:  {{model.iconclass}}
+                </div>
+			</div>
 		</div>
 	</div>
 </div>

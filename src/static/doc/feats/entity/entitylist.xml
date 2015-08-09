@@ -1,36 +1,33 @@
 <div>
 	<cva-bar ng-model="bar">bar</cva-bar>
 	<div class="row">
-		<div ng-repeat="model in models" class="qd-model media col-sm-6 col-md-4 well">
-			<span class="pull-right">
-				<a href="#/data/entity/{{model.name}}" title="About this entity">
-                        <i class="glyphicon glyphicon-wrench"></i>
-                    </a>    
-			</span>
-
-			<div class="media-body">
-				<h4 class="media-heading">
-					<a href="#/data/entity/{{model.name}}" title="About this entity">
-						<i class="{{model.iconclass}}"></i>
-						{{model.name}}
-					</a>					
-                    <a href="#{{model.parentlink}}">{{model.parent}}</a>
-				</h4>
+		<div ng-repeat="model in models" class=" media col-sm-6 col-md-4">
+			<div class="qd-model well">
+				<a href="#/data/entity/{{model.name}}" title="About this entity" class="media-left">
+					<i class="{{model.iconclass}} fa-5x"></i>
+				</a>
 				<div class="media-body">
-					
+
+					<h4 class="media-heading">
+						{{model.name}}
+					</h4>
 					<div>
-                        <a href="#/data/{{model.name}}" class="pull-left qd-icon">
-                            <i class="qd-ltext glyphicon glyphicon-list-alt" title="Data for {{model.name}}"></i>
+						
+						<div>{{model.description}}</div>
+						<div>
+							<a href="./data/{{model.name}}" target="json">
+								<i class="fa fa-angle-double-left" title="Json data for {{model.name}}"></i>
+							</a>
+						</div>
+						<a href="#/data/{{model.name}}" >
+                            data
                         </a>
-                        <div>{{model.description}}</div>
-                        <div><a href="./data/{{model.name}}" target="json">
-                            <i class="fa fa-angle-double-left" title="Json data for {{model.name}}"></i>
-                        </a></div>
-                    </div>
+					</div>
 					
 				</div>
+
 			</div>
 		</div>
-	</div>
 
+	</div>
 </div>

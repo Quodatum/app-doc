@@ -16,7 +16,7 @@
 	   <h2>
                    
                     <xsl:value-of select="$root" />
-					 RestXQ API:
+					 Endpoints:
                     <span class="label label-default label-as-badge"><xsl:value-of select="count(//wadl:resource)"/></span>
                     <small class="pull-right">
                         wadl.xml

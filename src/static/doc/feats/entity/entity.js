@@ -24,7 +24,7 @@ angular.module('quodatum.entity', [ 'ui.router','restangular'])
                 url : "/:model",
                 templateUrl : '/static/doc/feats/entity/entity1.xml',
                 controller : "EntityCtrl",
-                ncyBreadcrumb: { label: '{{model.name}}',parent: 'entity.index'}
+                ncyBreadcrumb: { label: '{{$stateParams.model}}',parent: 'entity.index'}
               })
               
               .state('entity.model.fields', {
