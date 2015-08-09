@@ -407,7 +407,8 @@
 		<depends>angular-ui-router</depends>
 		<tagline>angular-breadcrumb is a module for AngularJS, which generates
 			a breadcrumb for any page of your application.
-			It is strongly based on the UI-router framework and its hierarchical
+			It is strongly based on
+			the UI-router framework and its hierarchical
 			tree of states.
 		</tagline>
 		<release version="0.4.0">
@@ -422,20 +423,33 @@
 		<home>http://www.dexie.org/</home>
 		<tagline>Minimalistic IndexedDB API with bullet proof transactions
 		</tagline>
-		<release version="latest">
-			<cdn type="js">https://raw.githubusercontent.com/dfahlander/Dexie.js/master/dist/latest/Dexie.js
+		<release version="1.1.0">
+			<cdn type="js">https://cdnjs.cloudflare.com/ajax/libs/dexie/1.1.0/Dexie.js
 			</cdn>
 		</release>
 	</cmp>
 	<cmp name="NgDexie">
-        <runat>browser</runat>
-        <home>https://github.com/FlussoBV/NgDexie</home>
-        <tagline>AngularJS wrapper around the Dexie.js library
-        </tagline>
-        <depends>angularjs</depends>
-        <release version="0.0.15">
-            <cdn type="js">https://cdn.rawgit.com/FlussoBV/NgDexie/v0.0.15/build/ngDexie.js
-            </cdn>
-        </release>
-    </cmp>
+		<runat>browser</runat>
+		<home>https://github.com/FlussoBV/NgDexie</home>
+		<tagline>AngularJS wrapper around the Dexie.js library
+		</tagline>
+		<depends>angularjs</depends>
+		<depends>dexie.js</depends>
+		<release version="0.0.15">
+			<cdn type="js">https://cdn.rawgit.com/FlussoBV/NgDexie/v0.0.15/build/ngDexie.js
+			</cdn>
+		</release>
+	</cmp>
+
+	<cmp name="svg-pan-zoom">
+		<runat>browser</runat>
+		<home>https://github.com/ariutta/svg-pan-zoom</home>
+		<tagline>JavaScript library that enables panning and zooming of an SVG
+			in an HTML document, with mouse events or custom JavaScript hooks
+		</tagline>
+		<release version="3.2.3">
+			<local type="js">lib/svg-pan-zoom/3.2.3/svg-pan-zoom.js
+			</local>
+		</release>
+	</cmp>
 </components>
