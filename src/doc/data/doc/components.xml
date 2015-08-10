@@ -452,4 +452,16 @@
 			</local>
 		</release>
 	</cmp>
+	
+	<cmp name="angular-auto-height">
+        <runat>browser</runat>
+        <home>https://github.com/twygmbh/angular-auto-height</home>
+        <tagline>An AngularJS directive to automatically
+         adjust the height of an element corresponding to the parent and siblings. 
+        </tagline>
+        <release version="0.0.4">
+            <cdn type="js">//cdn.rawgit.com/twygmbh/angular-auto-height/9c7a5bdf673b1296d5dd504f463e478c20efc101/dist/auto-height.js
+            </cdn>
+        </release>
+    </cmp>
 </components>

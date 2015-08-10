@@ -2,7 +2,8 @@
 <div class="row form-group" role="navigation">
 <ncy-breadcrumb>bread</ncy-breadcrumb>
     </div>
-<div  ng-include="'components/browser?fmt=svg'">
+<div  id="svghere" ng-include="'components/browser?fmt=svg'" onload="gotsvg()" 
+auto-height="" additional-height="200px">
 tree here
 </div>
 </div>

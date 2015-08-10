@@ -78,6 +78,15 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
   
      .controller("TreeCtrl", [ '$scope', function($scope) {
       console.log("TreeCtrl",$scope.$stateParams);
+	  $scope.gotsvg=function(){
+ 
+	  var svg=document.getElementById("svghere").querySelector('svg');
+	   var panZoomTiger = svgPanZoom(svg,{
+          zoomEnabled: true,
+          controlIconsEnabled: true
+        });
+	  };	  
+	 
     } ])
     
     // show BaseX system modules
