@@ -71,20 +71,17 @@ as item()*{
  : return sequence head() is elapsed time or -1 if error, tail() is result or error code
  :)
 declare  %updating
-function update($xq as xs:string,$base as xs:string,$timeout as xs:double)
+function update($xq as xs:string,$base as xs:string,$options as map(*))
 {
  let $bindings:=map{}
- let $opts:=map {
-     "permission" : "create",
-     "timeout":$timeout
-  }
+ let $opts:=map:merge(($eval:def-opts,$options))
   let $xq:= 'declare base-uri "' || $base ||'";&#10;' || $xq
    let $xq:=fn:trace($xq,"eval:update")
   return try{
        let $t1:=prof:current-ms()
        let $x:= () (:xquery:update($xq,$bindings,$opts) :)
        let $t:=(prof:current-ms()-$t1) div 1000
-       return map{"":xquery:update($xq,$bindings,$opts),
+       return map{"result":xquery:update($xq,$bindings,$opts),
                     "time":(prof:current-ms()-$t1) div 1000
                     }
       }catch * 
