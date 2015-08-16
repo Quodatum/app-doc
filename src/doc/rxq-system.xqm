@@ -35,15 +35,14 @@ function listtasks(){
 (:~
  :  run a task
  :)
-declare  
+declare
+%updating  
 %output:method("text") 
 %rest:POST %rest:path("/doc/task/{$task}")
  %rest:query-param("app", "{$app}","doc")
 function dotask2($app as xs:string,$task as xs:string){
    let $xq:=get-task($task)  
-   let $r:= eval:update($xq,get-base("doc"),5)
-   
-   return "ok"
+   return( eval:update($xq,get-base("doc"),5), db:output("ok"))
 };
 
 declare function get-base($app as xs:string){

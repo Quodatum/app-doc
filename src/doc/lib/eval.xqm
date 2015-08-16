@@ -77,16 +77,18 @@ function update($xq as xs:string,$base as xs:string,$options as map(*))
  let $opts:=map:merge(($eval:def-opts,$options))
   let $xq:= 'declare base-uri "' || $base ||'";&#10;' || $xq
    let $xq:=fn:trace($xq,"eval:update")
+   return xquery:update($xq,$bindings,$opts)
+   (:
   return try{
        let $t1:=prof:current-ms()
        let $x:= () (:xquery:update($xq,$bindings,$opts) :)
        let $t:=(prof:current-ms()-$t1) div 1000
-       return map{"result":xquery:update($xq,$bindings,$opts),
+       return db:output(map{"result":xquery:update($xq,$bindings,$opts),
                     "time":(prof:current-ms()-$t1) div 1000
-                    }
+                    })
       }catch * 
       {
-         map{"error":map{
+         db:output(map{"error":map{
                "code":$err:code,
                "description":$err:description,
                "value":$err:value,
@@ -95,7 +97,8 @@ function update($xq as xs:string,$base as xs:string,$options as map(*))
                 "column-number":$err:column-number,
                "additional":$err:additional
                }
-            }
+            })
     
       }
+      :)
 };
