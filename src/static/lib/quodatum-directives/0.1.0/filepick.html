@@ -1,21 +1,22 @@
 <div>
-	<div ng-show="view=='tree'">
+	<div ng-show="view=='tree'" class="form-group">
 		<div class="input-group">
-			<span class="input-group-btn">
-				<button class="btn btn-default" ng-disabled="busy"
+			<div class="input-group-addon">
+				<a  ng-disabled="busy"
 					ng-click="toggleview()" type="button">
 					<i class="fa  fa-folder-open-o"></i>
-				</button>
-			</span> <input type="text" class="form-control" ng-model="value" required>
-
-
-			<span class="input-group-btn">
-				<button class="btn btn-default" ng-disabled="busy"
-					ng-click="action()" type="button">
-					<i class="fa fa-arrow-right"></i>
-				</button>
-			</span>
+				</a>
+			</div>
+			<input type="text" class="form-control" ng-model="value" required 
+			placeholder="Path"/>
+			<div class="input-group-addon">
+					<a  ng-disabled="busy"
+						ng-click="action()" type="button">
+						<i class="fa fa-arrow-right"></i>
+					</a>
+			</div>
 		</div>
+		 
 		<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
 			ya-context="context" style="height: 50vh; margin-left: -1em;">
 			<a class="nav" href="" ng-click=""

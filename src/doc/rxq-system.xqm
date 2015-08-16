@@ -42,7 +42,7 @@ declare
  %rest:query-param("app", "{$app}","doc")
 function dotask2($app as xs:string,$task as xs:string){
    let $xq:=get-task($task)  
-   return( eval:update($xq,get-base("doc"),5), db:output("ok"))
+   return( eval:update($xq,get-base("doc"),map{}), db:output("ok-top"))
 };
 
 declare function get-base($app as xs:string){

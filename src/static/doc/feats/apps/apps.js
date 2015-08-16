@@ -80,16 +80,25 @@ angular.module('quodatum.doc.apps',
 
 // controllers
 .controller("AppsCtrl",
-    [ "$scope", "Restangular", function($scope, Restangular) {
+    [ "$scope", "Restangular", "$location",function($scope, Restangular,$location) {
 
       console.log("AppsCtrl2");
    
-      var applist = Restangular.one("data").all('app');
-      applist.getList().then(function(d) {
-        // console.log("AppsCtrl2", d);
-        $scope.apps = d;
-      });
-
+      $scope.params = {start : 0,sort : "name"}; //q added by filter
+      
+      $scope.$watch('params', function(value) {
+         $location.search($scope.params);
+         update();
+     }, true);
+     
+     function update() {       
+              Restangular.one("data").all('app')
+                         .getList($scope.params)
+                         .then(function(d){
+                             //console.log("models..",d);
+                             $scope.apps=d;
+                             });          
+     };
     } ])
 
 .controller(
