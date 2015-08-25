@@ -1,7 +1,8 @@
-<entity name="entity"
-	xmlns="https://github.com/Quodatum/app-doc/entity">
-	<description>About an entity i.e. something described in this framework</description>
-	<namespace prefix="ent" uri="https://github.com/Quodatum/app-doc/entity"/>
+<entity name="entity" xmlns="https://github.com/Quodatum/app-doc/entity">
+	<description>About an entity i.e. something described in this framework
+	</description>
+	<namespace prefix="ent"
+		uri="https://github.com/Quodatum/app-doc/entity" />
 	<fields>
 		<field name="name" type="xs:string">
 			<description>name</description>
@@ -9,7 +10,11 @@
 		</field>
 		<field name="type" type="xs:string">
 			<description>xquery type. Just xs:?? for now</description>
-			<xpath>$_/@type</xpath>
+			<xpath>$_/ent:data/@type</xpath>
+		</field>
+		<field name="code" type="xs:string?">
+			<description>Xquery code to access items</description>
+			<xpath>$_/ent:data</xpath>
 		</field>
 		<field name="description" type="xs:string">
 			<description>description</description>
@@ -37,5 +42,5 @@
 		</field>
 	</fields>
 	<iconclass>glyphicon glyphicon-list-alt</iconclass>
-	   <data  type="element(ent:entity)">db:open("doc-doc")//ent:entity</data>
+	<data type="element(ent:entity)">db:open("doc-doc")//ent:entity</data>
 </entity>

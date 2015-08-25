@@ -62,14 +62,14 @@ function doc-init(){
  :)
 declare
 %rest:GET %rest:path("doc/data/app")
+%rest:query-param("q", "{$q}")  
 %output:method("json")
-function apps() 
+function apps($q ) 
 {
 
-let $searchs:=for $a in df:apps()
-            order by $a
-            return app-json($a)
-                    
+let $searchs:=df:apps()! app-json(.)
+            
+let $searchs:=if($q) then $searchs else $searchs                    
 let $entity:=$entity:list("app")
 let $_:= dice:response($searchs,$entity)
 return fn:trace($_,"json")

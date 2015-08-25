@@ -9,19 +9,20 @@
 			</ul>
 		</div>
 		<div class="col-md-9">
+		
 			<section>
 				<a class="anchor" id="cva" /> <a ng-click="scrollTo('cva')">
 					<h2>cva-bar</h2>
 				</a>
-				<p>display a Crumbs,Views,Actions bar from a json value in the scope.</p>
+				<p>Display a toolbar with crumbs and additional options.</p>
 				<p>The cva-bar directive provide several attributes:</p>
                 <ul>
                     <li>ng-model: name of $scope member holding value {name:"aa",crumbs:..}
                         </li>
                 </ul>
 				<cva-bar ng-model="bar">bar</cva-bar>
-				<pre>{{bar| json}}</pre>
 			</section>
+			
 			<section>
 				<a class="anchor" id="sortui" /> <a ng-click="scrollTo('sortui')">
 					<h2>sortui</h2>
@@ -39,6 +40,7 @@
 				<sortui ng-model="params" options="options">sort</sortui>
 				<div>params: {{params}}</div>
 			</section>
+			
 			<section>
 				<a class="anchor" id="uipage" /> <a ng-click="scrollTo('uipage')">
 					<h2>uipage</h2>
@@ -47,6 +49,7 @@
 				<p>Page navigation control</p>
 				<uipage>page</uipage>
 			</section>
+			
 			<section>
 				<a class="anchor" id="filepick" /> <a
 					ng-click="scrollTo('filepick')">
@@ -54,9 +57,10 @@
 				</a>
 				<p>Value is a path selected from a tree ui.</p>
 				<ul>
-                    <li>ng-model: name of $scope member holding path value
+                    <li><var>ng-model</var>: name of $scope member holding path value
                         {sort:"[+/-]field}</li>
-                    <li>endpoint: url supplying data</li>
+                    <li><var>endpoint</var>: url supplying data</li>
+                     <li><var>onselect</var>: called on select</li>
                 </ul>
                 <div>Path:{{path}}</div>
                 <div>endpoint:{{endpoint}}</div>

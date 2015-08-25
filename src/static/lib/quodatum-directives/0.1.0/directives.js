@@ -88,7 +88,19 @@ angular.module('quodatum.directives', [ 'ngResource' ])
         if ($scope.view == "find") {
           console.log("fid", $scope.context)
           alert("find" + $scope.pattern);
-
+          var f = $resource($scope.endpoint);
+          f.query({
+            search : $scope.pattern
+          }).$promise.then(function(result) {
+            $scope.model = [ {
+              name : '/',
+              path : "/",
+              has_children : true,
+              children : [result]
+            } ];
+           
+            $scope.busy = false;
+          });
           return;
         }
         ;
