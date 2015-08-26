@@ -10,6 +10,9 @@
 
 					<h4 class="media-heading">
 						{{model.name}}
+						<span class="label label-info" ng-show="model.code" title="Has code" class="badge badge-default">
+						<i class="fa fa-code"></i>
+						</span>
 					</h4>
 					<div>
 						
@@ -22,6 +25,8 @@
 						<a href="#/data/{{model.name}}" >
                             data
                         </a>
+                       
+</div>
 					</div>
 					
 				</div>

@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-08-03T14:14:58.764+01:00 
+ : auto generated from xml files in entities folder at: 2015-08-26T21:25:15.706+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -118,6 +118,7 @@ declare variable $entity:list:=map {
      "name": "entity",
      "description": "About an entity i.e. something described in this framework",
      "access": map{ 
+       "code": function($_ as element()) as xs:string? {$_/ent:data},
        "description": function($_ as element()) as xs:string {$_/ent:description},
        "fieldslink": function($_ as element()) as xs:string {fn:concat("/data/entity/",$_/@name,"/field")},
        "iconclass": function($_ as element()) as xs:string {$_/ent:iconclass},
@@ -125,8 +126,14 @@ declare variable $entity:list:=map {
        "nfields": function($_ as element()) as xs:integer {fn:count($_/ent:fields/ent:field)},
        "parent": function($_ as element()) as xs:string? {$_/ent:parent/@name},
        "parentlink": function($_ as element()) as xs:string? {fn:concat("/data/entity/",$_/ent:parent/@name)},
-       "type": function($_ as element()) as xs:string {$_/@type} },
+       "type": function($_ as element()) as xs:string {$_/ent:data/@type} },
      "json": map{ 
+           "code": function($_ as element()) as element(code)? {
+            (: string :)
+                        let $d:=fn:data($_/ent:data)
+                        return if($d)
+                              then element code { attribute type {"string" },$d } 
+                              else () },
            "description": function($_ as element()) as element(description)? {
             (: string :)
                         let $d:=fn:data($_/ent:description)
@@ -171,7 +178,7 @@ declare variable $entity:list:=map {
                               else () },
            "type": function($_ as element()) as element(type)? {
             (: string :)
-                        let $d:=fn:data($_/@type)
+                        let $d:=fn:data($_/ent:data/@type)
                         return if($d)
                               then element type { attribute type {"string" },$d } 
                               else () } },

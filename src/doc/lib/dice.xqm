@@ -48,12 +48,12 @@ declare function json-flds($item as element(),
 as element(_){ 
     <_> 
     {for $key in $keys 
-	return element {$key}{
+	return 
     try{
        $fldmap($key)($item)
     }catch * {
-       $err:description
-    }} }
+       element {$key}{$err:description }
+    } }
 	</_>
 };
 

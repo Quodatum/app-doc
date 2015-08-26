@@ -24,7 +24,7 @@ declare
 %output:method("json")    
 function model-list($q) {
  let $entity:=$entity:list("entity")
- let $items:=$model-rest:models
+ let $items:=$entity?data()
  let $items:=if($q)then $items[fn:contains($entity("access")("name")(.),$q)] else $items
  return dice:response($items,$entity,())
 };
@@ -36,8 +36,10 @@ declare
 %rest:GET %rest:path("doc/data/entity/{$entity}")
 %output:method("json")    
 function model($entity) {
- let $fields:=entity:fields("entity")
- let $item:=$model-rest:models[@name=$entity]
+let $this:=$entity:list($entity)
+ let $items:=$this?data()
+ let $fields:=$this?json
+ let $item:=$items[@name=$entity]
  (: just one :)
  return <json objects="json">{dice:json-flds($item,$fields)/*}</json>
 

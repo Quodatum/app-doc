@@ -1,5 +1,5 @@
 <entity name="task" xmlns="https://github.com/Quodatum/app-doc/entity">
-	<description>A task.</description>
+	<description>A piece of runnable XQuery code that causes side effects</description>
 	<namespace prefix="task"  uri="https://github.com/Quodatum/app-doc/task"/>
 	<namespace prefix="xqdoc" uri="http://www.xqdoc.org/1.0"/>
 	<fields>
