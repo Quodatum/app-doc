@@ -39,17 +39,13 @@ angular.module('quodatum.doc.tools',
 
 // controllers
 .controller("TaskCtrls",
-    [ "$scope", "Restangular", "growl", function($scope, Restangular, growl) {
+    [ "$scope", "$location","Restangular", "growl", function($scope, $location,Restangular, growl) {
       console.log("task control");
       $scope.setTitle("Run Tasks");
       $scope.params = {
         start : 0
       };
       growl.info("This page uses angular growl for notifications");
-      
-      Restangular.one("data").all("task").getList().then(function(d) {
-        $scope.tasks = d;
-      });
 
       $scope.run = function(task) {
         Restangular.all("task").all(task).post().then(function(r) {
@@ -60,7 +56,18 @@ angular.module('quodatum.doc.tools',
           growl.error(r.data);
         })
       };
-
+     
+      
+      $scope.$watch('params', function(value) {
+         $location.search($scope.params);
+         update();
+     }, true);
+     
+     function update() {       
+       Restangular.one("data").all("task").getList().then(function(d) {
+         $scope.tasks = d;
+       });     
+     };
     } ])
 
 // details of a task

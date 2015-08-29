@@ -38,11 +38,11 @@ angular.module(
           })
 
           .state('404', {
-            url : "/404",
+            url : "*path",
             templateUrl : '/static/doc/templates/404.xhtml'
           });
         //  $urlRouterProvider.when('', '/about');  
-          $urlRouterProvider.otherwise('/404');  
+         // $urlRouterProvider.otherwise('/404');  
           // use the HTML5 History API
           // $locationProvider.html5Mode(true);
         } ])

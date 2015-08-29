@@ -5,8 +5,7 @@
 angular.module(
     'quodatum.config',
     [ 'ngSanitize', 'restangular', 'ui.router', 'angular-growl',
-        'ncy-angular-breadcrumb',
-        'ngdexie', 'ngdexie.ui'])
+        'ncy-angular-breadcrumb', 'ngdexie', 'ngdexie.ui' ])
 
 .config(function($httpProvider) {
   $httpProvider.interceptors.push('Interceptor400');
@@ -89,17 +88,20 @@ angular.module(
 })
 
 // save state changes to indexeddb
-.config(function(ngDexieProvider){
-        ngDexieProvider.setOptions({name: 'doc', debug: false});
-        ngDexieProvider.setConfiguration(function (db) {
-            db.version(1).stores({
-                log: "++id,timestamp,state,params",
-            });
-            db.on('error', function (err) {
-                // Catch all uncatched DB-related errors and exceptions
-                console.error("db error err=" + err);
-            });
+.config(function(ngDexieProvider) {
+  ngDexieProvider.setOptions({
+    name : 'doc',
+    debug : false
+  });
+  ngDexieProvider.setConfiguration(function(db) {
+    db.version(1).stores({
+      log : "++id,timestamp,state,params",
     });
+    db.on('error', function(err) {
+      // Catch all uncatched DB-related errors and exceptions
+      console.error("db error err=" + err);
+    });
+  });
 })
 
 .run([ "$rootScope", "$window", function($rootScope, $window) {
@@ -115,7 +117,7 @@ angular.module(
         '$state',
         '$stateParams',
         'ngDexie',
-        function($rootScope, $state, $stateParams,ngDexie) {
+        function($rootScope, $state, $stateParams, ngDexie) {
 
           // It's very handy to add references to $state and $stateParams to the
           // $rootScope
@@ -135,19 +137,25 @@ angular.module(
             console.log(unfoundState.to); // "lazy.state"
             console.log(unfoundState.toParams); // {a:1, b:2}
             console.log(unfoundState.options); // {inherit:false} + default
-                                                // options
+            // options
           });
 
           $rootScope.$on("$stateChangeError", console.log.bind(console));
-          
+
           $rootScope.$on('$stateChangeSuccess', function(event, toState,
               toParams, fromState, fromParams) {
-            //console.log("STATE:", toState.name, toParams);
-            var note = { timestamp: new Date().getTime(), state:toState.name, params: toParams };
+            // log all unless data.history:false
+            if (toState.data ? toState.data.history : true) {
+              var note = {
+                timestamp : new Date().getTime(),
+                state : toState.name,
+                params : toParams
+              };
 
-            ngDexie.put('log', note).then(function(){
-             // alert('Saved log');
-            });
+              ngDexie.put('log', note).then(function() {
+                // alert('Saved log');
+              });
+            }
           });
         }
 

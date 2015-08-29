@@ -5,6 +5,7 @@
  :)
 module namespace dr = 'quodatum.doc.rest';
 declare default function namespace 'quodatum.doc.rest';
+declare namespace cxan="http://cxan.org/ns/package";
 
 import module namespace cnf = 'quodatum.app.config' at 'config.xqm';
 import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
@@ -76,13 +77,17 @@ return fn:trace($_,"json")
 };
 
 declare function app-json($app as xs:string) as element(item){
+    let $cxan:=doc:uri("app",$app,"cxan.xml")
     let $logo:=doc:uri("static",$app,"logo.svg")
     let $logo:= if(file:exists($logo))
                 then <logo>{"/static/" || $app || "/logo.svg"}</logo> 
                 else <logo>{"/static/" || "doc" || "/nologo.svg"}</logo> 
+    let $desc:=if(fn:doc-available($cxan)) 
+               then fn:doc($cxan)/cxan:package/cxan:abstract/fn:string()
+               else "(no cxan.xml)"        
      return <item type="object">
                     <name>{$app}</name>
-                    <description>todo this</description>
+                    <description>{$desc}</description>
                     {$logo
                     }</item>            
 };

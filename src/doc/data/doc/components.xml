@@ -464,4 +464,25 @@
             </cdn>
         </release>
     </cmp>
+    
+    <cmp name="ex-graphviz">
+        <runat>expath</runat>
+        <home>https://github.com/expkg-zone58/ex-graphviz</home>
+        <tagline>XQuery interface for Graphviz with EXPath packaging.
+        </tagline>
+        <release version="0.0.7">
+            <cdn type="xar">https://github.com/expkg-zone58/ex-graphviz/releases/download/v0.0.7/ex-graphviz-0.0.7.xar
+            </cdn>
+        </release>
+    </cmp>
+  <cmp name="ex-dotml">
+        <runat>expath</runat>
+        <home>https://github.com/expkg-zone58/ex-dotml</home>
+        <tagline>The dotML library provides conversion from dotML format to graphviz dot
+        </tagline>
+        <release version="0.0.9">
+            <cdn type="xar">https://github.com/expkg-zone58/ex-dotml/releases/download/v0.0.9/ex-dotml-0.0.9.xar
+            </cdn>
+        </release>
+    </cmp>    
 </components>

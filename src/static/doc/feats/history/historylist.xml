@@ -1,6 +1,7 @@
 <div>
 	<cva-bar ng-model="bar"><li>
-	<button class="nav navbar-btn btn btn-default" ng-click="dropall()">Drop</button>
+	<button type="button" class="nav navbar-btn " ng-click="dropall()" >Drop</button>
+	<button type="button" class="nav navbar-btn " ng-click="dropall()" >Drop</button>
 	</li>
 </cva-bar> 
 	<div class="row">

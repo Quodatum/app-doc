@@ -30,4 +30,6 @@ add .states to module. Below is typical structure
  ## breadcrumbs
  ````
     <cva-bar ng-model="bar">bar</cva-bar>
+    
+  
  ````

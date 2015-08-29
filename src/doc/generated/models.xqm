@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-08-26T21:25:15.706+01:00 
+ : auto generated from xml files in entities folder at: 2015-08-29T21:10:46.267+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -223,10 +223,11 @@ declare variable $entity:list:=map {
    },
   "task": map{
      "name": "task",
-     "description": "A task.",
+     "description": "A piece of runnable XQuery code that causes side effects",
      "access": map{ 
        "description": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:comment/xqdoc:description},
        "name": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:uri},
+       "path": function($_ as element()) as xs:string {concat(db:name($_),"/",db:path($_))},
        "xquery": function($_ as element()) as xs:string {'todo'} },
      "json": map{ 
            "description": function($_ as element()) as element(description)? {
@@ -240,6 +241,12 @@ declare variable $entity:list:=map {
                         let $d:=fn:data($_/xqdoc:module/xqdoc:uri)
                         return if($d)
                               then element name { attribute type {"string" },$d } 
+                              else () },
+           "path": function($_ as element()) as element(path)? {
+            (: string :)
+                        let $d:=fn:data(concat(db:name($_),"/",db:path($_)))
+                        return if($d)
+                              then element path { attribute type {"string" },$d } 
                               else () },
            "xquery": function($_ as element()) as element(xquery)? {
             (: string :)

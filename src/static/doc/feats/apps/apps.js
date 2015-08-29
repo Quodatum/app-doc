@@ -97,7 +97,7 @@ angular.module('quodatum.doc.apps',
                          .then(function(d){
                              //console.log("models..",d);
                              $scope.apps=d;
-                             });          
+                             });
      };
     } ])
 

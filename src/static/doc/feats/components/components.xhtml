@@ -1,30 +1,6 @@
 <div>
-<div class="navbar " role="toolbar"   >
-   <ul class="nav navbar-nav navbar" >
-    <div ncy-breadcrumb="">crumbs</div>
-   </ul>
-
-    <ul class="nav navbar-nav navbar"  ng-show="true" >
-    <ol class="breadcrumb">
-        <li  class="nav navbar-nav navbar ">         
-           <a ui-sref="component.tree" class="label label-default">Tree</a>
-        </li>
-      </ol>
-    </ul>
-      <ul class="nav nav-pills pull-right  bg-danger"   
-      style="position:relative;top:-6px">
-            <li>
-            <form class="form-inline">
-                Filter:
-                <input type="text"  data-ng-model="params.q" style="width:6em;"  />
-                 <sortui>sortui</sortui>
-                 </form>
-                  
-            </li>
-            <li>
-            <uipage>page</uipage>
-            </li>
-        </ul>
-</div>
+    <cva-bar ng-model="bar"><li  class="nav navbar-nav navbar ">         
+           <a ui-sref="component.tree" class="label label-default navbar-btn">Tree</a>
+        </li> </cva-bar>
  <div class="container-fluid" ng-include="'components/browser?fmt=html'" autoscroll="true">incl</div>
 </div>

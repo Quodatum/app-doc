@@ -7,6 +7,10 @@
 			<description>name</description>
 			<xpath>$_/xqdoc:module/xqdoc:uri</xpath>
 		</field>
+		<field name="path" type="xs:string">
+            <description>path</description>
+            <xpath>concat(db:name($_),"/",db:path($_))</xpath>
+        </field>
 		<field name="description" type="xs:string">
 			<description>description</description>
 			<xpath>$_/xqdoc:module/xqdoc:comment/xqdoc:description</xpath>
