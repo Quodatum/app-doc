@@ -263,7 +263,7 @@ angular.module('quodatum.directives', [ 'ngResource' ])
   return {
       restrict: 'AE',
       replace: 'true',
-     
+      transclude: true,
       templateUrl : '../static/lib/quodatum-directives/0.1.0/actionbar.html',
       controller : function($scope){
       }

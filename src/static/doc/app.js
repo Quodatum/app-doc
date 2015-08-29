@@ -6,7 +6,7 @@ angular.module(
 		'quodatum.entity','twygmbh.auto-height',
         'quodatum.doc.apps', 'quodatum.doc.components', 'quodatum.doc.files',
         'quodatum.doc.xqm', 'quodatum.doc.schema', 'quodatum.doc.directives',
-        'quodatum.doc.tools', 'quodatum.directives', 'quodatum.config' ])
+        'quodatum.doc.tools', 'quodatum.directives', 'quodatum.config' , 'quodatum.history'])
 
 .constant("apiRoot", "../../doc/")
 

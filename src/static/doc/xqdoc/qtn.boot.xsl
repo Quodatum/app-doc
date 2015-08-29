@@ -9,7 +9,6 @@ version="1.0">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html" />
-http://localhost:8984/static/lib/saxonce/1.1/Saxonce/Saxonce.nocache.js
 <script type="text/javascript" language="javascript" src="../../lib/saxonce/1.1/Saxonce/Saxonce.nocache.js"></script>
 <script>
 var onSaxonLoad = function() {
