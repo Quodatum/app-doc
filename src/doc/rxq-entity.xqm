@@ -36,7 +36,7 @@ declare
 %rest:GET %rest:path("doc/data/entity/{$entity}")
 %output:method("json")    
 function model($entity) {
-let $this:=$entity:list($entity)
+let $this:=$entity:list("entity")
  let $items:=$this?data()
  let $fields:=$this?json
  let $item:=$items[@name=$entity]
@@ -53,9 +53,8 @@ declare
 %output:method("json")    
 function field-list($entity) {
  let $fentity:=$entity:list("field")
-    let $items:=$model-rest:models[@name=$entity]/fields/field
-	let $crumbs:=(<_><name>{$entity}</name><slug>{$entity}</slug></_>,
-                  <_><name>fields</name><slug>fields</slug></_>)
-    return dice:response($items,$fentity,$crumbs)
+    let $items:=$model-rest:models[@name=$entity]/ent:fields/ent:field
+
+    return dice:response($items,$fentity,())
                       
 };

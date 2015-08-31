@@ -23,6 +23,12 @@
                     iconclass:  {{model.iconclass}}
                 </div>
                 <pre>{{model.code}}</pre>
+                <div >
+                <ul ng-repeat="f in fields">
+                <li>{{f.name}}</li>
+                </ul>
+                </div>
+
 			</div>
 		</div>
 	</div>

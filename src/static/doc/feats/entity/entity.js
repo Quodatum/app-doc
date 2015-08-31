@@ -51,7 +51,7 @@ angular.module('quodatum.entity', [ 'ui.router','restangular'])
 	$scope.sortopts=Entities.columns("model");
     $scope.params = {start : 0,sort : "name"};
    
-	console.log("ModelListCtrl");
+	console.log("EntityListCtrl");
 	$scope.$watch('params', function(value) {
         $location.search($scope.params);
         update();
@@ -64,6 +64,7 @@ angular.module('quodatum.entity', [ 'ui.router','restangular'])
 			            	$scope.models=d;
 			            	});			 
     };
+  
 }])
 // controllers
 .controller("FieldListCtrl", [  '$stateParams', '$scope','$location','$modal',
@@ -80,7 +81,7 @@ angular.module('quodatum.entity', [ 'ui.router','restangular'])
     }, true);
 	function update() {       
              Restangular.one("data").one('entity',model)
-			            .getList("fields")
+			            .getList("field")
 			            .then(function(d){
 			            	console.log("fields..",d);
 			            	$scope.fields=d;
@@ -96,6 +97,12 @@ angular.module('quodatum.entity', [ 'ui.router','restangular'])
 	Restangular.one("data")
 			 .one("entity", $stateParams.model).get()
 			 .then(function(d){$scope.model=d});
+	  Restangular.one("data").one('entity',$stateParams.model)
+	    .getList("field")
+	    .then(function(d){
+	        console.log("fields..",d);
+	        $scope.fields=d;
+	        });         
 	
 }])
 .controller("FieldCtrl", [  '$scope','$stateParams','$modal','Restangular',

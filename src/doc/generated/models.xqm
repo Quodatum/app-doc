@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-08-29T21:10:46.267+01:00 
+ : auto generated from xml files in entities folder at: 2015-08-31T12:17:58.18+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -184,6 +184,42 @@ declare variable $entity:list:=map {
                               else () } },
       "data": function() as element(ent:entity)*
        { db:open("doc-doc")//ent:entity }
+   },
+  "field": map{
+     "name": "field",
+     "description": "About an entity field.",
+     "access": map{ 
+       "description": function($_ as element()) as xs:string {$_/description},
+       "name": function($_ as element()) as xs:string {$_/@name},
+       "type": function($_ as element()) as xs:string {$_/@type},
+       "xpath": function($_ as element()) as xs:string {$_/xpath} },
+     "json": map{ 
+           "description": function($_ as element()) as element(description)? {
+            (: string :)
+                        let $d:=fn:data($_/description)
+                        return if($d)
+                              then element description { attribute type {"string" },$d } 
+                              else () },
+           "name": function($_ as element()) as element(name)? {
+            (: string :)
+                        let $d:=fn:data($_/@name)
+                        return if($d)
+                              then element name { attribute type {"string" },$d } 
+                              else () },
+           "type": function($_ as element()) as element(type)? {
+            (: string :)
+                        let $d:=fn:data($_/@type)
+                        return if($d)
+                              then element type { attribute type {"string" },$d } 
+                              else () },
+           "xpath": function($_ as element()) as element(xpath)? {
+            (: string :)
+                        let $d:=fn:data($_/xpath)
+                        return if($d)
+                              then element xpath { attribute type {"string" },$d } 
+                              else () } },
+      "data": function() as element(field)*
+       { () }
    },
   "search-result": map{
      "name": "search-result",

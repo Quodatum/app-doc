@@ -54,7 +54,7 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
 			  .state('wadl', {
                 url : "/data/wadl",
            templateUrl : '/static/doc/feats/components/wadl-view.xhtml', 
-            ncyBreadcrumb: { label: 'wadl' },
+            ncyBreadcrumb: { label: 'endpoint' },
             controller:"ScrollCtrl"
                
               })

@@ -60,7 +60,7 @@ return if(db:exists($dbname)) then
        for $f in $files
        let $_:=fn:trace($path || $f,"file:") 
        let $content:=$ingest($path || $f) 
-       return db:replace($dbname,$f,<foo/>),
+       return db:replace($dbname,$f,$content),
        db:optimize($dbname))
        else
         let $full:=$files!fn:concat($path,.)

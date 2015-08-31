@@ -39,7 +39,10 @@ angular.module(
 
           .state('404', {
             url : "*path",
-            templateUrl : '/static/doc/templates/404.xhtml'
+            templateUrl : '/static/doc/templates/404.xhtml',
+            data : {
+              "history" : false
+            }
           });
         //  $urlRouterProvider.when('', '/about');  
          // $urlRouterProvider.otherwise('/404');  
