@@ -41,8 +41,8 @@ angular.module('quodatum.directives', [ 'ngResource' ])
           node.$children = context.nodifyArray(result);
           $scope.busy = false;
         });
-      }
-      ;
+      };
+      
       $scope.context = {
         selectedNodes : [],
         hits : 0
@@ -83,6 +83,12 @@ angular.module('quodatum.directives', [ 'ngResource' ])
         has_children : true,
         children : []
       } ];
+      $scope.search = [ {
+        name : '/',
+        path : "/",
+        has_children : true,
+        children : []
+      } ];
 
       $scope.action = function() {
         if ($scope.view == "find") {
@@ -92,7 +98,7 @@ angular.module('quodatum.directives', [ 'ngResource' ])
           f.query({
             search : $scope.pattern
           }).$promise.then(function(result) {
-            $scope.model = [ {
+            $scope.search = [ {
               name : '/',
               path : "/",
               has_children : true,

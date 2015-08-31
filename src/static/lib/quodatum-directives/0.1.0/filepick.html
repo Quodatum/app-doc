@@ -1,5 +1,5 @@
 <div>
-	<div ng-show="view=='tree'" >
+	<div ng-show="view=='tree'">
 		<div class="input-group">
 			<div class="input-group-addon">
 				<a ng-disabled="busy" ng-click="toggleview()" type="button"> <i
@@ -13,6 +13,15 @@
 					class="fa fa-arrow-right"></i>
 				</a>
 			</div>
+		</div>
+		<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
+			ya-context="context" style="height: 100%; margin-left: -1em;">
+			<a class="nav" href="" ng-click=""
+				ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}"
+				title="{{ node.$model.path }}"> <i class="fa"
+				ng-class="node.$hasChildren?(node.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
+				{{ node.$model.name }}
+			</a>
 		</div>
 	</div>
 	<!-- tree -->
@@ -31,14 +40,15 @@
 				</a>
 			</div>
 		</div>
+		<div ya-treeview ya-id="myTree" ya-model="search" ya-options="options"
+			style="height: 100%; margin-left: -1em;">
+			<a class="nav" href="" ng-click=""
+				ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}"
+				title="{{ node.$model.path }}"> <i class="fa"
+				ng-class="node.$hasChildren?(node.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
+				{{ node.$model.name }}
+			</a>
+		</div>
 	</div>
-	<div ya-treeview ya-id="myTree" ya-model="model" ya-options="options"
-		ya-context="context" style="height: 100%; margin-left: -1em;">
-		<a class="nav" href="" ng-click=""
-			ng-class="{selectedNode: context.selectedNodes.indexOf(node) > -1}"
-			title="{{ node.$model.path }}"> <i class="fa"
-			ng-class="node.$hasChildren?(node.collapsed?'fa-folder':'fa-folder-open'): 'fa-file'"></i>
-			{{ node.$model.name }}
-		</a>
-	</div>
+
 </div>

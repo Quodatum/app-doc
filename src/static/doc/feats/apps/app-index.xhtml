@@ -6,7 +6,14 @@
 			<div class="panel-heading">
 				<h1>
 					<img class="media-object" ng-src="{{app.logo}}" alt="{{app.name}} - no logo"
-						style="width: 64px; height: 64px;"/> {{app.name}}</h1>
+						style="width: 64px; height: 64px;"/> {{app.name}}
+				<div class="btn-group">
+                        <a href="{{app.uri}}" target="app-{{app.name}}" title="Run app"
+                            class="btn btn-default">
+                            <i class="fa fa-play-circle"></i>
+                        </a>
+                    </div>		
+						</h1>
 			</div>
 			<div class="panel-body table-responsive"> Description:{{app.description}} </div>
 		</div>

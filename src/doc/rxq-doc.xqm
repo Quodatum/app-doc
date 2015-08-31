@@ -123,11 +123,14 @@ function entity-data($entity as xs:string)
  :)
 declare
 %rest:GET %rest:path("doc/data/file/list")
-%rest:query-param("path", "{$path}","/")  
+%rest:query-param("path", "{$path}","/")
+%rest:query-param("search", "{$search}","")    
 %output:method("json")   
-function files($path) as element(json) 
+function files($path,$search) as element(json) 
 {
-    <json type="array">{df:list($path)}</json>
+    if(fn:normalize-space($search))
+    then   <json type="array">{df:find("/",$search)}</json> 
+    else <json type="array">{df:list($path)}</json>
 };
 
 (:~
@@ -137,7 +140,7 @@ function files($path) as element(json)
  :)
 declare
 %rest:GET %rest:path("doc/data/file/find")
-%rest:query-param("pattern", "{$pattern}","")  
+%rest:query-param("pattern", "{$pattern}","") 
 %output:method("json")   
 function find($pattern) as element(json) 
 {

@@ -1,33 +1,48 @@
 <div>
-	<div class="navbar " role="toolbar"  >
-        <ul class="nav navbar-nav navbar">
-            <div ncy-breadcrumb="">crumbs</div>
-        </ul>
-        </div>
+	<div class="navbar " role="toolbar">
+		<ul class="nav navbar-nav navbar">
+			<div ncy-breadcrumb="">crumbs</div>
+		</ul>
+	</div>
 	<div class="fluid">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">
+					<div class="pull-right">type: {{model.type}}</div>
 					<i class="{{model.iconclass}}"></i>
 					{{model.name}}
 				</h3>
 			</div>
 			<div class="panel-body">
-				<div>description: {{model.description}}</div>
-				<div>type: {{model.type}}</div>
+				<div>{{model.description}}</div>
 				<div>
-					nfields:
-					<a href="#/{{model.fieldslink}}">{{model.nfields}}</a>
+					iconclass: {{model.iconclass}}
 				</div>
 				<div>
-                    iconclass:  {{model.iconclass}}
-                </div>
-                <pre>{{model.code}}</pre>
-                <div >
-                <ul ng-repeat="f in fields">
-                <li>{{f.name}}</li>
-                </ul>
-                </div>
+				<h4>Code</h4>
+				<pre>{{model.code}}</pre>
+				</div>
+				<div>
+					<h4>Fields <span class="badge badge-default">{{model.nfields}}</span></h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th>XPath</th>
+								<th>description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="f in fields">
+								<td>{{f.name}}</td>
+								<td>{{f.type}}</td>
+								<td>{{f.xpath}}</td>
+								<td>{{f.description}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
 			</div>
 		</div>

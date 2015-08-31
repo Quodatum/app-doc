@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-08-31T12:17:58.18+01:00 
+ : auto generated from xml files in entities folder at: 2015-08-31T20:44:26.093+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -189,14 +189,14 @@ declare variable $entity:list:=map {
      "name": "field",
      "description": "About an entity field.",
      "access": map{ 
-       "description": function($_ as element()) as xs:string {$_/description},
+       "description": function($_ as element()) as xs:string {$_/ent:description},
        "name": function($_ as element()) as xs:string {$_/@name},
        "type": function($_ as element()) as xs:string {$_/@type},
-       "xpath": function($_ as element()) as xs:string {$_/xpath} },
+       "xpath": function($_ as element()) as xs:string {$_/ent:xpath} },
      "json": map{ 
            "description": function($_ as element()) as element(description)? {
             (: string :)
-                        let $d:=fn:data($_/description)
+                        let $d:=fn:data($_/ent:description)
                         return if($d)
                               then element description { attribute type {"string" },$d } 
                               else () },
@@ -214,11 +214,11 @@ declare variable $entity:list:=map {
                               else () },
            "xpath": function($_ as element()) as element(xpath)? {
             (: string :)
-                        let $d:=fn:data($_/xpath)
+                        let $d:=fn:data($_/ent:xpath)
                         return if($d)
                               then element xpath { attribute type {"string" },$d } 
                               else () } },
-      "data": function() as element(field)*
+      "data": function() as element(ent:field)*
        { () }
    },
   "search-result": map{
