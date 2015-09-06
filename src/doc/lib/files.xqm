@@ -11,14 +11,29 @@ module namespace df = 'quodatum.doc.file';
 declare variable $df:base:= db:system()/globaloptions/webpath/fn:string()
                              || file:dir-separator();
 
+(:~ 
+ : default file list skip data
+ :)
+declare function df:keep-files($f as xs:string,$s as xs:string)
+as xs:string?{
+     if(file:is-file(file:resolve-path($f,$s)))
+     then if(starts-with($f,"data")) 
+          then ()
+          else translate($f,file:dir-separator(),"/")
+     else ()
+};
+     
 (:~
  : list of files matching glob below $src
+ : src full path to folder eg "file:/C:/sss/"
  :)
 declare function df:dir($src as xs:string,$glob as xs:string)
+as xs:string*
 { 
 let $s:=file:path-to-native($src) 
-return file:list($s,fn:true(),$glob)
-=>fn:filter(function ($f){file:is-file(file:resolve-path($f,$s))})
+return 
+file:list($s,fn:true(),$glob)
+!df:keep-files(.,$s)
 };
 
 

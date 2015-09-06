@@ -1,5 +1,5 @@
-<entity name="component-js" xmlns="https://github.com/Quodatum/app-doc/entity">
-	<description>About a javascript library </description>
+<entity name="component" xmlns="https://github.com/Quodatum/app-doc/entity">
+	<description>About a software component. Such as a Javascript library or an EXPath package</description>
 	<fields>
 		<field name="name" type="xs:string">
 			<description>name</description>
@@ -13,6 +13,10 @@
 			<description>cdn url</description>
 			<xpath>$_/release/cdn[1]</xpath>
 		</field>
+		<field name="html" type="element()">
+            <description>html for component</description>
+            <xpath>$_</xpath>
+        </field>
 	</fields>
 	<iconclass>fa fa-puzzle-piece</iconclass>
 	<data type="element(cmp)"></data>

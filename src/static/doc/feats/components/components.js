@@ -20,7 +20,7 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
                 ncyBreadcrumb : {
                   label : 'components'
                 },
-                controller : "ScrollCtrl"
+                controller : "CICtrl"
               })
 
               .state('component.item', {
@@ -126,4 +126,25 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
               ;
               $scope.scrollTo = ScrollService.scrollTo;
 
-            } ]);
+            } ])
+            
+
+    .controller(
+        // provides scrolling controller 
+        // uses params app,view
+        // to set inc also sets scrollTo
+        "CICtrl",
+        [ '$stateParams', '$scope', '$http','$sce','ScrollService',
+            function($stateParams, $scope, $http,$sce,ScrollService) {
+
+              console.log("CI controller: ",$stateParams);
+              // $scope.setTitle("Coomponents");
+              //http://localhost:8984/doc/components/browser?fmt=html
+                $http.get('components/browser?fmt=json').then(function(response) {
+                  $scope.cmphtml = $sce.trustAsHtml(response.data.html);
+              });
+              
+              $scope.scrollTo = ScrollService.scrollTo;
+
+            } ])            
+            ;

@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-08-31T20:44:26.093+01:00 
+ : auto generated from xml files in entities folder at: 2015-09-04T23:05:34.571+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -45,11 +45,12 @@ declare variable $entity:list:=map {
       "data": function() as element(item)*
        { () }
    },
-  "component-js": map{
-     "name": "component-js",
-     "description": "About a javascript library",
+  "component": map{
+     "name": "component",
+     "description": "About a software component. Such as a Javascript library or an EXPath package",
      "access": map{ 
        "cdn": function($_ as element()) as xs:string {$_/release/cdn[1]},
+       "html": function($_ as element()) as element() {$_},
        "name": function($_ as element()) as xs:string {$_/@name},
        "tagline": function($_ as element()) as xs:string {$_/tagline} },
      "json": map{ 
@@ -59,6 +60,8 @@ declare variable $entity:list:=map {
                         return if($d)
                               then element cdn { attribute type {"string" },$d } 
                               else () },
+           "html": function($_ as element()) as element(html)? {
+            element html { attribute type {"string"},fn:serialize($_)} },
            "name": function($_ as element()) as element(name)? {
             (: string :)
                         let $d:=fn:data($_/@name)

@@ -92,7 +92,9 @@ declare variable $entity:{$entity/@name/fn:string()}: map{{ {fn:string-join($m,"
 (:~ 
  :  return xml for suitable json serialization for field 
 :)
-declare function jsonfn($f as element(ent:field)) as xs:string{
+declare function jsonfn($f as element(ent:field)) 
+as xs:string
+{
     let $name:=$f/@name/fn:string()
     let $type:=json-type($f/@type)
     let $json-type:=if($type="element") then "string" else $type

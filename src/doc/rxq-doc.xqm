@@ -103,6 +103,16 @@ function app($app)
 };
 
 (:~
+ : detail of a task .
+ :)
+declare
+%rest:GET %rest:path("doc/data/task/{$task}")
+%output:method("json")   
+function task($task) 
+{
+    <json type="object"><name>{$task}</name></json>
+};
+(:~
  : default entity lister
  :)
 declare

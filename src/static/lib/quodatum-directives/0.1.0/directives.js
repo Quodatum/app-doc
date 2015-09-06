@@ -267,10 +267,13 @@ angular.module('quodatum.directives', [ 'ngResource' ])
 // composite bar
 .directive('cvaBar',['$interpolate', function($interpolate) {
   return {
-      restrict: 'AE',
+      restrict: 'E',
       replace: 'true',
       transclude: true,
       templateUrl : '../static/lib/quodatum-directives/0.1.0/actionbar.html',
+      scope: {
+        list: "@list"
+      },
       controller : function($scope){
       }
   };

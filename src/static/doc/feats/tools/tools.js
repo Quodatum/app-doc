@@ -34,6 +34,13 @@ angular.module('quodatum.doc.tools',
             reloadOnSearch : false,
             controller : "PostCtrl"
           })
+          
+           .state('async', {
+            url : "/async",
+            templateUrl : '/static/doc/feats/tools/async.xhtml',
+            reloadOnSearch : false,
+            controller : "AsyncCtrl"
+          })
 
         } ])
 
@@ -78,8 +85,22 @@ angular.module('quodatum.doc.tools',
           console.log("task control");
           var task = $stateParams.task;
           $scope.setTitle("Run Task" + task);
+          Restangular.one("data").one("task",task).get().then(function(d) {
+            console.log("task control", d);
+            $scope.data=d;
+          });     
         } ])
 
+ // details of a task
+.controller(
+    "AsyncCtrl",
+    [ "$scope", "Restangular", "$stateParams", "growl",
+        function($scope, Restangular, $stateParams, growl) {
+          console.log("async control");
+          var task = $stateParams.task;
+          $scope.setTitle("Run Task" + task);
+        } ])
+        
 // test update read and increment a counter
 .controller("PostCtrl",
     [ "$scope", "Restangular", "growl", function($scope, Restangular, growl) {

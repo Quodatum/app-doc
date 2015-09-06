@@ -32,6 +32,18 @@ declare
 function listtasks(){
    <json type="array"/>
 };
+
+(:~
+ :  about a task
+ :)
+declare 
+%output:method("json") 
+%rest:GET %rest:path("/doc/task/{$task}")
+ %rest:query-param("app", "{$app}","doc")
+function atask2($app as xs:string,$task as xs:string){
+   <json type="object"/>
+};
+
 (:~
  :  run a task
  :)

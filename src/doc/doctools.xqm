@@ -137,7 +137,11 @@ declare function component-render($doc as element(),
 {
   let $render:=map{"xml": function($doc){web:download-response("xml", "expath-pkg.xml"),$doc},
                   "svg":function($doc){web:svg-response(),svggen:generate($doc)},       
-                 "html":function($doc){doc:components-html($doc)}
+                 "html":function($doc){doc:components-html($doc)},
+                 "json":function($doc){web:json-response(),
+                                    <json type="object"><html>{
+                                    doc:components-html($doc)!fn:serialize(.,map{"method":"html"})
+                                    }</html></json>}
             }
    return $render?($fmt,"html")[1]($doc) 
 }; 

@@ -124,4 +124,9 @@ declare function strip-ns($n as node()) as node() {
 declare function svg-response(){
     web:response-header(map { 'media-type': "image/svg+xml",
                               'method':"xml"})
-}; 
+};
+ 
+declare function json-response(){
+    web:response-header(map { 'media-type': "application/json",
+                              'method':"json"})
+};
