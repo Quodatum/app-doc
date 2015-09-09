@@ -99,7 +99,11 @@ declare
 %output:method("json")   
 function app($app) 
 {
-    <json type="object">{app-json($app)}</json>
+    let $entity:=$entity:list("app")
+    let $jsonf:= map:get($entity,"json")
+    
+    let $item:=app-json($app)
+    return <json type="object">{dice:json-flds($item,$jsonf)/*}</json>
 };
 
 (:~

@@ -265,6 +265,7 @@ angular.module('quodatum.directives', [ 'ngResource' ])
 } ])
 
 // composite bar
+// breadcrumbs,transclude,filter
 .directive('cvaBar',['$interpolate', function($interpolate) {
   return {
       restrict: 'E',
@@ -275,6 +276,7 @@ angular.module('quodatum.directives', [ 'ngResource' ])
         single: "@single"
       },
       controller : function($scope){
+        $scope.params={q:"fred"};
       }
   };
 }])

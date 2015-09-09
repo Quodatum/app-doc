@@ -260,6 +260,10 @@
 		<release version="01.08.2014">
 			<local>lib/ace/01.08.2014</local>
 		</release>
+		<release version="1.2">
+           <cdn type="js">//cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js</cdn>
+            <cdn type="js">//cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js</cdn>
+        </release>
 	</cmp>
 
 	<cmp name="ui-ace">

@@ -110,7 +110,7 @@ angular.module('quodatum.doc.apps',
 
           var applist = Restangular.one("data").one('app', app);
           applist.get().then(function(d) {
-            $scope.app = d.item;
+            $scope.app = d;
             console.log(">>", d);
           });
         } ])

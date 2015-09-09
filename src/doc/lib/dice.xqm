@@ -37,7 +37,7 @@ as item()*{
 
 (:~ generate item xml for all fields in map :)
 declare function json-flds($item,$fldmap)
-{
+as element(_){
   json-flds($item,$fldmap,map:keys($fldmap)) 
 };
 
