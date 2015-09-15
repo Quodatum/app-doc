@@ -273,10 +273,11 @@ angular.module('quodatum.directives', [ 'ngResource' ])
       transclude: true,
       templateUrl : '../static/lib/quodatum-directives/0.1.0/actionbar.html',
       scope: {
-        single: "@single"
+        single: "@single",
+        params: "=?"
       },
       controller : function($scope){
-        $scope.params={q:"fred"};
+
       }
   };
 }])

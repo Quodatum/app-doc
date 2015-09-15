@@ -70,12 +70,19 @@ function apps($q )
 
 let $searchs:=df:apps()! app-json(.)
             
-let $searchs:=if($q) then $searchs else $searchs                    
+let $searchs:=if($q) then filter-apps($searchs,$q) else $searchs                    
 let $entity:=$entity:list("app")
 let $_:= dice:response($searchs,$entity)
 return fn:trace($_,"json")
 };
 
+declare function filter-apps($apps as element()*,$q as xs:string){
+ $apps[some $e in (name,description)satisfies  fn:contains($e,$q)]
+};
+
+(:~ 
+ :detail of app
+ :)
 declare function app-json($app as xs:string) as element(item){
     let $cxan:=doc:uri("app",$app,"cxan.xml")
     let $logo:=doc:uri("static",$app,"logo.svg")
@@ -91,6 +98,8 @@ declare function app-json($app as xs:string) as element(item){
                     {$logo
                     }</item>            
 };
+
+
 (:~
  : detail of app found on file system.
  :)
