@@ -16,12 +16,7 @@
 		</div>
 		<div class="collapse navbar-collapse" ng-class="{'in':!navCollapsed}">
 			<ul class="nav navbar-nav">
-				<li>
-					<a ui-sref="app.index">
-						<i class="fa fa-desktop"></i>
-						Apps
-					</a>
-				</li>
+
 				<li class="dropdown" dropdown="dropdown">
 					<a href="#" class="dropdown-toggle" dropdown-toggle="dropdown-toggle"
 						data-toggle="dropdown">
@@ -29,7 +24,12 @@
 						<b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
-
+						<li>
+							<a ui-sref="app.index">
+								<i class="fa fa-desktop"></i>
+								Apps
+							</a>
+						</li>
 						<li role="presentation" class="dropdown-header">Server</li>
 						<li>
 							<a ui-sref="endpoint">
@@ -58,12 +58,12 @@
 								Entities
 							</a>
 						</li>
-                        <li>
-                            <a ui-sref="tasks.index">
-                                <i class="fa fa-tasks"></i>
-                                Tasks
-                            </a>
-                        </li>
+						<li>
+							<a ui-sref="tasks.index">
+								<i class="fa fa-tasks"></i>
+								Tasks
+							</a>
+						</li>
 					</ul>
 				</li>
 				<li class="dropdown" dropdown="dropdown">
@@ -91,19 +91,13 @@
 								Poster
 							</a>
 						</li>
-						  <li>
-                            <a ui-sref="async">
-                                <i class="fa fa-ticket"></i>
-                                Async
-                            </a>
-                        </li>
-						<li role="presentation" class="divider"></li>
 						<li>
-							<a ui-sref="history.index">
-								<i class="fa fa-history"></i>
-								History
+							<a ui-sref="async">
+								<i class="fa fa-ticket"></i>
+								Async
 							</a>
 						</li>
+						
 					</ul>
 				</li>
 
@@ -123,6 +117,28 @@
 
 			</div>
 			<ul class="nav navbar-nav navbar-right">
+			             <li class="dropdown" dropdown="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        dropdown-toggle="dropdown-toggle">
+                        User
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                       <li>
+                            <a ui-sref="login">
+                                
+                                login
+                            </a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li>
+                            <a ui-sref="history.index">
+                                <i class="fa fa-history"></i>
+                                History
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 				<li class="dropdown" dropdown="dropdown">
 					<a href="#" class="dropdown-toggle" title="{{$state.current.name}}({{$stateParams}}) "
 						data-toggle="dropdown" dropdown-toggle="dropdown-toggle">

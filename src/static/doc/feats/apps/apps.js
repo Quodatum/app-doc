@@ -95,7 +95,7 @@ angular.module('quodatum.doc.apps',
               Restangular.one("data").all('app')
                          .getList($scope.params)
                          .then(function(d){
-                             //console.log("models..",d);
+                             console.log("models..",d);
                              $scope.apps=d;
                              });
      };

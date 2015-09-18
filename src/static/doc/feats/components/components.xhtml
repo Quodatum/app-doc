@@ -1,6 +1,11 @@
 <div>
-    <cva-bar ng-model="bar"><li  class="nav navbar-nav navbar ">         
+    <cva-bar ng-model="bar">
+     <li  class="nav navbar-nav navbar ">  
+    A <span class="badge badge-default" >{{apps.metadata.entity}}</span>
+    </li>
+    <li  class="nav navbar-nav navbar ">         
            <a ui-sref="component.tree" class="label label-default navbar-btn">Tree</a>
-        </li> </cva-bar>
+        </li> 
+        </cva-bar>
  <div class="container-fluid"  ng-bind-html="cmphtml" autoscroll="true">incl</div>
 </div>
