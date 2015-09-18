@@ -277,7 +277,7 @@ angular.module('quodatum.directives', [ 'ngResource' ])
         params: "=?"
       },
       controller : function($scope){
-
+          $scope.options=["f1","f2"];
       }
   };
 }])
