@@ -10,7 +10,8 @@ angular.module('quodatum.doc.apps',
           .state('app', {
             url : "/data/app",
             abstract : true,
-            template : '<ui-view>App list</ui-view>'
+            template : '<ui-view>App list</ui-view>',
+            data:{entity:"app"}
           })
 
           .state('app.index', {

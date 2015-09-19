@@ -77,7 +77,8 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
                 ncyBreadcrumb : {
                   label : 'endpoint'
                 },
-                controller : "ScrollCtrl"
+                controller : "ScrollCtrl",
+                data:{entity:"endpoint"}
 
               })
             } ])

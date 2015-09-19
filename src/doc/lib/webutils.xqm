@@ -121,6 +121,7 @@ declare function strip-ns($n as node()) as node() {
   )
 };
 
+(:~ todo use basex mime :)
 declare function svg-response(){
     web:response-header(map { 'media-type': "image/svg+xml",
                               'method':"xml"})

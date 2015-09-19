@@ -1,11 +1,7 @@
 <div>
-	<cva-bar ng-model="bar" params="params">
-	 <div class="input-group">
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-default " 
-        ><span class="badge badge-default" >{{apps.metadata.entity}}</span></button>
-	</div>
-	</div>
+	<cva-bar ng-model="bar" params="params" state="$state">
+		
+
 	</cva-bar>
 	<div class="row">
 
@@ -19,7 +15,7 @@
 
 					<h4 class="media-heading">
 
-						{{app.name}}
+						{{app.name}}<span class="label label-default">{{app.version}}</span>
 					</h4>
 					<p>{{app.description}}</p>
 					<p>

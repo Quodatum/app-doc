@@ -4,24 +4,37 @@
 	</ul>
 	<ul class="nav navbar-nav navbar">
 		<ng-transclude>...</ng-transclude>
+
 	</ul>
+
+
 	<ul class="nav nav-pills pull-right  bg-danger" title="Not working yet"
-		ng-hide="single" style="position: relative; top: -6px">
-		<li>
-			<form class="form-inline">
+		style="position: relative; top: -6px">
+		<li ng-hide="single" >
+			<form class="form-inline navbar-form">
+
 				<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-filter "></i></span>
 					<input type="text" class="form-control" placeholder="Filter..."
 						ng-model="params.q" style="width: 8em;" /> <span
 						class="input-group-btn">
 						<button class="btn btn-default" type="button"
-							ng-click="params.q='';">x</i></button>
+							ng-click="params.q='';">
+							x</i>
+						</button>
 					</span>
 				</div>
 				<!-- /input-group -->
 				<sortui ng-model="params" options="options">sortui</sortui>
 			</form>
 		</li>
-		<li><uipage>page</uipage></li>
+		<li ng-hide="single" ><uipage ng-model="params">page</uipage></li>
+		<li><div class="input-group">
+				<div class="input-group-btn">
+					<span class="badge badge-default"> <a
+						ui-sref="entity.model({model:state.current.data.entity})">{{state.current.data.entity}}</a>
+					</span>
+				</div>
+			</div></li>
 	</ul>
 </div>

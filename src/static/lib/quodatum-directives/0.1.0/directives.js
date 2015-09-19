@@ -274,7 +274,8 @@ angular.module('quodatum.directives', [ 'ngResource' ])
       templateUrl : '../static/lib/quodatum-directives/0.1.0/actionbar.html',
       scope: {
         single: "@single",
-        params: "=?"
+        params: "=?",
+        state: "=?"
       },
       controller : function($scope){
           $scope.options=["f1","f2"];

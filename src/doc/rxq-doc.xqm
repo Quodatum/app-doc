@@ -5,7 +5,6 @@
  :)
 module namespace dr = 'quodatum.doc.rest';
 declare default function namespace 'quodatum.doc.rest';
-declare namespace cxan="http://cxan.org/ns/package";
 
 import module namespace cnf = 'quodatum.app.config' at 'config.xqm';
 import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
@@ -14,6 +13,7 @@ import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils4' at 'lib/webutils.xqm';
 import module namespace entity = 'quodatum.models.generated' at 'generated/models.xqm';
 import module namespace  qsr = 'quodatum.system.rest' at 'rxq-system.xqm';
+import module namespace apps = 'quodatum.doc.apps' at "apps.xqm";
 
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
 import module namespace rest = "http://exquery.org/ns/restxq";
@@ -68,36 +68,15 @@ declare
 function apps($q ) 
 {
 
-let $searchs:=df:apps()! app-json(.)
+let $searchs:=df:apps()! apps:app-json(.,doc:uri#3)
             
-let $searchs:=if($q) then filter-apps($searchs,$q) else $searchs                    
+let $searchs:=if($q) then apps:filter-apps($searchs,$q) else $searchs                    
 let $entity:=$entity:list("app")
 let $_:= dice:response($searchs,$entity)
 return fn:trace($_,"json")
 };
 
-declare function filter-apps($apps as element()*,$q as xs:string){
- $apps[some $e in (name,description)satisfies  fn:contains($e,$q)]
-};
 
-(:~ 
- :detail of app
- :)
-declare function app-json($app as xs:string) as element(item){
-    let $cxan:=doc:uri("app",$app,"cxan.xml")
-    let $logo:=doc:uri("static",$app,"logo.svg")
-    let $logo:= if(file:exists($logo))
-                then <logo>{"/static/" || $app || "/logo.svg"}</logo> 
-                else <logo>{"/static/" || "doc" || "/nologo.svg"}</logo> 
-    let $desc:=if(fn:doc-available($cxan)) 
-               then fn:doc($cxan)/cxan:package/cxan:abstract/fn:string()
-               else "(no cxan.xml)"        
-     return <item type="object">
-                    <name>{$app}</name>
-                    <description>{$desc}</description>
-                    {$logo
-                    }</item>            
-};
 
 
 (:~
@@ -111,7 +90,7 @@ function app($app)
     let $entity:=$entity:list("app")
     let $jsonf:= map:get($entity,"json")
     
-    let $item:=app-json($app)
+    let $item:=apps:app-json($app,doc:uri#3)
     return <json type="object">{dice:json-flds($item,$jsonf)/*}</json>
 };
 

@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-09-04T23:05:34.571+01:00 
+ : auto generated from xml files in entities folder at: 2015-09-19T23:16:39.797+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -16,7 +16,8 @@ declare variable $entity:list:=map {
        "description": function($_ as element()) as xs:string? {$_/description},
        "logo": function($_ as element()) as xs:string? {$_/logo},
        "name": function($_ as element()) as xs:string {$_/name},
-       "uri": function($_ as element()) as xs:string? {'/' || $_/name} },
+       "uri": function($_ as element()) as xs:string? {'/' || $_/name},
+       "version": function($_ as element()) as xs:string {$_/version} },
      "json": map{ 
            "description": function($_ as element()) as element(description)? {
             (: string :)
@@ -41,6 +42,12 @@ declare variable $entity:list:=map {
                         let $d:=fn:data('/' || $_/name)
                         return if($d)
                               then element uri { attribute type {"string" },$d } 
+                              else () },
+           "version": function($_ as element()) as element(version)? {
+            (: string :)
+                        let $d:=fn:data($_/version)
+                        return if($d)
+                              then element version { attribute type {"string" },$d } 
                               else () } },
       "data": function() as element(item)*
        { () }
