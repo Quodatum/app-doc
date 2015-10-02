@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace math = "http://www.w3.org/2005/xpath-functions/math";
+module namespace math = "x-http://www.w3.org/2005/xpath-functions/math";
 
 (:~
  : Returns the <code>xs:double</code> value of the mathematical constant π whose lexical representation is 3.141592653589793.

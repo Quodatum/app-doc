@@ -27,8 +27,7 @@ generic request parameters
 
 ## cva bars 
 A UI component. Crumbs,Views,Actions
-Has an XML respresentation.
-lib/cva.xqm can load from a conventional location and format for json 
+
 
 ##xslt 
 Anchor

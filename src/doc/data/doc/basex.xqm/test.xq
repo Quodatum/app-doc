@@ -1,3 +1,4 @@
+(:
 import module namespace admin = "http://basex.org/modules/admin" at "admin.xqm";
 import module namespace archive = "http://basex.org/modules/archive" at "archive.xqm";
 import module namespace array = "http://www.w3.org/2005/xpath-functions/array" at "array.xqm";
@@ -37,4 +38,5 @@ import module namespace request = "http://exquery.org/ns/request" at "request.xq
 import module namespace rest = "http://exquery.org/ns/restxq" at "rest.xqm";
 import module namespace session = "http://basex.org/modules/session" at "session.xqm";
 import module namespace sessions = "http://basex.org/modules/sessions" at "sessions.xqm";
+:)
 ()

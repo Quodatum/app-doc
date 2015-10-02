@@ -1,14 +1,11 @@
-<div class="navbar " role="toolbar">
+<nav class="navbar" >
 	<ul class="nav navbar-nav navbar">
 		<div ncy-breadcrumb="">crumbs</div>
 	</ul>
 	<ul class="nav navbar-nav navbar">
 		<ng-transclude>...</ng-transclude>
-
 	</ul>
-
-
-	<ul class="nav nav-pills pull-right  bg-danger" title="Not working yet"
+	<ul class="nav navbar-nav navbar pull-right  bg-danger" title="Not working yet"
 		style="position: relative; top: -6px">
 		<li ng-hide="single" >
 			<form class="form-inline navbar-form">
@@ -29,12 +26,12 @@
 			</form>
 		</li>
 		<li ng-hide="single" ><uipage ng-model="params">page</uipage></li>
-		<li><div class="input-group">
-				<div class="input-group-btn">
+		
+		<li>
 					<span class="badge badge-default"> <a
 						ui-sref="entity.model({model:state.current.data.entity})">{{state.current.data.entity}}</a>
 					</span>
-				</div>
-			</div></li>
+				</li>
+		
 	</ul>
-</div>
+</nav>
