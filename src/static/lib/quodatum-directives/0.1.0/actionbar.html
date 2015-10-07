@@ -1,37 +1,35 @@
-<nav class="navbar" >
+<nav class="navbar">
 	<ul class="nav navbar-nav navbar">
 		<div ncy-breadcrumb="">crumbs</div>
 	</ul>
 	<ul class="nav navbar-nav navbar">
 		<ng-transclude>...</ng-transclude>
 	</ul>
-	<ul class="nav navbar-nav navbar pull-right  bg-danger" title="Not working yet"
-		style="position: relative; top: -6px">
-		<li ng-hide="single" >
-			<form class="form-inline navbar-form">
+
+	<ul class="nav navbar-nav navbar navbar-right  bg-danger"
+		title="Not working yet" style="position: relative; top: -6px">
+		<li>
+			<form ng-hide="single" class="navbar-form">
 
 				<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-filter "></i></span>
 					<input type="text" class="form-control" placeholder="Filter..."
-						ng-model="params.q" style="width: 8em;" /> <span
-						class="input-group-btn">
-						<button class="btn btn-default" type="button"
-							ng-click="params.q='';">
-							x</i>
-						</button>
+						ng-model="params.q" style="width: 8em;" /> <span ng-show="params.q.length"
+						class="input-group-addon"> <a class="" type="button"
+						ng-click="params.q='';"> x</i>
+					</a>
 					</span>
 				</div>
 				<!-- /input-group -->
 				<sortui ng-model="params" options="options">sortui</sortui>
 			</form>
 		</li>
-		<li ng-hide="single" ><uipage ng-model="params">page</uipage></li>
-		
-		<li>
-					<span class="badge badge-default"> <a
-						ui-sref="entity.model({model:state.current.data.entity})">{{state.current.data.entity}}</a>
-					</span>
-				</li>
-		
+		<li><uipage ng-model="params" ng-hide="single">page</uipage>
+
+			<p class="navbar-text">
+				<span class="badge badge-default"> <a
+					ui-sref="entity.model({model:state.current.data.entity})">{{state.current.data.entity}}</a>
+				</span>
+			</p></li>
 	</ul>
 </nav>
