@@ -29,11 +29,25 @@ declare function xweb:packages($repo as xs:string) as element(pkg)*
 
 (:~ 
  : package detail
+ : @param $pkg e.g "joewiz/xqjson"
  :)
-declare function xweb:package($pkg as xs:string) 
+declare function xweb:package($pkg as xs:string) as element(pkg) 
 { 
-  xweb:get(concat("pkg/",$pkg))
+  xweb:get(concat("pkg/",$pkg))/pkg
+};
+
+(:~ 
+ : package uri
+ : @param $pkg e.g "joewiz/xqjson"
+ :)
+declare function xweb:version($pkg as xs:string,$version) 
+{ 
+  let $p:=xweb:package($pkg)
+  let $v:=$p/version[@num=$version]/file[@role="pkg"]
+  return if(starts-with( resolve-uri($v/@name),"file:/"))
+         then   concat($cxan, "file/" , $pkg, "/" , $v/@name)  
+         else $v  
 };
 
 let $pkgs:=xweb:repos() !xweb:packages(id) 
-return $pkgs[1]! xweb:package(id)
+return  xweb:version("joewiz/xqjson","0.1.6")

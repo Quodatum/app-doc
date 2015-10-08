@@ -1,5 +1,8 @@
 # Doc app dev guide
 
+* [client](client/readme.md)
+* [server](server/readme.md)
+
 Web UI set in doc-rest.xqm
 UI is created in layout.xqm
 Angular app is <html ng-app="doc" ng-controller="AppController">
@@ -60,12 +63,3 @@ in static
 - logo.svg
 ## 
 
-# render
-````
-let $render:=map{"xml":function($doc){$doc},
-            "svg":function($doc){<svg/>}
-            }
-let $doc:=<foo/>
-let $fmt:="www"
-return $render?($fmt,"svg")[1]($doc)
-````
