@@ -1,9 +1,13 @@
 <div>
-<div class="row form-group" role="navigation">
-<ncy-breadcrumb>bread</ncy-breadcrumb>
+<cva-bar ng-model="bar" params="params" state="$state" single="true">
+    <div class="btn-group" role="group" aria-label="svg zoom">
+      <button ng-click="zoomIn($event)" class="navbar-btn btn btn-default">+</button>
+      <button ng-click="zoomReset($event)"  class="navbar-btn btn btn-default">Reset</button>
+      <button ng-click="zoomOut($event)" class="navbar-btn btn btn-default">-</button>
     </div>
-<div  id="svghere" ng-include="'components/browser?fmt=svg'" onload="gotsvg()" 
-auto-height="" additional-height="200px" style="background-color:orange;">
+    </cva-bar>
+    <div  id="svghere" ng-include="'components/browser?fmt=svg'" onload="gotsvg()" 
+auto-height="" additional-height="200px" style="background-color:Azure ;"> 
 tree here
 </div>
 </div>

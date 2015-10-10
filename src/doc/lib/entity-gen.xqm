@@ -40,12 +40,12 @@ as map(*){{
 };
 
 (:~
- : generate xquery for to return field value in the format: "name"=function(){}
+ : generate xquery for to return field value in the format: "name":function($_){}
  :)
 declare function accessfn($f as element(ent:field)) as xs:string
 {
 <field>
-       "{$f/@name/fn:string()}": function($_ as element()) as {$f/@type/fn:string()} {{{$f/ent:xpath }}}</field>
+       "{$f/@name/fn:string()}": function($_ as element()) as {$f/@type/fn:string()} {{$_/{$f/ent:xpath } }}</field>
 };
 
 declare function generate($e as element(ent:entity)) as xs:string
@@ -102,21 +102,20 @@ as xs:string
     (: generate json xml :)
     let $simple:=function() as xs:string{
                 <field>(: {$type} :)
-                        let $d:=fn:data({$f/ent:xpath })
+                        let $d:=fn:data($_/{$f/ent:xpath })
                         return if($d)
                               then element {$name} {{ attribute type {{"{$json-type}" }},$d }} 
                               else ()</field>
                 }
     (: serialize when element :)
     let $element:=function() as xs:string{
-                <field>element {$name} {{ attribute type {{"string"}},fn:serialize({$f/ent:xpath})}}</field>
+                <field>element {$name} {{ attribute type {{"string"}},fn:serialize($_/{$f/ent:xpath})}}</field>
                 } 
                            
     return <field>
            "{$name}": function($_ as element()) as element({$name})? {{
             {if($type="element") then $element() else $simple()} }}</field>
 };
-
 
 
 (:~ convert xs type to json

@@ -67,13 +67,13 @@ declare
 %output:method("json")
 function apps($q ) 
 {
-
-let $searchs:=df:apps()! apps:app-json(.,doc:uri#3)
-            
-let $searchs:=if($q) then apps:filter-apps($searchs,$q) else $searchs                    
-let $entity:=$entity:list("app")
-let $_:= dice:response($searchs,$entity)
-return fn:trace($_,"json")
+    let $entity:=$entity:list("app")
+    let $searchs:=df:apps()! apps:app-json(.,doc:uri#3)
+                
+    let $searchs:=if($q) then apps:filter-apps($searchs,$q) else $searchs                    
+    
+    let $_:= dice:response($searchs,$entity)
+    return $_
 };
 
 

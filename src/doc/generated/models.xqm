@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-09-19T23:16:39.797+01:00 
+ : auto generated from xml files in entities folder at: 2015-10-10T21:51:25.004+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -13,11 +13,11 @@ declare variable $entity:list:=map {
      "name": "app",
      "description": "A RESTXQ based web application.",
      "access": map{ 
-       "description": function($_ as element()) as xs:string? {$_/description},
-       "logo": function($_ as element()) as xs:string? {$_/logo},
-       "name": function($_ as element()) as xs:string {$_/name},
-       "uri": function($_ as element()) as xs:string? {'/' || $_/name},
-       "version": function($_ as element()) as xs:string {$_/version} },
+       "description": function($_ as element()) as xs:string? {$_/description },
+       "logo": function($_ as element()) as xs:string? {$_/logo },
+       "name": function($_ as element()) as xs:string {$_/name },
+       "uri": function($_ as element()) as xs:string? {$_/('/' || name) },
+       "version": function($_ as element()) as xs:string {$_/version } },
      "json": map{ 
            "description": function($_ as element()) as element(description)? {
             (: string :)
@@ -39,7 +39,7 @@ declare variable $entity:list:=map {
                               else () },
            "uri": function($_ as element()) as element(uri)? {
             (: string :)
-                        let $d:=fn:data('/' || $_/name)
+                        let $d:=fn:data($_/('/' || name))
                         return if($d)
                               then element uri { attribute type {"string" },$d } 
                               else () },
@@ -56,10 +56,10 @@ declare variable $entity:list:=map {
      "name": "component",
      "description": "About a software component. Such as a Javascript library or an EXPath package",
      "access": map{ 
-       "cdn": function($_ as element()) as xs:string {$_/release/cdn[1]},
-       "html": function($_ as element()) as element() {$_},
-       "name": function($_ as element()) as xs:string {$_/@name},
-       "tagline": function($_ as element()) as xs:string {$_/tagline} },
+       "cdn": function($_ as element()) as xs:string {$_/release/cdn[1] },
+       "html": function($_ as element()) as element() {$_/. },
+       "name": function($_ as element()) as xs:string {$_/@name },
+       "tagline": function($_ as element()) as xs:string {$_/tagline } },
      "json": map{ 
            "cdn": function($_ as element()) as element(cdn)? {
             (: string :)
@@ -68,7 +68,7 @@ declare variable $entity:list:=map {
                               then element cdn { attribute type {"string" },$d } 
                               else () },
            "html": function($_ as element()) as element(html)? {
-            element html { attribute type {"string"},fn:serialize($_)} },
+            element html { attribute type {"string"},fn:serialize($_/.)} },
            "name": function($_ as element()) as element(name)? {
             (: string :)
                         let $d:=fn:data($_/@name)
@@ -88,18 +88,18 @@ declare variable $entity:list:=map {
      "name": "endpoint",
      "description": "A WADL type wadl:resource",
      "access": map{ 
-       "doc": function($_ as element()) as xs:string {if($_/wadl:method/wadl:doc) 
-			       then $_/wadl:method/wadl:doc/text()
-			       else ''},
-       "mediatype": function($_ as element()) as xs:string {$_/wadl:method/wadl:response/wadl:representation/@mediaType},
-       "method": function($_ as element()) as xs:string {$_/wadl:method/@name},
-       "path": function($_ as element()) as xs:string {$_/@path} },
+       "doc": function($_ as element()) as xs:string {$_/(if(wadl:method/wadl:doc) 
+			       then wadl:method/wadl:doc/text()
+			       else '' ) },
+       "mediatype": function($_ as element()) as xs:string {$_/wadl:method/wadl:response/wadl:representation/@mediaType },
+       "method": function($_ as element()) as xs:string {$_/wadl:method/@name },
+       "path": function($_ as element()) as xs:string {$_/@path } },
      "json": map{ 
            "doc": function($_ as element()) as element(doc)? {
             (: string :)
-                        let $d:=fn:data(if($_/wadl:method/wadl:doc) 
-			       then $_/wadl:method/wadl:doc/text()
-			       else '')
+                        let $d:=fn:data($_/(if(wadl:method/wadl:doc) 
+			       then wadl:method/wadl:doc/text()
+			       else '' ))
                         return if($d)
                               then element doc { attribute type {"string" },$d } 
                               else () },
@@ -128,15 +128,15 @@ declare variable $entity:list:=map {
      "name": "entity",
      "description": "About an entity i.e. something described in this framework",
      "access": map{ 
-       "code": function($_ as element()) as xs:string? {$_/ent:data},
-       "description": function($_ as element()) as xs:string {$_/ent:description},
-       "fieldslink": function($_ as element()) as xs:string {fn:concat("/data/entity/",$_/@name,"/field")},
-       "iconclass": function($_ as element()) as xs:string {$_/ent:iconclass},
-       "name": function($_ as element()) as xs:string {$_/@name},
-       "nfields": function($_ as element()) as xs:integer {fn:count($_/ent:fields/ent:field)},
-       "parent": function($_ as element()) as xs:string? {$_/ent:parent/@name},
-       "parentlink": function($_ as element()) as xs:string? {fn:concat("/data/entity/",$_/ent:parent/@name)},
-       "type": function($_ as element()) as xs:string {$_/ent:data/@type} },
+       "code": function($_ as element()) as xs:string? {$_/ent:data },
+       "description": function($_ as element()) as xs:string {$_/ent:description },
+       "fieldslink": function($_ as element()) as xs:string {$_/fn:concat("/data/entity/",@name,"/field") },
+       "iconclass": function($_ as element()) as xs:string {$_/ent:iconclass },
+       "name": function($_ as element()) as xs:string {$_/@name },
+       "nfields": function($_ as element()) as xs:integer {$_/fn:count(ent:fields/ent:field) },
+       "parent": function($_ as element()) as xs:string? {$_/ent:parent/@name },
+       "parentlink": function($_ as element()) as xs:string? {$_/fn:concat("/data/entity/",ent:parent/@name) },
+       "type": function($_ as element()) as xs:string {$_/ent:data/@type } },
      "json": map{ 
            "code": function($_ as element()) as element(code)? {
             (: string :)
@@ -152,7 +152,7 @@ declare variable $entity:list:=map {
                               else () },
            "fieldslink": function($_ as element()) as element(fieldslink)? {
             (: string :)
-                        let $d:=fn:data(fn:concat("/data/entity/",$_/@name,"/field"))
+                        let $d:=fn:data($_/fn:concat("/data/entity/",@name,"/field"))
                         return if($d)
                               then element fieldslink { attribute type {"string" },$d } 
                               else () },
@@ -170,7 +170,7 @@ declare variable $entity:list:=map {
                               else () },
            "nfields": function($_ as element()) as element(nfields)? {
             (: number :)
-                        let $d:=fn:data(fn:count($_/ent:fields/ent:field))
+                        let $d:=fn:data($_/fn:count(ent:fields/ent:field))
                         return if($d)
                               then element nfields { attribute type {"number" },$d } 
                               else () },
@@ -182,7 +182,7 @@ declare variable $entity:list:=map {
                               else () },
            "parentlink": function($_ as element()) as element(parentlink)? {
             (: string :)
-                        let $d:=fn:data(fn:concat("/data/entity/",$_/ent:parent/@name))
+                        let $d:=fn:data($_/fn:concat("/data/entity/",ent:parent/@name))
                         return if($d)
                               then element parentlink { attribute type {"string" },$d } 
                               else () },
@@ -199,10 +199,10 @@ declare variable $entity:list:=map {
      "name": "field",
      "description": "About an entity field.",
      "access": map{ 
-       "description": function($_ as element()) as xs:string {$_/ent:description},
-       "name": function($_ as element()) as xs:string {$_/@name},
-       "type": function($_ as element()) as xs:string {$_/@type},
-       "xpath": function($_ as element()) as xs:string {$_/ent:xpath} },
+       "description": function($_ as element()) as xs:string {$_/ent:description },
+       "name": function($_ as element()) as xs:string {$_/@name },
+       "type": function($_ as element()) as xs:string {$_/@type },
+       "xpath": function($_ as element()) as xs:string {$_/ent:xpath } },
      "json": map{ 
            "description": function($_ as element()) as element(description)? {
             (: string :)
@@ -235,14 +235,14 @@ declare variable $entity:list:=map {
      "name": "search-result",
      "description": "About a search result.",
      "access": map{ 
-       "sref": function($_ as element()) as xs:string {"app.item.index({'name':'benchx'})"},
-       "title": function($_ as element()) as xs:string {$_/title},
-       "type": function($_ as element()) as xs:string {$_/type},
-       "uri": function($_ as element()) as xs:string {$_/uri} },
+       "sref": function($_ as element()) as xs:string {$_/"app.item.index({'name':'benchx'})" },
+       "title": function($_ as element()) as xs:string {$_/title },
+       "type": function($_ as element()) as xs:string {$_/type },
+       "uri": function($_ as element()) as xs:string {$_/uri } },
      "json": map{ 
            "sref": function($_ as element()) as element(sref)? {
             (: string :)
-                        let $d:=fn:data("app.item.index({'name':'benchx'})")
+                        let $d:=fn:data($_/"app.item.index({'name':'benchx'})")
                         return if($d)
                               then element sref { attribute type {"string" },$d } 
                               else () },
@@ -271,10 +271,10 @@ declare variable $entity:list:=map {
      "name": "task",
      "description": "A piece of runnable XQuery code that causes side effects",
      "access": map{ 
-       "description": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:comment/xqdoc:description},
-       "name": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:uri},
-       "path": function($_ as element()) as xs:string {concat(db:name($_),"/",db:path($_))},
-       "xquery": function($_ as element()) as xs:string {'todo'} },
+       "description": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:comment/xqdoc:description },
+       "name": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:uri },
+       "path": function($_ as element()) as xs:string {$_/concat(db:name(.),"/",db:path(.)) },
+       "xquery": function($_ as element()) as xs:string {$_/'todo' } },
      "json": map{ 
            "description": function($_ as element()) as element(description)? {
             (: string :)
@@ -290,13 +290,13 @@ declare variable $entity:list:=map {
                               else () },
            "path": function($_ as element()) as element(path)? {
             (: string :)
-                        let $d:=fn:data(concat(db:name($_),"/",db:path($_)))
+                        let $d:=fn:data($_/concat(db:name(.),"/",db:path(.)))
                         return if($d)
                               then element path { attribute type {"string" },$d } 
                               else () },
            "xquery": function($_ as element()) as element(xquery)? {
             (: string :)
-                        let $d:=fn:data('todo')
+                        let $d:=fn:data($_/'todo')
                         return if($d)
                               then element xquery { attribute type {"string" },$d } 
                               else () } },
@@ -310,12 +310,12 @@ declare variable $entity:list:=map {
      "name": "xqmodule",
      "description": "An XQuery source code module",
      "access": map{ 
-       "description": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:comment/xqdoc:description},
-       "file": function($_ as element()) as xs:string {fn:substring-after(fn:base-uri($_),"abide-modules/")},
-       "href": function($_ as element()) as xs:string {"#/data/xqmodule/item?item=" || fn:base-uri($_)},
-       "name": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:name},
-       "type": function($_ as element()) as xs:string {$_/xqdoc:module/@type},
-       "uri": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:uri} },
+       "description": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:comment/xqdoc:description },
+       "file": function($_ as element()) as xs:string {$_/fn:substring-after(fn:base-uri(.),"abide-modules/") },
+       "href": function($_ as element()) as xs:string {$_/"#/data/xqmodule/item?item=" || fn:base-uri(.) },
+       "name": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:name },
+       "type": function($_ as element()) as xs:string {$_/xqdoc:module/@type },
+       "uri": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:uri } },
      "json": map{ 
            "description": function($_ as element()) as element(description)? {
             (: string :)
@@ -325,13 +325,13 @@ declare variable $entity:list:=map {
                               else () },
            "file": function($_ as element()) as element(file)? {
             (: string :)
-                        let $d:=fn:data(fn:substring-after(fn:base-uri($_),"abide-modules/"))
+                        let $d:=fn:data($_/fn:substring-after(fn:base-uri(.),"abide-modules/"))
                         return if($d)
                               then element file { attribute type {"string" },$d } 
                               else () },
            "href": function($_ as element()) as element(href)? {
             (: string :)
-                        let $d:=fn:data("#/data/xqmodule/item?item=" || fn:base-uri($_))
+                        let $d:=fn:data($_/"#/data/xqmodule/item?item=" || fn:base-uri(.))
                         return if($d)
                               then element href { attribute type {"string" },$d } 
                               else () },

@@ -16,7 +16,7 @@
 			<div class="panel-body">
 				<div>{{model.description}}</div>
 				<div>
-					iconclass: {{model.iconclass}}
+					iconclass:<span class="label label-default">{{model.iconclass}}</span> 
 				</div>
 				<div>
 				<h4>Code</h4>

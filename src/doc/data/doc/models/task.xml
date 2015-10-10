@@ -5,15 +5,15 @@
 	<fields>
 		<field name="name" type="xs:string">
 			<description>name</description>
-			<xpath>$_/xqdoc:module/xqdoc:uri</xpath>
+			<xpath>xqdoc:module/xqdoc:uri</xpath>
 		</field>
 		<field name="path" type="xs:string">
             <description>path</description>
-            <xpath>concat(db:name($_),"/",db:path($_))</xpath>
+            <xpath>concat(db:name(.),"/",db:path(.))</xpath>
         </field>
 		<field name="description" type="xs:string">
 			<description>description</description>
-			<xpath>$_/xqdoc:module/xqdoc:comment/xqdoc:description</xpath>
+			<xpath>xqdoc:module/xqdoc:comment/xqdoc:description</xpath>
 		</field>
 		<field name="xquery" type="xs:string">
             <description>xquery code for this task.</description>

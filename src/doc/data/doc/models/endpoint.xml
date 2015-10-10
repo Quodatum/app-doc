@@ -4,21 +4,21 @@
 	<fields>
 		<field name="path" type="xs:string">
 			<description>path</description>
-			<xpath>$_/@path</xpath>
+			<xpath>@path</xpath>
 		</field>
 		<field name="method" type="xs:string">
 			<description>http methods eg PUT DELETE</description>
-			<xpath>$_/wadl:method/@name</xpath>
+			<xpath>wadl:method/@name</xpath>
 		</field>
 		<field name="doc" type="xs:string">
 			<description>html doc</description>
-			<xpath>if($_/wadl:method/wadl:doc) 
-			       then $_/wadl:method/wadl:doc/text()
-			       else '' </xpath>
+			<xpath>(if(wadl:method/wadl:doc) 
+			       then wadl:method/wadl:doc/text()
+			       else '' )</xpath>
 		</field>
 		<field name="mediatype" type="xs:string">
 			<description>mediatype</description>
-			<xpath>$_/wadl:method/wadl:response/wadl:representation/@mediaType</xpath>
+			<xpath>wadl:method/wadl:response/wadl:representation/@mediaType</xpath>
 		</field>
 	</fields>
 	<iconclass>fa fa-exchange</iconclass>

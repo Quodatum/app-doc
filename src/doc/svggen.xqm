@@ -13,6 +13,8 @@ declare default function namespace 'quodatum.doc.svg';
 import module namespace dotml="http://www.martin-loetzsch.de/DOTML";
 import module namespace ex-graphviz="http://expkg-zone58.github.io/ex-graphviz";
 
+(:~ example dotml 
+ :)
 declare variable $svggen:simple:=
 <graph  xmlns="http://www.martin-loetzsch.de/DOTML" rankdir="LR">    
     <node   id="a" label="node1" fontsize="9" fontname="Arial"/>
@@ -31,6 +33,12 @@ declare variable $svggen:cmps:=
     <node   id="a" label="cmps" fontsize="9" fontname="Arial"/>
   </graph>;
 
+
+declare function name($name as xs:string) as xs:string
+{
+fn:translate($name,"-.","__")
+};
+
 declare function dump($item){
  ($item,file:write("junk.txt",$item))
 };
@@ -38,15 +46,14 @@ declare function dump($item){
 declare function generate($pkg as element())
 as element()
 {
-let $fix:=function($n as xs:string){fn:translate($n,"-.","__")}
 let $dot:= 
  <dotml:graph  rankdir="LR" fontname="Arial" label="Components"> 
 		{(for $c in $pkg/cmp
-		 let $id:=$fix($c/@name)
+		 let $id:=name($c/@name)
 		 return <dotml:node id="{$id}" label="{$c/@name}" shape="box" style="filled" fillcolor="yellow"
 		 URL="javascript:alert('{$c/@name}')" />,
 		 for $d in $pkg/cmp/depends
-		 return <dotml:edge from="{$fix($d/../@name)}" to="{$fix($d)}"/>  )
+		 return <dotml:edge from="{name($d/../@name)}" to="{name($d)}"/>  )
 		     }
         </dotml:graph>
 		

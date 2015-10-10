@@ -6,19 +6,19 @@
 	<fields>
 		<field name="name" type="xs:string">
 			<description>name</description>
-			<xpath>$_/@name</xpath>
+			<xpath>@name</xpath>
 		</field>
 		<field name="type" type="xs:string">
 			<description>type</description>
-			<xpath>$_/@type</xpath>
+			<xpath>@type</xpath>
 		</field>
 		<field name="description" type="xs:string">
 			<description>description</description>
-			<xpath>$_/ent:description</xpath>
+			<xpath>ent:description</xpath>
 		</field>
 		<field name="xpath" type="xs:string">
 			<description>xpath</description>
-			<xpath>$_/ent:xpath</xpath>
+			<xpath>ent:xpath</xpath>
 		</field>
 	</fields>
 	<iconclass>glyphicon glyphicon-minus</iconclass>

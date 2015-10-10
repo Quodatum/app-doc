@@ -11,7 +11,8 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
                 ncyBreadcrumb : {
                   skip : true
                 },
-                template : '<ui-view>library</ui-view>'
+                template : '<ui-view>library</ui-view>',
+                data:{entity:"component"}
               })
 
               .state('component.index', {
@@ -101,15 +102,28 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
 
     .controller("TreeCtrl", [ '$scope', function($scope) {
       console.log("TreeCtrl", $scope.$stateParams);
+      var panZoom;
       $scope.gotsvg = function() {
-
         var svg = document.getElementById("svghere").querySelector('svg');
-        var panZoomTiger = svgPanZoom(svg, {
+        panZoom= svgPanZoom(svg, {
           zoomEnabled : true,
-          controlIconsEnabled : true
+          controlIconsEnabled : true,
+          contain:true
         });
       };
-
+      
+      $scope.zoomIn = function(ev){
+        ev.preventDefault();
+        panZoom.zoomIn();
+      };
+      $scope.zoomOut = function(ev){
+        ev.preventDefault();
+        panZoom.zoomOut();
+      };
+      $scope.zoomReset = function(ev){
+        ev.preventDefault();
+        panZoom.zoomReset();
+      };
     } ])
 
     // show BaseX system modules

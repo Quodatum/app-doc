@@ -3,23 +3,23 @@
 	<fields>
 		<field name="name" type="xs:string">
 			<description>Application name.</description>
-			<xpath>$_/name</xpath>
+			<xpath>name</xpath>
 		</field>
 		<field name="version" type="xs:string">
             <description>Application version.</description>
-            <xpath>$_/version</xpath>
+            <xpath>version</xpath>
         </field>
 		<field name="description" type="xs:string?">
 			<description>Application description</description>
-			<xpath>$_/description</xpath>
+			<xpath>description</xpath>
 		</field>
 		<field name="uri" type="xs:string?">
             <description>Application url address</description>
-            <xpath>'/' || $_/name</xpath>
+            <xpath>('/' || name)</xpath>
         </field>
         <field name="logo" type="xs:string?">
             <description>uri for the application logo if exists</description>
-            <xpath>$_/logo</xpath>
+            <xpath>logo</xpath>
         </field>
 	</fields>
 	<views>

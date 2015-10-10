@@ -10,7 +10,7 @@ angular.module('quodatum.entity', [ 'ui.router','restangular'])
                 abstract : true,
                 template : '<ui-view>entity</ui-view>',
                 ncyBreadcrumb: { skip:true},
-                data:{entity:"app"}
+                data:{entity:"entity"}
               })
               
               .state('entity.index', {
