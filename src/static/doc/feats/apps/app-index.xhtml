@@ -18,26 +18,6 @@
 			<div class="panel-body table-responsive"> Description:{{app.description}} </div>
 		</div>
 
-		<div class=" col-md-4">
-			<div class="panel  panel-info panel-body">
-				<div class="panel-heading">
-					<h3 class="panel-title">Client</h3>
-				</div>
-				<div class="panel-body table-responsive">
-					<ul class="nav nav-pills ">
-						<li>
-							<a ui-sref="app.item.client.component({view:'component'})"
-								class="btn btn-default btn-sm">Components</a>
-						</li>
-						<li>
-							<a ui-sref="app.item.client.template({view:'template'})"
-								class="btn btn-default btn-sm">Templates</a>
-						</li>
-					</ul>
-				</div>
-
-			</div>
-		</div>
 
 		<div class="col-md-4">
 			<div class="panel  panel-info panel-body">
@@ -49,8 +29,30 @@
 						>Endpoints</a>
 					<a ui-sref="app.item.server.xqdoc({view:'xqdoc'})"
 						class="btn btn-default btn-sm">XQdoc</a>
+					<a href="/dba/logs?loglist=%2Fbenchx&amp;name=2015-10-10&amp;sort=" target="logs" 
+                        class="btn btn-default btn-sm">log</a>	
 				</div>
 			</div>
 		</div>
+		
+		  <div class=" col-md-4">
+            <div class="panel  panel-info panel-body">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Client</h3>
+                </div>
+                <div class="panel-body table-responsive">
+                    <ul class="nav nav-pills ">
+                        <li>
+                            <a ui-sref="app.item.client.component({view:'component'})"
+                                class="btn btn-default btn-sm">Components</a>
+                        </li>
+                        <li>
+                            <a ui-sref="app.item.client.template({view:'template'})"
+                                class="btn btn-default btn-sm">Templates</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 	</div>
 </div>

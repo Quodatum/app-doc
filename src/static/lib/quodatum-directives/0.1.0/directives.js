@@ -4,7 +4,7 @@
  * filetree
  * apbDropdown generates sort by drop down.
  */
-angular.module('quodatum.directives', [ 'ngResource' ])
+angular.module('quodatum.directives', [ 'ngResource', 'ui.bootstrap' ])
 // <filetree value=/>
 .directive("filepick", [ 'apiRoot', function($compile, apiRoot) {
 

@@ -4,68 +4,87 @@
 		<div class="col-md-3">
 			<ul>
 				<li ng-repeat="item in list">
-				<a  ng-click="scrollTo(item.name)">{{item.name}}</a>
+					<a ng-click="scrollTo(item.name)">{{item.name}}</a>
 				</li>
 			</ul>
 		</div>
 		<div class="col-md-9">
-		
+
 			<section>
-				<a class="anchor" id="cva" /> <a ng-click="scrollTo('cva')">
+				<a class="anchor" id="cva" />
+				<a ng-click="scrollTo('cva')">
 					<h2>cva-bar</h2>
 				</a>
 				<p>Display a toolbar with crumbs and additional options.</p>
 				<p>The cva-bar directive provide several attributes:</p>
-                <ul>
-                    <li>ng-model: name of $scope member holding value {name:"aa",crumbs:..}
-                        </li>
-                </ul>
+				<ul>
+					<li>ng-model: unused
+					</li>
+					<li>single: "@single" </li>
+					<li>params: "=?" </li>
+					<li>state: "=?" </li>
+				</ul>
 				<cva-bar ng-model="bar">bar</cva-bar>
 			</section>
-			
+
 			<section>
-				<a class="anchor" id="sortui" /> <a ng-click="scrollTo('sortui')">
+				<a class="anchor" id="sortui" />
+				<a ng-click="scrollTo('sortui')">
 					<h2>sortui</h2>
 				</a>
 				<p>Provides a UI to display and edit a sort preference.</p>
 				<p>Value is a name from a list with optional leading +/-
-					ascending or descending flag.</p>
+					ascending or
+					descending flag.
+				</p>
 				<p>The sortui directive provide several attributes:</p>
 				<ul>
 					<li>ng-model: name of $scope member holding value
-						{sort:"[+/-]field}</li>
+						{sort:"[+/-]field}
+					</li>
 					<li>options: name of $scope member holding list of sortable
-						names</li>
+						names
+					</li>
 				</ul>
 				<sortui ng-model="params" options="options">sort</sortui>
 				<div>params: {{params}}</div>
+				<div>options: {{options}}</div>
 			</section>
-			
+
 			<section>
-				<a class="anchor" id="uipage" /> <a ng-click="scrollTo('uipage')">
+				<a class="anchor" id="uipage" />
+				<a ng-click="scrollTo('uipage')">
 					<h2>uipage</h2>
 				</a>
-                <pre>&lt;uipage&gt;..&lt;/uipage&gt;</pre>
+				<pre>&lt;uipage&gt;..&lt;/uipage&gt;</pre>
 				<p>Page navigation control</p>
 				<uipage>page</uipage>
 			</section>
-			
+
 			<section>
-				<a class="anchor" id="filepick" /> <a
-					ng-click="scrollTo('filepick')">
+				<a class="anchor" id="filepick" />
+				<a ng-click="scrollTo('filepick')">
 					<h2>filepick</h2>
 				</a>
 				<p>Value is a path selected from a tree ui.</p>
 				<ul>
-                    <li><var>ng-model</var>: name of $scope member holding path value
-                        {sort:"[+/-]field}</li>
-                    <li><var>endpoint</var>: url supplying data</li>
-                     <li><var>onselect</var>: called on select</li>
-                </ul>
-                <div>Path:{{path}}</div>
-                <div>endpoint:{{endpoint}}</div>
-				<filepick ng-model="path" endpoint="endpoint"
-					onselect="fsel" />
+					<li>
+						<var>ng-model</var>
+						: name of $scope member holding path value
+						{sort:"[+/-]field}
+					</li>
+					<li>
+						<var>endpoint</var>
+						: url supplying data
+					</li>
+					<li>
+						<var>onselect</var>
+						: called on select
+					</li>
+				</ul>
+				<div>Path:{{path}}</div>
+				<div>endpoint:{{endpoint}}</div>
+				<filepick ng-model="path" endpoint="endpoint" onselect="fsel" />
 			</section>
 
 		</div>

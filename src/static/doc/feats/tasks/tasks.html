@@ -1,5 +1,5 @@
 <div >
-   <cva-bar ng-model="bar" params="params"></cva-bar>
+   <cva-bar  params="params" state="$state"></cva-bar>
 	<div class="row">
 	<div ng-repeat="task in tasks" class="media col-sm-6 col-md-4 ">
 		<div class="qd-model well">
@@ -15,8 +15,6 @@
 					{{task.name}}
 				</h4>
 				<p>{{task.description}}</p>
-
-
 			</div>
 		</div>
         </div>

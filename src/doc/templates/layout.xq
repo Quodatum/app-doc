@@ -46,6 +46,7 @@ declare variable $incl-js as element()* external :=();
     <script src="{$static}feats/entity/entity.js"  ></script>
     <script src="{$static}feats/xqmodules/xqm.js"  ></script>
     <script src="{$static}feats/tools/tools.js"  ></script>
+    <script src="{$static}feats/tasks/tasks.js"  ></script>
     <script src="{$static}feats/directives/directives.js"  ></script>
 </body>
 </html>

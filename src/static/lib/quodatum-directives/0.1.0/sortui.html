@@ -1,19 +1,23 @@
-<div class="btn-group navbar-btn">
-	<button type="button" class="btn   " ng-click="sortclick()"
-		title="Sort direction (click to reverse)">
-		<i
-			data-ng-class='{false:"glyphicon glyphicon-sort-by-attributes",true:"glyphicon glyphicon-sort-by-attributes-alt"}[desc]'></i>
-	</button>
-	<button type="button" style="width: 7em; text-align: left;"
-		class="btn " is-open="isopen">
-		{{field}}
-	</button>
-	<button data-toggle="dropdown" class="btn btn-danger dropdown-toggle">
-	<i class='glyphicon glyphicon-random' ></i>
-		<span class="caret"></span>
-	</button>
-	<ul class="dropdown-menu" role="menu">
-		<li class="disabled"><a tabindex="-1" href="#">Sort by...</a></li>
-		<li ng-repeat="op in options"><a href ng-click="fieldclick(op)">{{op}}</a></li>
-	</ul>
+<div class="nav navbar-nav navbar navbar-right">
+	
+	 <!-- Split button -->
+    <div class="btn-group" uib-dropdown >
+      <button  type="button" class="btn btn-default navbar-btn" style="width: 7em;text-align:left; "
+      ng-click="sortclick()" title="Sort direction (click to reverse)">
+       <i
+            data-ng-class='{false:"glyphicon glyphicon-sort-by-attributes",true:"glyphicon glyphicon-sort-by-attributes-alt"}[desc]'></i> 
+      {{field}}
+     </button>
+     
+      <button type="button" class="btn btn-default navbar-btn" uib-dropdown-toggle>       
+        <span class="caret"></span>
+        <span class="sr-only">Split button!</span>
+      </button>
+      
+      <ul class="uib-dropdown-menu" role="menu" >
+        <li class="disabled"><a tabindex="-1" href="#">Sort by...</a></li>
+        <li ng-repeat="op in options"><a href ng-click="fieldclick(op)">{{op}}</a></li>
+      </ul>
+    </div>
+	
 </div>

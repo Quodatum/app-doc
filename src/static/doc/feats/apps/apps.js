@@ -83,7 +83,7 @@ angular.module('quodatum.doc.apps',
 .controller("AppsCtrl",
     [ "$scope", "Restangular", "$location",function($scope, Restangular,$location) {
 
-      console.log("AppsCtrl2");
+      //console.log("AppsCtrl2");
    
       $scope.params = {start : 0,sort : "name"}; //q added by filter
       
@@ -96,7 +96,7 @@ angular.module('quodatum.doc.apps',
               Restangular.one("data").all('app')
                          .getList($scope.params)
                          .then(function(d){
-                             console.log("models..",d);
+                             //console.log("models..",d);
                              $scope.apps=d;
                              });
      };
@@ -112,7 +112,7 @@ angular.module('quodatum.doc.apps',
           var applist = Restangular.one("data").one('app', app);
           applist.get().then(function(d) {
             $scope.app = d;
-            console.log(">>", d);
+            //console.log(">>", d);
           });
         } ])
 

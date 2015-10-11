@@ -2,8 +2,8 @@ angular.module(
     'doc',
     [ 'ui.router', 'ngResource', 'ngAnimate','ngSanitize', 'ui.bootstrap', 'restangular',
         'ya.treeview', 'ya.treeview.tpls', 'angular-growl', 'ncy-angular-breadcrumb',
-        
-		'quodatum.entity','twygmbh.auto-height',
+        'twygmbh.auto-height',
+		'quodatum.entity','quodatum.doc.tasks',
         'quodatum.doc.apps', 'quodatum.doc.components', 'quodatum.doc.files',
         'quodatum.doc.xqm', 'quodatum.doc.schema', 'quodatum.doc.directives',
         'quodatum.doc.tools', 'quodatum.directives', 'quodatum.config' , 'quodatum.history'])

@@ -21,7 +21,8 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
                 ncyBreadcrumb : {
                   label : 'components'
                 },
-                controller : "CICtrl"
+                controller : "CICtrl",
+                data:{entity:"component"}
               })
 
               .state('component.item', {
