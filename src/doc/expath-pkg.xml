@@ -15,6 +15,7 @@
 	<dependency name="angular-breadcrumb" version="0.4.0"/>
 	<dependency name="NgDexie" version="0.0.15"/>
 	<dependency name="svg-pan-zoom" version="3.2.3"/>
+	<dependency name="angular-svg-pan-zoom" version="b8c6574b222e41ab57c5eafbc096bc73ab413f0f"/>
 	<!-- xquery -->
 	<dependency name="ex-graphviz" version="0.0.7"/>
     <dependency name="ex-dotml" version="0.0.9"/>

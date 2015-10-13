@@ -1,9 +1,10 @@
 <div>
-	<div class="navbar " role="toolbar">
-		<ul class="nav navbar-nav navbar">
-			<div ncy-breadcrumb="">crumbs</div>
-		</ul>
-	</div>
+	<cva-bar ng-model="bar" params="params" state="$state" single="true">
+    <a href="./data/{{model.name}}" target="json" class="btn btn-default navbar-btn">
+                                Json
+                            </a>
+	</cva-bar>
+	
 	<div class="fluid">
 		<div class="panel panel-default">
 			<div class="panel-heading">

@@ -457,6 +457,19 @@
 		</release>
 	</cmp>
 	
+	<cmp name="angular-svg-pan-zoom">
+        <runat>browser</runat>
+        <home>https://github.com/Promact/angular-svg-pan-zoom/tree/b8c6574b222e41ab57c5eafbc096bc73ab413f0f</home>
+        <tagline>It's an angular wrapper library for https://github.com/ariutta/svg-pan-zoom
+        </tagline>
+        <depends>angularjs</depends>
+        <depends>svg-pan-zoom</depends>
+        <release version="b8c6574b222e41ab57c5eafbc096bc73ab413f0f">
+              <cdn type="js">https://cdn.rawgit.com/Promact/angular-svg-pan-zoom/b8c6574b222e41ab57c5eafbc096bc73ab413f0f/dist/angular-svg-pan-zoom.js
+            </cdn>
+        </release>
+    </cmp>
+    
 	<cmp name="angular-auto-height">
         <runat>browser</runat>
         <home>https://github.com/twygmbh/angular-auto-height</home>
