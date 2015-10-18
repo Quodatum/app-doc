@@ -1,5 +1,7 @@
 // database info
-angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
+angular.module('quodatum.doc.components',
+    [ 'ui.router', 'quodatum.services','restangular'])
+    
     .config(
         [ '$stateProvider', '$urlRouterProvider',
             function($stateProvider, $urlRouterProvider) {
@@ -49,7 +51,8 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
                 url : "/basex",
                 abstract : true,
                 ncyBreadcrumb : {
-                  skip : true
+                  skip : true,
+                  data:{entity:"xqmodule"}
                 },
                 template : '<ui-view>basex</ui-view>'
               })
@@ -132,15 +135,22 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
         "BasexCtrl",
         [ '$scope', '$stateParams', 'API', 'ScrollService',
             function($scope, $stateParams, API, ScrollService) {
-              console.log("BasexCtrl");
-              $scope.module = $stateParams.name;
-              $scope.isModule = !!$scope.module;
-              if (!$scope.isModule) {
-                $scope.results = API.basex.query();
-                $scope.module = "admin.xqm"
-              }
-              ;
-              $scope.scrollTo = ScrollService.scrollTo;
+          
+          $scope.params = {start : 0,sort : "name"}; //q added by filter
+          
+          $scope.$watch('params', function(value) {
+             $location.search($scope.params);
+             update();
+         }, true);
+         
+         function update() {       
+                  Restangular.one("data").all('app')
+                             .getList($scope.params)
+                             .then(function(d){
+                                 //console.log("models..",d);
+                                 $scope.apps=d;
+                                 });
+         };
 
             } ])
             

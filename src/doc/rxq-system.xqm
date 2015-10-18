@@ -71,13 +71,14 @@ declare function get-task($name) as xs:string{
 (:~
  :  ping incr counter
  :)
-declare %updating
-%output:method("text")  
+declare %updating  
 %rest:POST %rest:path("/doc/ping")
+%output:method("text")
 function dopost(){
     (replace value of node $dr:state/hits with 1+$dr:state/hits,
             db:output(1+$dr:state/hits))
 };
+
 (:~
  :  ping incr counter
  :)

@@ -304,9 +304,12 @@ declare
 %output:method("json")
 function basex-list()
 {
-<json type="array">{
-   doc:basex-modules()!<_>{.}</_>
-   }</json>
+    let $entity:=$entity:list("xqmodule")
+
+    let $items:=$entity?data()
+  
+    let $_:= dice:response($items,$entity,web:dice())
+    return $_
 };
 
 

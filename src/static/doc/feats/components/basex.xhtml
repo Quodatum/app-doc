@@ -1,18 +1,7 @@
 <div>
-  <cva-bar ng-model="bar">bar</cva-bar>
+ <cva-bar ng-model="bar" params="params" state="$state">a</cva-bar>
 <div class="row">
 
-	<div ng-hide="isModule">
-		<ul>
-			<li ng-repeat="name in results">
-			<a href="#/data/component/basex/module?name={{name}}">{{name}}</a>
-			namespace:
-			<a href="#/data/component/basex/module?name={{name}}">{{name}}</a>
-			
-			</li>
-		</ul>
-	</div>
-	<div ng-show="isModule" class="container-fluid"
-		ng-include="'xqdoc?type=basex&amp;path='+module" autoscroll="true">incl</div>
+result
 </div>
 </div>
