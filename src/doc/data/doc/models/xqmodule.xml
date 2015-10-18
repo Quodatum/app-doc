@@ -9,7 +9,7 @@
 		</field>
 		<field name="href" type="xs:string">
 			<description>ui view</description>
-			<xpath>"#/data/xqmodule/item?item=" || fn:base-uri(.)</xpath>
+			<xpath>("#/data/xqmodule/item?item=" || fn:base-uri(.))</xpath>
 		</field>
 		<field name="type" type="xs:string">
 			<description>library</description>
@@ -29,6 +29,6 @@
 		</field>
 	</fields>
 	<iconclass>fa fa-file-code-o</iconclass>
-	<data type="element(xqdoc:xqdoc)">db:open("doc-doc")//xqdoc:xqdoc
+	<data type="element(xqdoc:xqdoc)">collection("doc-doc")//xqdoc:xqdoc
 	</data>
 </entity>

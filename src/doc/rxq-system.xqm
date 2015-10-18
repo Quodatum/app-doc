@@ -11,7 +11,6 @@ module namespace dr = 'quodatum.system.rest';
 declare default function namespace 'quodatum.system.rest'; 
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
 
-import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
 
 declare variable $dr:db as xs:string:="doc-doc";
@@ -27,8 +26,8 @@ declare variable $dr:tasks as element(xqdoc:xqdoc)*:=db:open("doc-doc")//xqdoc:x
  :  list tasks
  :)
 declare  
-%output:method("json")  
 %rest:GET %rest:path("/doc/task")
+%output:method("json") 
 function listtasks(){
    <json type="array"/>
 };

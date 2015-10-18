@@ -9,7 +9,7 @@ declare default function namespace 'quodatum.doc.rest';
 import module namespace cnf = 'quodatum.app.config' at 'config.xqm';
 import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
 import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
-import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
+import module namespace dice = 'quodatum.web.dice/v3' at "lib/dice.xqm";
 import module namespace web = 'quodatum.web.utils4' at 'lib/webutils.xqm';
 import module namespace entity = 'quodatum.models.generated' at 'generated/models.xqm';
 import module namespace  qsr = 'quodatum.system.rest' at 'rxq-system.xqm';
@@ -72,7 +72,7 @@ function apps($q )
                 
     let $searchs:=if($q) then apps:filter-apps($searchs,$q) else $searchs                    
     
-    let $_:= dice:response($searchs,$entity)
+    let $_:= dice:response($searchs,$entity,web:dice())
     return $_
 };
 
@@ -115,7 +115,7 @@ function entity-data($entity as xs:string)
     let $entity:=$entity:list($entity)
     let $results:=$entity("data")()
     let $_:=fn:trace($results,"entity RESULTS ")
-    return dice:response($results,$entity)
+    return dice:response($results,$entity,web:dice())
 };
 
 (:~
@@ -182,7 +182,7 @@ function search($q)
                 <uri>/apps/benchx</uri>
             </search>)
     let $entity:=$entity:list("search-result")
-    return dice:response($results,$entity)
+    return dice:response($results,$entity,web:dice())
 };
 
 (:~

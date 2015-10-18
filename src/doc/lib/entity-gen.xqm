@@ -99,12 +99,15 @@ as xs:string
     let $type:=json-type($f/@type)
     let $json-type:=if($type="element") then "string" else $type
     let $opt:=fn:contains($type,"?")
+    let $at:=if($json-type ne "string") 
+            then "attribute type {'" || $json-type || "'},"
+            else "" 
     (: generate json xml :)
     let $simple:=function() as xs:string{
                 <field>(: {$type} :)
                         let $d:=fn:data($_/{$f/ent:xpath })
                         return if($d)
-                              then element {$name} {{ attribute type {{"{$json-type}" }},$d }} 
+                              then element {$name} {{ {$at} $d }} 
                               else ()</field>
                 }
     (: serialize when element :)

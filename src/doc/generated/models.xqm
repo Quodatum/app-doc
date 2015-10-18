@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-10-10T21:51:25.004+01:00 
+ : auto generated from xml files in entities folder at: 2015-10-17T21:56:24.75+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -23,31 +23,31 @@ declare variable $entity:list:=map {
             (: string :)
                         let $d:=fn:data($_/description)
                         return if($d)
-                              then element description { attribute type {"string" },$d } 
+                              then element description {  $d } 
                               else () },
            "logo": function($_ as element()) as element(logo)? {
             (: string :)
                         let $d:=fn:data($_/logo)
                         return if($d)
-                              then element logo { attribute type {"string" },$d } 
+                              then element logo {  $d } 
                               else () },
            "name": function($_ as element()) as element(name)? {
             (: string :)
                         let $d:=fn:data($_/name)
                         return if($d)
-                              then element name { attribute type {"string" },$d } 
+                              then element name {  $d } 
                               else () },
            "uri": function($_ as element()) as element(uri)? {
             (: string :)
                         let $d:=fn:data($_/('/' || name))
                         return if($d)
-                              then element uri { attribute type {"string" },$d } 
+                              then element uri {  $d } 
                               else () },
            "version": function($_ as element()) as element(version)? {
             (: string :)
                         let $d:=fn:data($_/version)
                         return if($d)
-                              then element version { attribute type {"string" },$d } 
+                              then element version {  $d } 
                               else () } },
       "data": function() as element(item)*
        { () }
@@ -65,7 +65,7 @@ declare variable $entity:list:=map {
             (: string :)
                         let $d:=fn:data($_/release/cdn[1])
                         return if($d)
-                              then element cdn { attribute type {"string" },$d } 
+                              then element cdn {  $d } 
                               else () },
            "html": function($_ as element()) as element(html)? {
             element html { attribute type {"string"},fn:serialize($_/.)} },
@@ -73,13 +73,13 @@ declare variable $entity:list:=map {
             (: string :)
                         let $d:=fn:data($_/@name)
                         return if($d)
-                              then element name { attribute type {"string" },$d } 
+                              then element name {  $d } 
                               else () },
            "tagline": function($_ as element()) as element(tagline)? {
             (: string :)
                         let $d:=fn:data($_/tagline)
                         return if($d)
-                              then element tagline { attribute type {"string" },$d } 
+                              then element tagline {  $d } 
                               else () } },
       "data": function() as element(cmp)*
        { () }
@@ -101,25 +101,25 @@ declare variable $entity:list:=map {
 			       then wadl:method/wadl:doc/text()
 			       else '' ))
                         return if($d)
-                              then element doc { attribute type {"string" },$d } 
+                              then element doc {  $d } 
                               else () },
            "mediatype": function($_ as element()) as element(mediatype)? {
             (: string :)
                         let $d:=fn:data($_/wadl:method/wadl:response/wadl:representation/@mediaType)
                         return if($d)
-                              then element mediatype { attribute type {"string" },$d } 
+                              then element mediatype {  $d } 
                               else () },
            "method": function($_ as element()) as element(method)? {
             (: string :)
                         let $d:=fn:data($_/wadl:method/@name)
                         return if($d)
-                              then element method { attribute type {"string" },$d } 
+                              then element method {  $d } 
                               else () },
            "path": function($_ as element()) as element(path)? {
             (: string :)
                         let $d:=fn:data($_/@path)
                         return if($d)
-                              then element path { attribute type {"string" },$d } 
+                              then element path {  $d } 
                               else () } },
       "data": function() as element(wadl:resource)*
        { () }
@@ -142,55 +142,55 @@ declare variable $entity:list:=map {
             (: string :)
                         let $d:=fn:data($_/ent:data)
                         return if($d)
-                              then element code { attribute type {"string" },$d } 
+                              then element code {  $d } 
                               else () },
            "description": function($_ as element()) as element(description)? {
             (: string :)
                         let $d:=fn:data($_/ent:description)
                         return if($d)
-                              then element description { attribute type {"string" },$d } 
+                              then element description {  $d } 
                               else () },
            "fieldslink": function($_ as element()) as element(fieldslink)? {
             (: string :)
                         let $d:=fn:data($_/fn:concat("/data/entity/",@name,"/field"))
                         return if($d)
-                              then element fieldslink { attribute type {"string" },$d } 
+                              then element fieldslink {  $d } 
                               else () },
            "iconclass": function($_ as element()) as element(iconclass)? {
             (: string :)
                         let $d:=fn:data($_/ent:iconclass)
                         return if($d)
-                              then element iconclass { attribute type {"string" },$d } 
+                              then element iconclass {  $d } 
                               else () },
            "name": function($_ as element()) as element(name)? {
             (: string :)
                         let $d:=fn:data($_/@name)
                         return if($d)
-                              then element name { attribute type {"string" },$d } 
+                              then element name {  $d } 
                               else () },
            "nfields": function($_ as element()) as element(nfields)? {
             (: number :)
                         let $d:=fn:data($_/fn:count(ent:fields/ent:field))
                         return if($d)
-                              then element nfields { attribute type {"number" },$d } 
+                              then element nfields { attribute type {'number'}, $d } 
                               else () },
            "parent": function($_ as element()) as element(parent)? {
             (: string :)
                         let $d:=fn:data($_/ent:parent/@name)
                         return if($d)
-                              then element parent { attribute type {"string" },$d } 
+                              then element parent {  $d } 
                               else () },
            "parentlink": function($_ as element()) as element(parentlink)? {
             (: string :)
                         let $d:=fn:data($_/fn:concat("/data/entity/",ent:parent/@name))
                         return if($d)
-                              then element parentlink { attribute type {"string" },$d } 
+                              then element parentlink {  $d } 
                               else () },
            "type": function($_ as element()) as element(type)? {
             (: string :)
                         let $d:=fn:data($_/ent:data/@type)
                         return if($d)
-                              then element type { attribute type {"string" },$d } 
+                              then element type {  $d } 
                               else () } },
       "data": function() as element(ent:entity)*
        { db:open("doc-doc")//ent:entity }
@@ -208,25 +208,25 @@ declare variable $entity:list:=map {
             (: string :)
                         let $d:=fn:data($_/ent:description)
                         return if($d)
-                              then element description { attribute type {"string" },$d } 
+                              then element description {  $d } 
                               else () },
            "name": function($_ as element()) as element(name)? {
             (: string :)
                         let $d:=fn:data($_/@name)
                         return if($d)
-                              then element name { attribute type {"string" },$d } 
+                              then element name {  $d } 
                               else () },
            "type": function($_ as element()) as element(type)? {
             (: string :)
                         let $d:=fn:data($_/@type)
                         return if($d)
-                              then element type { attribute type {"string" },$d } 
+                              then element type {  $d } 
                               else () },
            "xpath": function($_ as element()) as element(xpath)? {
             (: string :)
                         let $d:=fn:data($_/ent:xpath)
                         return if($d)
-                              then element xpath { attribute type {"string" },$d } 
+                              then element xpath {  $d } 
                               else () } },
       "data": function() as element(ent:field)*
        { () }
@@ -244,25 +244,25 @@ declare variable $entity:list:=map {
             (: string :)
                         let $d:=fn:data($_/"app.item.index({'name':'benchx'})")
                         return if($d)
-                              then element sref { attribute type {"string" },$d } 
+                              then element sref {  $d } 
                               else () },
            "title": function($_ as element()) as element(title)? {
             (: string :)
                         let $d:=fn:data($_/title)
                         return if($d)
-                              then element title { attribute type {"string" },$d } 
+                              then element title {  $d } 
                               else () },
            "type": function($_ as element()) as element(type)? {
             (: string :)
                         let $d:=fn:data($_/type)
                         return if($d)
-                              then element type { attribute type {"string" },$d } 
+                              then element type {  $d } 
                               else () },
            "uri": function($_ as element()) as element(uri)? {
             (: string :)
                         let $d:=fn:data($_/uri)
                         return if($d)
-                              then element uri { attribute type {"string" },$d } 
+                              then element uri {  $d } 
                               else () } },
       "data": function() as element(search)*
        { () }
@@ -280,25 +280,25 @@ declare variable $entity:list:=map {
             (: string :)
                         let $d:=fn:data($_/xqdoc:module/xqdoc:comment/xqdoc:description)
                         return if($d)
-                              then element description { attribute type {"string" },$d } 
+                              then element description {  $d } 
                               else () },
            "name": function($_ as element()) as element(name)? {
             (: string :)
                         let $d:=fn:data($_/xqdoc:module/xqdoc:uri)
                         return if($d)
-                              then element name { attribute type {"string" },$d } 
+                              then element name {  $d } 
                               else () },
            "path": function($_ as element()) as element(path)? {
             (: string :)
                         let $d:=fn:data($_/concat(db:name(.),"/",db:path(.)))
                         return if($d)
-                              then element path { attribute type {"string" },$d } 
+                              then element path {  $d } 
                               else () },
            "xquery": function($_ as element()) as element(xquery)? {
             (: string :)
                         let $d:=fn:data($_/'todo')
                         return if($d)
-                              then element xquery { attribute type {"string" },$d } 
+                              then element xquery {  $d } 
                               else () } },
       "data": function() as element(xqdoc:xqdoc)*
        { db:open("doc-doc")//xqdoc:xqdoc[
@@ -312,7 +312,7 @@ declare variable $entity:list:=map {
      "access": map{ 
        "description": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:comment/xqdoc:description },
        "file": function($_ as element()) as xs:string {$_/fn:substring-after(fn:base-uri(.),"abide-modules/") },
-       "href": function($_ as element()) as xs:string {$_/"#/data/xqmodule/item?item=" || fn:base-uri(.) },
+       "href": function($_ as element()) as xs:string {$_/("#/data/xqmodule/item?item=" || fn:base-uri(.)) },
        "name": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:name },
        "type": function($_ as element()) as xs:string {$_/xqdoc:module/@type },
        "uri": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:uri } },
@@ -321,40 +321,40 @@ declare variable $entity:list:=map {
             (: string :)
                         let $d:=fn:data($_/xqdoc:module/xqdoc:comment/xqdoc:description)
                         return if($d)
-                              then element description { attribute type {"string" },$d } 
+                              then element description {  $d } 
                               else () },
            "file": function($_ as element()) as element(file)? {
             (: string :)
                         let $d:=fn:data($_/fn:substring-after(fn:base-uri(.),"abide-modules/"))
                         return if($d)
-                              then element file { attribute type {"string" },$d } 
+                              then element file {  $d } 
                               else () },
            "href": function($_ as element()) as element(href)? {
             (: string :)
-                        let $d:=fn:data($_/"#/data/xqmodule/item?item=" || fn:base-uri(.))
+                        let $d:=fn:data($_/("#/data/xqmodule/item?item=" || fn:base-uri(.)))
                         return if($d)
-                              then element href { attribute type {"string" },$d } 
+                              then element href {  $d } 
                               else () },
            "name": function($_ as element()) as element(name)? {
             (: string :)
                         let $d:=fn:data($_/xqdoc:module/xqdoc:name)
                         return if($d)
-                              then element name { attribute type {"string" },$d } 
+                              then element name {  $d } 
                               else () },
            "type": function($_ as element()) as element(type)? {
             (: string :)
                         let $d:=fn:data($_/xqdoc:module/@type)
                         return if($d)
-                              then element type { attribute type {"string" },$d } 
+                              then element type {  $d } 
                               else () },
            "uri": function($_ as element()) as element(uri)? {
             (: string :)
                         let $d:=fn:data($_/xqdoc:module/xqdoc:uri)
                         return if($d)
-                              then element uri { attribute type {"string" },$d } 
+                              then element uri {  $d } 
                               else () } },
       "data": function() as element(xqdoc:xqdoc)*
-       { db:open("doc-doc")//xqdoc:xqdoc }
+       { collection("doc-doc")//xqdoc:xqdoc }
    }
 };
 

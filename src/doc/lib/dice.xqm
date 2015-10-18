@@ -5,10 +5,15 @@
 : @since mar 2013
 :)
 
-module namespace dice = 'quodatum.web.dice/v2';
-declare default function namespace 'quodatum.web.dice/v2'; 
+module namespace dice = 'quodatum.web.dice/v3';
+declare default function namespace 'quodatum.web.dice/v3'; 
 declare namespace restxq = 'http://exquery.org/ns/restxq';
-import module namespace request = "http://exquery.org/ns/request";
+
+declare variable $dice:default:=map{
+    "start" : 0, (: start index :)
+    "limit" : 30, (: max items :)
+    "sort" : ""
+};
 
 (:~ 
  : sort items
@@ -61,24 +66,25 @@ as element(_){
 (:~ 
  : sort, slice, return json using request parameters
  : @param $items sequence of source items
+ : @param $opts sort and slice values
  :)
-declare function response($items,$entity as map(*),$crumbs){
+declare function response($items,
+                          $entity as map(*),
+                          $opts as map(*))
+ {
   let $total:=fn:count($items)
-  let $sort:=request:parameter("sort","")
-  let $items:= dice:sort($items,map:get($entity,"access"),$sort)
-  
-  let $start:=xs:integer(fn:number(request:parameter("start","0")))
-  let $limit:=xs:integer(fn:number(request:parameter("limit","30")))
+  let $opts:=map:merge(($dice:default,$opts))
+  let $items:= dice:sort($items,map:get($entity,"access"),$opts?sort)
   let $jsonf:= map:get($entity,"json")
   let $fields:=map:keys($jsonf)
-  let $_:=fn:trace($total,"response: ")
+  let $_:=fn:trace($opts,"response: ") 
   return 
   <json objects="json _" >
     <total type="number">{$total}</total>
     <entity>{$entity("name")}</entity>
-    {if($crumbs) then <crumbs type="array">{$crumbs}</crumbs> else() }
+    {if($opts?crumbs) then <crumbs type="array">{$opts?crumbs}</crumbs> else() }
     <items type="array">
-        {for $item in fn:subsequence($items,1+$start,$limit)
+        {for $item in fn:subsequence($items,1+$opts?start,$opts?limit)
         return <_ >{$fields!$jsonf(.)($item)}</_>}
     </items>
   </json> 
@@ -88,6 +94,6 @@ declare function response($items,$entity as map(*),$crumbs){
  : sort, slice, return json
  :)
 declare function response($items,$entity as map(*)){
-    response($items,$entity,())
+    response($items,$entity,map{})
 };
 
