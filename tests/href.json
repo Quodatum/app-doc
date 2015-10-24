@@ -1,0 +1,10 @@
+[
+{url:"data/app"},
+{url:"data/entity"},
+{url:"data/endpoint"},
+{url:"data/xqmodule"},
+{url:"data/task"},
+{url:"data/search-result"},
+{url:"wadl"},
+{url:"components/browser", params:{fmt:"json"}}
+]

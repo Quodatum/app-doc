@@ -52,9 +52,10 @@ declare
 %rest:GET %rest:path("doc/data/entity/{$entity}/field")
 %output:method("json")    
 function field-list($entity) {
- let $fentity:=$entity:list("field")
-    let $items:=$model-rest:models[@name=$entity]/ent:fields/ent:field
-
-    return dice:response($items,$entity,web:dice())
+    let $dentity:=$entity:list("entity")
+    let $items:=$dentity?data()
+    let $items:=$items[@name=$entity]/ent:fields/ent:field
+    let $fentity:=$entity:list("field")
+    return dice:response($items,$fentity,web:dice())
                       
 };

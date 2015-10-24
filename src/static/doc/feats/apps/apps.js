@@ -108,7 +108,11 @@ angular.module('quodatum.doc.apps',
         function($scope, $stateParams, Restangular) {
           var app = $stateParams.app;
           console.log("AppCtrl", app);
-
+          $scope.server=[
+                         {state:"app.item.server.wadl({view:'wadl'})",label:"Endpoints"},
+                         {state:"app.item.server.xqdoc({view:'xqdoc'})",label:"XQdoc"},
+                         {state:"app.item.server.wadl({view:'wadl'})",label:"Endpoints"}
+                         ]
           var applist = Restangular.one("data").one('app', app);
           applist.get().then(function(d) {
             $scope.app = d;

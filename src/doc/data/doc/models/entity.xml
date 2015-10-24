@@ -40,7 +40,13 @@
 			<description>parent entity link if any</description>
 			<xpath>fn:concat("/data/entity/",ent:parent/@name)</xpath>
 		</field>
+		<!-- 
+		<field name="fields" entity="field">
+            <description>parent entity link if any</description>
+            <xpath>ent:fields/ent:field</xpath>
+        </field>
+         -->
 	</fields>
 	<iconclass>glyphicon glyphicon-list-alt</iconclass>
-	<data type="element(ent:entity)">db:open("doc-doc")//ent:entity</data>
+	<data type="element(ent:entity)">collection("doc-doc")//ent:entity</data>
 </entity>

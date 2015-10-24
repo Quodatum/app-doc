@@ -1,5 +1,5 @@
 <entity name="field" xmlns="https://github.com/Quodatum/app-doc/entity">
-<!-- 	<parent name="entity"/> -->
+    <parent name="entity"/> 
     <description>About an entity field. </description>
     <namespace prefix="ent"
         uri="https://github.com/Quodatum/app-doc/entity" />
@@ -20,7 +20,11 @@
 			<description>xpath</description>
 			<xpath>ent:xpath</xpath>
 		</field>
+		<field name="parent" type="xs:string">
+            <description>containing entity</description>
+            <xpath>../../@name</xpath>
+        </field>
 	</fields>
 	<iconclass>glyphicon glyphicon-minus</iconclass>
-	<data type="element(ent:field)"/>
+	<data type="element(ent:field)">collection("doc-doc")//ent:field</data>
 </entity>

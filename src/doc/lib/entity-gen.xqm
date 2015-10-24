@@ -44,8 +44,9 @@ as map(*){{
  :)
 declare function accessfn($f as element(ent:field)) as xs:string
 {
-<field>
-       "{$f/@name/fn:string()}": function($_ as element()) as {$f/@type/fn:string()} {{$_/{$f/ent:xpath } }}</field>
+let $type:=$f/@type/fn:string()
+return <field>
+       "{$f/@name/fn:string()}": function($_ as element()) as {$type} {{$_/{$f/ent:xpath } }}</field>
 };
 
 declare function generate($e as element(ent:entity)) as xs:string

@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-10-17T21:56:24.75+01:00 
+ : auto generated from xml files in entities folder at: 2015-10-23T22:46:35.572+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -193,7 +193,7 @@ declare variable $entity:list:=map {
                               then element type {  $d } 
                               else () } },
       "data": function() as element(ent:entity)*
-       { db:open("doc-doc")//ent:entity }
+       { collection("doc-doc")//ent:entity }
    },
   "field": map{
      "name": "field",
@@ -201,6 +201,7 @@ declare variable $entity:list:=map {
      "access": map{ 
        "description": function($_ as element()) as xs:string {$_/ent:description },
        "name": function($_ as element()) as xs:string {$_/@name },
+       "parent": function($_ as element()) as xs:string {$_/../../@name },
        "type": function($_ as element()) as xs:string {$_/@type },
        "xpath": function($_ as element()) as xs:string {$_/ent:xpath } },
      "json": map{ 
@@ -216,6 +217,12 @@ declare variable $entity:list:=map {
                         return if($d)
                               then element name {  $d } 
                               else () },
+           "parent": function($_ as element()) as element(parent)? {
+            (: string :)
+                        let $d:=fn:data($_/../../@name)
+                        return if($d)
+                              then element parent {  $d } 
+                              else () },
            "type": function($_ as element()) as element(type)? {
             (: string :)
                         let $d:=fn:data($_/@type)
@@ -229,7 +236,7 @@ declare variable $entity:list:=map {
                               then element xpath {  $d } 
                               else () } },
       "data": function() as element(ent:field)*
-       { () }
+       { collection("doc-doc")//ent:field }
    },
   "search-result": map{
      "name": "search-result",
