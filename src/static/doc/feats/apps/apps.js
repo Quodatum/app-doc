@@ -49,7 +49,14 @@ angular.module('quodatum.doc.apps',
             template : '<ui-view>server</ui-view>',
             ncyBreadcrumb: { label: 'server',parent: 'app.item.index' }
           })
-        
+          
+           .state('app.item.server.rest', {
+            url : "/rest",
+            templateUrl : '/static/doc/feats/apps/app-rest.xhtml', 
+            ncyBreadcrumb: { label: 'restXQ' },
+            controller:"RestCtrl"
+          })
+          
            .state('app.item.client.component', {
              url : "/:view",
              templateUrl : '/static/doc/feats/apps/app-view.xhtml', 
@@ -76,15 +83,37 @@ angular.module('quodatum.doc.apps',
             ncyBreadcrumb: { label: 'view: {{$stateParams.view}}' },
             controller:"ScrollCtrl"
           })
+          
+
         } ])
 
 
 // controllers
+.controller("RestCtrl",
+    [ "$scope", "Restangular", "$location",function($scope, Restangular,$location) {
+      //console.log("AppsCtrl2"); 
+      $scope.params = {start : 0,sort : "name"}; //q added by filter
+      
+      $scope.$watch('params', function(value) {
+         $location.search($scope.params);
+         update();
+     }, true);
+     
+     function update() { 
+       /*
+              Restangular.one("data").all('app')
+                         .getList($scope.params)
+                         .then(function(d){
+                             //console.log("models..",d);
+                             $scope.apps=d;
+                             });
+       */
+     };
+    } ])
+        
 .controller("AppsCtrl",
     [ "$scope", "Restangular", "$location",function($scope, Restangular,$location) {
-
-      //console.log("AppsCtrl2");
-   
+      //console.log("AppsCtrl2"); 
       $scope.params = {start : 0,sort : "name"}; //q added by filter
       
       $scope.$watch('params', function(value) {
