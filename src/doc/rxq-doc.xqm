@@ -36,7 +36,7 @@ function doc(){
 };
 
 (:~
- : Initialise system by runnning tasks 1-3
+ : Initialise/repair system by runnning tasks 1-3
  :)
 declare %updating 
  %rest:GET %rest:path("doc/init")

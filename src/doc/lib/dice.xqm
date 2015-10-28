@@ -77,14 +77,16 @@ declare function response($items,
   let $items:= dice:sort($items,map:get($entity,"access"),$opts?sort)
   let $jsonf:= map:get($entity,"json")
   let $fields:=map:keys($jsonf)
-  let $_:=fn:trace($opts,"response: ") 
+  let $_:=fn:trace($opts,"response: ")
+  let $slice:= fn:subsequence($items,1+$opts?start,$opts?limit)
   return 
   <json objects="json _" >
     <total type="number">{$total}</total>
+    <range>{$opts?start}-{$opts?start+fn:count($slice)-1}/{$total}</range>
     <entity>{$entity("name")}</entity>
     {if($opts?crumbs) then <crumbs type="array">{$opts?crumbs}</crumbs> else() }
     <items type="array">
-        {for $item in fn:subsequence($items,1+$opts?start,$opts?limit)
+        {for $item in $slice
         return <_ >{$fields!$jsonf(.)($item)}</_>}
     </items>
   </json> 

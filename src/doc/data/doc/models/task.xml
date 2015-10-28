@@ -19,10 +19,14 @@
             <description>xquery code for this task.</description>
             <xpath>'todo'</xpath>
         </field>
+        <field name="params" type="xs:integer">
+            <description>Number of parameters.</description>
+            <xpath>count(.//xqdoc:variable)</xpath>
+        </field>
 	</fields>
 	<iconclass>fa fa-tasks </iconclass>
 	<data type="element(xqdoc:xqdoc)">
-db:open("doc-doc")//xqdoc:xqdoc[
+collection("doc-doc")//xqdoc:xqdoc[
   xqdoc:namespaces/xqdoc:namespace/@uri="https://github.com/Quodatum/app-doc/task"
  and xqdoc:module/@type="main"
 ]

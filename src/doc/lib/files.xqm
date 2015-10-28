@@ -24,8 +24,8 @@ as xs:string?{
 };
      
 (:~
- : list of files matching glob below $src
- : src full path to folder eg "file:/C:/sss/"
+ : list of files matching $glob below $src
+ : @param $src full path to folder eg "file:/C:/sss/"
  :)
 declare function df:dir($src as xs:string,$glob as xs:string)
 as xs:string*

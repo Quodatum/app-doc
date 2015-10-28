@@ -133,8 +133,8 @@ angular.module('quodatum.doc.components',
     // show BaseX system modules
     .controller(
         "BasexCtrl",
-        [ '$scope', '$stateParams', 'API', 'ScrollService',
-            function($scope, $stateParams, API, ScrollService) {
+        [ '$scope', '$stateParams', 'API', '$location','Restangular',
+            function($scope, $stateParams, API, $location,Restangular) {
           
           $scope.params = {start : 0,sort : "name"}; //q added by filter
           

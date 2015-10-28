@@ -1,4 +1,4 @@
-// database info
+// tasks
 angular.module('quodatum.doc.tasks',
     [ 'ui.router', 'restangular', 'angular-growl', 'treemendous' ]).config(
     [ '$stateProvider', '$urlRouterProvider',
