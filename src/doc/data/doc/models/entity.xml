@@ -13,9 +13,13 @@
 			<xpath>ent:data/@type</xpath>
 		</field>
 		<field name="code" type="xs:string?">
-			<description>Xquery code to access items</description>
+			<description>XQuery code to access items</description>
 			<xpath>ent:data</xpath>
 		</field>
+		<field name="namespaces" type="xs:string?">
+            <description>XQuery code to declare namespaces</description>
+            <xpath>ent:namespace/concat("declare namespace ",@prefix,"='",@uri,"';&#13;&#10;")=>string-join()</xpath>
+        </field>
 		<field name="description" type="xs:string">
 			<description>description</description>
 			<xpath>ent:description</xpath>

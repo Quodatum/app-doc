@@ -102,8 +102,14 @@ declare
 %output:method("json")   
 function task($task) 
 {
-    <json type="object"><name>{$task}</name></json>
-};
+    let $entity:=$entity:list("task")
+    let $items:=$entity?data()
+    let $f:=$entity?access?name
+    let $item:=$items[$f(.)=$task]
+     (: just one :)
+     return <json objects="json">{dice:json-flds($item,$entity?json)/*}</json>
+ };
+ 
 (:~
  : default entity lister
  :)
@@ -114,7 +120,6 @@ function entity-data($entity as xs:string)
 {
     let $entity:=$entity:list($entity)
     let $results:=$entity("data")()
-    let $_:=fn:trace($results,"entity RESULTS ")
     return dice:response($results,$entity,web:dice())
 };
 

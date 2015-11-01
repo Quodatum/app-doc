@@ -10,7 +10,7 @@
 module namespace dr = 'quodatum.system.rest';
 declare default function namespace 'quodatum.system.rest'; 
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
-
+import module namespace rest = "http://exquery.org/ns/restxq";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
 
 declare variable $dr:db as xs:string:="doc-doc";
@@ -53,7 +53,9 @@ declare
  %rest:query-param("app", "{$app}","doc")
 function dotask2($app as xs:string,$task as xs:string){
    let $xq:=get-task($task)  
-   return( eval:update($xq,get-base("doc"),map{}), db:output("ok-top"))
+   return if($task="filelist-1.xq")
+          then (xquery:update($xq),db:output("xq update" || rest:uri()))
+          else ( eval:update($xq,get-base("doc"),map{}), db:output("ok-top"))
 };
 
 declare function get-base($app as xs:string){

@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-10-23T22:46:35.572+01:00 
+ : auto generated from xml files in entities folder at: 2015-10-31T23:01:00.515Z 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -133,6 +133,8 @@ declare variable $entity:list:=map {
        "fieldslink": function($_ as element()) as xs:string {$_/fn:concat("/data/entity/",@name,"/field") },
        "iconclass": function($_ as element()) as xs:string {$_/ent:iconclass },
        "name": function($_ as element()) as xs:string {$_/@name },
+       "namespaces": function($_ as element()) as xs:string? {$_/ent:namespace/concat("declare namespace ",@prefix,"='",@uri,"';")=>string-join("
+") },
        "nfields": function($_ as element()) as xs:integer {$_/fn:count(ent:fields/ent:field) },
        "parent": function($_ as element()) as xs:string? {$_/ent:parent/@name },
        "parentlink": function($_ as element()) as xs:string? {$_/fn:concat("/data/entity/",ent:parent/@name) },
@@ -167,6 +169,13 @@ declare variable $entity:list:=map {
                         let $d:=fn:data($_/@name)
                         return if($d)
                               then element name {  $d } 
+                              else () },
+           "namespaces": function($_ as element()) as element(namespaces)? {
+            (: string :)
+                        let $d:=fn:data($_/ent:namespace/concat("declare namespace ",@prefix,"='",@uri,"';")=>string-join("
+"))
+                        return if($d)
+                              then element namespaces {  $d } 
                               else () },
            "nfields": function($_ as element()) as element(nfields)? {
             (: number :)
@@ -280,6 +289,7 @@ declare variable $entity:list:=map {
      "access": map{ 
        "description": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:comment/xqdoc:description },
        "name": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:uri },
+       "params": function($_ as element()) as xs:integer {$_/count(.//xqdoc:variable) },
        "path": function($_ as element()) as xs:string {$_/concat(db:name(.),"/",db:path(.)) },
        "xquery": function($_ as element()) as xs:string {$_/'todo' } },
      "json": map{ 
@@ -295,6 +305,12 @@ declare variable $entity:list:=map {
                         return if($d)
                               then element name {  $d } 
                               else () },
+           "params": function($_ as element()) as element(params)? {
+            (: number :)
+                        let $d:=fn:data($_/count(.//xqdoc:variable))
+                        return if($d)
+                              then element params { attribute type {'number'}, $d } 
+                              else () },
            "path": function($_ as element()) as element(path)? {
             (: string :)
                         let $d:=fn:data($_/concat(db:name(.),"/",db:path(.)))
@@ -308,7 +324,7 @@ declare variable $entity:list:=map {
                               then element xquery {  $d } 
                               else () } },
       "data": function() as element(xqdoc:xqdoc)*
-       { db:open("doc-doc")//xqdoc:xqdoc[
+       { collection("doc-doc")//xqdoc:xqdoc[
   xqdoc:namespaces/xqdoc:namespace/@uri="https://github.com/Quodatum/app-doc/task"
  and xqdoc:module/@type="main"
 ] }

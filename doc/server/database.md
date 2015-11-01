@@ -2,8 +2,14 @@
 
 ## collections
 
-* basex.xqm
-* models
+### basex.xqm
+documents are xqdoc for modules supplied with BaseX
+
+### models
+documents are the models
+
+### modules
+documents are xqdoc for modules below app path
 
 # docs
 

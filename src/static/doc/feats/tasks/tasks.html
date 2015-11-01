@@ -1,22 +1,35 @@
-<div >
-   <cva-bar  params="params" state="$state"></cva-bar>
+<div>
+	<cva-bar params="params" state="$state">
+	<button ng-click="run('filelist-1.xq')" title="Run task"
+                            class="btn btn-default pull-right ">
+                            filelist1.xq<i class="fa fa-play-circle"></i>
+                        </button>
+	</cva-bar>
 	<div class="row">
-	<div ng-repeat="task in tasks" class="media col-sm-6 col-md-4 ">
-		<div class="qd-model well">
-		<a ui-sref="tasks.item({task:task.name})">
-			<i class="pull-left fa fa-tasks fa-5x"></i>
-			</a>
-			<div class="media-body">
-				<h4 class="media-heading">
-					<button ng-click="run(task.name)" title="Run task"
-						class="btn btn-default pull-right ">
-						<i class="fa fa-play-circle"></i>
-					</button>
-					{{task.name}}
-				</h4>
-				<p>{{task.description}}</p>
+		<div ng-repeat="task in tasks" class="media col-sm-6 col-md-4 ">
+			<div class="qd-model well">
+				<a ui-sref="tasks.item({task:task.name})" class="media-left"> <i
+					class="pull-left fa fa-tasks fa-5x"></i>
+				</a>
+				<div class="media-body">
+					<h4 class="media-heading">
+						{{task.name}} 
+						<div class="pull-right ">
+                        <button ng-click="run(task.name)" title="Run task"
+                            class="btn btn-default pull-right ">
+                            <i class="fa fa-play-circle"></i>
+                             <span class="badge badge-default">{{task.params}}</span>
+                        </button>
+                       
+                    </div>
+					</h4>
+					
+
+					<p>{{task.description}}</p>
+
+				</div>
 			</div>
+
 		</div>
-        </div>
-    </div>	
+	</div>
 </div>

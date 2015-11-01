@@ -24,7 +24,9 @@
 				</div>
 				<div>
 				<h4>Code</h4>
-				<pre>{{model.code}}</pre>
+				<pre>{{model.namespaces}}</pre>
+				
+                <pre>{{model.code}}</pre>
 				</div>
 				<div>
 					<h4>Fields <span class="badge badge-default">{{model.nfields}}</span></h4>
@@ -32,17 +34,19 @@
 						<thead>
 							<tr>
 								<th>Name</th>
+								<th>Description</th>
 								<th>Type</th>
 								<th>XPath</th>
-								<th>description</th>
+							
 							</tr>
 						</thead>
 						<tbody>
 							<tr ng-repeat="f in fields">
 								<td>{{f.name}}</td>
-								<td>{{f.type}}</td>
-								<td>{{f.xpath}}</td>
 								<td>{{f.description}}</td>
+								<td><var>{{f.type}}</var></td>
+								<td><code>{{f.xpath}}</code></td>
+							
 							</tr>
 						</tbody>
 					</table>

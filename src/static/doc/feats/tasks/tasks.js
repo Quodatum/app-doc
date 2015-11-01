@@ -90,7 +90,18 @@ angular.module('quodatum.doc.tasks',
             console.log("task control", d);
             $scope.data = d;
           });
-        } ])
+          
+          $scope.run = function(task) {
+            Restangular.all("task").all(task).post().then(function(r) {
+              console.log("TASK DONE");
+              growl.success(r);
+
+            }, function(r) {
+              growl.error(r.data);
+            })
+          };
+        }
+    ])
 
 // details of a task
 .controller(
