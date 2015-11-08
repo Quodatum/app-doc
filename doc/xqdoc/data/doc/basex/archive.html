@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/archive.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://basex.org/modules/archive</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> contains functions to handle archives (including ePub, Open Office, JAR, and many other formats). New ZIP and GZIP archives can be created, existing archives can be updated, and the archive entries can be listed and extracted. The <a href="#archive:extract-binary">archive:extract-binary</a> function includes an example for writing the contents of an archive to disk.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="create#2">
+      <h3>create($entries, $contents)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$entries</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$contents</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Creates a new archive from the specified entries and contents.
+The <code>$entries</code> argument contains meta information required to create new entries. All items may either be of type <code>xs:string</code> , representing the entry name, or <code>element(archive:entry)</code> , containing the name as text node and additional, optional attributes: <ul> <li> <code>last-modified</code>: timestamp, specified as xs:dateTime (default: current time) </li> <li> <code>compression-level</code>: 0-9, 0 = uncompressed (default: 8) </li> <li> <code>encoding</code>: for textual entries (default: UTF-8) </li> </ul>  <p>An example: </p>  <pre class="brush:xml"> &lt;archive:entry last-modified='2011-11-11T11:11:11' compression-level='8' encoding='US-ASCII'&gt;hello.txt&lt;/archive:entry&gt; </pre>  <p>The actual <code>$contents</code> must be <code>xs:string</code> or <code>xs:base64Binary</code> items.
+The <code>$options</code> parameter contains archiving options, which can either be specified </p>  <ul> <li> as children of an <code>&lt;archive:options/&gt;</code> element: </li> </ul>  <pre class="brush:xml"> &lt;archive:options&gt; &lt;archive:format value="zip"/&gt; &lt;archive:algorithm value="deflate"/&gt; &lt;/archive:options&gt; </pre>  <ul> <li> as map, which contains all key/value pairs: </li> </ul>  <pre class="brush:xml"> map { "format": "zip", "algorithm": "deflate" } </pre>  <p>Currently, the following combinations are supported (all others will be rejected): </p>  <ul> <li> <code>zip</code>: <code>algorithm</code> may be <code>stored</code> or <code>deflate</code> </li> <li> <code>gzip</code>: algorithm may be <code>deflate</code> </li> </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0001 the number of entries and contents differs.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0002 the specified option or its value is invalid or not supported.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0003 entry descriptors contain invalid entry names, timestamps or compression levels.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0004 the specified encoding is invalid or not supported, or the string conversion failed. Invalid XML characters will be ignored if the <code> <a href="http://docs.basex.org/wiki/Options#CHECKSTRINGS">CHECKSTRINGS</a> </code> option is turned off.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0005 the chosen archive format only allows single entries.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FORG0006 an argument has a wrong type.</td>
+      </tr>
+    </table>
+    <a name="create#3">
+      <h3>create($entries, $contents, $options)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$entries</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$contents</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$options</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Creates a new archive from the specified entries and contents.
+The <code>$entries</code> argument contains meta information required to create new entries. All items may either be of type <code>xs:string</code> , representing the entry name, or <code>element(archive:entry)</code> , containing the name as text node and additional, optional attributes: <ul> <li> <code>last-modified</code>: timestamp, specified as xs:dateTime (default: current time) </li> <li> <code>compression-level</code>: 0-9, 0 = uncompressed (default: 8) </li> <li> <code>encoding</code>: for textual entries (default: UTF-8) </li> </ul>  <p>An example: </p>  <pre class="brush:xml"> &lt;archive:entry last-modified='2011-11-11T11:11:11' compression-level='8' encoding='US-ASCII'&gt;hello.txt&lt;/archive:entry&gt; </pre>  <p>The actual <code>$contents</code> must be <code>xs:string</code> or <code>xs:base64Binary</code> items.
+The <code>$options</code> parameter contains archiving options, which can either be specified </p>  <ul> <li> as children of an <code>&lt;archive:options/&gt;</code> element: </li> </ul>  <pre class="brush:xml"> &lt;archive:options&gt; &lt;archive:format value="zip"/&gt; &lt;archive:algorithm value="deflate"/&gt; &lt;/archive:options&gt; </pre>  <ul> <li> as map, which contains all key/value pairs: </li> </ul>  <pre class="brush:xml"> map { "format": "zip", "algorithm": "deflate" } </pre>  <p>Currently, the following combinations are supported (all others will be rejected): </p>  <ul> <li> <code>zip</code>: <code>algorithm</code> may be <code>stored</code> or <code>deflate</code> </li> <li> <code>gzip</code>: algorithm may be <code>deflate</code> </li> </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0001 the number of entries and contents differs.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0002 the specified option or its value is invalid or not supported.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0003 entry descriptors contain invalid entry names, timestamps or compression levels.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0004 the specified encoding is invalid or not supported, or the string conversion failed. Invalid XML characters will be ignored if the <code> <a href="http://docs.basex.org/wiki/Options#CHECKSTRINGS">CHECKSTRINGS</a> </code> option is turned off.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0005 the chosen archive format only allows single entries.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FORG0006 an argument has a wrong type.</td>
+      </tr>
+    </table>
+    <a name="delete#2">
+      <h3>delete($archive, $entries)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$archive</code>
+              </td>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$entries</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Deletes entries from an <code>$archive</code> .
+The format of <code>$entries</code> is the same as for <a href="#archive:create">archive:create</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0005 the entries of the given archive cannot be modified.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+    </table>
+    <a name="entries#1">
+      <h3>entries($archive)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$archive</code>
+              </td>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(archive:entry)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns the entry descriptors of the specified <code>$archive</code> . A descriptor contains the following attributes, provided that they are available in the archive format: <ul> <li> <code>size</code>: original file size </li> <li> <code>last-modified</code>: timestamp, formatted as xs:dateTime </li> <li> <code>compressed-size</code>: compressed file size </li> </ul>  <p>An example: </p>  <pre class="brush:xml"> &lt;archive:entry size="1840" last-modified="2009-03-20T03:30:32" compressed-size="672"&gt; doc/index.html &lt;/archive:entry&gt; </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+    </table>
+    <a name="extract-binary#1">
+      <h3>extract-binary($archive)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$archive</code>
+              </td>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Extracts entries of the specified <code>$archive</code> and returns them as binaries.
+The returned entries can be limited via <code>$entries</code> . The format of the argument is the same as for <a href="#archive:create">archive:create</a> (attributes will be ignored).</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+    </table>
+    <a name="extract-binary#2">
+      <h3>extract-binary($archive, $entries)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$archive</code>
+              </td>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$entries</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:base64Binary*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Extracts entries of the specified <code>$archive</code> and returns them as binaries.
+The returned entries can be limited via <code>$entries</code> . The format of the argument is the same as for <a href="#archive:create">archive:create</a> (attributes will be ignored).</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+    </table>
+    <a name="extract-text#1">
+      <h3>extract-text($archive)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$archive</code>
+              </td>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Extracts entries of the specified <code>$archive</code> and returns them as texts.
+The returned entries can be limited via <code>$entries</code> . The format of the argument is the same as for <a href="#archive:create">archive:create</a> (attributes will be ignored).
+The encoding of the input files can be specified via <code>$encoding</code> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0004 the specified encoding is invalid or not supported, or the string conversion failed. Invalid XML characters will be ignored if the <code> <a href="http://docs.basex.org/wiki/Options#CHECKSTRINGS">CHECKSTRINGS</a> </code> option is turned off.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+    </table>
+    <a name="extract-text#2">
+      <h3>extract-text($archive, $entries)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$archive</code>
+              </td>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$entries</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Extracts entries of the specified <code>$archive</code> and returns them as texts.
+The returned entries can be limited via <code>$entries</code> . The format of the argument is the same as for <a href="#archive:create">archive:create</a> (attributes will be ignored).
+The encoding of the input files can be specified via <code>$encoding</code> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0004 the specified encoding is invalid or not supported, or the string conversion failed. Invalid XML characters will be ignored if the <code> <a href="http://docs.basex.org/wiki/Options#CHECKSTRINGS">CHECKSTRINGS</a> </code> option is turned off.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+    </table>
+    <a name="extract-text#3">
+      <h3>extract-text($archive, $entries, $encoding)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$archive</code>
+              </td>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$entries</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$encoding</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Extracts entries of the specified <code>$archive</code> and returns them as texts.
+The returned entries can be limited via <code>$entries</code> . The format of the argument is the same as for <a href="#archive:create">archive:create</a> (attributes will be ignored).
+The encoding of the input files can be specified via <code>$encoding</code> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0004 the specified encoding is invalid or not supported, or the string conversion failed. Invalid XML characters will be ignored if the <code> <a href="http://docs.basex.org/wiki/Options#CHECKSTRINGS">CHECKSTRINGS</a> </code> option is turned off.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+    </table>
+    <a name="options#1">
+      <h3>options($archive)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$archive</code>
+              </td>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(archive:options)</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns the options of the specified <code>$archive</code> in the format specified by <a href="#archive:create">archive:create</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0002 The packing format is not supported.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+    </table>
+    <a name="update#3">
+      <h3>update($archive, $entries, $contents)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$archive</code>
+              </td>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$entries</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$contents</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Creates an updated version of the specified <code>$archive</code> with new or replaced entries.
+The format of <code>$entries</code> and <code>$contents</code> is the same as for <a href="#archive:create">archive:create</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0001 the number of entries and contents differs.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0003 entry descriptors contain invalid entry names, timestamps, compression levels or encodings.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0004 the specified encoding is invalid or not supported, or the string conversion failed. Invalid XML characters will be ignored if the <code> <a href="http://docs.basex.org/wiki/Options#CHECKSTRINGS">CHECKSTRINGS</a> </code> option is turned off.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH0005 the entries of the given archive cannot be modified.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FORG0006 (some of) the contents are not of type <code>xs:string</code> or <code>xs:base64Binary</code> .</td>
+      </tr>
+    </table>
+    <a name="write#2">
+      <h3>write($path, $archive)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$path</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$archive</code>
+              </td>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This convenience function directly writes files of an <code>$archive</code> to the specified directory <code>$path</code> .
+The entries to be written can be limited via <code>$entries</code> . The format of the argument is the same as for <a href="#archive:create">archive:create</a> (attributes will be ignored).</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FILE0001 a specified path does not exist.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+    </table>
+    <a name="write#3">
+      <h3>write($path, $archive, $entries)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$path</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$archive</code>
+              </td>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$entries</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This convenience function directly writes files of an <code>$archive</code> to the specified directory <code>$path</code> .
+The entries to be written can be limited via <code>$entries</code> . The format of the argument is the same as for <a href="#archive:create">archive:create</a> (attributes will be ignored).</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FILE0001 a specified path does not exist.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:ARCH9999 archive creation failed for some other reason.</td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -145,8 +145,10 @@ angular.module(
 
           $rootScope.$on('$stateChangeSuccess', function(event, toState,
               toParams, fromState, fromParams) {
+            var log=toState.data && toState.data.history !== undefined;
+            //console.log("STATE CHANGE",log ? toState.data.history : true);
             // log all unless data.history:false
-            if (toState.data ? toState.data.history : true) {
+            if (log ? toState.data.history : true) {
               var note = {
                 timestamp : new Date().getTime(),
                 state : toState.name,

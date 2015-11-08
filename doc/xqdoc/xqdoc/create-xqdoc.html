@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../basex.svg"></img>
+    </div>
+    <h2>Main Module: xqdoc/create-xqdoc.xq</h2>
+    <table>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This module generates an HTML documentation from all project modules.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>Christian Grün, BaseX Team, 2013</td>
+      </tr>
+    </table>
+    <h2>Variables</h2>
+    <h3 name="IN">$IN</h3>
+    <table>
+      <tr>
+        <td>
+          <b>Type:</b>
+        </td>
+        <td>
+          <code>xs:string</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Input directory. recursively scanned for xq and xqm</td>
+      </tr>
+    </table>
+    <h3 name="OUTPUT">$OUTPUT</h3>
+    <table>
+      <tr>
+        <td>
+          <b>Type:</b>
+        </td>
+        <td>
+          <code>xs:string</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Output directory.</td>
+      </tr>
+    </table>
+    <h3 name="PRIVATE">$PRIVATE</h3>
+    <table>
+      <tr>
+        <td>
+          <b>Type:</b>
+        </td>
+        <td>
+          <code>xs:boolean</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Also show private variables.</td>
+      </tr>
+    </table>
+    <h3 name="SCRIPT">$SCRIPT</h3>
+    <table>
+      <tr>
+        <td>
+          <b>Type:</b>
+        </td>
+        <td>
+          <code>xs:string</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Script directory.</td>
+      </tr>
+    </table>
+    <h3 name="TITLE">$TITLE</h3>
+    <table>
+      <tr>
+        <td>
+          <b>Type:</b>
+        </td>
+        <td>
+          <code>xs:string</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Name of the documentation.</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="create-doc#1">
+      <h3>create-doc($modules)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$modules</code>
+              </td>
+              <td>
+                <code>map(*)</code>
+              </td>
+              <td>module paths and inspected modules</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td>()</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Creates html pages for the specified modules.</td>
+      </tr>
+    </table>
+    <a name="create-index#1">
+      <h3>create-index($modules)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$modules</code>
+              </td>
+              <td>
+                <code>map(*)</code>
+              </td>
+              <td>module paths and inspected modules</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td>()</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Stores the documentation framework files.</td>
+      </tr>
+    </table>
+    <a name="head#1">
+      <h3>head($level)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$level</code>
+              </td>
+              <td>
+                <code>xs:integer</code>
+              </td>
+              <td>level depth of target file</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element()</code>
+              </td>
+              <td>header</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Creates a page header.</td>
+      </tr>
+    </table>
+    <a name="logo#1">
+      <h3>logo($level)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$level</code>
+              </td>
+              <td>
+                <code>xs:integer</code>
+              </td>
+              <td>level depth of target file</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element()</code>
+              </td>
+              <td>div element</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Creates a page logo.</td>
+      </tr>
+    </table>
+    <a name="write-html#2">
+      <h3>write-html($path, $html)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$path</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$html</code>
+              </td>
+              <td>
+                <code>element(html)</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Writes an HTML page to disk.</td>
+      </tr>
+    </table>
+  </body>
+</html>

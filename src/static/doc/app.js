@@ -17,7 +17,10 @@ angular.module(
 		  
           .state('home', {
             url : "",
-            controller : "HomeCtrl"
+            controller : "HomeCtrl",
+            data : {
+              "history" : false
+            }
           })
 		  
           .state('search', {
@@ -34,7 +37,10 @@ angular.module(
           .state('about', {
             url : "/about",
             templateUrl : '/static/doc/templates/about.xhtml',
-			 ncyBreadcrumb: { label: 'Home',icon:'glyphicon glyphicon-home'}
+			 ncyBreadcrumb: { label: 'Home',icon:'glyphicon glyphicon-home'},
+			 data : {
+	              "history" : false
+	            }
           })
 
           .state('404', {

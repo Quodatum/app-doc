@@ -17,7 +17,6 @@ declare variable $_:TAGS := ("description", "author", "version", "param",
    fn:filter(file:list($src,$recursive, $pattern ),
           function ($f){file:is-file($src || $f)}
         )
-          !fn:translate(.,"\","/") 
  };
 
 (:~

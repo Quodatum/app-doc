@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/validate.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://basex.org/modules/validate</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> contains functions to perform validations against <a href="http://www.w3.org/XML/Schema">XML Schema</a> and <a href="http://en.wikipedia.org/wiki/Document_Type_Declaration">Document Type Declarations</a> . By default, this module uses Java’s standard validators. As an alternative, <a href="http://www.saxonica.com/">Saxon XSLT Processor</a> is used if ( <code>saxon9he.jar</code> , <code>saxon9pe.jar</code> or <code>saxon9ee.jar</code> ) is added to the classpath.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="dtd#1">
+      <h3>dtd($input)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Validates the document specified by <code>$input</code> . <code>$input</code> can be specified as: <ul> <li> an <code>xs:string</code>, containing the path to the resource, </li> <li> an <code>xs:string</code>, containing the resource in its string representation, or </li> <li> a <code>node()</code>, containing the resource itself. </li> </ul>  <p> <code>$schema</code> can be used to specify the DTD for validation. If no DTD is given, <code>$input</code> is required to contain a DTD doctype declaration.
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0001 the validation fails.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0002 the validation process cannot be started.</td>
+      </tr>
+    </table>
+    <a name="dtd#2">
+      <h3>dtd($input, $dtd)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$dtd</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Validates the document specified by <code>$input</code> . <code>$input</code> can be specified as: <ul> <li> an <code>xs:string</code>, containing the path to the resource, </li> <li> an <code>xs:string</code>, containing the resource in its string representation, or </li> <li> a <code>node()</code>, containing the resource itself. </li> </ul>  <p> <code>$schema</code> can be used to specify the DTD for validation. If no DTD is given, <code>$input</code> is required to contain a DTD doctype declaration.
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0001 the validation fails.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0002 the validation process cannot be started.</td>
+      </tr>
+    </table>
+    <a name="dtd-info#1">
+      <h3>dtd-info($input)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Validates the document specified by <code>$input</code> and returns warning, errors and fatal errors in a string sequence. <code>$input</code> can be specified as: <ul> <li> <code>xs:string</code>, containing the path to the resource, </li> <li> <code>xs:string</code>, containing the resource in its string representation, or </li> <li> <code>node()</code>, containing the resource itself. </li> </ul>  <p> <code>$schema</code> can be used to specify the DTD for validation. If no DTD is given, <code>$input</code> is required to contain a DTD doctype declaration.
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0002 the validation process cannot be started.</td>
+      </tr>
+    </table>
+    <a name="dtd-info#2">
+      <h3>dtd-info($input, $dtd)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$dtd</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Validates the document specified by <code>$input</code> and returns warning, errors and fatal errors in a string sequence. <code>$input</code> can be specified as: <ul> <li> <code>xs:string</code>, containing the path to the resource, </li> <li> <code>xs:string</code>, containing the resource in its string representation, or </li> <li> <code>node()</code>, containing the resource itself. </li> </ul>  <p> <code>$schema</code> can be used to specify the DTD for validation. If no DTD is given, <code>$input</code> is required to contain a DTD doctype declaration.
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0002 the validation process cannot be started.</td>
+      </tr>
+    </table>
+    <a name="xsd#1">
+      <h3>xsd($input)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Validates the document specified by <code>$input</code> . Both <code>$input</code> and <code>$schema</code> can be specified as: <ul> <li> <code>xs:string</code>, containing the path to the resource, </li> <li> <code>xs:string</code>, containing the resource in its string representation, or </li> <li> <code>node()</code>, containing the resource itself. </li> </ul>  <p> <code>$schema</code> can be used to specify the schema for validation. If no schema is given, <code>$input</code> is required to contain an <code>xsi:(noNamespace)schemaLocation</code> attribute as defined in <a href="http://www.w3.org/TR/xmlschema-1/#xsi_schemaLocation">W3C XML Schema</a>.
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0001 the validation fails.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0002 the validation process cannot be started.</td>
+      </tr>
+    </table>
+    <a name="xsd#2">
+      <h3>xsd($input, $schema)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$schema</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Validates the document specified by <code>$input</code> . Both <code>$input</code> and <code>$schema</code> can be specified as: <ul> <li> <code>xs:string</code>, containing the path to the resource, </li> <li> <code>xs:string</code>, containing the resource in its string representation, or </li> <li> <code>node()</code>, containing the resource itself. </li> </ul>  <p> <code>$schema</code> can be used to specify the schema for validation. If no schema is given, <code>$input</code> is required to contain an <code>xsi:(noNamespace)schemaLocation</code> attribute as defined in <a href="http://www.w3.org/TR/xmlschema-1/#xsi_schemaLocation">W3C XML Schema</a>.
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0001 the validation fails.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0002 the validation process cannot be started.</td>
+      </tr>
+    </table>
+    <a name="xsd-info#1">
+      <h3>xsd-info($input)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Validates the document specified by <code>$input</code> and returns warning, errors and fatal errors in a string sequence. <code>$input</code> and <code>$schema</code> can be specified as: <ul> <li> <code>xs:string</code>, containing the path to the resource, </li> <li> <code>xs:string</code>, containing the resource in its string representation, or </li> <li> <code>node()</code>, containing the resource itself. </li> </ul>  <p> <code>$schema</code> can be used to specify the schema for validation. If no schema is given, <code>$input</code> is required to contain an <code>xsi:(noNamespace)schemaLocation</code> attribute as defined in <a href="http://www.w3.org/TR/xmlschema-1/#xsi_schemaLocation">W3C XML Schema</a>.
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0002 the validation process cannot be started.</td>
+      </tr>
+    </table>
+    <a name="xsd-info#2">
+      <h3>xsd-info($input, $schema)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$schema</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Validates the document specified by <code>$input</code> and returns warning, errors and fatal errors in a string sequence. <code>$input</code> and <code>$schema</code> can be specified as: <ul> <li> <code>xs:string</code>, containing the path to the resource, </li> <li> <code>xs:string</code>, containing the resource in its string representation, or </li> <li> <code>node()</code>, containing the resource itself. </li> </ul>  <p> <code>$schema</code> can be used to specify the schema for validation. If no schema is given, <code>$input</code> is required to contain an <code>xsi:(noNamespace)schemaLocation</code> attribute as defined in <a href="http://www.w3.org/TR/xmlschema-1/#xsi_schemaLocation">W3C XML Schema</a>.
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXVA0002 the validation process cannot be started.</td>
+      </tr>
+    </table>
+  </body>
+</html>

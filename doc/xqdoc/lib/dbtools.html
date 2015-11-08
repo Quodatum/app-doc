@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../basex.svg"></img>
+    </div>
+    <h2>Library Module: lib/dbtools.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>quodatum.dbtools</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>tools for databases..</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>andy bunce</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Since:</b>
+        </td>
+        <td>mar 2013</td>
+      </tr>
+    </table>
+    <h2>Variables</h2>
+    <h3 name="webpath">$webpath</h3>
+    <table>
+      <tr>
+        <td>
+          <b>Type:</b>
+        </td>
+        <td>
+          <code>xs:string</code>
+        </td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="sync-from-files#4">
+      <h3>sync-from-files($dbname, $path, $files, $ingest)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$dbname</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td>name of database</td>
+            </tr>
+            <tr>
+              <td>
+                <code>$path</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td>base file path where files are relative to en</td>
+            </tr>
+            <tr>
+              <td>
+                <code>$files</code>
+              </td>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td>file names from base</td>
+            </tr>
+            <tr>
+              <td>
+                <code>$ingest</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Annotations:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>%updating</code>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>update or create database from file list. After this the database will have a
+matching copy of the files on the file system</td>
+      </tr>
+    </table>
+    <a name="sync-from-path#2">
+      <h3>sync-from-path($dbname, $path)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$dbname</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td>name of database</td>
+            </tr>
+            <tr>
+              <td>
+                <code>$path</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td>file path contain files</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Annotations:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>%updating</code>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>update or create database from file path</td>
+      </tr>
+    </table>
+    <a name="zip#1">
+      <h3>zip($dbname)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$dbname</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:base64Binary</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>save all in db to zip
+no binary yet</td>
+      </tr>
+    </table>
+  </body>
+</html>

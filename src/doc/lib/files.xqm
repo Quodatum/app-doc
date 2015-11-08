@@ -19,7 +19,7 @@ as xs:string?{
      if(file:is-file(file:resolve-path($f,$s)))
      then if(starts-with($f,"data")) 
           then ()
-          else translate($f,file:dir-separator(),"/")
+          else $f
      else ()
 };
      

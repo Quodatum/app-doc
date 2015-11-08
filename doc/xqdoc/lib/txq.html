@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../basex.svg"></img>
+    </div>
+    <h2>Library Module: lib/txq.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>quodatum.txq</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>A(nother) templating Engine for XQuery (BaseX specific)
+specials:
+partial(file,name,sequence)</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>andy bunce</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Since:</b>
+        </td>
+        <td>sept 2012</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="partial#5">
+      <h3>partial($part, $name, $seq, $map, $base)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$part</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$name</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$seq</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$map</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$base</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td>updated doc from map</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>partial template function: evaluate part for each value in sequence</td>
+      </tr>
+    </table>
+    <a name="render#2">
+      <h3>render($template, $map)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$template</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td>url to fill</td>
+            </tr>
+            <tr>
+              <td>
+                <code>$map</code>
+              </td>
+              <td>
+                <code>map(*)</code>
+              </td>
+              <td>name and value to apply</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td>updated doc from map</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>template function</td>
+      </tr>
+    </table>
+    <a name="render#3">
+      <h3>render($template, $map, $layout)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$template</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$map</code>
+              </td>
+              <td>
+                <code>map(*)</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$layout</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td>outer template with $body placeholder to insert $template</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td>updated doc from map</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>template function with wrapping layout</td>
+      </tr>
+    </table>
+  </body>
+</html>

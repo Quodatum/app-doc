@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/prof.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://basex.org/modules/prof</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> contains various testing, profiling and helper functions.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="current-ms#0">
+      <h3>current-ms()</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:integer</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns the number of milliseconds passed since 1970/01/01 UTC. The granularity of the value depends on the underlying operating system and may be larger. For example, many operating systems measure time in units of tens of milliseconds.
+In contrast to <code>fn:current-time()</code> , the function is <i>non-deterministic</i> , as it returns different values every time it is called. Its evaluation order will be preserved by the compiler.</td>
+      </tr>
+    </table>
+    <a name="current-ns#0">
+      <h3>current-ns()</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:integer</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns the current value of the most precise available system timer in nanoseconds.
+In contrast to <code>fn:current-time()</code> , the function is <i>non-deterministic</i> , as it returns different values every time it is called. Its evaluation order will be preserved by the compiler.</td>
+      </tr>
+    </table>
+    <a name="dump#1">
+      <h3>dump($expr)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$expr</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Dumps a serialized representation of <code>$expr</code> to <code>STDERR</code> , optionally prefixed with <code>$label</code> , and returns an empty sequence. If the GUI is used, the dumped result is shown in the <a href="http://docs.basex.org/wiki/Graphical_User_Interface#Visualizations">Info View</a> .
+In contrast to <code>fn:trace()</code> , the consumed expression will not be passed on.</td>
+      </tr>
+    </table>
+    <a name="dump#2">
+      <h3>dump($expr, $label)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$expr</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$label</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Dumps a serialized representation of <code>$expr</code> to <code>STDERR</code> , optionally prefixed with <code>$label</code> , and returns an empty sequence. If the GUI is used, the dumped result is shown in the <a href="http://docs.basex.org/wiki/Graphical_User_Interface#Visualizations">Info View</a> .
+In contrast to <code>fn:trace()</code> , the consumed expression will not be passed on.</td>
+      </tr>
+    </table>
+    <a name="human#1">
+      <h3>human($number)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$number</code>
+              </td>
+              <td>
+                <code>xs:integer</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns a human-readable representation of the specified <code>$number</code> .</td>
+      </tr>
+    </table>
+    <a name="mem#1">
+      <h3>mem($expr)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$expr</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Measures the memory allocated by evaluating <code>$expr</code> and sends it to standard error or, if the GUI is used, to the Info View.
+If <code>$cache</code> is set to <code>true()</code> , the result will be temporarily cached. This way, a potential iterative execution of the expression (which often yields different memory usage) is blocked.
+A third, optional argument <code>$label</code> may be specified to tag the profiling result.
+The function is <i>non-deterministic</i> : evaluation order will be preserved by the compiler.</td>
+      </tr>
+    </table>
+    <a name="mem#2">
+      <h3>mem($expr, $cache)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$expr</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$cache</code>
+              </td>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Measures the memory allocated by evaluating <code>$expr</code> and sends it to standard error or, if the GUI is used, to the Info View.
+If <code>$cache</code> is set to <code>true()</code> , the result will be temporarily cached. This way, a potential iterative execution of the expression (which often yields different memory usage) is blocked.
+A third, optional argument <code>$label</code> may be specified to tag the profiling result.
+The function is <i>non-deterministic</i> : evaluation order will be preserved by the compiler.</td>
+      </tr>
+    </table>
+    <a name="mem#3">
+      <h3>mem($expr, $cache, $label)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$expr</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$cache</code>
+              </td>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$label</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Measures the memory allocated by evaluating <code>$expr</code> and sends it to standard error or, if the GUI is used, to the Info View.
+If <code>$cache</code> is set to <code>true()</code> , the result will be temporarily cached. This way, a potential iterative execution of the expression (which often yields different memory usage) is blocked.
+A third, optional argument <code>$label</code> may be specified to tag the profiling result.
+The function is <i>non-deterministic</i> : evaluation order will be preserved by the compiler.</td>
+      </tr>
+    </table>
+    <a name="sleep#1">
+      <h3>sleep($ms)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$ms</code>
+              </td>
+              <td>
+                <code>xs:integer</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Sleeps for the specified number of milliseconds.
+The function is <i>non-deterministic</i> : evaluation order will be preserved by the compiler.</td>
+      </tr>
+    </table>
+    <a name="time#1">
+      <h3>time($expr)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$expr</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Measures the time needed to evaluate <code>$expr</code> and sends it to standard error or, if the GUI is used, to the Info View.
+If <code>$cache</code> is set to <code>true()</code> , the result will be temporarily cached. This way, a potential iterative execution of the expression (which often yields different memory usage) is blocked.
+A third, optional argument <code>$label</code> may be specified to tag the profiling result.
+The function is <i>non-deterministic</i> : evaluation order will be preserved by the compiler.</td>
+      </tr>
+    </table>
+    <a name="time#2">
+      <h3>time($expr, $cache)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$expr</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$cache</code>
+              </td>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Measures the time needed to evaluate <code>$expr</code> and sends it to standard error or, if the GUI is used, to the Info View.
+If <code>$cache</code> is set to <code>true()</code> , the result will be temporarily cached. This way, a potential iterative execution of the expression (which often yields different memory usage) is blocked.
+A third, optional argument <code>$label</code> may be specified to tag the profiling result.
+The function is <i>non-deterministic</i> : evaluation order will be preserved by the compiler.</td>
+      </tr>
+    </table>
+    <a name="time#3">
+      <h3>time($expr, $cache, $label)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$expr</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$cache</code>
+              </td>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$label</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Measures the time needed to evaluate <code>$expr</code> and sends it to standard error or, if the GUI is used, to the Info View.
+If <code>$cache</code> is set to <code>true()</code> , the result will be temporarily cached. This way, a potential iterative execution of the expression (which often yields different memory usage) is blocked.
+A third, optional argument <code>$label</code> may be specified to tag the profiling result.
+The function is <i>non-deterministic</i> : evaluation order will be preserved by the compiler.</td>
+      </tr>
+    </table>
+    <a name="variables#0">
+      <h3>variables()</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Prints a list of all current local and global variable assignments to standard error or, if the GUI is used, to the Info View.
+As every query is optimized before being evaluated, not all of the original variables may be visible in the output. Moreover, many variables of function calls will disappear because functions are inlined. Function inlining can be turned off by setting the <a href="http://docs.basex.org/wiki/Options#INLINELIMIT">INLINELIMIT</a> option to <code>0</code> .
+The function is <i>non-deterministic</i> : evaluation order will be preserved by the compiler.</td>
+      </tr>
+    </table>
+    <a name="void#1">
+      <h3>void($value)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$value</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Swallows all items of the specified <code>$value</code> and returns an empty sequence. This function is helpful if some code needs to be evaluated and if the actual result is irrelevant.
+The function is <i>non-deterministic</i> : evaluation order will be preserved by the compiler.</td>
+      </tr>
+    </table>
+  </body>
+</html>

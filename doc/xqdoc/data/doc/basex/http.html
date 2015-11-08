@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/http.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://expath.org/ns/http-client</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> contains a single function to send HTTP requests and handle HTTP responses. The function <code>send-request</code> is based on the <a href="http://expath.org/spec/http-client">EXPath HTTP Client Module</a> . It gives full control over the available request and response parameters. For simple GET requests, the <a href="http://docs.basex.org/wiki/Fetch_Module">Fetch Module</a> may be sufficient.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="send-request#1">
+      <h3>send-request($request)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$request</code>
+              </td>
+              <td>
+                <code>element(http:request)</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()+</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Sends an HTTP request and interprets the corresponding response. <code>$request</code> contains the parameters of the HTTP request such as HTTP method and headers. In addition to this it can also contain the URI to which the request will be sent and the body of the HTTP method. If the URI is not given with the parameter <code>$href</code> , its value in <code>$request</code> is used instead.
+The structure of <code>http:request</code> element follows the <a href="http://expath.org/spec/http-client">EXPath</a> specification. Both basic and digest authentication is supported.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0001 an HTTP error occurred.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0002 error parsing the entity content as XML or HTML.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0003 with a multipart response, the override-media-type must be either a multipart media type or application/octet-stream.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0004 the src attribute on the body element is mutually exclusive with all other attribute (except the media-type).</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0005 the request element is not valid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0006 a timeout occurred waiting for the response.</td>
+      </tr>
+    </table>
+    <a name="send-request#2">
+      <h3>send-request($request, $href)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$request</code>
+              </td>
+              <td>
+                <code>element(http:request)?</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$href</code>
+              </td>
+              <td>
+                <code>xs:string?</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()+</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Sends an HTTP request and interprets the corresponding response. <code>$request</code> contains the parameters of the HTTP request such as HTTP method and headers. In addition to this it can also contain the URI to which the request will be sent and the body of the HTTP method. If the URI is not given with the parameter <code>$href</code> , its value in <code>$request</code> is used instead.
+The structure of <code>http:request</code> element follows the <a href="http://expath.org/spec/http-client">EXPath</a> specification. Both basic and digest authentication is supported.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0001 an HTTP error occurred.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0002 error parsing the entity content as XML or HTML.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0003 with a multipart response, the override-media-type must be either a multipart media type or application/octet-stream.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0004 the src attribute on the body element is mutually exclusive with all other attribute (except the media-type).</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0005 the request element is not valid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0006 a timeout occurred waiting for the response.</td>
+      </tr>
+    </table>
+    <a name="send-request#3">
+      <h3>send-request($request, $href, $bodies)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$request</code>
+              </td>
+              <td>
+                <code>element(http:request)?</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$href</code>
+              </td>
+              <td>
+                <code>xs:string?</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$bodies</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()+</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Sends an HTTP request and interprets the corresponding response. <code>$request</code> contains the parameters of the HTTP request such as HTTP method and headers. In addition to this it can also contain the URI to which the request will be sent and the body of the HTTP method. If the URI is not given with the parameter <code>$href</code> , its value in <code>$request</code> is used instead.
+The structure of <code>http:request</code> element follows the <a href="http://expath.org/spec/http-client">EXPath</a> specification. Both basic and digest authentication is supported.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0001 an HTTP error occurred.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0002 error parsing the entity content as XML or HTML.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0003 with a multipart response, the override-media-type must be either a multipart media type or application/octet-stream.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0004 the src attribute on the body element is mutually exclusive with all other attribute (except the media-type).</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0005 the request element is not valid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>exerr:HC0006 a timeout occurred waiting for the response.</td>
+      </tr>
+    </table>
+  </body>
+</html>

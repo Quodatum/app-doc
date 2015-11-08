@@ -10,7 +10,7 @@ declare namespace task ="https://github.com/Quodatum/app-doc/task";
 
  
 declare variable $eval:def-opts:=map{
-     "permission" :  "create",
+     "permission" :  "admin",
      "timeout": 5
  };
   
