@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tasks xmlns="https://github.com/Quodatum/app-doc/task">
+	<task id="1">
+		<queued date="ts">
+			<params>
+				<params name="ww">value</params>
+			</params>
+		</queued>
+	</task>
+</tasks>

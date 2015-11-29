@@ -30,7 +30,7 @@ angular.module('quodatum.doc.apps',
 		  
            .state('app.item.index', {
             url : "",
-			templateUrl : '/static/doc/feats/apps/app-index.xhtml',
+			templateUrl : '/static/doc/feats/apps/app-index.html',
 			controller : "AppCtrl",
 			ncyBreadcrumb: { label: '{{$stateParams.app}}',parent: 'app.index'}
           })

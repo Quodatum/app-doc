@@ -38,6 +38,7 @@ angular.module(
             url : "/about",
             templateUrl : '/static/doc/templates/about.xhtml',
 			 ncyBreadcrumb: { label: 'Home',icon:'glyphicon glyphicon-home'},
+			 controller : "AboutCtrl",
 			 data : {
 	              "history" : false
 	            }
@@ -61,7 +62,13 @@ angular.module(
       console.log("HomeCtrl");
      $location.path('/about')
     } ])
-	
+
+.controller("AboutCtrl",
+    [ "$scope",  function($scope) {
+      console.log("AboutCtrl");
+     $scope.version="TODO";
+    } ])
+    
 .controller("AppController",
     [ "$scope", "$location", function($scope, $location) {
       console.log("AppController");
