@@ -25,6 +25,7 @@ import module namespace rest = "http://exquery.org/ns/restxq";
 declare  
  %rest:GET %rest:path("doc")
  %output:method("html")
+%output:media-type('text/html')
  %output:version("5.0")
 function doc(){
      (: update model.xqm :)
@@ -42,6 +43,7 @@ declare %updating
  %rest:GET %rest:path("doc/init")
  %output:method("html")
  %output:version("5.0")
+ %output:media-type('text/html')
 function doc-init(){
      (: update model.xqm  :)
      if(db:exists("doc-doc")) then (

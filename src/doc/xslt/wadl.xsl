@@ -37,10 +37,10 @@
                 </h2>
 		<div class="row">
 			<div class="col-md-4">
-				<ul  class="list-unstyled">
+				<ul class="list-group">
 					<xsl:for-each select="wadl:resource">
 						<xsl:sort select="qdfun:fixuri(@path)" />
-						<li style="white-space:nowrap;">
+						 <li class="list-group-item">
 							<xsl:apply-templates select="." mode="link">
 								<xsl:with-param name="root" select="$root" />
 							</xsl:apply-templates>
@@ -82,9 +82,7 @@
 		</span>
 		
 		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
-			<span class="">
 				<xsl:value-of select="qdfun:fixuri(@path)" />
-			</span>
 		</a>
         <xsl:apply-templates select="wadl:method" mode="name"/>
 	</xsl:template>
@@ -98,7 +96,7 @@
 
 	<xsl:template match="wadl:representation" mode="mediaType">
 	    <xsl:variable name="mediaType" select="@mediaType"/>
-		<span class="badge badge-default" title="{$mediaType}">
+		<span class="label label-default label-pill pull-xs-right" title="{$mediaType}">
 		<xsl:choose>
                 <xsl:when test="$mediaType='text/html'">
                     <xsl:text>H</xsl:text>

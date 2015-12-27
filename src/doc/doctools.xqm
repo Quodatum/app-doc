@@ -115,7 +115,7 @@ declare  function xqdoc_($path as xs:string) as element(xqdoc:xqdoc){
                "column-number":$err:column-number,
                "additional":$err:additional
                }
-     return <xqdoc:xqdoc type="err" path="{$path}">{map:serialize($e)}</xqdoc:xqdoc>
+     return <xqdoc:xqdoc type="err" path="{$path}">{fn:serialize($e,map{"method":"basex"})}</xqdoc:xqdoc>
     }
 };
 
