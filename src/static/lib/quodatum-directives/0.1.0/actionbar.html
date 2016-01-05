@@ -8,13 +8,21 @@
 
 	<ul class="nav navbar-nav navbar navbar-right  bg-danger"
 		title="Not working yet" style="position: relative; top: -6px">
+		
+		<li><span class="label label-success"> <a
+                    ui-sref="entity.model({model:state.current.data.entity})">{{state.current.data.entity}}</a>
+                </span>
+		</li>
+		<li><span class="label label-info">
+        {{metadata.total}}
+        </span></li>
 		<li>
 			<form ng-hide="single" class="navbar-form" style="margin:0">
 
-				<div class="input-group">
+				<div class="input-group" style="width: 14em;">
 					<span class="input-group-addon"><i class="fa fa-filter "></i></span>
 					<input type="text" class="form-control" placeholder="Filter..."
-						ng-model="params.q" style="width: 8em;" /> <span ng-show="params.q.length"
+						ng-model="params.q"  /> <span ng-show="params.q.length"
 						class="input-group-addon"> <a class="" type="button"
 						ng-click="params.q='';"> x</i>
 					</a>
@@ -26,10 +34,6 @@
 		</li>
 		<li><uipage ng-model="params" ng-hide="single">page</uipage>
 
-			<p class="navbar-text">
-				<span class="label label-info"> <a
-					ui-sref="entity.model({model:state.current.data.entity})">{{state.current.data.entity}}</a>
-				</span>
-			</p></li>
+			</li>
 	</ul>
 </nav>

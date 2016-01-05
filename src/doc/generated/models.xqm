@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2015-10-31T23:01:00.515Z 
+ : auto generated from xml files in entities folder at: 2016-01-05T22:14:12.7Z 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -133,8 +133,8 @@ declare variable $entity:list:=map {
        "fieldslink": function($_ as element()) as xs:string {$_/fn:concat("/data/entity/",@name,"/field") },
        "iconclass": function($_ as element()) as xs:string {$_/ent:iconclass },
        "name": function($_ as element()) as xs:string {$_/@name },
-       "namespaces": function($_ as element()) as xs:string? {$_/ent:namespace/concat("declare namespace ",@prefix,"='",@uri,"';")=>string-join("
-") },
+       "namespaces": function($_ as element()) as xs:string? {$_/ent:namespace/concat("declare namespace ",@prefix,"='",@uri,"';
+")=>string-join() },
        "nfields": function($_ as element()) as xs:integer {$_/fn:count(ent:fields/ent:field) },
        "parent": function($_ as element()) as xs:string? {$_/ent:parent/@name },
        "parentlink": function($_ as element()) as xs:string? {$_/fn:concat("/data/entity/",ent:parent/@name) },
@@ -172,8 +172,8 @@ declare variable $entity:list:=map {
                               else () },
            "namespaces": function($_ as element()) as element(namespaces)? {
             (: string :)
-                        let $d:=fn:data($_/ent:namespace/concat("declare namespace ",@prefix,"='",@uri,"';")=>string-join("
-"))
+                        let $d:=fn:data($_/ent:namespace/concat("declare namespace ",@prefix,"='",@uri,"';
+")=>string-join())
                         return if($d)
                               then element namespaces {  $d } 
                               else () },
@@ -334,10 +334,13 @@ declare variable $entity:list:=map {
      "description": "An XQuery source code module",
      "access": map{ 
        "description": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:comment/xqdoc:description },
-       "file": function($_ as element()) as xs:string {$_/fn:substring-after(fn:base-uri(.),"abide-modules/") },
+       "filename": function($_ as element()) as xs:string {$_/tokenize(base-uri(.),"/")[last()] },
        "href": function($_ as element()) as xs:string {$_/("#/data/xqmodule/item?item=" || fn:base-uri(.)) },
        "name": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:name },
-       "type": function($_ as element()) as xs:string {$_/xqdoc:module/@type },
+       "path": function($_ as element()) as xs:string {$_/db:path(.) },
+       "type": function($_ as element()) as xs:string {$_/(if(starts-with(.,"basex.xqm/"))
+			        then "basex" 
+			        else xqdoc:module/@type) },
        "uri": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:uri } },
      "json": map{ 
            "description": function($_ as element()) as element(description)? {
@@ -346,11 +349,11 @@ declare variable $entity:list:=map {
                         return if($d)
                               then element description {  $d } 
                               else () },
-           "file": function($_ as element()) as element(file)? {
+           "filename": function($_ as element()) as element(filename)? {
             (: string :)
-                        let $d:=fn:data($_/fn:substring-after(fn:base-uri(.),"abide-modules/"))
+                        let $d:=fn:data($_/tokenize(base-uri(.),"/")[last()])
                         return if($d)
-                              then element file {  $d } 
+                              then element filename {  $d } 
                               else () },
            "href": function($_ as element()) as element(href)? {
             (: string :)
@@ -364,9 +367,17 @@ declare variable $entity:list:=map {
                         return if($d)
                               then element name {  $d } 
                               else () },
+           "path": function($_ as element()) as element(path)? {
+            (: string :)
+                        let $d:=fn:data($_/db:path(.))
+                        return if($d)
+                              then element path {  $d } 
+                              else () },
            "type": function($_ as element()) as element(type)? {
             (: string :)
-                        let $d:=fn:data($_/xqdoc:module/@type)
+                        let $d:=fn:data($_/(if(starts-with(.,"basex.xqm/"))
+			        then "basex" 
+			        else xqdoc:module/@type))
                         return if($d)
                               then element type {  $d } 
                               else () },

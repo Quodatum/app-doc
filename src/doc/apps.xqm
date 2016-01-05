@@ -11,9 +11,11 @@ xquery version "3.0";
 module namespace doc = 'quodatum.doc.apps';
 declare default function namespace 'quodatum.doc.apps';
 declare namespace cxan="http://cxan.org/ns/package";
+declare default collation 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive';
 
 declare function filter-apps($apps as element()*,$q as xs:string){
- $apps[some $e in (name,description)satisfies  fn:contains($e,$q)]
+ fn:trace( $apps)[some $e in (name,description)satisfies  fn:contains($e,$q,
+                        'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')]
 };
 
 (:~ 

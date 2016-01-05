@@ -1,5 +1,5 @@
 <div>
-	<cva-bar ng-model="bar" params="params" state="$state">bar</cva-bar>
+	<cva-bar metadata="models.metadata"  params="params" state="$state"></cva-bar>
 	<div class="row">
 		<div ng-repeat="model in models" class=" media col-sm-6 col-md-4">
 			<div class="qd-model well">

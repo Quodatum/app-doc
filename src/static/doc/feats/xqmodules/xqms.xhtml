@@ -1,17 +1,18 @@
 <div>
-<cva-bar ng-model="bar">bar</cva-bar>
+<cva-bar metadata="apps.metadata"  params="params" state="$state"></cva-bar>
 	<div class="row">
 		<div ng-repeat="app in apps" class="media col-sm-6 col-md-4 ">
 		  <div class="qd-model well">
-			<a class="pull-left" href="{{app.uri}}"  target="app-{{app.name}}"> <img
+			<a class="pull-left" href="{{app.href}}" > <img
 				class="media-object" ng-src="{{app.logo}}" alt="{{app.name}} - no logo"
 				style="width: 64px; height: 64px;" /></a>
 			<div class="media-body">
-				<h4 class="media-heading">{{app.name}}</h4>
+				<h4 class="media-heading">{{app.filename}}
+				<span class="pull-right">{{app.type}}</span>
+				</h4>
 				<p>{{app.description}}</p>
 				<p>
-					<a href="#/data/app/{{app.name}}">Documentation</a> 
-					<a href="{{app.uri}}" target="app-{{app.name}}">Run</a>
+					
 				</p>
 			</div>
 			</div>

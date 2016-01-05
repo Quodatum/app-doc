@@ -19,15 +19,9 @@
 			</div>
 			<div class="panel-body">
 				<div>{{model.description}}</div>
-				<div>
-					iconclass:<span class="label label-default">{{model.iconclass}}</span> 
-				</div>
-				<div>
-				<h4>Code</h4>
-				<pre>{{model.namespaces}}</pre>
 				
-                <pre>{{model.code}}</pre>
-				</div>
+				<div>
+				
 				<div>
 					<h4>Fields <span class="badge badge-default">{{model.nfields}}</span></h4>
 					<table class="table">
@@ -51,7 +45,15 @@
 						</tbody>
 					</table>
 				</div>
-
+				<div>
+                    <h4>Code</h4>
+	                <pre>{{model.namespaces}}</pre>
+	                
+	                <pre>{{model.code}}</pre>
+                </div>
+                <div>
+                    iconclass:<span class="label label-default">{{model.iconclass}}</span> 
+                </div>
 			</div>
 		</div>
 	</div>

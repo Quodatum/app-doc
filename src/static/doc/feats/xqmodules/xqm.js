@@ -7,27 +7,51 @@ angular.module('quodatum.doc.xqm',
         function($stateProvider, $urlRouterProvider) {
           $stateProvider
 
-          .state('xqm', {
-            url : "/data/xqm",
+          .state('xqmodule', {
+            url : "/data/xqmodule",
             abstract : true,
-            template : '<ui-view>library</ui-view>'
+            template : '<ui-view>library</ui-view>',
+            data:{entity:"xqmodule"}
+          })
+          
+           .state('xqmodule.index', {
+            url : "",
+            templateUrl : '/static/doc/feats/xqmodules/xqms.xhtml',
+            controller : "XqmsCtrl",
+            ncyBreadcrumb: { label: 'XQ Modules'}
+          })
+          
+          .state('xqmodule.module', {
+            url : "/item?item",
+            templateUrl : '/static/doc/feats/xqmodules/xqm1.xhtml',
+            controller : "XqmCtrl",
+             ncyBreadcrumb : {
+               label : '{{$stateParams.item}}',
+               parent : 'xqmodule.index'
+             } 
           })
         } ])
 
 // controllers
 .controller("XqmsCtrl",
-    [ "$scope", "Restangular", function($scope, Restangular) {
+    [ "$scope", "$location","Restangular", function($scope, $location,Restangular) {
 
       console.log("XqmCtrl2");
-      var bar = Restangular.one("meta").one("cvabar", "apps-bar");
-      bar.get().then(function(d) {
-        $scope.bar = d;
-      });
-      var applist = Restangular.one("data").all('app');
-      applist.getList().then(function(d) {
-        // console.log("AppsCtrl2", d);
-        $scope.apps = d;
-      });
+      $scope.params = {start : 0,sort : "name"}; //q added by filter
+      
+      $scope.$watch('params', function(value) {
+         $location.search($scope.params);
+         update();
+     }, true);
+     
+     function update() { 
+       Restangular.one("data").all('xqmodule')
+       .getList($scope.params).then(function(d) {
+         // console.log("AppsCtrl2", d);
+         $scope.apps = d;
+       });
+     };
+     
 
     } ])
 
@@ -35,18 +59,15 @@ angular.module('quodatum.doc.xqm',
     "XqmCtrl",
     [ "$scope", "$stateParams", "Restangular",
         function($scope, $stateParams, Restangular) {
-          var app = $stateParams.app;
-          console.log("AppCtrl", app);
+          var item = $stateParams.item;
+          console.log("xqmCtrl", item);
 
           var applist = Restangular.one("data").one('app', app);
           applist.get().then(function(d) {
             $scope.app = d.item;
             console.log(">>", d);
           });
-          var bar = Restangular.one("meta").one("cvabar", "app-bar");
-          bar.get().then(function(d) {
-            $scope.bar = d;
-          });
+         
         } ])
 
 .controller(

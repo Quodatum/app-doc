@@ -16,6 +16,21 @@ declare variable $dice:default:=map{
 };
 
 (:~ 
+ : filter items where fieelds contain text
+ : @param sort  field name to sort on optional leading +/-
+ : @return sorted items 
+ :)
+declare function contains($items as item()*
+                     ,$fmap as map(*)
+                     ,$query as xs:string?)
+as item()*{
+(:
+fn:contains($e,$q,
+                        'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+                        :)
+    $items[fn:trace(fn:true(),"contains")]
+};
+(:~ 
  : sort items
  : @param sort  field name to sort on optional leading +/-
  : @return sorted items 
@@ -31,7 +46,7 @@ as item()*{
             $items
           else if ($ascending) then
             for $i in $items
-            let $i:=fn:trace($i,"feld " || $fld )
+           (: let $i:=fn:trace($i,"feld " || $fld ) :)
             order by $fmap($fld)($i) ascending
             return $i
           else
@@ -77,13 +92,12 @@ declare function response($items,
   let $items:= dice:sort($items,map:get($entity,"access"),$opts?sort)
   let $jsonf:= map:get($entity,"json")
   let $fields:=map:keys($jsonf)
-  let $_:=fn:trace($opts,"response: ")
   let $slice:= fn:subsequence($items,1+$opts?start,$opts?limit)
   return 
   <json objects="json _" >
     <total type="number">{$total}</total>
     <range>{$opts?start}-{$opts?start+fn:count($slice)-1}/{$total}</range>
-    <entity>{$entity("name")}</entity>
+    <entity>{$entity?name}</entity>
     {if($opts?crumbs) then <crumbs type="array">{$opts?crumbs}</crumbs> else() }
     <items type="array">
         {for $item in $slice

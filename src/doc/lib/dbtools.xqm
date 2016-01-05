@@ -52,7 +52,6 @@ declare %updating function sync-from-files($dbname as xs:string,
 {
 let $path:=$path || file:dir-separator()
 let $files:=fn:filter($files,function($f){file:is-file(fn:concat($path,$f))})
-let $_:=fn:trace(($files),"DBNAME:")
 return if(db:exists($dbname)) then
        (for $d in db:list($dbname) 
        where fn:not($d=$files) 

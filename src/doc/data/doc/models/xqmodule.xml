@@ -3,17 +3,23 @@
 	<namespace prefix="xqdoc" uri="http://www.xqdoc.org/1.0"/>
 
 	<fields>
-		<field name="file" type="xs:string">
+		<field name="filename" type="xs:string">
 			<description>file name</description>
-			<xpath>fn:substring-after(fn:base-uri(.),"abide-modules/")</xpath>
+			<xpath>tokenize(base-uri(.),"/")[last()]</xpath>
 		</field>
 		<field name="href" type="xs:string">
 			<description>ui view</description>
 			<xpath>("#/data/xqmodule/item?item=" || fn:base-uri(.))</xpath>
 		</field>
+		<field name="path" type="xs:string">
+            <description>path to xdoc in database</description>
+            <xpath>db:path(.)</xpath>
+        </field>
 		<field name="type" type="xs:string">
-			<description>library</description>
-			<xpath>xqdoc:module/@type</xpath>
+			<description>"basex", "main" or "library"</description>
+			<xpath>(if(starts-with(.,"basex.xqm/"))
+			        then "basex" 
+			        else xqdoc:module/@type)</xpath>
 		</field>
 		<field name="description" type="xs:string?">
 			<description>source description</description>

@@ -70,6 +70,7 @@ declare function get-task($name) as xs:string{
   return $xq 
 };
 
+
 (:~
  :  ping incr counter
  :)

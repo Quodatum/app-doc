@@ -54,7 +54,7 @@ angular.module(
             if (operation === "getList") {
               data = response.items;
               data.metadata = {
-                count : response.total,
+                total : response.total,
                 entity : response.entity,
                 crumbs : response.crumbs
               };

@@ -111,17 +111,21 @@ function task($task)
      (: just one :)
      return <json objects="json">{dice:json-flds($item,$entity?json)/*}</json>
  };
+
+
  
 (:~
  : default entity lister
  :)
 declare
 %rest:GET %rest:path("doc/data/{$entity}")
+%rest:query-param("q", "{$q}") 
 %output:method("json")   
-function entity-data($entity as xs:string) 
+function entity-data($entity as xs:string,$q ) 
 {
     let $entity:=$entity:list($entity)
     let $results:=$entity("data")()
+    let $results:=if($q) then  dice:contains($results,$entity?access,$q) else  $results 
     return dice:response($results,$entity,web:dice())
 };
 
@@ -356,6 +360,18 @@ function validate($xml as xs:string,
                   
     let $errs:=validate:xsd-info(fn:doc($xml), fn:doc($schema))
     return <json type="array">{$errs!<_>{.}</_>}</json>   
+};
+
+(:~
+ :  status info json
+ :)
+declare 
+%output:method("json") 
+%rest:GET %rest:path("/doc/status")
+function status(){
+   <json type="object">
+   <version>{cnf:settings()?version}</version>
+   </json>
 };
 
 (:~

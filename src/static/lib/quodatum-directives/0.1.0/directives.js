@@ -273,12 +273,13 @@ angular.module('quodatum.directives', [ 'ngResource', 'ui.bootstrap' ])
       transclude: true,
       templateUrl : '../static/lib/quodatum-directives/0.1.0/actionbar.html',
       scope: {
-        single: "@single",
-        params: "=?",
+        single: "@single", //hide if true
+        params: "=?",      // q start
+        metadata: "=?",    // total
         state: "=?"
       },
       controller : function($scope){
-          $scope.options=["f1","f2"];
+          $scope.options=["f1","f2","sort"];
       }
   };
 }])

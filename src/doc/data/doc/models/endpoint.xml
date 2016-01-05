@@ -17,7 +17,7 @@
 			       else '' )</xpath>
 		</field>
 		<field name="mediatype" type="xs:string">
-			<description>mediatype</description>
+			<description>mediatype e.g "text/html" or "application/xml"</description>
 			<xpath>wadl:method/wadl:response/wadl:representation/@mediaType</xpath>
 		</field>
 	</fields>

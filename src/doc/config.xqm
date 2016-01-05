@@ -6,9 +6,9 @@
 module namespace cnf = 'quodatum.app.config';
 declare default function namespace 'quodatum.app.config';
 declare namespace pkg="http://expath.org/ns/pkg";
-declare variable $cnf:name:="doc";
 
 declare variable $cnf:package:=fn:doc("expath-pkg.xml")/pkg:package;
+declare variable $cnf:name:=$cnf:package/@abbrev;
 declare variable $cnf:includes:=fn:doc("./templates/includes.xml")/includes;
 
 declare %updating function write-log($text as xs:string){
