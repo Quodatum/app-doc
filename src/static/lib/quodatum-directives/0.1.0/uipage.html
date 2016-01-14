@@ -1,19 +1,18 @@
-<divclass="btn-group pull-right" 
-      title="Page view2">
-		<button ng-click="params.start=0" ng-disabled="params.start==0" 
+<div class="btn-group pull-right" title="Page view2">
+	<button ng-click="params.start=0" ng-disabled="params.start==0"
 		title="First page" class="btn btn-small">
-			<i class="glyphicon glyphicon-step-backward"></i>
-		</button>
-	
-		<button ng-click="prevPage()" ng-disabled="params.start==0" 
-		title="Previous page"  class="btn btn-small">
-			<i class="glyphicon glyphicon-backward"></i>
-		</button>
-	
-    <span>{{params.start + 1}}</span>
-	
-	<button ng-click="nextPage()" title="Next page"  class="btn btn-small">
+		<i class="glyphicon glyphicon-step-backward"></i>
+	</button>
+
+	<button ng-click="prevPage()" ng-disabled="params.start==0"
+		title="Previous page" class="btn btn-small">
+		<i class="glyphicon glyphicon-backward"></i>
+	</button>
+
+	<span>{{params.start + 1}}</span>
+
+	<button ng-click="nextPage()" title="Next page" class="btn btn-small">
 		<i class="glyphicon glyphicon-forward"></i>
 	</button>
-	
-</ul>
+
+</div>

@@ -1,22 +1,18 @@
 <xs:schema attributeFormDefault="unqualified"
-	elementFormDefault="qualified" 
-	targetNamespace="https://github.com/Quodatum/app-doc/entity"
-	xmlns:entity="https://github.com/Quodatum/app-doc/entity"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	elementFormDefault="qualified" targetNamespace="https://github.com/Quodatum/app-doc/entity"
+	xmlns:entity="https://github.com/Quodatum/app-doc/entity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xs:element name="entity">
 		<xs:complexType>
 			<xs:sequence>
-			 <xs:element  name="parent" minOccurs="0"/>
+				<xs:element name="parent" minOccurs="0" />
 				<xs:element type="entity:mixed-text" name="description" />
 				<xs:element name="namespace" maxOccurs="unbounded"
 					minOccurs="0">
 					<xs:complexType>
 						<xs:simpleContent>
 							<xs:extension base="xs:string">
-								<xs:attribute type="xs:string"
-									name="prefix" use="required" />
-								<xs:attribute name="uri"
-									type="xs:string" use="required">
+								<xs:attribute type="xs:string" name="prefix" use="required" />
+								<xs:attribute name="uri" type="xs:string" use="required">
 								</xs:attribute>
 							</xs:extension>
 						</xs:simpleContent>
@@ -25,18 +21,15 @@
 				<xs:element name="fields">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="field"
-								maxOccurs="unbounded" minOccurs="0">
+							<xs:element name="field" maxOccurs="unbounded"
+								minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element type="entity:mixed-text" name="description" />
-										<xs:element type="xs:string"
-											name="xpath" />
+										<xs:element type="xs:string" name="xpath" />
 									</xs:sequence>
-									<xs:attribute type="xs:string"
-										name="name" use="optional" />
-									<xs:attribute type="xs:string"
-										name="type" use="optional" />
+									<xs:attribute type="xs:string" name="name" use="optional" />
+									<xs:attribute type="xs:string" name="type" use="optional" />
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
@@ -45,23 +38,25 @@
 				<xs:element name="views" maxOccurs="1" minOccurs="0">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="view"
-								maxOccurs="unbounded" minOccurs="0">
+							<xs:element name="view" maxOccurs="unbounded"
+								minOccurs="0">
 								<xs:complexType>
-									<xs:attribute type="xs:string"
-										name="name" use="optional" />
+									<xs:simpleContent>
+										<xs:extension base="xs:NMTOKENS">
+											<xs:attribute type="xs:string" name="name" />
+										</xs:extension>
+									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element type="xs:string" name="iconclass" />
+				<xs:element name="iconclass" type="xs:string" />
 				<xs:element name="data">
 					<xs:complexType>
 						<xs:simpleContent>
 							<xs:extension base="xs:string">
-								<xs:attribute name="type"
-									type="xs:string">
+								<xs:attribute name="type" type="xs:string">
 								</xs:attribute>
 							</xs:extension>
 						</xs:simpleContent>
@@ -72,12 +67,12 @@
 			<xs:attribute type="xs:string" name="type" />
 		</xs:complexType>
 	</xs:element>
-	
-	  <!-- Complex type used for comment text to allow the inclusion
-       of embedded HTML markup within comments. -->
-    <xs:complexType name="mixed-text"  mixed="true">
-        <xs:sequence>
-            <xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
-        </xs:sequence>
-    </xs:complexType>
+
+	<!-- Complex type used for comment text to allow the inclusion of embedded 
+		HTML markup within comments. -->
+	<xs:complexType name="mixed-text" mixed="true">
+		<xs:sequence>
+			<xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip" />
+		</xs:sequence>
+	</xs:complexType>
 </xs:schema>

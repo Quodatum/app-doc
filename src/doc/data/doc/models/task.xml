@@ -17,7 +17,7 @@
 		</field>
 		<field name="xquery" type="xs:string">
             <description>xquery code for this task.</description>
-            <xpath>'todo'</xpath>
+            <xpath>concat('/doc/data/file/read?path=' ,db:path(.)) </xpath>
         </field>
         <field name="params" type="xs:integer">
             <description>Number of parameters.</description>

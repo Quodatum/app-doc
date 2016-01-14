@@ -15,21 +15,7 @@ declare variable $dice:default:=map{
     "sort" : ""
 };
 
-(:~ 
- : filter items where fieelds contain text
- : @param sort  field name to sort on optional leading +/-
- : @return sorted items 
- :)
-declare function contains($items as item()*
-                     ,$fmap as map(*)
-                     ,$query as xs:string?)
-as item()*{
-(:
-fn:contains($e,$q,
-                        'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
-                        :)
-    $items[fn:trace(fn:true(),"contains")]
-};
+
 (:~ 
  : sort items
  : @param sort  field name to sort on optional leading +/-

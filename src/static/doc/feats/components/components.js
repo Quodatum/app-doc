@@ -39,7 +39,7 @@ angular.module('quodatum.doc.components',
 
               .state('component.tree', {
                 url : "/tree",
-                templateUrl : '/static/doc/feats/components/cmptree.xhtml',
+                templateUrl : '/static/doc/feats/components/cmptree.html',
                 controller : "TreeCtrl",
                 ncyBreadcrumb : {
                   label : 'tree',
@@ -110,9 +110,11 @@ angular.module('quodatum.doc.components',
       $scope.gotsvg = function() {
         var svg = document.getElementById("svghere").querySelector('svg');
         panZoom= svgPanZoom(svg, {
-          zoomEnabled : true,
-          controlIconsEnabled : true,
-          contain:true
+            zoomEnabled: true,
+            controlIconsEnabled: true,
+            fit: true,
+            center: true,
+            minZoom: 0.1
         });
       };
       
@@ -126,7 +128,7 @@ angular.module('quodatum.doc.components',
       };
       $scope.zoomReset = function(ev){
         ev.preventDefault();
-        panZoom.zoomReset();
+        panZoom.resetZoom();
       };
     } ])
 

@@ -8,21 +8,15 @@
 
 	<ul class="nav navbar-nav navbar navbar-right  bg-danger"
 		title="Not working yet" style="position: relative; top: -6px">
-		
-		<li><span class="label label-success"> <a
-                    ui-sref="entity.model({model:state.current.data.entity})">{{state.current.data.entity}}</a>
-                </span>
-		</li>
-		<li><span class="label label-info">
-        {{metadata.total}}
-        </span></li>
-		<li>
-			<form ng-hide="single" class="navbar-form" style="margin:0">
+
+
+		<li ng-hide="single">
+			<form  class="navbar-form" style="margin: 0">
 
 				<div class="input-group" style="width: 14em;">
 					<span class="input-group-addon"><i class="fa fa-filter "></i></span>
 					<input type="text" class="form-control" placeholder="Filter..."
-						ng-model="params.q"  /> <span ng-show="params.q.length"
+						ng-model="params.q" /> <span ng-show="params.q.length"
 						class="input-group-addon"> <a class="" type="button"
 						ng-click="params.q='';"> x</i>
 					</a>
@@ -32,8 +26,27 @@
 				<sortui ng-model="params" options="options">sortui</sortui>
 			</form>
 		</li>
-		<li><uipage ng-model="params" ng-hide="single">page</uipage>
+		<li ng-hide="single"><div class="btn-group " title="Page ">
+				<button ng-click="params.start=0" ng-disabled="params.start==0"
+					title="First page" class="btn btn-small">
+					<i class="glyphicon glyphicon-step-backward"></i>
+				</button>
 
-			</li>
+				<button ng-click="prevPage()" ng-disabled="params.start==0"
+					title="Previous page" class="btn btn-small">
+					<i class="glyphicon glyphicon-backward"></i>
+				</button>
+			</div>
+			<div class="btn-group">{{params.start + 1}}</div>
+			<div class="btn-group">
+				<button ng-click="nextPage()" title="Next page"
+					class="btn btn-small">
+					<i class="glyphicon glyphicon-forward"></i>
+				</button>
+			</div></li>
+			     <li><span class="label label-success"> <a
+                ui-sref="entity.model({model:state.current.data.entity})">{{state.current.data.entity}}</a>
+        </span></li>
+        <li ng-hide="single"><span class="label label-info"> {{metadata.total}} </span></li>
 	</ul>
 </nav>

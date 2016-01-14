@@ -17,7 +17,7 @@
         </field>
 		<field name="type" type="xs:string">
 			<description>"basex", "main" or "library"</description>
-			<xpath>(if(starts-with(.,"basex.xqm/"))
+			<xpath>(if(starts-with(db:path(.),"basex.xqm/"))
 			        then "basex" 
 			        else xqdoc:module/@type)</xpath>
 		</field>
@@ -34,6 +34,9 @@
 			<xpath>xqdoc:module/xqdoc:name</xpath>
 		</field>
 	</fields>
+	   <views>
+        <view name="filter">name description</view>
+    </views>
 	<iconclass>fa fa-file-code-o</iconclass>
 	<data type="element(xqdoc:xqdoc)">collection("doc-doc")//xqdoc:xqdoc
 	</data>

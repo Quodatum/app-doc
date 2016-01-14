@@ -279,7 +279,15 @@ angular.module('quodatum.directives', [ 'ngResource', 'ui.bootstrap' ])
         state: "=?"
       },
       controller : function($scope){
-          $scope.options=["f1","f2","sort"];
+          $scope.options=["name","f2","todo"];
+          var pagesize=20;
+          $scope.nextPage=function(){
+            $scope.params.start+=pagesize;
+          };
+          $scope.prevPage=function(){
+            $scope.params.start-=pagesize;
+            $scope.params.start=Math.max(0,$scope.params.start);
+          };
       }
   };
 }])

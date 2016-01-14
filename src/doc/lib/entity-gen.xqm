@@ -53,13 +53,22 @@ declare function generate($e as element(ent:entity)) as xs:string
 {
   let $fields:=for $field in $e/ent:fields/ent:field   
                 order by $field/@name
-                return $field    
+                return $field
+                
+  let $filter:=$e/ent:views/ent:view[@name="filter"]=>fn:tokenize()
+  let $filter:= $e/ent:fields/ent:field[@name=$filter]/ent:xpath/fn:concat("$item/",.) 
+                   
   return <field>
   "{$e/@name/fn:string()}": map{{
      "name": "{ $e/@name/fn:string()}",
      "description": "{ escape($e/ent:description)}",
-     "access": map{{ {fn:string-join($fields!accessfn(.),",")} }},
-     "json": map{{ {fn:string-join($fields!jsonfn(.),",")} }},
+     "access": map{{ {$fields!accessfn(.)=>fn:string-join(",")} }},
+    
+     "filter": function($item,$q) as xs:boolean{{ 
+         some $e in ( {fn:string-join($filter,", ")}) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      }},
+       "json":   map{{ {$fields!jsonfn(.)=>fn:string-join(",")} }},
       "data": function() as {$e/ent:data/@type/fn:string(.)}*
        {{ {let $a:=$e/ent:data/fn:string() return if($a)then $a else "()"} }}
    }}</field>

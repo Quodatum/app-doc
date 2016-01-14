@@ -59,8 +59,8 @@ let $dot:=
 		
 return $dot
 !dotml:to-dot(.) 
-!ex-graphviz:to-svg(.)
-!ex-graphviz:autosize(*) 
+!ex-graphviz:to-svg(.)/*
+(: !ex-graphviz:autosize(.) :)
 };
 
 

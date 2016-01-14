@@ -70,10 +70,9 @@ declare
 function apps($q ) 
 {
     let $entity:=$entity:list("app")
-    let $searchs:=df:apps()! apps:app-json(.,doc:uri#3)
-                
-    let $searchs:=if($q) then apps:filter-apps($searchs,$q) else $searchs                    
-    
+    let $searchs:=df:apps() ! apps:app-json(.,doc:uri#3)         
+    let $searchs:=if($q) then fn:filter($searchs,$entity?filter(?,$q)) else $searchs                    
+         
     let $_:= dice:response($searchs,$entity,web:dice())
     return $_
 };
@@ -125,7 +124,7 @@ function entity-data($entity as xs:string,$q )
 {
     let $entity:=$entity:list($entity)
     let $results:=$entity("data")()
-    let $results:=if($q) then  dice:contains($results,$entity?access,$q) else  $results 
+    let $results:=if($q) then fn:filter($results,$entity?filter(?,$q)) else $results 
     return dice:response($results,$entity,web:dice())
 };
 
@@ -171,7 +170,9 @@ declare
 %output:method("html")   
 function read($path) as element() 
 {
-    <pre>{df:read($path)}</pre>
+    <pre>{
+    df:read($path)=>fn:trace("READ:")
+    }</pre>
 };
 
 (:~

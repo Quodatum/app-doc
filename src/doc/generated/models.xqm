@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2016-01-05T22:14:12.7Z 
+ : auto generated from xml files in entities folder at: 2016-01-14T09:56:34.285Z 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -18,7 +18,12 @@ declare variable $entity:list:=map {
        "name": function($_ as element()) as xs:string {$_/name },
        "uri": function($_ as element()) as xs:string? {$_/('/' || name) },
        "version": function($_ as element()) as xs:string {$_/version } },
-     "json": map{ 
+    
+     "filter": function($item,$q) as xs:boolean{ 
+         some $e in ( $item/name, $item/description) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      },
+       "json":   map{ 
            "description": function($_ as element()) as element(description)? {
             (: string :)
                         let $d:=fn:data($_/description)
@@ -60,7 +65,12 @@ declare variable $entity:list:=map {
        "html": function($_ as element()) as element() {$_/. },
        "name": function($_ as element()) as xs:string {$_/@name },
        "tagline": function($_ as element()) as xs:string {$_/tagline } },
-     "json": map{ 
+    
+     "filter": function($item,$q) as xs:boolean{ 
+         some $e in ( $item/@name, $item/tagline) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      },
+       "json":   map{ 
            "cdn": function($_ as element()) as element(cdn)? {
             (: string :)
                         let $d:=fn:data($_/release/cdn[1])
@@ -94,7 +104,12 @@ declare variable $entity:list:=map {
        "mediatype": function($_ as element()) as xs:string {$_/wadl:method/wadl:response/wadl:representation/@mediaType },
        "method": function($_ as element()) as xs:string {$_/wadl:method/@name },
        "path": function($_ as element()) as xs:string {$_/@path } },
-     "json": map{ 
+    
+     "filter": function($item,$q) as xs:boolean{ 
+         some $e in ( ) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      },
+       "json":   map{ 
            "doc": function($_ as element()) as element(doc)? {
             (: string :)
                         let $d:=fn:data($_/(if(wadl:method/wadl:doc) 
@@ -139,7 +154,12 @@ declare variable $entity:list:=map {
        "parent": function($_ as element()) as xs:string? {$_/ent:parent/@name },
        "parentlink": function($_ as element()) as xs:string? {$_/fn:concat("/data/entity/",ent:parent/@name) },
        "type": function($_ as element()) as xs:string {$_/ent:data/@type } },
-     "json": map{ 
+    
+     "filter": function($item,$q) as xs:boolean{ 
+         some $e in ( ) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      },
+       "json":   map{ 
            "code": function($_ as element()) as element(code)? {
             (: string :)
                         let $d:=fn:data($_/ent:data)
@@ -213,7 +233,12 @@ declare variable $entity:list:=map {
        "parent": function($_ as element()) as xs:string {$_/../../@name },
        "type": function($_ as element()) as xs:string {$_/@type },
        "xpath": function($_ as element()) as xs:string {$_/ent:xpath } },
-     "json": map{ 
+    
+     "filter": function($item,$q) as xs:boolean{ 
+         some $e in ( ) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      },
+       "json":   map{ 
            "description": function($_ as element()) as element(description)? {
             (: string :)
                         let $d:=fn:data($_/ent:description)
@@ -255,7 +280,12 @@ declare variable $entity:list:=map {
        "title": function($_ as element()) as xs:string {$_/title },
        "type": function($_ as element()) as xs:string {$_/type },
        "uri": function($_ as element()) as xs:string {$_/uri } },
-     "json": map{ 
+    
+     "filter": function($item,$q) as xs:boolean{ 
+         some $e in ( ) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      },
+       "json":   map{ 
            "sref": function($_ as element()) as element(sref)? {
             (: string :)
                         let $d:=fn:data($_/"app.item.index({'name':'benchx'})")
@@ -291,8 +321,13 @@ declare variable $entity:list:=map {
        "name": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:uri },
        "params": function($_ as element()) as xs:integer {$_/count(.//xqdoc:variable) },
        "path": function($_ as element()) as xs:string {$_/concat(db:name(.),"/",db:path(.)) },
-       "xquery": function($_ as element()) as xs:string {$_/'todo' } },
-     "json": map{ 
+       "xquery": function($_ as element()) as xs:string {$_/concat('/doc/data/file/read?path=' ,db:path(.)) } },
+    
+     "filter": function($item,$q) as xs:boolean{ 
+         some $e in ( ) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      },
+       "json":   map{ 
            "description": function($_ as element()) as element(description)? {
             (: string :)
                         let $d:=fn:data($_/xqdoc:module/xqdoc:comment/xqdoc:description)
@@ -319,7 +354,7 @@ declare variable $entity:list:=map {
                               else () },
            "xquery": function($_ as element()) as element(xquery)? {
             (: string :)
-                        let $d:=fn:data($_/'todo')
+                        let $d:=fn:data($_/concat('/doc/data/file/read?path=' ,db:path(.)))
                         return if($d)
                               then element xquery {  $d } 
                               else () } },
@@ -338,11 +373,16 @@ declare variable $entity:list:=map {
        "href": function($_ as element()) as xs:string {$_/("#/data/xqmodule/item?item=" || fn:base-uri(.)) },
        "name": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:name },
        "path": function($_ as element()) as xs:string {$_/db:path(.) },
-       "type": function($_ as element()) as xs:string {$_/(if(starts-with(.,"basex.xqm/"))
+       "type": function($_ as element()) as xs:string {$_/(if(starts-with(db:path(.),"basex.xqm/"))
 			        then "basex" 
 			        else xqdoc:module/@type) },
        "uri": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:uri } },
-     "json": map{ 
+    
+     "filter": function($item,$q) as xs:boolean{ 
+         some $e in ( $item/xqdoc:module/xqdoc:comment/xqdoc:description, $item/xqdoc:module/xqdoc:name) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      },
+       "json":   map{ 
            "description": function($_ as element()) as element(description)? {
             (: string :)
                         let $d:=fn:data($_/xqdoc:module/xqdoc:comment/xqdoc:description)
@@ -375,7 +415,7 @@ declare variable $entity:list:=map {
                               else () },
            "type": function($_ as element()) as element(type)? {
             (: string :)
-                        let $d:=fn:data($_/(if(starts-with(.,"basex.xqm/"))
+                        let $d:=fn:data($_/(if(starts-with(db:path(.),"basex.xqm/"))
 			        then "basex" 
 			        else xqdoc:module/@type))
                         return if($d)

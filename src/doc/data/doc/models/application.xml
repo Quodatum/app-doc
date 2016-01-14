@@ -1,30 +1,30 @@
 <entity name="app" xmlns="https://github.com/Quodatum/app-doc/entity">
-    <description>A RESTXQ based web application.</description>
+	<description>A RESTXQ based web application.</description>
 	<fields>
 		<field name="name" type="xs:string">
 			<description>Application name.</description>
 			<xpath>name</xpath>
 		</field>
 		<field name="version" type="xs:string">
-            <description>Application version.</description>
-            <xpath>version</xpath>
-        </field>
+			<description>Application version.</description>
+			<xpath>version</xpath>
+		</field>
 		<field name="description" type="xs:string?">
 			<description>Application description</description>
 			<xpath>description</xpath>
 		</field>
 		<field name="uri" type="xs:string?">
-            <description>Application url address</description>
-            <xpath>('/' || name)</xpath>
-        </field>
-        <field name="logo" type="xs:string?">
-            <description>uri for the application logo if exists</description>
-            <xpath>logo</xpath>
-        </field>
+			<description>Application url address</description>
+			<xpath>('/' || name)</xpath>
+		</field>
+		<field name="logo" type="xs:string?">
+			<description>uri for the application logo if exists</description>
+			<xpath>logo</xpath>
+		</field>
 	</fields>
 	<views>
-	<view name="list"/>
+		<view name="filter">name description</view>
 	</views>
 	<iconclass>fa fa-desktop</iconclass>
-    <data  type="element(item)"></data>
+	<data type="element(item)"></data>
 </entity>
