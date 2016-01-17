@@ -19,11 +19,11 @@ angular.module('quodatum.doc.components',
 
               .state('component.index', {
                 url : "",
-                templateUrl : '/static/doc/feats/components/components.xhtml',
+                templateUrl : '/static/doc/feats/components/components.html',
                 ncyBreadcrumb : {
                   label : 'components'
                 },
-                controller : "CICtrl",
+                controller : "CompsCtrl",
                 data:{entity:"component"}
               })
 
@@ -165,7 +165,7 @@ angular.module('quodatum.doc.components',
         [ '$stateParams', '$scope', '$http','$sce','ScrollService',
             function($stateParams, $scope, $http,$sce,ScrollService) {
 
-              console.log("CI controller: ",$stateParams);
+              console.log("CI controller: ",ScrollService);
               // $scope.setTitle("Coomponents");
               //http://localhost:8984/doc/components/browser?fmt=html
                 $http.get('components/browser?fmt=json').then(function(response) {
@@ -174,5 +174,26 @@ angular.module('quodatum.doc.components',
               
               $scope.scrollTo = ScrollService.scrollTo;
 
-            } ])            
+            } ]) 
+            
+            
+      .controller(
+        // provides dice scrolling controller for components
+        "CompsCtrl",
+        [ '$stateParams', '$scope', 'DiceService','Restangular',
+            function($stateParams, $scope, DiceService,Restangular) {
+
+              console.log("CompsCtrl: ",$stateParams);
+              function update() {       
+                Restangular.one("data").all('component')
+                           .getList($scope.params)
+                           .then(function(d){
+                               //console.log("models..",d);
+                               $scope.apps=d;
+                               });
+              };
+              DiceService.setup($scope,update);
+              console.log('DiceService',DiceService)
+            } ])          
+           
             ;

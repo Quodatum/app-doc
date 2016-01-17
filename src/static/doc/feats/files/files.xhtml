@@ -12,7 +12,8 @@
 						<i class="glyphicon glyphicon-bell"></i>
 						{{path}}
 					</uib-tab-heading>
-					<div ng-include="include" autoscroll="true">loading Loading ...</div>
+					<pre >{{text}}</pre>
+					
 				</uib-tab>
 				<uib-tab heading="Static title">Static content</uib-tab>
 				<uib-tab ng-repeat="tab in tabs" heading="{{tab.title}}"

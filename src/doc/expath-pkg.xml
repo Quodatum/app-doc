@@ -1,8 +1,8 @@
-<package abbrev="doc" name="urn:quodatum.basex.doc" version="0.7.20"
+<package abbrev="doc" name="urn:quodatum.basex.doc" version="0.7.22"
 	spec="1.0" xmlns="http://expath.org/ns/pkg">
 	<title>BaseX Web application Documentation</title>
 	<dependency name="twitter-bootstrap-css" version="3.3.5" />
-    <dependency name="angularjs" version="1.4.7" />
+    <dependency name="angularjs" version="1.4.8" />
 	<dependency name="angular-ui-bootstrap" version="0.14.3" />
 	<dependency name="restangular" version="3.1.1" />
 	<dependency name="lodash" version="2.4.1" />

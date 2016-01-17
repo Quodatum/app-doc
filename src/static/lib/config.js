@@ -55,6 +55,7 @@ angular.module(
               data = response.items;
               data.metadata = {
                 total : response.total,
+                range : response.range,
                 entity : response.entity,
                 crumbs : response.crumbs
               };

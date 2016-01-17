@@ -1,5 +1,4 @@
-<components xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="components.xsd">
+<components xmlns="https://github.com/Quodatum/app-doc/component">
 	<cmp name="angular-tree-control">
 		<runat>browser</runat>
 		<tagline>The AngularJS tree component.

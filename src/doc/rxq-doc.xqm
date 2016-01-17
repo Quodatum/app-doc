@@ -162,17 +162,15 @@ function find($pattern) as element(json)
 (:~
  : get contents of file.
  : @param $path e.g. "/app/doc/readme.md"
- : @return html resprestation of file
+ : @return text resprestation of file
  :)
 declare
 %rest:GET %rest:path("doc/data/file/read")
 %rest:query-param("path", "{$path}","/")  
-%output:method("html")   
-function read($path) as element() 
-{
-    <pre>{
+%output:method("text")   
+function read($path) as xs:string? 
+{ 
     df:read($path)=>fn:trace("READ:")
-    }</pre>
 };
 
 (:~
@@ -268,7 +266,7 @@ function client-components($app as xs:string,
   let $pkg:=doc:app-uri($app,"expath-pkg.xml")
   return if (fn:doc-available($pkg))
          then let $doc:=fn:doc($pkg)/* 
-              return doc:component-render($doc,$fmt)
+              return doc:component-render($fmt,$doc)
          else <div>"expath-pkg.xml" not found.)</div>   
 }; 
 
@@ -302,8 +300,7 @@ declare
 %output:method("html") 
 %restxq:query-param("fmt", "{$fmt}","html")
 function browser-list($fmt as xs:string){
-    let $d:=$doc:components
-    return doc:component-render($d,$fmt)
+    doc:component-render($fmt)
     
 };
 
@@ -372,6 +369,7 @@ declare
 function status(){
    <json type="object">
    <version>{cnf:settings()?version}</version>
+   <cacherestxq>{db:system()/globaloptions/cacherestxq/fn:string()}</cacherestxq>
    </json>
 };
 

@@ -24,6 +24,9 @@
             <xpath>count(.//xqdoc:variable)</xpath>
         </field>
 	</fields>
+	 <views>
+        <view name="filter">name description</view>
+    </views>
 	<iconclass>fa fa-tasks </iconclass>
 	<data type="element(xqdoc:xqdoc)">
 collection("doc-doc")//xqdoc:xqdoc[

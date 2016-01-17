@@ -10,7 +10,7 @@ declare default function namespace 'quodatum.web.dice/v3';
 declare namespace restxq = 'http://exquery.org/ns/restxq';
 
 declare variable $dice:default:=map{
-    "start" : 0, (: start index :)
+    "start" : 1, (: start index :)
     "limit" : 30, (: max items :)
     "sort" : ""
 };
@@ -78,7 +78,7 @@ declare function response($items,
   let $items:= dice:sort($items,map:get($entity,"access"),$opts?sort)
   let $jsonf:= map:get($entity,"json")
   let $fields:=map:keys($jsonf)
-  let $slice:= fn:subsequence($items,1+$opts?start,$opts?limit)
+  let $slice:= fn:subsequence($items,$opts?start,$opts?limit)=>fn:trace()
   return 
   <json objects="json _" >
     <total type="number">{$total}</total>

@@ -14,6 +14,21 @@ angular.module(
     };
 }])
 
+// setup dice parameters call update on change
+// http://stackoverflow.com/a/22899880/3210344
+.factory('DiceService', ['$location', function ($location) {
+return {
+    setup: function($scope,update){
+      $scope.params = {start : 1,sort : "name"}; //q added by filter
+      
+      $scope.$watch('params', function(value) {
+         $location.search($scope.params);
+         update();
+     }, true);
+    }
+};     
+}])
+ 
  // controllers
     .controller(
         // provides scrolling controller 
@@ -33,6 +48,8 @@ angular.module(
               $scope.scrollTo = ScrollService.scrollTo;
 
             } ])
+            
+            
 // http://odetocode.com/blogs/scott/archive/2014/09/10/a-journey-with-trusted-html-in-angularjs.aspx
 .directive("compileHtml", function($parse, $sce, $compile) {
     return {

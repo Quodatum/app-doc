@@ -17,7 +17,7 @@ declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
 
-declare variable $doc:components as element():=fn:doc("data/doc/components.xml")/components;
+declare namespace comp="https://github.com/Quodatum/app-doc/component";
 
 declare variable $doc:repopath:=db:system()/globaloptions/repopath;
 (:~ 
@@ -132,10 +132,16 @@ declare function rxq-fns($xqd as element(xqdoc:xqdoc)) as element(xqdoc:function
 };
 
 
-declare function component-render($doc as element(),
+declare function component-render(
                         $fmt as xs:string) 
 {
-  let $render:=map{"xml": function($doc){web:download-response("xml", "expath-pkg.xml"),$doc},
+  component-render($fmt,fn:doc("data/doc/components.xml")/comp:components) 
+}; 
+
+declare function component-render(
+                        $fmt as xs:string,$doc )
+{ 
+ let $render:=map{"xml": function($doc){web:download-response("xml", "expath-pkg.xml"),$doc},
                   "svg":function($doc){web:svg-response(),svggen:generate($doc)},       
                  "html":function($doc){doc:components-html($doc)},
                  "json":function($doc){web:json-response(),
@@ -143,9 +149,9 @@ declare function component-render($doc as element(),
                                     doc:components-html($doc)!fn:serialize(.,map{"method":"html"})
                                     }</html></json>}
             }
-   return $render?($fmt,"html")[1]($doc) 
-}; 
-
+   return $render?($fmt,"html")[1]($doc)
+};
+    
 (:~
  : html report for components referenced in package
  :@param $pkg package or component

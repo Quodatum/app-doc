@@ -12,7 +12,7 @@ module namespace svggen = 'quodatum.doc.svg';
 declare default function namespace 'quodatum.doc.svg';
 import module namespace dotml="http://www.martin-loetzsch.de/DOTML";
 import module namespace ex-graphviz="http://expkg-zone58.github.io/ex-graphviz";
-
+declare namespace comp="https://github.com/Quodatum/app-doc/component";
 (:~ example dotml 
  :)
 declare variable $svggen:simple:=
@@ -48,11 +48,11 @@ as element()
 {
 let $dot:= 
  <dotml:graph  rankdir="LR" fontname="Arial" label="Components"> 
-		{(for $c in $pkg/cmp
+		{(for $c in $pkg/comp:cmp
 		 let $id:=name($c/@name)
 		 return <dotml:node id="{$id}" label="{$c/@name}" shape="box" style="filled" fillcolor="yellow"
 		 URL="javascript:alert('{$c/@name}')" />,
-		 for $d in $pkg/cmp/depends
+		 for $d in $pkg/comp:cmp/comp:depends
 		 return <dotml:edge from="{name($d/../@name)}" to="{name($d)}"/>  )
 		     }
         </dotml:graph>

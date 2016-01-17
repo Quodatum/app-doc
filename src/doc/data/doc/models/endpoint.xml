@@ -21,6 +21,9 @@
 			<xpath>wadl:method/wadl:response/wadl:representation/@mediaType</xpath>
 		</field>
 	</fields>
+	<views>
+    <view name="filter">path doc</view>
+    </views>
 	<iconclass>fa fa-exchange</iconclass>
 	<data type="element(wadl:resource)"></data>
 </entity>

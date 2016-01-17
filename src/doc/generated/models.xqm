@@ -1,8 +1,9 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2016-01-14T09:56:34.285Z 
+ : auto generated from xml files in entities folder at: 2016-01-17T22:28:37.79Z 
  :)
 
 module namespace entity = 'quodatum.models.generated';
+declare namespace comp='https://github.com/Quodatum/app-doc/component';
 declare namespace wadl='http://wadl.dev.java.net/2009/02';
 declare namespace ent='https://github.com/Quodatum/app-doc/entity';
 declare namespace task='https://github.com/Quodatum/app-doc/task';
@@ -61,21 +62,28 @@ declare variable $entity:list:=map {
      "name": "component",
      "description": "About a software component. Such as a Javascript library or an EXPath package",
      "access": map{ 
-       "cdn": function($_ as element()) as xs:string {$_/release/cdn[1] },
+       "cdn": function($_ as element()) as xs:string {$_/comp:release/comp:cdn[1] },
+       "description": function($_ as element()) as xs:string {$_/comp:tagline },
        "html": function($_ as element()) as element() {$_/. },
        "name": function($_ as element()) as xs:string {$_/@name },
-       "tagline": function($_ as element()) as xs:string {$_/tagline } },
+       "type": function($_ as element()) as xs:string {$_/comp:runat } },
     
      "filter": function($item,$q) as xs:boolean{ 
-         some $e in ( $item/@name, $item/tagline) satisfies
+         some $e in ( $item/@name) satisfies
          fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
       },
        "json":   map{ 
            "cdn": function($_ as element()) as element(cdn)? {
             (: string :)
-                        let $d:=fn:data($_/release/cdn[1])
+                        let $d:=fn:data($_/comp:release/comp:cdn[1])
                         return if($d)
                               then element cdn {  $d } 
+                              else () },
+           "description": function($_ as element()) as element(description)? {
+            (: string :)
+                        let $d:=fn:data($_/comp:tagline)
+                        return if($d)
+                              then element description {  $d } 
                               else () },
            "html": function($_ as element()) as element(html)? {
             element html { attribute type {"string"},fn:serialize($_/.)} },
@@ -85,14 +93,14 @@ declare variable $entity:list:=map {
                         return if($d)
                               then element name {  $d } 
                               else () },
-           "tagline": function($_ as element()) as element(tagline)? {
+           "type": function($_ as element()) as element(type)? {
             (: string :)
-                        let $d:=fn:data($_/tagline)
+                        let $d:=fn:data($_/comp:runat)
                         return if($d)
-                              then element tagline {  $d } 
+                              then element type {  $d } 
                               else () } },
-      "data": function() as element(cmp)*
-       { () }
+      "data": function() as element(comp:cmp)*
+       { collection("doc-doc")//comp:cmp }
    },
   "endpoint": map{
      "name": "endpoint",
@@ -106,7 +114,9 @@ declare variable $entity:list:=map {
        "path": function($_ as element()) as xs:string {$_/@path } },
     
      "filter": function($item,$q) as xs:boolean{ 
-         some $e in ( ) satisfies
+         some $e in ( $item/@path, $item/(if(wadl:method/wadl:doc) 
+			       then wadl:method/wadl:doc/text()
+			       else '' )) satisfies
          fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
       },
        "json":   map{ 
@@ -324,7 +334,7 @@ declare variable $entity:list:=map {
        "xquery": function($_ as element()) as xs:string {$_/concat('/doc/data/file/read?path=' ,db:path(.)) } },
     
      "filter": function($item,$q) as xs:boolean{ 
-         some $e in ( ) satisfies
+         some $e in ( $item/xqdoc:module/xqdoc:uri, $item/xqdoc:module/xqdoc:comment/xqdoc:description) satisfies
          fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
       },
        "json":   map{ 
