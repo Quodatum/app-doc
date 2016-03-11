@@ -6,6 +6,7 @@
 module namespace dr = 'quodatum.doc.rest';
 declare default function namespace 'quodatum.doc.rest';
 
+import module namespace cmpx="quodatum.cmpx";
 import module namespace cnf = 'quodatum.app.config' at 'config.xqm';
 import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
 import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";

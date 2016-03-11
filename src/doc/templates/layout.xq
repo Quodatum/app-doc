@@ -20,7 +20,14 @@ declare variable $incl-js as element()* external :=();
 <!-- component css -->
 {$incl-css}
 <link href="{$static}app.css" rel="stylesheet"/>
-
+<script type="text/javascript" src="/static/lib/firebug-lite/4/firebug-lite.js">
+{{
+    overrideConsole: false,
+    startInNewWindow: true,
+    startOpened: true,
+    enableTrace: true
+}}
+</script>
 <script type="text/javascript">
   (function(i,s,o,g,r,a,m){{i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){{
   (i[r].q=i[r].q||[]).push(arguments)}},i[r].l=1*new Date();a=s.createElement(o),
