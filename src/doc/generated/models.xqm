@@ -1,9 +1,10 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2016-01-17T22:28:37.79Z 
+ : auto generated from xml files in entities folder at: 2016-03-16T12:19:00.126Z 
  :)
 
 module namespace entity = 'quodatum.models.generated';
-declare namespace comp='https://github.com/Quodatum/app-doc/component';
+import module namespace cmpx='quodatum.cmpx';
+declare namespace comp='urn:quodatum:qd-cmpx:component';
 declare namespace wadl='http://wadl.dev.java.net/2009/02';
 declare namespace ent='https://github.com/Quodatum/app-doc/entity';
 declare namespace task='https://github.com/Quodatum/app-doc/task';
@@ -60,7 +61,8 @@ declare variable $entity:list:=map {
    },
   "component": map{
      "name": "component",
-     "description": "About a software component. Such as a Javascript library or an EXPath package",
+     "description": "About a software component. Such as a Javascript library
+		or an EXPath package",
      "access": map{ 
        "cdn": function($_ as element()) as xs:string {$_/comp:release/comp:cdn[1] },
        "description": function($_ as element()) as xs:string {$_/comp:tagline },
@@ -100,7 +102,7 @@ declare variable $entity:list:=map {
                               then element type {  $d } 
                               else () } },
       "data": function() as element(comp:cmp)*
-       { collection("doc-doc")//comp:cmp }
+       { $cmpx:comps }
    },
   "endpoint": map{
      "name": "endpoint",

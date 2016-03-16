@@ -26,6 +26,7 @@ let $src:= <text>(: entity access maps
  :)
 
 module namespace entity = 'quodatum.models.generated';
+{bf:build-modules($entities)}
 {bf:build-namespaces($entities)}
 {(  bf:build-describe($entities))} 
 
@@ -148,6 +149,13 @@ declare function build-namespaces($entities as element()*){
   for $n in distinct-deep($entities/ent:namespace)
   return 
 <text>declare namespace {$n/@prefix/fn:string()}='{$n/@uri/fn:string()}';
+</text>
+};
+(:~ declare any namespaces found :)
+declare function build-modules($entities as element()*){
+  for $n in distinct-deep($entities/ent:module)
+  return 
+<text>import module namespace {$n/@prefix/fn:string()}='{$n/@namespace/fn:string()}';
 </text>
 };
 
