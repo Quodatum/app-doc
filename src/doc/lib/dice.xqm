@@ -33,11 +33,11 @@ as item()*{
           else if ($ascending) then
             for $i in $items
            (: let $i:=fn:trace($i,"feld " || $fld ) :)
-            order by $fmap($fld)($i) ascending
+            order by $fmap($fld)($i) ascending collation "http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive"
             return $i
           else
             for $i in $items 
-            order by  $fmap($fld)($i) descending
+            order by  $fmap($fld)($i) descending collation "http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive"
             return $i
 };
 

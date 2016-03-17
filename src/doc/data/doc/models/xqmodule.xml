@@ -12,6 +12,10 @@
 			<xpath>("#/data/xqmodule/item?item=" || fn:base-uri(.))</xpath>
 		</field>
 		<field name="path" type="xs:string">
+            <description>path to xq on file system</description>
+            <xpath>db:path(.)</xpath>
+        </field>
+        <field name="dbpath" type="xs:string">
             <description>path to xdoc in database</description>
             <xpath>db:path(.)</xpath>
         </field>

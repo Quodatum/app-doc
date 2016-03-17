@@ -188,7 +188,6 @@ angular.module('quodatum.doc.components',
                 Restangular.one("data").all('component')
                            .getList($scope.params)
                            .then(function(d){
-                               //console.log("models..",d);
                                $scope.apps=d;
                                });
               };

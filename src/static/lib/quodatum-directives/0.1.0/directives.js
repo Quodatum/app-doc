@@ -266,7 +266,7 @@ angular.module('quodatum.directives', [ 'ngResource', 'ui.bootstrap' ])
 
 // composite bar
 // breadcrumbs,transclude,filter
-.directive('cvaBar',['$interpolate', function($interpolate) {
+.directive('cvaBar',['$interpolate','EntityService', function($interpolate,EntityService) {
   return {
       restrict: 'E',
       replace: 'true',
@@ -279,7 +279,17 @@ angular.module('quodatum.directives', [ 'ngResource', 'ui.bootstrap' ])
         state: "=?"
       },
       controller : function($scope){
-          $scope.options=["name","f2","todo"];
+        if($scope.state){
+            var ent=$scope.state.current.data.entity;
+              EntityService.fields(ent)
+              .then(function(d){
+                var names=[];
+               d.data.items.forEach(function(v){
+                 names.push(v.name);
+               });
+               $scope.options=names;
+              });
+        };
           var pagesize=20;
           $scope.nextPage=function(){
             $scope.params.start+=pagesize;
@@ -291,4 +301,20 @@ angular.module('quodatum.directives', [ 'ngResource', 'ui.bootstrap' ])
       }
   };
 }])
+
+
+//caches info about entities
+ .service('EntityService', ['$http', function ($http) {
+
+        var urlBase = '/doc/data/entity/';
+        var map=new Map();
+         console.log("entity");
+        this.fields = function (name) {
+            if(!map.get(name)){
+              console.log("read",name);
+              map.set(name,$http.get(urlBase+name+"/field"));
+            };
+            return map.get(name);
+        };
+ }])
 ;

@@ -62,12 +62,12 @@ angular.module('quodatum.doc.xqm',
           var item = $stateParams.item;
           console.log("xqmCtrl", item);
 
-          var applist = Restangular.one("data").one('app', app);
-          applist.get().then(function(d) {
+          var applist = Restangular.one("data").all('file').one('read');
+          applist.get({path: item}).then(function(d) {
             $scope.app = d.item;
             console.log(">>", d);
           });
-         
+        
         } ])
 
 .controller(

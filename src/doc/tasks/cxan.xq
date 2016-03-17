@@ -50,4 +50,4 @@ declare function xweb:version($pkg as xs:string,$version)
 };
 
 let $pkgs:=xweb:repos() !xweb:packages(id) 
-return  xweb:version("joewiz/xqjson","0.1.6")
+return  db:output(xweb:version("joewiz/xqjson","0.1.6"))

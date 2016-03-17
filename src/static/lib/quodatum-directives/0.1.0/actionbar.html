@@ -34,17 +34,14 @@
 					<i class="glyphicon glyphicon-backward"></i>
 				</button>
 			</div>
-			<div class="btn-group"><span class="label label-info">{{metadata.range}}</span></div>
 			<div class="btn-group">
 				<button ng-click="nextPage()" title="Next page"
 					class="btn btn-small">
-					<i class="glyphicon glyphicon-forward"></i>
+					{{metadata.range}}
 				</button>
 			</div></li>
-		<li><span class="label label-success"> <a
+		<li><h4><span class="label label-success"> <a
 				ui-sref="entity.model({model:state.current.data.entity})">{{state.current.data.entity}}</a>
-		</span></li>
-		<li ng-hide="single"><span class="label label-info">
-				{{metadata.total}} </span></li>
+		</span></h4></li>
 	</ul>
 </nav>

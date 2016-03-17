@@ -20,6 +20,10 @@
             <description>XQuery code to declare namespaces</description>
             <xpath>ent:namespace/concat("declare namespace ",@prefix,"='",@uri,"';&#13;&#10;")=>string-join()</xpath>
         </field>
+        <field name="modules" type="xs:string?">
+            <description>XQuery code for module imports</description>
+            <xpath>ent:module/concat("import module namespace ",@prefix,"='",@namespace,"';&#13;&#10;")=>string-join()</xpath>
+        </field>
 		<field name="description" type="xs:string">
 			<description>description</description>
 			<xpath>ent:description</xpath>

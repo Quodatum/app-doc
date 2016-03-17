@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2016-03-16T12:19:00.126Z 
+ : auto generated from xml files in entities folder at: 2016-03-16T15:27:33.925Z 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -64,7 +64,6 @@ declare variable $entity:list:=map {
      "description": "About a software component. Such as a Javascript library
 		or an EXPath package",
      "access": map{ 
-       "cdn": function($_ as element()) as xs:string {$_/comp:release/comp:cdn[1] },
        "description": function($_ as element()) as xs:string {$_/comp:tagline },
        "html": function($_ as element()) as element() {$_/. },
        "name": function($_ as element()) as xs:string {$_/@name },
@@ -75,12 +74,6 @@ declare variable $entity:list:=map {
          fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
       },
        "json":   map{ 
-           "cdn": function($_ as element()) as element(cdn)? {
-            (: string :)
-                        let $d:=fn:data($_/comp:release/comp:cdn[1])
-                        return if($d)
-                              then element cdn {  $d } 
-                              else () },
            "description": function($_ as element()) as element(description)? {
             (: string :)
                         let $d:=fn:data($_/comp:tagline)
@@ -159,6 +152,8 @@ declare variable $entity:list:=map {
        "description": function($_ as element()) as xs:string {$_/ent:description },
        "fieldslink": function($_ as element()) as xs:string {$_/fn:concat("/data/entity/",@name,"/field") },
        "iconclass": function($_ as element()) as xs:string {$_/ent:iconclass },
+       "modules": function($_ as element()) as xs:string? {$_/ent:module/concat("import module namespace ",@prefix,"='",@namespace,"';
+")=>string-join() },
        "name": function($_ as element()) as xs:string {$_/@name },
        "namespaces": function($_ as element()) as xs:string? {$_/ent:namespace/concat("declare namespace ",@prefix,"='",@uri,"';
 ")=>string-join() },
@@ -195,6 +190,13 @@ declare variable $entity:list:=map {
                         let $d:=fn:data($_/ent:iconclass)
                         return if($d)
                               then element iconclass {  $d } 
+                              else () },
+           "modules": function($_ as element()) as element(modules)? {
+            (: string :)
+                        let $d:=fn:data($_/ent:module/concat("import module namespace ",@prefix,"='",@namespace,"';
+")=>string-join())
+                        return if($d)
+                              then element modules {  $d } 
                               else () },
            "name": function($_ as element()) as element(name)? {
             (: string :)
