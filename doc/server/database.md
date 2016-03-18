@@ -13,7 +13,6 @@ documents are xqdoc for modules below app path
 
 # root documents
 
-## components.xml
 ## state.xml
 ## tasks.xml
 ## repositories.xml

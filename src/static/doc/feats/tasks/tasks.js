@@ -1,6 +1,8 @@
 // tasks
 angular.module('quodatum.doc.tasks',
-    [ 'ui.router', 'restangular', 'angular-growl', 'treemendous' ]).config(
+    [ 'ui.router', 'restangular', 'angular-growl' ])
+    
+.config(
     [ '$stateProvider', '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
           $stateProvider
@@ -12,7 +14,9 @@ angular.module('quodatum.doc.tasks',
             ncyBreadcrumb : {
               skip : true
             },
-            data:{entity:"task"}
+            data : {
+              entity : "task"
+            }
           })
 
           .state('tasks.index', {
@@ -35,7 +39,7 @@ angular.module('quodatum.doc.tasks',
             controller : "TaskCtrl"
           })
 
-            .state('async', {
+          .state('async', {
             url : "/async",
             templateUrl : '/static/doc/feats/tools/async.xhtml',
             reloadOnSearch : false,
@@ -46,8 +50,12 @@ angular.module('quodatum.doc.tasks',
 // controllers
 .controller(
     "TaskCtrls",
-    [ "$scope", "$location", "Restangular", "growl",
-        function($scope, $location, Restangular, growl) {
+    [
+        "$scope",
+        "$location",
+        "TaskService",
+        "growl",
+        function($scope, $location, TaskService, growl) {
           console.log("task control");
           $scope.setTitle("Run Tasks");
           $scope.params = {
@@ -56,7 +64,7 @@ angular.module('quodatum.doc.tasks',
           growl.info("This page uses angular growl for notifications");
 
           $scope.run = function(task) {
-            Restangular.all("task").all(task).post().then(function(r) {
+            TaskService.run(task).then(function(r) {
               console.log("TASK DONE");
               growl.success(r);
 
@@ -71,9 +79,10 @@ angular.module('quodatum.doc.tasks',
           }, true);
 
           function update() {
-            Restangular.one("data").all("task").getList().then(function(d) {
-              $scope.tasks = d;
-            });
+            TaskService.list($scope.params).then(
+                function(d) {
+                  $scope.tasks = d;
+                });
           }
           ;
         } ])
@@ -81,18 +90,22 @@ angular.module('quodatum.doc.tasks',
 // details of a task
 .controller(
     "TaskCtrl",
-    [ "$scope", "Restangular", "$stateParams", "growl",
-        function($scope, Restangular, $stateParams, growl) {
-          console.log("task control");
+    [ "$scope", "TaskService", "$stateParams", "growl",
+        function($scope, TaskService, $stateParams, growl) {
           var task = $stateParams.task;
+          console.log("task control: ", task);
           $scope.setTitle("Run Task" + task);
-          Restangular.one("data").one("task", task).get().then(function(d) {
+          TaskService.get(task).then(function(d) {
             console.log("task control", d);
             $scope.data = d;
+            TaskService.text(d.path).then(function(d) {
+              console.log("task text", d);
+              $scope.source = d;
+            });
           });
           
           $scope.run = function(task) {
-            Restangular.all("task").all(task).post().then(function(r) {
+            TaskService.run(task).then(function(r) {
               console.log("TASK DONE");
               growl.success(r);
 
@@ -100,8 +113,7 @@ angular.module('quodatum.doc.tasks',
               growl.error(r.data);
             })
           };
-        }
-    ])
+        } ])
 
 // details of a task
 .controller(
@@ -111,4 +123,20 @@ angular.module('quodatum.doc.tasks',
           console.log("async control");
           var task = $stateParams.task;
           $scope.setTitle("Run Task" + task);
-        } ]);
+        } ])
+
+// task api
+.service('TaskService', [ 'Restangular', function(Restangular) {
+  this.get = function(task) {
+    return Restangular.one("data").one("task", task).get();
+  };
+  this.run = function(task) {
+    return Restangular.all("task").all(task).post();
+  };
+  this.list = function(params) {
+    return Restangular.one("data").all("task").getList(params);
+  };
+  this.text = function(path) {
+    return Restangular.oneUrl("data/file/read").get({path:path});
+  };
+} ]);

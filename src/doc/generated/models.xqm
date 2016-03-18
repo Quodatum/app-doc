@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2016-03-16T15:27:33.925Z 
+ : auto generated from xml files in entities folder at: 2016-03-18T22:25:14.278Z 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -62,7 +62,7 @@ declare variable $entity:list:=map {
   "component": map{
      "name": "component",
      "description": "About a software component. Such as a Javascript library
-		or an EXPath package",
+		or an EXPath package. Components are managed through the qd-cmpx component.",
      "access": map{ 
        "description": function($_ as element()) as xs:string {$_/comp:tagline },
        "html": function($_ as element()) as element() {$_/. },
@@ -334,7 +334,7 @@ declare variable $entity:list:=map {
        "description": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:comment/xqdoc:description },
        "name": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:uri },
        "params": function($_ as element()) as xs:integer {$_/count(.//xqdoc:variable) },
-       "path": function($_ as element()) as xs:string {$_/concat(db:name(.),"/",db:path(.)) },
+       "path": function($_ as element()) as xs:string {$_/fn:replace(db:path(.),"^modules","doc") },
        "xquery": function($_ as element()) as xs:string {$_/concat('/doc/data/file/read?path=' ,db:path(.)) } },
     
      "filter": function($item,$q) as xs:boolean{ 
@@ -362,7 +362,7 @@ declare variable $entity:list:=map {
                               else () },
            "path": function($_ as element()) as element(path)? {
             (: string :)
-                        let $d:=fn:data($_/concat(db:name(.),"/",db:path(.)))
+                        let $d:=fn:data($_/fn:replace(db:path(.),"^modules/","doc/"))
                         return if($d)
                               then element path {  $d } 
                               else () },
@@ -382,6 +382,7 @@ declare variable $entity:list:=map {
      "name": "xqmodule",
      "description": "An XQuery source code module",
      "access": map{ 
+       "dbpath": function($_ as element()) as xs:string {$_/db:path(.) },
        "description": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:comment/xqdoc:description },
        "filename": function($_ as element()) as xs:string {$_/tokenize(base-uri(.),"/")[last()] },
        "href": function($_ as element()) as xs:string {$_/("#/data/xqmodule/item?item=" || fn:base-uri(.)) },
@@ -397,6 +398,12 @@ declare variable $entity:list:=map {
          fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
       },
        "json":   map{ 
+           "dbpath": function($_ as element()) as element(dbpath)? {
+            (: string :)
+                        let $d:=fn:data($_/db:path(.))
+                        return if($d)
+                              then element dbpath {  $d } 
+                              else () },
            "description": function($_ as element()) as element(description)? {
             (: string :)
                         let $d:=fn:data($_/xqdoc:module/xqdoc:comment/xqdoc:description)

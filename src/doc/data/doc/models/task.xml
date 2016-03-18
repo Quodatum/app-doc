@@ -9,7 +9,7 @@
 		</field>
 		<field name="path" type="xs:string">
             <description>path</description>
-            <xpath>concat(db:name(.),"/",db:path(.))</xpath>
+            <xpath>fn:replace(db:path(.),"^modules/","doc/")</xpath>
         </field>
 		<field name="description" type="xs:string">
 			<description>description</description>
