@@ -6,14 +6,13 @@ declare namespace task="https://github.com/Quodatum/app-doc/task";
 
 import module namespace dbtools = 'quodatum.dbtools'  at "../lib/dbtools.xqm";
 import module namespace doc = 'quodatum.doc' at "../doctools.xqm";
-declare option db:inlinelimit '0';
+declare variable $map:=map{
+ "application/xquery": doc:xqdoc_#1
+};
 
 declare function task:ingest($path){
     let $type:=web:content-type($path)
     let $_:=fn:trace($type,"type: ")
-    let $map:=map{
-                  "application/xquery": doc:xqdoc_#1
-                }
    return if(map:contains($map,$type))  then $map($type)($path) else $path
 };
 
