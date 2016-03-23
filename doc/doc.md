@@ -1,4 +1,7 @@
 # about the doc application
+
+## entities
+
 UI http://localhost:8984/doc/#/data/{$entity}
 get data from
 http://localhost:8984/doc/data/{$entity}

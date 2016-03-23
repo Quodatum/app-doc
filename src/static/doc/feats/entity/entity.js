@@ -1,5 +1,5 @@
 // database info
-angular.module('quodatum.entity', [ 'ui.router','restangular'])
+angular.module('quodatum.entity', [ 'ui.router','restangular','quodatum.directives'])
 .config(
   [ '$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
@@ -45,18 +45,13 @@ angular.module('quodatum.entity', [ 'ui.router','restangular'])
             } ])
             
 // controllers
-.controller("EntityListCtrl", [  '$stateParams', '$scope','$location','$modal','Restangular',
-                                 'Entities',
-           function( $stateParams, $scope,$location,$modal,Restangular,
-        		   Entities) {
-	$scope.sortopts=Entities.columns("model");
-    $scope.params = {start : 0,sort : "name"};
-   
+.controller("EntityListCtrl", [  '$stateParams', '$scope','$location','Restangular',
+                                 'DiceService',
+           function( $stateParams, $scope,$location,Restangular,
+               DiceService) {
+	
 	console.log("EntityListCtrl");
-	$scope.$watch('params', function(value) {
-        $location.search($scope.params);
-        update();
-    }, true);
+	
 	function update() {       
              Restangular.one("data").all('entity')
 			            .getList($scope.params)
@@ -65,21 +60,17 @@ angular.module('quodatum.entity', [ 'ui.router','restangular'])
 			            	$scope.models=d;
 			            	});			 
     };
+    DiceService.setup($scope,update)
   
 }])
 // controllers
-.controller("FieldListCtrl", [  '$stateParams', '$scope','$location','$modal',
-                                'Restangular','Entities',
-				           function($stateParams, $scope, $location, $modal, Restangular,
-						Entities) {
-	$scope.sortopts=Entities.columns("model");
-    $scope.params = {start : 0,sort : "name"};
+.controller("FieldListCtrl", [  '$stateParams', '$scope','$location',
+                                'Restangular','DiceService',
+				           function($stateParams, $scope, $location,  Restangular,
+				               DiceService) {
     var model= $stateParams.model;
-	console.log("FieldListCtrl");
-	$scope.$watch('params', function(value) {
-        $location.search($scope.params);
-        update();
-    }, true);
+	console.log("FieldListCtrl",model);
+
 	function update() {       
              Restangular.one("data").one('entity',model)
 			            .getList("field")
@@ -88,11 +79,12 @@ angular.module('quodatum.entity', [ 'ui.router','restangular'])
 			            	$scope.fields=d;
 			            	});			 
     };
+    DiceService.setup($scope,update)
 }])		
 // controllers
-.controller("EntityCtrl", [  '$scope','$stateParams','$modal','Restangular',
-                             'Entities',
-           function( $scope, $stateParams,$modal,Restangular,Entities) {
+.controller("EntityCtrl", [  '$scope','$stateParams','Restangular',
+                             'DiceService',
+           function( $scope, $stateParams,Restangular,DiceService) {
 	
 	console.log("ModelCtrl");
 	Restangular.one("data")
@@ -106,9 +98,9 @@ angular.module('quodatum.entity', [ 'ui.router','restangular'])
 	        });         
 	
 }])
-.controller("FieldCtrl", [  '$scope','$stateParams','$modal','Restangular',
-                            'Entities',
-           function( $scope, $stateParams,$modal,Restangular,Entities) {
+.controller("FieldCtrl", [  '$scope','$stateParams','Restangular',
+                            'DiceService',
+           function( $scope, $stateParams,Restangular,DiceService) {
 	
 	console.log("FieldCtrl");
 	Restangular.one("data")

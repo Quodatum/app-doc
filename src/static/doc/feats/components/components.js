@@ -29,7 +29,7 @@ angular.module('quodatum.doc.components',
 
               .state('component.item', {
                 url : "/item/:name",
-                templateUrl : '/static/doc/feats/components/comp1.xhtml',
+                templateUrl : '/static/doc/feats/components/comp1.html',
                 ncyBreadcrumb : {
                   label : '{{$stateParams.name}}',
                   parent : 'component.index'
@@ -99,10 +99,7 @@ angular.module('quodatum.doc.components',
       console.log("svg here");
     } ])
 
-    // controllers
-    .controller("CompCtrl", [ '$scope', function($scope) {
-      console.log("CompCtrl");
-    } ])
+    
 
     .controller("TreeCtrl", [ '$scope', function($scope) {
       console.log("TreeCtrl", $scope.$stateParams);
@@ -180,19 +177,28 @@ angular.module('quodatum.doc.components',
       .controller(
         // provides dice scrolling controller for components
         "CompsCtrl",
-        [ '$stateParams', '$scope', 'DiceService','Restangular',
-            function($stateParams, $scope, DiceService,Restangular) {
+        [ '$stateParams', '$scope', 'DiceService',
+            function($stateParams, $scope, DiceService) {
 
               console.log("CompsCtrl: ",$stateParams);
               function update() {       
-                Restangular.one("data").all('component')
-                           .getList($scope.params)
+                DiceService.list("component",$scope.params)
                            .then(function(d){
                                $scope.apps=d;
                                });
               };
               DiceService.setup($scope,update);
-              console.log('DiceService',DiceService)
-            } ])          
-           
+            } ])
+            
+            // controller for component=name
+    .controller("CompCtrl", ['Restangular', '$stateParams','$scope', 
+         function(Restangular,$stateParams,$scope) {
+      console.log("CompCtrl"); 
+      var name = $stateParams.name;
+      var applist = Restangular.one("data").one('component').one('item', name);
+      applist.get().then(function(d) {
+        $scope.item = d.items[0]; //@TODO fix server
+        console.log(">>CompCtrl", d);
+      });
+    } ])           
             ;

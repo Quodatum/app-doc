@@ -1,6 +1,7 @@
 angular.module(
 		'doc.api',
 		[  ])
+// EntityService.fields($entityname)		
  .service('EntityService', ['$http', function ($http) {
 
         var urlBase = '/doc/data/entity/';

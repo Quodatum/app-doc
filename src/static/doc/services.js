@@ -1,6 +1,6 @@
 angular.module(
 		'quodatum.services',
-		[  ])
+		[ 'restangular' ])
 
 // sets hash and scrolls to      
 .service('ScrollService', 
@@ -16,7 +16,7 @@ angular.module(
 
 // setup dice parameters call update on change
 // http://stackoverflow.com/a/22899880/3210344
-.factory('DiceService', ['$location', function ($location) {
+.factory('DiceService', ['Restangular','$location', function (Restangular,$location) {
 return {
     setup: function($scope,update){
       $scope.params = {start : 1,sort : "name"}; //q added by filter
@@ -25,6 +25,12 @@ return {
          $location.search($scope.params);
          update();
      }, true);
+    },
+    one:function(entity,name){
+      return Restangular.one("data").one(entity).one('item', name).get();
+    },
+    list:function(entity,params){
+      return Restangular.one("data").all(entity).getList(params);
     }
 };     
 }])

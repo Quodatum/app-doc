@@ -1,5 +1,5 @@
 # Doc app dev guide
-
+* [general](doc.md)
 * [client](client/readme.md)
 * [server](server/readme.md)
 

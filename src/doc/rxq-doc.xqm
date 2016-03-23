@@ -130,6 +130,19 @@ function entity-data($entity as xs:string,$q )
 };
 
 (:~
+ : default data item lister
+ :)
+declare
+%rest:GET %rest:path("doc/data/{$entity}/item/{$name}")
+%output:method("json")   
+function data-item($entity as xs:string,$name as xs:string ) 
+{
+    let $entity:=$entity:list($entity)
+    let $results:=$entity("data")()
+    let $results:=$results[$name=$entity?access?name(.)]
+    return dice:response(fn:head($results),$entity,web:dice())
+};
+(:~
  : list of direct children of $path as json array
  : @param $path path to list the children of eg "/app"  
  : @return json [ {name:"gg","path:"aaa/bb",isdir:false},{}..]
