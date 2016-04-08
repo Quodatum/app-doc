@@ -1,10 +1,10 @@
 <div>
 	<cva-bar ng-model="bar" params="params" state="$state" single="true">
 	<a ng-click="$state.go(model.name+'.index')"
-    class="btn btn-default navbar-btn">Instances</a>
+    class="btn btn-default navbar-btn" title="data">Instances</a>
     
     <a href="./data/{{model.name}}" target="json" 
-    class="btn btn-default navbar-btn" title="json for this view"><span class="badge badge-default">J</span>
+    class="btn btn-default navbar-btn" title="json for this data"><span class="badge badge-default">J</span>
     <i class="fa fa-external-link"></i></a>
 	</cva-bar>
 	

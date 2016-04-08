@@ -9,7 +9,7 @@
 				<div class="media-body">
 
 					<h4 class="media-heading">
-						{{model.name}}
+						<a href="#/data/entity/{{model.name}}" title="About this entity">{{model.name}}</a>
 						<span class="label label-info" ng-show="model.code" title="Has code" >
 						<i class="fa fa-code"></i>
 						</span>

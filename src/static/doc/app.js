@@ -67,7 +67,7 @@ angular.module(
     [ "Restangular","$scope",  function(Restangular,$scope) {
       //console.log("AboutCtrl");
      Restangular.oneUrl("status").get().then(function(d){
-       //console.log("res",d);
+       console.log("res",d);
        $scope.version=d.version;
      });
     } ])

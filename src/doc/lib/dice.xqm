@@ -98,4 +98,14 @@ declare function response($items,
 declare function response($items,$entity as map(*)){
     response($items,$entity,map{})
 };
-
+(:~ 
+ : @return  json for item
+ :)
+declare function one($item,$entity as map(*))
+{
+  let $jsonf:= map:get($entity,"json")
+  let $fields:=map:keys($jsonf)
+  return  <json objects="json " >
+  {$fields!$jsonf(.)($item)}
+  </json> 
+};

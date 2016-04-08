@@ -27,7 +27,10 @@ return {
      }, true);
     },
     one:function(entity,name){
-      return Restangular.one("data").one(entity).one('item', name).get();
+      return Restangular.one("data").one(entity, name).get();
+    },
+    onelist:function(entity,name,items){
+      return Restangular.one("data").one(entity, name).getList(items);
     },
     list:function(entity,params){
       return Restangular.one("data").all(entity).getList(params);

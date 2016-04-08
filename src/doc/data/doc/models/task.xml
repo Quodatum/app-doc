@@ -27,7 +27,7 @@
 	 <views>
         <view name="filter">name description</view>
     </views>
-	<iconclass>fa fa-tasks </iconclass>
+	<iconclass>fa fa-cog </iconclass>
 	<data type="element(xqdoc:xqdoc)">
 collection("doc-doc")//xqdoc:xqdoc[
   xqdoc:namespaces/xqdoc:namespace/@uri="https://github.com/Quodatum/app-doc/task"

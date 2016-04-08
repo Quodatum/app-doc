@@ -1,5 +1,5 @@
 // database info
-angular.module('quodatum.doc.schema', [ 'ui.router','restangular' ])
+angular.module('quodatum.doc.schema', [ 'ui.router' ])
 .config(
   [ '$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {

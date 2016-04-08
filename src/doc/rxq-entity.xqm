@@ -55,7 +55,7 @@ function field-list($entity) {
     let $dentity:=$entity:list("entity")
     let $items:=$dentity?data()
     let $items:=$items[@name=$entity]/ent:fields/ent:field
-    let $fentity:=$entity:list("field")
+    let $fentity:=$entity:list("entity.field")
     return dice:response($items,$fentity,web:dice())
                       
 };

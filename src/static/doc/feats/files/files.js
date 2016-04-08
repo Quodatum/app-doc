@@ -1,5 +1,7 @@
 // database info
-angular.module('quodatum.doc.files', [ 'ui.router', 'restangular' ]).config(
+angular.module('quodatum.doc.files', [ 'ui.router' ])
+
+.config(
     [ '$stateProvider', '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
           $stateProvider
@@ -33,11 +35,15 @@ angular.module('quodatum.doc.files', [ 'ui.router', 'restangular' ]).config(
           $scope.include = target + "?path=" + $scope.path;
           $scope.fsel = function(context) {
             var p = context.selectedNode.$model.path;
-            $http.get(target,{params:{path:p}})
-            .then(function(response){
-              $scope.text=response.data});
-              // $location.search('path', p);
-              $scope.path = p;
+            $http.get(target, {
+              params : {
+                path : p
+              }
+            }).then(function(response) {
+              $scope.text = response.data
+            });
+            // $location.search('path', p);
+            $scope.path = p;
           };
 
         } ]);

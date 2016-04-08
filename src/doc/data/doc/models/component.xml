@@ -1,7 +1,7 @@
 <entity name="component" xmlns="https://github.com/Quodatum/app-doc/entity">
-	<description>About a software component. Such as a Javascript library
-		or an EXPath package. Components are managed through the qd-cmpx component.</description>
-	<namespace prefix="comp" uri="urn:quodatum:qd-cmpx:component" />
+	<description>A software component. Includes Javascript libraries 
+		and EXPath packages. Components are managed through the qd-cmpx component.</description>
+	<namespace prefix="comp" uri="urn:quodatum:qd-cmpx:component" />	
 	<module prefix="cmpx" namespace="quodatum.cmpx" />
 	<fields>
 		<field name="name" type="xs:string">

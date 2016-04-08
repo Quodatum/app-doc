@@ -1,5 +1,7 @@
 // access local indexedDB history info
-angular.module('quodatum.history', [ 'ui.router', 'ngdexie' ]).config(
+angular.module('quodatum.history', [ 'ui.router', 'ngdexie' ])
+
+.config(
     [ '$stateProvider', '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
           $stateProvider

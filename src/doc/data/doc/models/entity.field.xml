@@ -1,4 +1,4 @@
-<entity name="field" xmlns="https://github.com/Quodatum/app-doc/entity">
+<entity name="entity.field" xmlns="https://github.com/Quodatum/app-doc/entity">
     <parent name="entity"/> 
     <description>About an entity field. </description>
     <namespace prefix="ent"

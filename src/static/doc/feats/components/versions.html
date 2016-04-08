@@ -1,11 +1,5 @@
 <div>
     <cva-bar metadata="apps.metadata" params="params" state="$state">
-    <a ui-sref="component.tree" class="btn btn-default btn-sm">
-                        Tree
-                    </a>
-     <a ui-sref="component.version.index" class="btn btn-default btn-sm">
-                        Versions
-                    </a>                
     </cva-bar>
     <div class="row">
 
@@ -17,9 +11,10 @@
                 <div class="media-body">
 
                     <h4 class="media-heading">
-                        <a ui-sref="component.item({name:app.name})"> {{app.name}}</a>
+                        <a ui-sref="component.item({name:app.name})"> {{app.component}}</a>
+                        <div class="pull-right" title="Status">{{app.status}}</div>
                     </h4>
-                    <p>{{app.description}}</p>
+                    <p>{{app.version}}</p>
                    
                 </div>
 
