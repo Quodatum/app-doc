@@ -7,3 +7,9 @@ Uses entity model
 ## Client
 DiceService in doc/DiceService
 Requests data using current parameters.
+
+
+DiceService.one('app', app).then(function(d) {
+            $scope.app = d;
+            // console.log(">>", d);
+          });

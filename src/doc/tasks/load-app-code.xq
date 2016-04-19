@@ -13,7 +13,7 @@ let $db:="doc-" || $app
 let $src:=fn:resolve-uri("..")
 
 let $files:=df:dir($src,"*.xqm,*.xq")
-return (db:output($files ),
+return (db:output("modules processed: " || count($files) ),
         for $file in $files   
         let $doc:=doc:xqdoc("app",$src ||$file)
         return db:replace($db,"/modules/" || $file,$doc)

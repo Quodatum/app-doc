@@ -72,14 +72,21 @@ angular.module('quodatum.doc.apps', [ 'ui.router', 'quodatum.services' ])
             controller : "RestCtrl"
           })
 
+          // list components used
           .state('app.item.client.component', {
-            url : "/:view",
-            templateUrl : '/static/doc/feats/apps/app-view.xhtml',
+            url : "/component",
+            templateUrl : '/static/doc/feats/components/versions.html',
             ncyBreadcrumb : {
-              label : 'view: {{$stateParams.view}}'
+              label : 'Components'
             },
-            controller : "ScrollCtrl"
-          }).state('app.item.client.template', {
+            controller : "CmpCtrlX",
+            data : {
+              entity : "component.version"
+            }
+              
+          })
+          
+          .state('app.item.client.template', {
             url : "/:view",
             templateUrl : '/static/doc/feats/apps/app-view.xhtml',
             ncyBreadcrumb : {
@@ -109,6 +116,20 @@ angular.module('quodatum.doc.apps', [ 'ui.router', 'quodatum.services' ])
         } ])
 
 // controllers
+.controller("CmpCtrlX",
+    [ "$scope", "$stateParams","DiceService", function($scope, $stateParams,DiceService) {
+      var app=$stateParams.app;
+      function update() {
+        DiceService.onelist('app', app,"component",$scope.params)
+        .then(function(d) {
+          $scope.apps = d;
+        });
+      }
+
+      DiceService.setup($scope, update);
+    } ])
+
+    
 .controller("RestCtrl",
     [ "$scope", "DiceService", function($scope, DiceService) {
       console.log("RestCtrl");
@@ -124,7 +145,7 @@ angular.module('quodatum.doc.apps', [ 'ui.router', 'quodatum.services' ])
 
 .controller("AppsCtrl",
     [ "$scope", "DiceService", function($scope, DiceService) {
-      // console.log("AppsCtrl2");
+       console.log("AppsCtrl2");
 
       function update() {
         DiceService.list('app', $scope.params).then(function(d) {
@@ -158,32 +179,4 @@ angular.module('quodatum.doc.apps', [ 'ui.router', 'quodatum.services' ])
           });
         } ])
 
-.controller(
-    'AppCtrl2',
-    [ "$scope", "$stateParams", "ScrollService", "$log",
-        function($scope, $stateParams, ScrollService, $log) {
-          $log.log("View:", $stateParams.view);
-          var app = $stateParams.app;
-          var map = {
-            "xqdoc" : '/server/xqdoc',
-            "wadl" : '/server/wadl',
-            "components" : '/client/components',
-            "templates" : '/client/templates',
-            "xqdoc2" : 'doc/server'
-          };
-          $scope.view = $stateParams.view;
-          $scope.app = $stateParams.app;
-          var searchObject = $location.search(); // {path:"dd",type:"basex"}
-          console.log("search:", searchObject);
-          var target = "../../doc/app/" + app + map[$stateParams.view];
-          if (searchObject.path) {
-            target += "?path=" + $stateParams.path;
-          }
-          if (searchObject.type) {
-            target += "&type=" + searchObject.type;
-          }
-          $scope.inc = target;
-          console.log("TAR", target);
-          $scope.setTitle("docs");
-          $scope.scrollTo = ScrollService.scrollTo
-        } ]);
+;

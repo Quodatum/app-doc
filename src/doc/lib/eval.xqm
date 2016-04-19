@@ -32,7 +32,6 @@ declare function do-tasks($names as xs:string*){
 declare function eval2($xq as xs:string,$timeout as xs:double)
 as item()*{
     let $xq:= 'declare base-uri "' || fn:resolve-uri("..") ||'";&#10;' || $xq 
-    let $xq:=fn:trace($xq,"eval2 ")
     return try {
               (:  let $t1:=prof:current-ms() :)
                 let $x:=client:connect('localhost', 1984, 'admin', 'admin') !client:query(.,$xq)

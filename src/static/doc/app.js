@@ -2,7 +2,7 @@ angular.module(
     'doc',
     [ 'ui.router', 'ngResource', 'ngAnimate','ngSanitize', 'ui.bootstrap', 'restangular',
         'ya.treeview', 'ya.treeview.tpls', 'angular-growl', 'ncy-angular-breadcrumb',
-        'twygmbh.auto-height',
+        'm43nu.auto-height',
 		'quodatum.entity','quodatum.doc.tasks',
         'quodatum.doc.apps', 'quodatum.doc.components', 'quodatum.doc.files',
         'quodatum.doc.xqm', 'quodatum.doc.schema', 'quodatum.doc.directives',
@@ -67,8 +67,7 @@ angular.module(
     [ "Restangular","$scope",  function(Restangular,$scope) {
       //console.log("AboutCtrl");
      Restangular.oneUrl("status").get().then(function(d){
-       console.log("res",d);
-       $scope.version=d.version;
+       $scope.status=d;
      });
     } ])
     

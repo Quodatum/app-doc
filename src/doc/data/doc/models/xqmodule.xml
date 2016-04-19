@@ -9,11 +9,15 @@
 		</field>
 		<field name="href" type="xs:string">
 			<description>ui view</description>
-			<xpath>("#/data/xqmodule/item?item=" || fn:base-uri(.))</xpath>
+			<xpath>("#/data/xqmodule/item?item=" || db:path(.))</xpath>
 		</field>
 		<field name="path" type="xs:string">
-            <description>path to xq on file system</description>
-            <xpath>db:path(.)</xpath>
+            <description>path to source xquery on file system</description>
+            <xpath>(
+            if(starts-with(db:path(.),"basex.xqm/"))
+            then "doc/data/" || db:path(.)
+            else "doc/" || substring-after(db:path(.),"modules/")
+            )</xpath>
         </field>
         <field name="dbpath" type="xs:string">
             <description>path to xdoc in database</description>
@@ -42,6 +46,6 @@
         <view name="filter">name description</view>
     </views>
 	<iconclass>fa fa-file-code-o</iconclass>
-	<data type="element(xqdoc:xqdoc)">collection("doc-doc")//xqdoc:xqdoc
+	<data type="element(xqdoc:xqdoc)">collection("doc-doc")/xqdoc:xqdoc
 	</data>
 </entity>

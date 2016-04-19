@@ -164,7 +164,6 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
 
           function update() {
             DiceService.list('xqmodule', $scope.params).then(function(d) {
-              // console.log("models..",d);
               $scope.apps = d;
             });
           }

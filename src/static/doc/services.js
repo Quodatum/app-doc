@@ -26,11 +26,11 @@ return {
          update();
      }, true);
     },
-    one:function(entity,name){
-      return Restangular.one("data").one(entity, name).get();
+    one:function(entity,name,params){
+      return Restangular.one("data").one(entity, name).get(params);
     },
-    onelist:function(entity,name,items){
-      return Restangular.one("data").one(entity, name).getList(items);
+    onelist:function(entity,name,field,params){
+      return Restangular.one("data").one(entity, name).all(field).getList(params);
     },
     list:function(entity,params){
       return Restangular.one("data").all(entity).getList(params);

@@ -97,6 +97,20 @@ function app($app)
 };
 
 (:~
+ : detail of app found on file system.
+ :)
+declare
+%rest:GET %rest:path("doc/data/app/{$app}/component")
+%rest:query-param("q", "{$q}") 
+%output:method("json")   
+function appcmp($app,$q) 
+{
+    let $data:=cmpx:app-dependents($app)!cmpx:status(.)
+    let $entity:=$entity:list("component.version")
+    return dice:response($data,$entity,web:dice())
+};
+
+(:~
  : detail of a task .
  :)
 declare
@@ -120,7 +134,7 @@ function task($task)
 declare
 %rest:GET %rest:path("doc/data/{$entity}")
 %rest:query-param("q", "{$q}") 
-%output:method("json")   
+%output:method("json") 
 function entity-data($entity as xs:string,$q ) 
 {
     let $entity:=$entity:list($entity)
@@ -128,7 +142,36 @@ function entity-data($entity as xs:string,$q )
     let $results:=if($q) then fn:filter($results,$entity?filter(?,$q)) else $results 
     return dice:response($results,$entity,web:dice())
 };
+(: ** DEBUG ** :)
+declare
+%rest:GET %rest:path("doc/data/test")
+%rest:query-param("q", "{$q}") 
 
+function test-data($q ) 
+{
+    let $entity:=$entity:list("xqmodule")
+    let $results:=fn:doc(fn:resolve-uri("test-xml.xml"))/*/*
+    
+    return dice:response($results,$entity)
+};
+
+(:~
+ : default data item lister
+ :)
+declare
+%rest:GET %rest:path("doc/data/xqmodule/item")
+%output:method("json")
+%rest:query-param("item", "{$item}")   
+function data-item($item as xs:string) 
+{
+    let $a:=fn:trace("$$$$$$")
+    let $entity:=$entity:list("xqmodule")
+    let $results:=$entity("data")()
+    let $results:=$results[$item=$entity?access?dbpath(.)]
+    return if($results)
+            then dice:one(fn:head($results),$entity)
+            else fn:error()
+};
 (:~
  : default data item lister
  :)
@@ -142,6 +185,7 @@ function data-item($entity as xs:string,$name as xs:string )
     let $results:=$results[$name=$entity?access?name(.)]
     return dice:one(fn:head($results),$entity)
 };
+
 (:~
  : list of direct children of $path as json array
  : @param $path path to list the children of eg "/app"  

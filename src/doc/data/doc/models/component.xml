@@ -20,6 +20,15 @@
 			<description>html for component</description>
 			<xpath>.</xpath>
 		</field>
+		
+		  <field name="home" type="xs:string">
+            <description>Web home for component</description>
+            <xpath>comp:home</xpath>
+        </field>
+            <field name="releases" type="xs:integer">
+            <description>count of releases</description>
+            <xpath>count(comp:release)</xpath>
+        </field>
 	</fields>
 	<views>
 		<view name="filter">name tagline</view>

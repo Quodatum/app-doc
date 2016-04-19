@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2016-04-08T21:12:00.381+01:00 
+ : auto generated from xml files in entities folder at: 2016-04-19T22:49:36.421+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -23,7 +23,7 @@ declare variable $entity:list:=map {
        "version": function($_ as element()) as xs:string {$_/version } },
     
      "filter": function($item,$q) as xs:boolean{ 
-         some $e in ( $item/name, $item/description) satisfies
+         some $e in ( ) satisfies
          fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
       },
        "json":   map{ 
@@ -108,8 +108,10 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
 		and EXPath packages. Components are managed through the qd-cmpx component.",
      "access": map{ 
        "description": function($_ as element()) as xs:string {$_/comp:tagline },
+       "home": function($_ as element()) as xs:string {$_/comp:home },
        "html": function($_ as element()) as element() {$_/. },
        "name": function($_ as element()) as xs:string {$_/@name },
+       "releases": function($_ as element()) as xs:integer {$_/count(comp:release) },
        "type": function($_ as element()) as xs:string {$_/comp:runat } },
     
      "filter": function($item,$q) as xs:boolean{ 
@@ -123,6 +125,12 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                         return if($d)
                               then element description {  $d } 
                               else () },
+           "home": function($_ as element()) as element(home)? {
+            (: string :)
+                        let $d:=fn:data($_/comp:home)
+                        return if($d)
+                              then element home {  $d } 
+                              else () },
            "html": function($_ as element()) as element(html)? {
             element html { attribute type {"string"},fn:serialize($_/.)} },
            "name": function($_ as element()) as element(name)? {
@@ -130,6 +138,12 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                         let $d:=fn:data($_/@name)
                         return if($d)
                               then element name {  $d } 
+                              else () },
+           "releases": function($_ as element()) as element(releases)? {
+            (: number :)
+                        let $d:=fn:data($_/count(comp:release))
+                        return if($d)
+                              then element releases { attribute type {'number'}, $d } 
                               else () },
            "type": function($_ as element()) as element(type)? {
             (: string :)
@@ -428,9 +442,13 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
        "dbpath": function($_ as element()) as xs:string {$_/db:path(.) },
        "description": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:comment/xqdoc:description },
        "filename": function($_ as element()) as xs:string {$_/tokenize(base-uri(.),"/")[last()] },
-       "href": function($_ as element()) as xs:string {$_/("#/data/xqmodule/item?item=" || fn:base-uri(.)) },
+       "href": function($_ as element()) as xs:string {$_/("#/data/xqmodule/item?item=" || db:path(.)) },
        "name": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:name },
-       "path": function($_ as element()) as xs:string {$_/db:path(.) },
+       "path": function($_ as element()) as xs:string {$_/(
+            if(starts-with(db:path(.),"basex.xqm/"))
+            then "doc/data/" || db:path(.)
+            else "doc/" || substring-after(db:path(.),"modules/")
+            ) },
        "type": function($_ as element()) as xs:string {$_/(if(starts-with(db:path(.),"basex.xqm/"))
 			        then "basex" 
 			        else xqdoc:module/@type) },
@@ -461,7 +479,7 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                               else () },
            "href": function($_ as element()) as element(href)? {
             (: string :)
-                        let $d:=fn:data($_/("#/data/xqmodule/item?item=" || fn:base-uri(.)))
+                        let $d:=fn:data($_/("#/data/xqmodule/item?item=" || db:path(.)))
                         return if($d)
                               then element href {  $d } 
                               else () },
@@ -473,7 +491,11 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                               else () },
            "path": function($_ as element()) as element(path)? {
             (: string :)
-                        let $d:=fn:data($_/db:path(.))
+                        let $d:=fn:data($_/(
+            if(starts-with(db:path(.),"basex.xqm/"))
+            then "doc/data/" || db:path(.)
+            else "doc/" || substring-after(db:path(.),"modules/")
+            ))
                         return if($d)
                               then element path {  $d } 
                               else () },
@@ -492,7 +514,7 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                               then element uri {  $d } 
                               else () } },
       "data": function() as element(xqdoc:xqdoc)*
-       { collection("doc-doc")//xqdoc:xqdoc }
+       { collection("doc-doc")/xqdoc:xqdoc }
    }
 };
 

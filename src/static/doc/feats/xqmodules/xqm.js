@@ -59,7 +59,7 @@ angular.module('quodatum.doc.xqm',
           var item = $stateParams.item;
           console.log("xqmCtrl", item);
 
-          var applist = DiceService.one('file','read',item)
+          var applist = DiceService.one('xqmodule','item',{item:item})
          .then(function(d) {
             $scope.app = d.item;
             console.log(">>", d);

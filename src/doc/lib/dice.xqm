@@ -78,7 +78,7 @@ declare function response($items,
   let $items:= dice:sort($items,map:get($entity,"access"),$opts?sort)
   let $jsonf:= map:get($entity,"json")
   let $fields:=map:keys($jsonf)
-  let $slice:= fn:subsequence($items,$opts?start,$opts?limit)=>fn:trace()
+  let $slice:= fn:subsequence($items,$opts?start,$opts?limit)
   return 
   <json objects="json _" >
     <total type="number">{$total}</total>
