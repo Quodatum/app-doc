@@ -1,9 +1,10 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2016-04-19T22:49:36.421+01:00 
+ : auto generated from xml files in entities folder at: 2016-04-26T10:41:59.518+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
 import module namespace cmpx='quodatum.cmpx';
+import module namespace xqdoc-html='quodatum.xqdoc.html';
 declare namespace pkg='http://expath.org/ns/pkg';
 declare namespace comp='urn:quodatum:qd-cmpx:component';
 declare namespace wadl='http://wadl.dev.java.net/2009/02';
@@ -107,21 +108,21 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
      "description": "A software component. Includes Javascript libraries 
 		and EXPath packages. Components are managed through the qd-cmpx component.",
      "access": map{ 
-       "description": function($_ as element()) as xs:string {$_/comp:tagline },
+       "description": function($_ as element()) as xs:string {$_/comp:description },
        "home": function($_ as element()) as xs:string {$_/comp:home },
        "html": function($_ as element()) as element() {$_/. },
        "name": function($_ as element()) as xs:string {$_/@name },
        "releases": function($_ as element()) as xs:integer {$_/count(comp:release) },
-       "type": function($_ as element()) as xs:string {$_/comp:runat } },
+       "type": function($_ as element()) as xs:string {$_/comp:type } },
     
      "filter": function($item,$q) as xs:boolean{ 
-         some $e in ( $item/@name) satisfies
+         some $e in ( $item/@name, $item/comp:description) satisfies
          fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
       },
        "json":   map{ 
            "description": function($_ as element()) as element(description)? {
             (: string :)
-                        let $d:=fn:data($_/comp:tagline)
+                        let $d:=fn:data($_/comp:description)
                         return if($d)
                               then element description {  $d } 
                               else () },
@@ -147,7 +148,7 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                               else () },
            "type": function($_ as element()) as element(type)? {
             (: string :)
-                        let $d:=fn:data($_/comp:runat)
+                        let $d:=fn:data($_/comp:type)
                         return if($d)
                               then element type {  $d } 
                               else () } },
@@ -443,6 +444,7 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
        "description": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:comment/xqdoc:description },
        "filename": function($_ as element()) as xs:string {$_/tokenize(base-uri(.),"/")[last()] },
        "href": function($_ as element()) as xs:string {$_/("#/data/xqmodule/item?item=" || db:path(.)) },
+       "html": function($_ as element()) as element() {$_/xqdoc-html:create(.,"path",true()) },
        "name": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:name },
        "path": function($_ as element()) as xs:string {$_/(
             if(starts-with(db:path(.),"basex.xqm/"))
@@ -483,6 +485,8 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                         return if($d)
                               then element href {  $d } 
                               else () },
+           "html": function($_ as element()) as element(html)? {
+            element html { attribute type {"string"},fn:serialize($_/xqdoc-html:create(.,"path",true()))} },
            "name": function($_ as element()) as element(name)? {
             (: string :)
                         let $d:=fn:data($_/xqdoc:module/xqdoc:name)

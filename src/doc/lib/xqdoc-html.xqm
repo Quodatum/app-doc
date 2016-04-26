@@ -1,10 +1,10 @@
 (:~
- : This module generates single HTML documentations.
+ : This module generates single HTML documentation from an xqdoc source.
  :
- : based on Christian Grün, BaseX Team, 2013
+ : based on original Christian Grün, BaseX Team, 2013
  :)
-module namespace xqdoc-html = 'quodatum.xqdoc.html/v1';
-
+module namespace xqdoc-html = 'quodatum.xqdoc.html';
+declare namespace xqdoc='http://www.xqdoc.org/1.0';
 (:~ Supported tags. :)
 declare variable $xqdoc-html:TAGS := ("description", "author", "version", "param",
   "error", "deprecated", "see", "since");
@@ -28,26 +28,26 @@ declare variable $xqdoc-html:TAGS := ("description", "author", "version", "param
  : @return body elements
  :)
 declare function xqdoc-html:create(
+  $xqdoc  as element(xqdoc:xqdoc),
   $path     as xs:string,
-  $inspect  as element(module),
   $private  as xs:boolean)
   as node()*
 {
   <h2>{
-    if($inspect/@prefix) then 'Library' else 'Main',
+    $xqdoc/xqdoc:module/@type=>xqdoc-html:capitalize(),
     'Module:', replace($path, '^./', '')
   }</h2>,
   <table>{
-    if(empty($inspect/@prefix)) then () else
+    if(empty($xqdoc/xqdoc:module/xqdoc:uri)) then () else
     <tr>
       <td><b>URI:</b></td>
-      <td><code>{ $inspect/@uri/string() }</code></td>
-    </tr>,
-    xqdoc-html:tags($inspect)
+      <td><code>{ $xqdoc/xqdoc:module/xqdoc:uri/string() }</code></td>
+    </tr>
+     (: ,xqdoc-html:tags($xqdoc/xqdoc:module/xqdoc:comment[1]) :)
   }</table>,
 
-  xqdoc-html:variables($inspect, $private),
-  xqdoc-html:functions($inspect, $private)
+  xqdoc-html:variables($xqdoc, $private),
+  xqdoc-html:functions($xqdoc, $private)
   (:,<h2>Source Documentation</h2>,<pre>{ serialize($inspect) }</pre>:)
 };
 
@@ -59,22 +59,22 @@ declare function xqdoc-html:create(
  : @return description of variables
  :)
 declare function xqdoc-html:variables(
-  $inspect  as element(module),
+  $xqdoc  as element(xqdoc:xqdoc),
   $private  as xs:boolean)
   as element()*
 {
-  let $variables := $inspect/variable[
+  let $variables := $xqdoc/xqdoc:variables/xqdoc:variable[
     $private or not(annotation/@name = 'private')
   ]
   where $variables
   return (
     <h2>Variables</h2>,
-    (:<ul>{
+    <ul>{
       for $v at $p in $variables
       let $n := $v/@name/string()
       order by $n
       return <li><a href="#{ $n }">{ $n }</a></li>
-    }</ul>,:)
+    }</ul>,
 
     for $v at $p in $variables
     let $n := replace($v/@name, '.*:', '')
@@ -87,8 +87,8 @@ declare function xqdoc-html:variables(
         return <tr>
           <td><b>Type:</b></td>
           <td><code>{ $t }</code></td>
-        </tr>,
-        xqdoc-html:tags($v)
+        </tr>
+        (:  ,xqdoc-html:tags($v/xqdoc:comment[1]) :)
       }</table>
     )
   )
@@ -102,37 +102,35 @@ declare function xqdoc-html:variables(
  : @return description of functions
  :)
 declare function xqdoc-html:functions(
-  $inspect  as element(module),
+  $xqdoc  as element(xqdoc:xqdoc),
   $private  as xs:boolean)
   as element()*
 {
-  let $functions := $inspect/function[
+  let $functions := $xqdoc/xqdoc:functions/xqdoc:function[
     $private or not(annotation/@name = 'private')
   ]
-  let $signatures := $functions !
-    (replace(@name, '.*:', '') || '(' || string-join(
-      argument ! ('$' || @name), ', '
-    ) || ')')
+  let $signatures := $functions !xqdoc:signature
+   
   where $functions
   return (
     <h2>Functions</h2>,
     for $f at $p in $functions
-    let $s := $signatures[$p]
-    let $link := replace($f/@name, '.*:', '') || '#' || count($f/argument)
+    let $s := $signatures[$p]/string()
+    let $link := replace($f/xqdoc:name, '.*:', '') || '#' || $f/@arity
     order by $s
     return (
       <a name="{ $link }"><h3>{ $s }</h3></a>,
       <table>{
-        let $args := $f/argument where $args return
+        let $args := $f/xqdoc:parameters where $args return
         <tr>
           <td><b>Arguments:</b></td>
           <td>
             <table>{
               for $a in $args
               return <tr>
-                <td><code>${ $a/@name/string() }</code></td>
+                <td><code>${ $a/xqdoc:name/string() }</code></td>
                 <td>{
-                  let $t := $a/@type || $a/@occurrence
+                  let $t := $a/xqdoc:type || $a/@occurrence
                   where $t
                   return <code>{ $t }</code>
                 }</td>
@@ -176,9 +174,9 @@ declare function xqdoc-html:functions(
               )}</code></td></tr>
             )
           }</table></td>
-        </tr>,
+        </tr>
 
-        xqdoc-html:tags($f)
+     (:  , xqdoc-html:tags($f/xqdoc:comment[1]) :)
       }</table>
     )
   )
@@ -194,7 +192,7 @@ declare function xqdoc-html:tags(
   as element(tr)*
 {
   for $key in $node/*
-  let $name := name($key)
+  let $name := local-name($key)
   where $name = $xqdoc-html:TAGS
   let $value := $key/node()
   where $value

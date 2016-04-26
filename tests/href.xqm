@@ -1,5 +1,5 @@
 (:~ 
- :tests for doc
+ :check all urls in href.json has status 200
  : 
  :)
 module namespace test = 'http://basex.org/modules/xqunit-tests';

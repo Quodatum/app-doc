@@ -10,11 +10,11 @@
 		</field>
 		<field name="description" type="xs:string">
 			<description>description</description>
-			<xpath>comp:tagline</xpath>
+			<xpath>comp:description</xpath>
 		</field>
 		<field name="type" type="xs:string">
 			<description>type. one of browser,expath</description>
-			<xpath>comp:runat</xpath>
+			<xpath>comp:type</xpath>
 		</field>
 		<field name="html" type="element()">
 			<description>html for component</description>
@@ -31,7 +31,7 @@
         </field>
 	</fields>
 	<views>
-		<view name="filter">name tagline</view>
+		<view name="filter">name description</view>
 	</views>
 	<iconclass>fa fa-puzzle-piece</iconclass>
 	<data type="element(comp:cmp)">$cmpx:comps</data>

@@ -146,8 +146,8 @@ angular.module(
 
           $rootScope.$on('$stateChangeSuccess', function(event, toState,
               toParams, fromState, fromParams) {
-            var log=toState.data && toState.data.history !== undefined;
-            //console.log("STATE CHANGE",log ? toState.data.history : true);
+            var log = toState.data && toState.data.history !== undefined;
+            // console.log("STATE CHANGE",log ? toState.data.history : true);
             // log all unless data.history:false
             if (log ? toState.data.history : true) {
               var note = {
@@ -163,8 +163,4 @@ angular.module(
           });
         }
 
-    ]).filter('to_trusted', [ '$sce', function($sce) {
-  return function(text) {
-    return $sce.trustAsHtml(text);
-  };
-} ])
+    ])

@@ -1,7 +1,7 @@
 <entity name="xqmodule" xmlns="https://github.com/Quodatum/app-doc/entity">
 	<description>An XQuery source code module</description>
 	<namespace prefix="xqdoc" uri="http://www.xqdoc.org/1.0"/>
-
+    <module prefix="xqdoc-html" namespace="quodatum.xqdoc.html" />
 	<fields>
 		<field name="filename" type="xs:string">
 			<description>file name</description>
@@ -41,6 +41,11 @@
 			<description>module name</description>
 			<xpath>xqdoc:module/xqdoc:name</xpath>
 		</field>
+		<field name="html" type="element()">
+            <description>html for component</description>
+            <!-- <xpath>.</xpath> -->
+            <xpath>xqdoc-html:create(.,"path",true())</xpath>
+        </field>
 	</fields>
 	   <views>
         <view name="filter">name description</view>

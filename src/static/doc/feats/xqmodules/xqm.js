@@ -18,7 +18,7 @@ angular.module('quodatum.doc.xqm',
 
           .state('xqmodule.index', {
             url : "",
-            templateUrl : '/static/doc/feats/xqmodules/xqms.xhtml',
+            templateUrl : '/static/doc/feats/xqmodules/xqms.html',
             controller : "XqmsCtrl",
             ncyBreadcrumb : {
               label : 'XQ Modules'
@@ -27,7 +27,7 @@ angular.module('quodatum.doc.xqm',
 
           .state('xqmodule.module', {
             url : "/item?item",
-            templateUrl : '/static/doc/feats/xqmodules/xqm1.xhtml',
+            templateUrl : '/static/doc/feats/xqmodules/xqm1.html',
             controller : "XqmCtrl",
             ncyBreadcrumb : {
               label : '{{$stateParams.item}}',
@@ -61,8 +61,8 @@ angular.module('quodatum.doc.xqm',
 
           var applist = DiceService.one('xqmodule','item',{item:item})
          .then(function(d) {
-            $scope.app = d.item;
-            console.log(">>", d);
+            $scope.app = d;
+            console.log("xqmCtrl >>", d);
           });
 
         } ])
