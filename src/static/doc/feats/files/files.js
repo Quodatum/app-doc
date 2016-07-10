@@ -5,9 +5,25 @@ angular.module('quodatum.doc.files', [ 'ui.router' ])
     [ '$stateProvider', '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
           $stateProvider
-
           .state('files', {
-            url : "/files",
+            url : "/data/files",
+            abstract : true,
+            template : '<ui-view>App list</ui-view>',
+            data : {
+              entity : "file"
+            }
+          })
+
+          .state('files.index', {
+            url : "",
+            templateUrl : '/static/doc/feats/files/file-list.html',
+            controller : "FileListCtrl",
+            ncyBreadcrumb : {
+              label : 'Files'
+            }
+          })
+          .state('files2', {
+            url : "/files2",
             templateUrl : '/static/doc/feats/files/files.xhtml',
             reloadOnSearch : false,
             controller : "FilesCtrl"
@@ -16,6 +32,21 @@ angular.module('quodatum.doc.files', [ 'ui.router' ])
         } ])
 
 // controllers
+.controller(
+    "FileListCtrl",
+    [ "$scope", "$stateParams","DiceService", function($scope, $stateParams,DiceService) {
+      console.log("FileListCtrl");
+      function update() {
+        DiceService.list('file', $scope.params).then(function(d) {
+          // console.log("models..",d);
+          $scope.apps = d;
+        });
+      }
+
+      DiceService.setup($scope, update);
+    }]
+    )
+    
 .controller(
     "FilesCtrl",
     [ "$scope", "$http", "$location", "apiRoot",

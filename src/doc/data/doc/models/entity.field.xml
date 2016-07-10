@@ -25,6 +25,9 @@
             <xpath>../../@name</xpath>
         </field>
 	</fields>
+	<views>
+        <view name="filter">name description</view>
+    </views>
 	<iconclass>glyphicon glyphicon-minus</iconclass>
 	<data type="element(ent:field)">collection("doc-doc")//ent:field</data>
 </entity>

@@ -1,6 +1,6 @@
 <entity name="component.version" xmlns="https://github.com/Quodatum/app-doc/entity">
+	 <parent name="component" />
 	<description>A specific version of a component.</description>
-	<parent name="component" />
 	<namespace prefix="pkg" uri="http://expath.org/ns/pkg" />
 	<namespace prefix="comp" uri="urn:quodatum:qd-cmpx:component" />   
 	<module prefix="cmpx" namespace="quodatum.cmpx" />
@@ -22,6 +22,9 @@
 			<xpath>@status</xpath>
 		</field>
 	</fields>
+	<views>
+        <view name="filter">component</view>
+    </views>
 	<iconclass>fa fa-shopping-bag  </iconclass>
 	<data type="element(pkg:dependency)"><![CDATA[
 for $r in $cmpx:comps/comp:release

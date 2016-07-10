@@ -116,10 +116,8 @@ as xs:string
     (: generate json xml :)
     let $simple:=function() as xs:string{
                 <field>(: {$type} :)
-                        let $d:=fn:data($_/{$f/ent:xpath })
-                        return if($d)
-                              then element {$name} {{ {$at} $d }} 
-                              else ()</field>
+                        fn:data($_/{$f/ent:xpath })!element {$name} {{ {$at} .}} 
+                </field>
                 }
     (: serialize when element :)
     let $element:=function() as xs:string{

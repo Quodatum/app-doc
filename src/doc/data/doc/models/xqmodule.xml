@@ -48,6 +48,7 @@
         </field>
 	</fields>
 	   <views>
+	    <view name="list">name html</view>
         <view name="filter">name description</view>
     </views>
 	<iconclass>fa fa-file-code-o</iconclass>

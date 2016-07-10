@@ -99,7 +99,7 @@ as element(xqdoc:xqdoc){
 (:~ get xqdoc for path, parse descriptions, trap errors  :)
 declare  function xqdoc_($path as xs:string) as element(xqdoc:xqdoc){
     try{
-       copy $c :=  inspect:xqdoc($path)
+       copy $c :=  inspect:xqdoc(fn:translate($path,"\","/"))
                modify (
                 (:  for $d in $c//xqdoc:description
                   return replace node $d with <xqdoc:description>{fn:parse-xml-fragment($d/*)}</xqdoc:description> :)

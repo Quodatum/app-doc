@@ -11,10 +11,10 @@ declare namespace rest = 'http://exquery.org/ns/restxq';
 
 (:~ map of available dice parameters :)
 declare function dice(){
-    let $fld:=function($n){if(request:parameter($n))
-                           then map:entry($n,request:parameter($n))
-                           else ()}
-    return map:merge(("start","limit","sort")!$fld(.))
+    let $fld:=function($n){
+                        request:parameter($n)!map:entry($n,request:parameter($n))
+                           }
+    return map:merge(("start","limit","sort","fields")!$fld(.))
 };
 
 declare function status($code,$reason){

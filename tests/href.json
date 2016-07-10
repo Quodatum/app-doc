@@ -1,5 +1,6 @@
 [
 {url:"data/app"},
+{url:"data/component"},
 {url:"data/entity"},
 {url:"data/endpoint"},
 {url:"data/xqmodule"},

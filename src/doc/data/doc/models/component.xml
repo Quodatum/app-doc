@@ -1,7 +1,9 @@
 <entity name="component" xmlns="https://github.com/Quodatum/app-doc/entity">
-	<description>A software component. Includes Javascript libraries 
-		and EXPath packages. Components are managed through the qd-cmpx component.</description>
-	<namespace prefix="comp" uri="urn:quodatum:qd-cmpx:component" />	
+	<description>A software component. Includes Javascript libraries
+		and EXPath packages. Components are managed through the qd-cmpx
+		component.
+	</description>
+	<namespace prefix="comp" uri="urn:quodatum:qd-cmpx:component" />
 	<module prefix="cmpx" namespace="quodatum.cmpx" />
 	<fields>
 		<field name="name" type="xs:string">
@@ -20,15 +22,14 @@
 			<description>html for component</description>
 			<xpath>.</xpath>
 		</field>
-		
-		  <field name="home" type="xs:string">
-            <description>Web home for component</description>
-            <xpath>comp:home</xpath>
-        </field>
-            <field name="releases" type="xs:integer">
-            <description>count of releases</description>
-            <xpath>count(comp:release)</xpath>
-        </field>
+		<field name="home" type="xs:string">
+			<description>Web home for component</description>
+			<xpath>comp:home</xpath>
+		</field>
+		<field name="releases" type="xs:integer">
+			<description>count of releases</description>
+			<xpath>count(comp:release)</xpath>
+		</field>
 	</fields>
 	<views>
 		<view name="filter">name description</view>

@@ -77,14 +77,13 @@ declare function response($items,
   let $opts:=map:merge(($dice:default,$opts))
   let $items:= dice:sort($items,map:get($entity,"access"),$opts?sort)
   let $jsonf:= map:get($entity,"json")
-  let $fields:=map:keys($jsonf)
+  let $fields:=if ($opts?fields) then fn:tokenize($opts?fields) else map:keys($jsonf)
   let $slice:= fn:subsequence($items,$opts?start,$opts?limit)
   return 
   <json objects="json _" >
     <total type="number">{$total}</total>
     <range>{$opts?start}-{$opts?start+fn:count($slice)-1}/{$total}</range>
     <entity>{$entity?name}</entity>
-    {if($opts?crumbs) then <crumbs type="array">{$opts?crumbs}</crumbs> else() }
     <items type="array">
         {for $item in $slice
         return <_ >{$fields!$jsonf(.)($item)}</_>}
@@ -103,8 +102,15 @@ declare function response($items,$entity as map(*)){
  :)
 declare function one($item,$entity as map(*))
 {
+ one($item,$entity,map{})
+};
+(:~ 
+ : @return  json for item
+ :)
+declare function one($item,$entity as map(*),$opts as map(*))
+{
   let $jsonf:= map:get($entity,"json")
-  let $fields:=map:keys($jsonf)
+  let $fields:=if ($opts?fields) then fn:tokenize($opts?fields) else map:keys($jsonf)
   return  <json objects="json " >
   {$fields!$jsonf(.)($item)}
   </json> 

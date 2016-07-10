@@ -1,8 +1,8 @@
-<package abbrev="doc" name="urn:quodatum.basex.doc" version="0.7.41"
+<package abbrev="doc" name="urn:quodatum.basex.doc" version="0.7.44"
 	spec="1.0" xmlns="http://expath.org/ns/pkg">
 	<title>BaseX Web application Documentation</title>
 	<dependency name="twitter-bootstrap-css" version="3.3.6" />
-    <dependency name="angularjs" version="1.4.8" />
+	<dependency name="angularjs" version="1.4.8" />
 	<dependency name="angular-ui-bootstrap" version="0.14.3" />
 	<dependency name="restangular" version="1.3.1" />
 	<dependency name="lodash" version="2.4.1" />
@@ -14,12 +14,13 @@
 	<dependency name="quodatum-directives" version="0.1.0" />
 	<dependency name="quodatum-config" version="0.1.0" />
 	<dependency name="stacktrace" version="1.0.4" />
-	<dependency name="angular-ui-router" version="0.2.15"/>
-	<dependency name="angular-breadcrumb" version="0.4.0"/>
-	<dependency name="NgDexie" version="0.0.15"/>
-	<dependency name="svg-pan-zoom" version="3.2.3"/>
-	<dependency name="angular-svg-pan-zoom" version="b8c6574b222e41ab57c5eafbc096bc73ab413f0f"/>
+	<dependency name="angular-ui-router" version="0.2.15" />
+	<dependency name="angular-breadcrumb" version="0.4.0" />
+	<dependency name="NgDexie" version="0.0.15" />
+	<dependency name="svg-pan-zoom" version="3.2.3" />
+	<dependency name="angular-svg-pan-zoom" version="b8c6574b222e41ab57c5eafbc096bc73ab413f0f" />
 	<!-- xquery -->
-	<dependency name="ex-graphviz" version="0.0.7"/>
-    <dependency name="ex-dotml" version="0.0.9"/>
+	<dependency name="quodatum.cmpx" version="@TODO" />
+	<dependency name="ex-graphviz" version="0.0.7" />
+	<dependency name="ex-dotml" version="0.0.9" />
 </package>

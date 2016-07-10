@@ -55,6 +55,9 @@
         </field>
          -->
 	</fields>
+	<views>
+        <view name="filter">name description</view>
+    </views>
 	<iconclass>glyphicon glyphicon-list-alt</iconclass>
 	<data type="element(ent:entity)">collection("doc-doc")//ent:entity</data>
 </entity>

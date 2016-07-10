@@ -19,5 +19,5 @@ for $i in  $test:urls
 let $url:=web:create-url($i?url,
                         if(empty($i?params)) then map{} else  $i?params 
                       )
-return test:status($url)!unit:assert-equals(., "200",$url)
+return test:status($url)!unit:assert-equals(., "200",$i?url)
 };    

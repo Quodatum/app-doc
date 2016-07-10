@@ -48,7 +48,6 @@ declare variable $debug-js as element()* external :=();
     <!-- application -->
     <script src="{$static}app.js"  ></script>
     <script src="{$static}services.js"  ></script>
-    <script src="{$static}api.js"  ></script>
     <script src="{$static}feats/apps/apps.js"  ></script>
     <script src="{$static}feats/components/components.js"  ></script>
 	<script src="{$static}feats/history/history.js"  ></script>

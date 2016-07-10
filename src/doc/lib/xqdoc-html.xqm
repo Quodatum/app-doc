@@ -43,8 +43,10 @@ declare function xqdoc-html:create(
       <td><b>URI:</b></td>
       <td><code>{ $xqdoc/xqdoc:module/xqdoc:uri/string() }</code></td>
     </tr>
-     (: ,xqdoc-html:tags($xqdoc/xqdoc:module/xqdoc:comment[1]) :)
-  }</table>,
+   ,
+      xqdoc-html:tags($xqdoc/xqdoc:module/xqdoc:comment[1])
+      }
+  </table>,
 
   xqdoc-html:variables($xqdoc, $private),
   xqdoc-html:functions($xqdoc, $private)
@@ -88,7 +90,7 @@ declare function xqdoc-html:variables(
           <td><b>Type:</b></td>
           <td><code>{ $t }</code></td>
         </tr>
-        (:  ,xqdoc-html:tags($v/xqdoc:comment[1]) :)
+        ,xqdoc-html:tags($v/xqdoc:comment[1]) 
       }</table>
     )
   )
@@ -175,8 +177,8 @@ declare function xqdoc-html:functions(
             )
           }</table></td>
         </tr>
-
-     (:  , xqdoc-html:tags($f/xqdoc:comment[1]) :)
+    ,
+      xqdoc-html:tags($f/xqdoc:comment[1]) 
       }</table>
     )
   )
@@ -188,7 +190,7 @@ declare function xqdoc-html:functions(
  : @return       tags
  :)
 declare function xqdoc-html:tags(
-  $node as element())
+  $node as element()?)
   as element(tr)*
 {
   for $key in $node/*
