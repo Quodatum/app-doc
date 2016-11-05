@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace random = "http://basex.org/modules/random";
+module namespace random = "x-http://basex.org/modules/random";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

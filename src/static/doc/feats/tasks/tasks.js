@@ -104,8 +104,8 @@ angular.module('quodatum.doc.tasks',
             });
           });
           
-          $scope.run = function(task) {
-            TaskService.run(task).then(function(r) {
+          $scope.run = function(task,opt) {
+            TaskService.run(task,opt).then(function(r) {
               console.log("TASK DONE");
               growl.success(r);
 
@@ -130,8 +130,12 @@ angular.module('quodatum.doc.tasks',
   this.get = function(task) {
     return Restangular.one("data").one("task", task).get();
   };
-  this.run = function(task) {
-    return Restangular.all("task").all(task).post();
+  this.run = function(task,opts) {
+    return Restangular.all("task").all(task).post(null,opts);
+};
+  this.async = function(task) {
+    alert("async");
+    return Restangular.all("task").post(task,null,{mode:'async'});
   };
   this.list = function(params) {
     return Restangular.one("data").all("task").getList(params);

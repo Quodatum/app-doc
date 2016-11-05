@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace client = "http://basex.org/modules/client";
+module namespace client = "x-http://basex.org/modules/client";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

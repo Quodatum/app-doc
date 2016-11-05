@@ -1,6 +1,7 @@
 (:~ 
 : dice utils - sort, filter, and serialize as json.
 : can read parameters from request: sort,start,limit.
+: @requires basex 8.6 for map:merge
 : @author andy bunce
 : @since mar 2013
 :)
@@ -25,7 +26,7 @@ declare function sort($items as item()*
                      ,$fmap as map(*)
                      ,$sort as xs:string?)
 as item()*{
-  let $sort:=fn:normalize-space($sort)
+  let $sort:=fn:normalize-space($sort)=>fn:trace("dice:sort")
   let $ascending:=fn:not(fn:starts-with($sort,"-"))
   let $fld:=fn:substring($sort,if(fn:substring($sort,1,1)=("+","-")) then 2 else 1)
   return if(fn:not(map:contains($fmap, $fld))) then
@@ -74,7 +75,7 @@ declare function response($items,
                           $opts as map(*))
  {
   let $total:=fn:count($items)
-  let $opts:=map:merge(($dice:default,$opts))
+  let $opts:=map:merge(($opts,$dice:default))
   let $items:= dice:sort($items,map:get($entity,"access"),$opts?sort)
   let $jsonf:= map:get($entity,"json")
   let $fields:=if ($opts?fields) then fn:tokenize($opts?fields) else map:keys($jsonf)

@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace sql = "http://basex.org/modules/sql";
+module namespace sql = "x-http://basex.org/modules/sql";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

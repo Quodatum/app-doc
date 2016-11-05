@@ -11,7 +11,7 @@ declare namespace task ="https://github.com/Quodatum/app-doc/task";
  
 declare variable $eval:def-opts:=map{
      "permission" :  "admin",
-     "timeout": 5
+     "timeout": 30
  };
   
 (:~ eval list of tasks
@@ -73,9 +73,9 @@ declare  %updating
 function update($xq as xs:string,$base as xs:string,$options as map(*))
 {
  let $bindings:=map{}
- let $opts:=map:merge(($eval:def-opts,$options))
+ let $opts:=map:merge(($options,$eval:def-opts))=>fn:trace("opts:")
   let $xq:= 'declare base-uri "' || $base ||'";&#10;' || $xq
-   let $xq:=fn:trace($xq,"eval:update")
+ 
    return xquery:update($xq,$bindings,$opts)
    (:
   return try{

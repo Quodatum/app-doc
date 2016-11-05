@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace http = "http://expath.org/ns/http-client";
+module namespace http = "x-http://expath.org/ns/http-client";
 declare namespace exerr = "http://expath.org/ns/error";
 
 (:~

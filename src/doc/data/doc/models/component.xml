@@ -35,5 +35,5 @@
 		<view name="filter">name description</view>
 	</views>
 	<iconclass>fa fa-puzzle-piece</iconclass>
-	<data type="element(comp:cmp)">$cmpx:comps</data>
+	<data type="element(comp:cmp)">cmpx:comps()</data>
 </entity>

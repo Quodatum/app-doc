@@ -46,6 +46,10 @@
             <!-- <xpath>.</xpath> -->
             <xpath>xqdoc-html:create(.,"path",true())</xpath>
         </field>
+        <field name="icon" type="xs:string?">
+            <description>svg icon based on type</description>
+            <xpath>"./icon.svg"</xpath>
+        </field>
 	</fields>
 	   <views>
 	    <view name="list">name html</view>

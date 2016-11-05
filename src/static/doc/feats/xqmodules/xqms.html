@@ -4,12 +4,13 @@
 		<div ng-repeat="app in apps" class="media col-sm-6 col-md-4 ">
 		  <div class="qd-model well">
 			<a class="pull-left" href="{{app.href}}" > <img
-				class="media-object" ng-src="{{app.logo}}" alt="{{app.name}} - no logo"
+				class="media-object" ng-src="{{'/static/doc/feats/xqmodules/'+app.type+'.svg'}}" alt="{{app.name}} - no logo"
 				style="width: 64px; height: 64px;" /></a>
 			<div class="media-body">
 				<h4 class="media-heading" title="{{app.dbpath}}">{{app.filename}}
 				<span class="pull-right">{{app.type}}</span>
 				</h4>
+				<div >{{app.uri}}</div>
 				<p >{{app.description}}</p>
 				<p>
 					

@@ -1,0 +1,3452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:qdfun="http://quodatum.com/functions">
+	<h2>
+		Endpoints:
+		<span class="label label-default label-as-badge">68</span>
+		<small class="pull-right">
+			wadl.xml
+			<a href="../../doc/app//view/wadl?fmt=xml" target="dn">
+				<i class="glyphicon glyphicon-save" />
+			</a>
+		</small>
+	</h2>
+	<div class="row">
+		<div class="col-md-4">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e2026')" title="Redirects to the start page.">/dba</a>
+					<span class="wadl-method label label-warning" />
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e81')" title="Form for adding a new resource.">/dba/add</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e128')" title="Adds a resource.">/dba/add</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e5')" title="Form for adding a new pattern.">/dba/add-pattern</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e46')" title="Creates a pattern.">/dba/add-pattern</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e175')" title="Form for renaming a database.">/dba/alter-db</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e211')" title="Renames a database.">/dba/alter-db</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="application/octet-stream">B</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e240')" title="Downloads a database backup.">/dba/backup/{$backup}
+					</a>
+					<span class="wadl-method label label-warning" />
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e262')" title="Form for copying a database.">/dba/copy</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e297')" title="Copies a database.">/dba/copy</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="application/xml">X</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e326')" title="Creates a database backup.">/dba/create-backup
+					</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e349')" title="Form for creating a new database.">/dba/create-db</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e391')" title="Creates a database.">/dba/create-db</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e426')" title="Form for creating a new user.">/dba/create-user</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e467')" title="Creates a user.">/dba/create-user</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e502')" title="Manages a single database.">/dba/database</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e543')" title="Redirects to the specified action.">/dba/database</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e576')" title="Main page.">/dba/databases</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e612')" title="Redirects to the specified action.">/dba/databases</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e698')" title="Deletes resources.">/dba/delete</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e637')" title="Deletes files.">/dba/delete-files</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e656')" title="Deletes database logs.">/dba/delete-logs</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/plain">T</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e675')"
+						title="Delete a query file and returns the names of stored queries.">/dba/delete-query</a>
+					<span class="wadl-method label label-warning" />
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="application/octet-stream">B</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e723')" title="Downloads a resource.">/dba/download/{$file}
+					</a>
+					<span class="wadl-method label label-warning" />
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="application/xml">X</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e759')" title="Drops a database backup.">/dba/drop-backup</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e784')" title="Drops databases.">/dba/drop-db</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e803')" title="Drops patterns.">/dba/drop-pattern</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e828')" title="Drops users.">/dba/drop-user</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e847')" title="Edits a user.">/dba/edit-user</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/plain">T</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e888')" title="Evaluates a query and returns the result.">/dba/eval-query</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e905')" title="Downloads a file.">/dba/file/{$name}</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e927')" title="Files page.">/dba/files</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e962')" title="Redirects to the specified action.">/dba/files</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e987')" title="Jobs and users page.">/dba/jobs-users</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1022')" title="Redirects to the specified action.">/dba/jobs-users</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1049')" title="Kills DBA sessions.">/dba/kill-dba</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1073')" title="Kills DBA sessions.">/dba/kill-session
+					</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1096')" title="Returns log entries of a specific log file.">/dba/log</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1162')" title="Login page.">/dba/login</a>
+					<span class="wadl-method label label-warning" />
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1127')"
+						title="Checks the user input and redirects to the start or login page.">/dba/login-check</a>
+					<span class="wadl-method label label-warning" />
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1197')" title="Returns log data.">/dba/loglist</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1220')" title="Ends a session and redirects to the login page.">/dba/logout</a>
+					<span class="wadl-method label label-warning" />
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1237')" title="Logging page.">/dba/logs</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1291')" title="Redirects to the specified action.">/dba/logs</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/plain">T</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1316')" title="Returns the contents of a query file.">/dba/open-query</a>
+					<span class="wadl-method label label-warning" />
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1358')" title="Form for optimizing a database.">/dba/optimize</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1405')" title="Optimizes the current database.">/dba/optimize</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1339')" title="Optimizes databases with the current settings.">/dba/optimize-all
+					</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/plain">T</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1447')" title="Queries page.">/dba/queries</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/plain">T</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1476')"
+						title="Runs a query on a document and returns the result as string.">/dba/query-resource</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1505')" title="Form for renaming a resource.">/dba/rename</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1546')" title="Renames a database resource.">/dba/rename</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1581')" title="Form for replacing a resource.">/dba/replace</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1616')" title="Replaces a database resource.">/dba/replace</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="application/xml">X</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1652')" title="Redirects to the specified action.">/dba/resource</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="application/xml">X</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1687')" title="Restores a database backup.">/dba/restore</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/plain">T</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1716')"
+						title="Saves a query file and returns the list of stored queries.">/dba/save-query</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1739')" title="Settings page.">/dba/settings</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1755')" title="Saves the settings.">/dba/settings</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1771')" title="Returns a file.">/dba/static/{$file=.+}
+					</a>
+					<span class="wadl-method label label-warning" />
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1790')" title="Stops jobs.">/dba/stop-job</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/plain">T</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1813')" title="Runs an updating query.">/dba/update-query
+					</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1829')" title="Deletes files.">/dba/upload-files
+					</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1852')" title="Manage a single user.">/dba/user</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1906')" title="Redirects to the specified action.">/dba/user</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1941')" title="Users page.">/dba/users</a>
+					<span class="wadl-method label label-primary">GET</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e1977')" title="Redirects to the specified action.">/dba/users</a>
+					<span class="wadl-method label label-success">POST</span>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-right">
+						<span class="label label-default label-pill pull-xs-right"
+							title="text/html">H</span>
+					</span>
+					<a ng-click="scrollTo('path-d1e2004')" title="Shows a page not found error.">/dba/{$unknown}</a>
+					<span class="wadl-method label label-warning" />
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-8" style="height:70vh;overflow:scroll;">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e2026" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e2026')" title="Redirects to the start page.">/dba</a>
+						<span class="wadl-method label label-warning" />
+					</h4>
+				</div>
+				<div class="panel-body">
+					Redirects to the start page.
+					<a target="_new" href="/dba">run</a>
+					<button ng-click="run('/dba')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e81" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e81')" title="Form for adding a new resource.">/dba/add</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Form for adding a new resource.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>binary</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>store as binary</td>
+						</tr>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>entered name</td>
+						</tr>
+						<tr>
+							<td>opts</td>
+							<td>query</td>
+							<td>xs:string*</td>
+							<td>chosen parsing options</td>
+						</tr>
+						<tr>
+							<td>path</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>database path</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/add">run</a>
+					<button ng-click="run('/dba/add')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e128" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e128')" title="Adds a resource.">/dba/add</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Adds a resource.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>binary</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>store as binary file</td>
+						</tr>
+						<tr>
+							<td>file</td>
+							<td>query</td>
+							<td>map(*)</td>
+							<td>uploaded file</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database</td>
+						</tr>
+						<tr>
+							<td>opts</td>
+							<td>query</td>
+							<td>xs:string*</td>
+							<td>chosen parsing options</td>
+						</tr>
+						<tr>
+							<td>path</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database path</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/add">run</a>
+					<button ng-click="run('/dba/add')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e5" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e5')" title="Form for adding a new pattern.">/dba/add-pattern</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Form for adding a new pattern.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>user name</td>
+						</tr>
+						<tr>
+							<td>pattern</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>entered pattern</td>
+						</tr>
+						<tr>
+							<td>perm</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>chosen permission</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/add-pattern">run</a>
+					<button ng-click="run('/dba/add-pattern')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e46" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e46')" title="Creates a pattern.">/dba/add-pattern</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Creates a pattern.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>user</td>
+						</tr>
+						<tr>
+							<td>pattern</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>pattern</td>
+						</tr>
+						<tr>
+							<td>perm</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>permission</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/add-pattern">run</a>
+					<button ng-click="run('/dba/add-pattern')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e175" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e175')" title="Form for renaming a database.">/dba/alter-db</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Form for renaming a database.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>name of database</td>
+						</tr>
+						<tr>
+							<td>newname</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>new name</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/alter-db">run</a>
+					<button ng-click="run('/dba/alter-db')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e211" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e211')" title="Renames a database.">/dba/alter-db</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Renames a database.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>name of database</td>
+						</tr>
+						<tr>
+							<td>newname</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>new name</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/alter-db">run</a>
+					<button ng-click="run('/dba/alter-db')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e240" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="application/octet-stream">B</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e240')" title="Downloads a database backup.">/dba/backup/{$backup}
+						</a>
+						<span class="wadl-method label label-warning" />
+					</h4>
+				</div>
+				<div class="panel-body">
+					Downloads a database backup.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>backup</td>
+							<td>template</td>
+							<td>xs:string</td>
+							<td>name of backup file (ignored)</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/backup/{$backup}">run</a>
+					<button ng-click="run('/dba/backup/{$backup}')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e262" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e262')" title="Form for copying a database.">/dba/copy</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Form for copying a database.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>name of database</td>
+						</tr>
+						<tr>
+							<td>newname</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>new name</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/copy">run</a>
+					<button ng-click="run('/dba/copy')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e297" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e297')" title="Copies a database.">/dba/copy</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Copies a database.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>name of database</td>
+						</tr>
+						<tr>
+							<td>newname</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>new name</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/copy">run</a>
+					<button ng-click="run('/dba/copy')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e326" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="application/xml">X</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e326')" title="Creates a database backup.">/dba/create-backup
+						</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Creates a database backup.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>name of database</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/create-backup">run</a>
+					<button ng-click="run('/dba/create-backup')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e349" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e349')" title="Form for creating a new database.">/dba/create-db</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Form for creating a new database.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>lang</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>entered language</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>entered name</td>
+						</tr>
+						<tr>
+							<td>opts</td>
+							<td>query</td>
+							<td>xs:string*</td>
+							<td>chosen database options</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/create-db">run</a>
+					<button ng-click="run('/dba/create-db')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e391" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e391')" title="Creates a database.">/dba/create-db</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Creates a database.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>lang</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>language</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database</td>
+						</tr>
+						<tr>
+							<td>opts</td>
+							<td>query</td>
+							<td>xs:string*</td>
+							<td>database options</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/create-db">run</a>
+					<button ng-click="run('/dba/create-db')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e426" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e426')" title="Form for creating a new user.">/dba/create-user</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Form for creating a new user.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>entered name</td>
+						</tr>
+						<tr>
+							<td>perm</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>chosen permission</td>
+						</tr>
+						<tr>
+							<td>pw</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>entered password</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/create-user">run</a>
+					<button ng-click="run('/dba/create-user')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e467" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e467')" title="Creates a user.">/dba/create-user</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Creates a user.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>user</td>
+						</tr>
+						<tr>
+							<td>perm</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>permission</td>
+						</tr>
+						<tr>
+							<td>pw</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>password</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/create-user">run</a>
+					<button ng-click="run('/dba/create-user')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e502" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e502')" title="Manages a single database.">/dba/database</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Manages a single database.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>info</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>info string</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database</td>
+						</tr>
+						<tr>
+							<td>resource</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>resource</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/database">run</a>
+					<button ng-click="run('/dba/database')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e543" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e543')" title="Redirects to the specified action.">/dba/database</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Redirects to the specified action.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>action</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>action to perform</td>
+						</tr>
+						<tr>
+							<td>backup</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database</td>
+						</tr>
+						<tr>
+							<td>resource</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/database">run</a>
+					<button ng-click="run('/dba/database')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e576" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e576')" title="Main page.">/dba/databases</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Main page.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>info</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>info string</td>
+						</tr>
+						<tr>
+							<td>sort</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>table sort key</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/databases">run</a>
+					<button ng-click="run('/dba/databases')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e612" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e612')" title="Redirects to the specified action.">/dba/databases</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Redirects to the specified action.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>action</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>action to perform</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/databases">run</a>
+					<button ng-click="run('/dba/databases')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e698" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e698')" title="Deletes resources.">/dba/delete</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Deletes resources.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td />
+						</tr>
+						<tr>
+							<td>resource</td>
+							<td>query</td>
+							<td />
+							<td>resources</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/delete">run</a>
+					<button ng-click="run('/dba/delete')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e637" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e637')" title="Deletes files.">/dba/delete-files
+						</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Deletes files.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/delete-files">run</a>
+					<button ng-click="run('/dba/delete-files')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e656" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e656')" title="Deletes database logs.">/dba/delete-logs</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Deletes database logs.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/delete-logs">run</a>
+					<button ng-click="run('/dba/delete-logs')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e675" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/plain">T</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e675')"
+							title="Delete a query file and returns the names of stored queries.">/dba/delete-query</a>
+						<span class="wadl-method label label-warning" />
+					</h4>
+				</div>
+				<div class="panel-body">
+					Delete a query file and returns the names of stored queries.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>name of query file (without suffix)</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/delete-query">run</a>
+					<button ng-click="run('/dba/delete-query')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e723" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="application/octet-stream">B</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e723')" title="Downloads a resource.">/dba/download/{$file}
+						</a>
+						<span class="wadl-method label label-warning" />
+					</h4>
+				</div>
+				<div class="panel-body">
+					Downloads a resource.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>file</td>
+							<td>template</td>
+							<td>xs:string</td>
+							<td>file name (ignored)</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database</td>
+						</tr>
+						<tr>
+							<td>resource</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>resource</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/download/{$file}">run</a>
+					<button ng-click="run('/dba/download/{$file}')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e759" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="application/xml">X</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e759')" title="Drops a database backup.">/dba/drop-backup</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Drops a database backup.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>backup</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>name of database</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/drop-backup">run</a>
+					<button ng-click="run('/dba/drop-backup')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e784" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e784')" title="Drops databases.">/dba/drop-db</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Drops databases.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/drop-db">run</a>
+					<button ng-click="run('/dba/drop-db')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e803" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e803')" title="Drops patterns.">/dba/drop-pattern
+						</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Drops patterns.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td />
+						</tr>
+						<tr>
+							<td>pattern</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database pattern</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/drop-pattern">run</a>
+					<button ng-click="run('/dba/drop-pattern')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e828" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e828')" title="Drops users.">/dba/drop-user</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Drops users.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/drop-user">run</a>
+					<button ng-click="run('/dba/drop-user')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e847" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e847')" title="Edits a user.">/dba/edit-user</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Edits a user.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>user</td>
+						</tr>
+						<tr>
+							<td>newname</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>new name</td>
+						</tr>
+						<tr>
+							<td>perm</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>permission</td>
+						</tr>
+						<tr>
+							<td>pw</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>password</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/edit-user">run</a>
+					<button ng-click="run('/dba/edit-user')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e888" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/plain">T</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e888')" title="Evaluates a query and returns the result.">/dba/eval-query</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Evaluates a query and returns the result.
+					<a target="_new" href="/dba/eval-query">run</a>
+					<button ng-click="run('/dba/eval-query')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e905" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e905')" title="Downloads a file.">/dba/file/{$name}
+						</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Downloads a file.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>template</td>
+							<td>xs:string</td>
+							<td>name of file</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/file/{$name}">run</a>
+					<button ng-click="run('/dba/file/{$name}')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e927" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e927')" title="Files page.">/dba/files</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Files page.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error message</td>
+						</tr>
+						<tr>
+							<td>info</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>info message</td>
+						</tr>
+						<tr>
+							<td>sort</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>table sort key</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/files">run</a>
+					<button ng-click="run('/dba/files')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e962" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e962')" title="Redirects to the specified action.">/dba/files</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Redirects to the specified action.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>action</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>action to perform</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/files">run</a>
+					<button ng-click="run('/dba/files')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e987" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e987')" title="Jobs and users page.">/dba/jobs-users</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Jobs and users page.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error message</td>
+						</tr>
+						<tr>
+							<td>info</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>info message</td>
+						</tr>
+						<tr>
+							<td>sort</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>table sort key</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/jobs-users">run</a>
+					<button ng-click="run('/dba/jobs-users')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1022" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1022')" title="Redirects to the specified action.">/dba/jobs-users</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Redirects to the specified action.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>action</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>action to perform</td>
+						</tr>
+						<tr>
+							<td>id</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/jobs-users">run</a>
+					<button ng-click="run('/dba/jobs-users')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1049" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1049')" title="Kills DBA sessions.">/dba/kill-dba</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Kills DBA sessions.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>id</td>
+							<td>query</td>
+							<td />
+							<td>session ids</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/kill-dba">run</a>
+					<button ng-click="run('/dba/kill-dba')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1073" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1073')" title="Kills DBA sessions.">/dba/kill-session
+						</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Kills DBA sessions.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>id</td>
+							<td>query</td>
+							<td />
+							<td>session ids (including names)</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/kill-session">run</a>
+					<button ng-click="run('/dba/kill-session')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1096" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1096')" title="Returns log entries of a specific log file.">/dba/log</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Returns log entries of a specific log file.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>loglist</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>loglist</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td />
+						</tr>
+						<tr>
+							<td>sort</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>table sort key</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/log">run</a>
+					<button ng-click="run('/dba/log')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1162" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1162')" title="Login page.">/dba/login</a>
+						<span class="wadl-method label label-warning" />
+					</h4>
+				</div>
+				<div class="panel-body">
+					Login page.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>user name</td>
+						</tr>
+						<tr>
+							<td>url</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>url</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/login">run</a>
+					<button ng-click="run('/dba/login')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1127" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1127')"
+							title="Checks the user input and redirects to the start or login page.">/dba/login-check</a>
+						<span class="wadl-method label label-warning" />
+					</h4>
+				</div>
+				<div class="panel-body">
+					Checks the user input and redirects to the start or login page.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>user name</td>
+						</tr>
+						<tr>
+							<td>pass</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>password</td>
+						</tr>
+						<tr>
+							<td>url</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>url</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/login-check">run</a>
+					<button ng-click="run('/dba/login-check')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1197" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1197')" title="Returns log data.">/dba/loglist</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Returns log data.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>sort</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>table sort key</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/loglist">run</a>
+					<button ng-click="run('/dba/loglist')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1220" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1220')" title="Ends a session and redirects to the login page.">/dba/logout</a>
+						<span class="wadl-method label label-warning" />
+					</h4>
+				</div>
+				<div class="panel-body">
+					Ends a session and redirects to the login page.
+					<a target="_new" href="/dba/logout">run</a>
+					<button ng-click="run('/dba/logout')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1237" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1237')" title="Logging page.">/dba/logs</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Logging page.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>info</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>info string</td>
+						</tr>
+						<tr>
+							<td>loglist</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>search term for log list</td>
+						</tr>
+						<tr>
+							<td>logs</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>search term for logs</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>name (date) of log file</td>
+						</tr>
+						<tr>
+							<td>sort</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>table sort key</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/logs">run</a>
+					<button ng-click="run('/dba/logs')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1291" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1291')" title="Redirects to the specified action.">/dba/logs</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Redirects to the specified action.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>action</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>action to perform</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/logs">run</a>
+					<button ng-click="run('/dba/logs')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1316" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/plain">T</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1316')" title="Returns the contents of a query file.">/dba/open-query</a>
+						<span class="wadl-method label label-warning" />
+					</h4>
+				</div>
+				<div class="panel-body">
+					Returns the contents of a query file.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>name of query file (without suffix)</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/open-query">run</a>
+					<button ng-click="run('/dba/open-query')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1358" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1358')" title="Form for optimizing a database.">/dba/optimize</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Form for optimizing a database.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>all</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>optimize all</td>
+						</tr>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>lang</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>language</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>entered name</td>
+						</tr>
+						<tr>
+							<td>opts</td>
+							<td>query</td>
+							<td>xs:string*</td>
+							<td>database options</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/optimize">run</a>
+					<button ng-click="run('/dba/optimize')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1405" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1405')" title="Optimizes the current database.">/dba/optimize</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Optimizes the current database.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>all</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>optimize all</td>
+						</tr>
+						<tr>
+							<td>lang</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>language</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database</td>
+						</tr>
+						<tr>
+							<td>opts</td>
+							<td>query</td>
+							<td>xs:string*</td>
+							<td>database options</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/optimize">run</a>
+					<button ng-click="run('/dba/optimize')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1339" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1339')" title="Optimizes databases with the current settings.">/dba/optimize-all
+						</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Optimizes databases with the current settings.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/optimize-all">run</a>
+					<button ng-click="run('/dba/optimize-all')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1447" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/plain">T</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1447')" title="Queries page.">/dba/queries</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Queries page.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>info</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>info string</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/queries">run</a>
+					<button ng-click="run('/dba/queries')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1476" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/plain">T</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1476')"
+							title="Runs a query on a document and returns the result as string.">/dba/query-resource</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Runs a query on a document and returns the result as string.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>name of database</td>
+						</tr>
+						<tr>
+							<td>resource</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>resource</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/query-resource">run</a>
+					<button ng-click="run('/dba/query-resource')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1505" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1505')" title="Form for renaming a resource.">/dba/rename</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Form for renaming a resource.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database</td>
+						</tr>
+						<tr>
+							<td>newname</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>new name of resource</td>
+						</tr>
+						<tr>
+							<td>resource</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>resource</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/rename">run</a>
+					<button ng-click="run('/dba/rename')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1546" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1546')" title="Renames a database resource.">/dba/rename</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Renames a database resource.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database</td>
+						</tr>
+						<tr>
+							<td>newname</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>new name of resource</td>
+						</tr>
+						<tr>
+							<td>resource</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>resource</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/rename">run</a>
+					<button ng-click="run('/dba/rename')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1581" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1581')" title="Form for replacing a resource.">/dba/replace</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Form for replacing a resource.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database</td>
+						</tr>
+						<tr>
+							<td>resource</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>resource</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/replace">run</a>
+					<button ng-click="run('/dba/replace')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1616" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1616')" title="Replaces a database resource.">/dba/replace</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Replaces a database resource.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>input</td>
+							<td>query</td>
+							<td>(map(*))?</td>
+							<td>file input</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database</td>
+						</tr>
+						<tr>
+							<td>resource</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>resource</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/replace">run</a>
+					<button ng-click="run('/dba/replace')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1652" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="application/xml">X</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1652')" title="Redirects to the specified action.">/dba/resource</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Redirects to the specified action.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>action</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>action to perform</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>name of resource</td>
+						</tr>
+						<tr>
+							<td>resource</td>
+							<td>query</td>
+							<td>xs:string*</td>
+							<td>resource</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/resource">run</a>
+					<button ng-click="run('/dba/resource')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1687" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="application/xml">X</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1687')" title="Restores a database backup.">/dba/restore</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Restores a database backup.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>backup</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>backup file</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>database</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/restore">run</a>
+					<button ng-click="run('/dba/restore')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1716" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/plain">T</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1716')"
+							title="Saves a query file and returns the list of stored queries.">/dba/save-query</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Saves a query file and returns the list of stored queries.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>name of query file (without suffix)</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/save-query">run</a>
+					<button ng-click="run('/dba/save-query')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1739" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1739')" title="Settings page.">/dba/settings</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Settings page.
+					<a target="_new" href="/dba/settings">run</a>
+					<button ng-click="run('/dba/settings')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1755" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1755')" title="Saves the settings.">/dba/settings</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Saves the settings.
+					<a target="_new" href="/dba/settings">run</a>
+					<button ng-click="run('/dba/settings')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1771" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1771')" title="Returns a file.">/dba/static/{$file=.+}
+						</a>
+						<span class="wadl-method label label-warning" />
+					</h4>
+				</div>
+				<div class="panel-body">
+					Returns a file.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>file=.+</td>
+							<td>template</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/static/{$file=.+}">run</a>
+					<button ng-click="run('/dba/static/{$file=.+}')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1790" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1790')" title="Stops jobs.">/dba/stop-job</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Stops jobs.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>id</td>
+							<td>query</td>
+							<td />
+							<td>session ids</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/stop-job">run</a>
+					<button ng-click="run('/dba/stop-job')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1813" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/plain">T</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1813')" title="Runs an updating query.">/dba/update-query
+						</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Runs an updating query.
+					<a target="_new" href="/dba/update-query">run</a>
+					<button ng-click="run('/dba/update-query')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1829" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1829')" title="Deletes files.">/dba/upload-files
+						</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Deletes files.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>files</td>
+							<td>query</td>
+							<td>map(*)</td>
+							<td>map with uploaded files</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/upload-files">run</a>
+					<button ng-click="run('/dba/upload-files')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1852" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1852')" title="Manage a single user.">/dba/user</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Manage a single user.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error string</td>
+						</tr>
+						<tr>
+							<td>info</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>info string</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>user</td>
+						</tr>
+						<tr>
+							<td>newname</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>new name</td>
+						</tr>
+						<tr>
+							<td>perm</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>permission</td>
+						</tr>
+						<tr>
+							<td>pw</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>password</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/user">run</a>
+					<button ng-click="run('/dba/user')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1906" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1906')" title="Redirects to the specified action.">/dba/user</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Redirects to the specified action.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>action</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>action to perform</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>user</td>
+						</tr>
+						<tr>
+							<td>pattern</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>pattern</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/user">run</a>
+					<button ng-click="run('/dba/user')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1941" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1941')" title="Users page.">/dba/users</a>
+						<span class="wadl-method label label-primary">GET</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Users page.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>error</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>error message</td>
+						</tr>
+						<tr>
+							<td>info</td>
+							<td>query</td>
+							<td>xs:string?</td>
+							<td>info message</td>
+						</tr>
+						<tr>
+							<td>sort</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>table sort key</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/users">run</a>
+					<button ng-click="run('/dba/users')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e1977" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e1977')" title="Redirects to the specified action.">/dba/users</a>
+						<span class="wadl-method label label-success">POST</span>
+					</h4>
+				</div>
+				<div class="panel-body">
+					Redirects to the specified action.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>action</td>
+							<td>query</td>
+							<td>xs:string</td>
+							<td>action to perform</td>
+						</tr>
+						<tr>
+							<td>id</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>query</td>
+							<td />
+							<td />
+						</tr>
+					</table>
+					<a target="_new" href="/dba/users">run</a>
+					<button ng-click="run('/dba/users')">ang</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="anchor" id="path-d1e2004" />
+						<span class="pull-right">
+							<span class="label label-default label-pill pull-xs-right"
+								title="text/html">H</span>
+						</span>
+						<a ng-click="scrollTo('path-d1e2004')" title="Shows a page not found error.">/dba/{$unknown}</a>
+						<span class="wadl-method label label-warning" />
+					</h4>
+				</div>
+				<div class="panel-body">
+					Shows a page not found error.
+					<h4>Parameters</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Style</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>unknown</td>
+							<td>template</td>
+							<td>xs:string</td>
+							<td>unknown page</td>
+						</tr>
+					</table>
+					<a target="_new" href="/dba/{$unknown}">run</a>
+					<button ng-click="run('/dba/{$unknown}')">ang</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

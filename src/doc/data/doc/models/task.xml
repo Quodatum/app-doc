@@ -21,7 +21,7 @@
         </field>
         <field name="params" type="xs:integer">
             <description>Number of parameters.</description>
-            <xpath>count(.//xqdoc:variable)</xpath>
+            <xpath>count(descendant::xqdoc:variable)</xpath>
         </field>
 	</fields>
 	 <views>

@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace stream = "http://basex.org/modules/stream";
+module namespace stream = "x-http://basex.org/modules/stream";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

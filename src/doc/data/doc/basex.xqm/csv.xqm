@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace csv = "http://basex.org/modules/csv";
+module namespace csv = "x-http://basex.org/modules/csv";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace file = "http://expath.org/ns/file";
+module namespace file = "x-http://expath.org/ns/file";
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 
 (:~

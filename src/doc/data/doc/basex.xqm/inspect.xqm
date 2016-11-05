@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace inspect = "http://basex.org/modules/inspect";
+module namespace inspect = "x-http://basex.org/modules/inspect";
 declare namespace xqdoc = "http://www.xqdoc.org/1.0";
 declare namespace bxerr = "http://basex.org/errors";
 

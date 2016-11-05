@@ -8,13 +8,11 @@
 	<div class="row">
 		<div ng-repeat="task in tasks" class="media col-sm-6 col-md-4 ">
 			<div class="qd-model well">
-				<a ui-sref="tasks.item({task:task.name})" class="media-left"> <i
+			<div class="media-left">
+				<a ui-sref="tasks.item({task:task.name})" > <i
 					class="pull-left fa fa-tasks fa-5x"></i>
 				</a>
-				<div class="media-body">
-					<h4 class="media-heading">
-						{{task.name}} 
-						<div class="pull-right ">
+				<div class="pull-left ">
                         <button ng-click="run(task.name)" title="Run task"
                             class="btn btn-default pull-right ">           
                              <span class="badge badge-default">{{task.params}}</span>
@@ -22,6 +20,11 @@
                         </button>
                        
                     </div>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">
+						{{task.name}} 
+						
 					</h4>
 					
 

@@ -1,9 +1,15 @@
 <div>
 	<cva-bar ng-model="bar" single="true" state="$state">
+	<li>
 		<button ng-click="run(data.name)" title="Run task"
-			class="btn btn-default pull-right ">
+			class="btn btn-default">
 			<i class="fa fa-play-circle"></i>
 		</button>
+		<button ng-click="run(data.name,{mode:'async'})" title="Run task async"
+            class="btn btn-info">
+            <i class="fa fa-play-circle"></i>
+        </button>
+        </li>
 	</cva-bar>
 	<div>path: {{data.path}}</div>
 	<div>params: {{data.params}}</div>

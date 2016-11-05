@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace db = "http://basex.org/modules/db";
+module namespace db = "x-http://basex.org/modules/db";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

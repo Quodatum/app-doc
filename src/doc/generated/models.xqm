@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2016-07-10T16:02:05.405+01:00 
+ : auto generated from xml files in entities folder at: 2016-11-05T23:08:39.501Z 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -83,7 +83,7 @@ declare variable $entity:list:=map {
                         fn:data($_/@version)!element version {  .} 
                  } },
       "data": function() as element(pkg:dependency)*
-       { for $r in $cmpx:comps/comp:release
+       { for $r in cmpx:comps()/comp:release
 return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true" status="ok"/> }
    },
   "component": map{
@@ -127,7 +127,45 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                         fn:data($_/comp:type)!element type {  .} 
                  } },
       "data": function() as element(comp:cmp)*
-       { $cmpx:comps }
+       { cmpx:comps() }
+   },
+  "database": map{
+     "name": "database",
+     "description": "A BaseX database",
+     "access": map{ 
+       "href": function($_ as element()) as xs:string {$_/"#/data/database/" || . },
+       "modifiedDate": function($_ as element()) as xs:dateTime {$_/@modified-date },
+       "name": function($_ as element()) as xs:string {$_/. },
+       "path": function($_ as element()) as xs:string {$_/@path },
+       "resources": function($_ as element()) as xs:integer {$_/@resources } },
+    
+     "filter": function($item,$q) as xs:boolean{ 
+         some $e in ( ) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      },
+       "json":   map{ 
+           "href": function($_ as element()) as element(href)? {
+            (: string :)
+                        fn:data($_/"#/data/database/" || .)!element href {  .} 
+                 },
+           "modifiedDate": function($_ as element()) as element(modifiedDate)? {
+            (: string :)
+                        fn:data($_/@modified-date)!element modifiedDate {  .} 
+                 },
+           "name": function($_ as element()) as element(name)? {
+            (: string :)
+                        fn:data($_/.)!element name {  .} 
+                 },
+           "path": function($_ as element()) as element(path)? {
+            (: string :)
+                        fn:data($_/@path)!element path {  .} 
+                 },
+           "resources": function($_ as element()) as element(resources)? {
+            (: number :)
+                        fn:data($_/@resources)!element resources { attribute type {'number'}, .} 
+                 } },
+      "data": function() as element(database)*
+       { db:list-details() }
    },
   "endpoint": map{
      "name": "endpoint",
@@ -302,6 +340,44 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
       "data": function() as element(*)*
        { () }
    },
+  "job": map{
+     "name": "job",
+     "description": "a BaseX job",
+     "access": map{ 
+       "duration": function($_ as element()) as xs:string {$_/@duration },
+       "id": function($_ as element()) as xs:string {$_/@id },
+       "state": function($_ as element()) as xs:string {$_/@state },
+       "type": function($_ as element()) as xs:string {$_/@type },
+       "user": function($_ as element()) as xs:string {$_/@user } },
+    
+     "filter": function($item,$q) as xs:boolean{ 
+         some $e in ( ) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      },
+       "json":   map{ 
+           "duration": function($_ as element()) as element(duration)? {
+            (: string :)
+                        fn:data($_/@duration)!element duration {  .} 
+                 },
+           "id": function($_ as element()) as element(id)? {
+            (: string :)
+                        fn:data($_/@id)!element id {  .} 
+                 },
+           "state": function($_ as element()) as element(state)? {
+            (: string :)
+                        fn:data($_/@state)!element state {  .} 
+                 },
+           "type": function($_ as element()) as element(type)? {
+            (: string :)
+                        fn:data($_/@type)!element type {  .} 
+                 },
+           "user": function($_ as element()) as element(user)? {
+            (: string :)
+                        fn:data($_/@user)!element user {  .} 
+                 } },
+      "data": function() as element(job)*
+       { jobs:list()[. != jobs:current()]  ! jobs:list-details(.) }
+   },
   "search-result": map{
      "name": "search-result",
      "description": "About a search result.",
@@ -341,7 +417,7 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
      "access": map{ 
        "description": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:comment/xqdoc:description },
        "name": function($_ as element()) as xs:string {$_/xqdoc:module/xqdoc:uri },
-       "params": function($_ as element()) as xs:integer {$_/count(.//xqdoc:variable) },
+       "params": function($_ as element()) as xs:integer {$_/count(descendant::xqdoc:variable) },
        "path": function($_ as element()) as xs:string {$_/fn:replace(db:path(.),"^modules/","doc/") },
        "xquery": function($_ as element()) as xs:string {$_/concat('/doc/data/file/read?path=' ,db:path(.)) } },
     
@@ -360,7 +436,7 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                  },
            "params": function($_ as element()) as element(params)? {
             (: number :)
-                        fn:data($_/count(.//xqdoc:variable))!element params { attribute type {'number'}, .} 
+                        fn:data($_/count(descendant::xqdoc:variable))!element params { attribute type {'number'}, .} 
                  },
            "path": function($_ as element()) as element(path)? {
             (: string :)
@@ -385,6 +461,7 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
        "filename": function($_ as element()) as xs:string {$_/tokenize(base-uri(.),"/")[last()] },
        "href": function($_ as element()) as xs:string {$_/("#/data/xqmodule/item?item=" || db:path(.)) },
        "html": function($_ as element()) as element() {$_/xqdoc-html:create(.,"path",true()) },
+       "icon": function($_ as element()) as xs:string? {$_/"./icon.svg" },
        "name": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:name },
        "path": function($_ as element()) as xs:string {$_/(
             if(starts-with(db:path(.),"basex.xqm/"))
@@ -419,6 +496,10 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                  },
            "html": function($_ as element()) as element(html)? {
             element html { attribute type {"string"},fn:serialize($_/xqdoc-html:create(.,"path",true()))} },
+           "icon": function($_ as element()) as element(icon)? {
+            (: string :)
+                        fn:data($_/"./icon.svg")!element icon {  .} 
+                 },
            "name": function($_ as element()) as element(name)? {
             (: string :)
                         fn:data($_/xqdoc:module/xqdoc:name)!element name {  .} 

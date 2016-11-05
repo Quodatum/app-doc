@@ -1,38 +1,38 @@
 <div>
-	<cva-bar metadata="models.metadata"  params="params" state="$state"></cva-bar>
+	<cva-bar metadata="models.metadata" params="params" state="$state"></cva-bar>
 	<div class="row">
 		<div ng-repeat="model in models" class=" media col-sm-6 col-md-4">
 			<div class="qd-model well">
-				<a href="#/data/entity/{{model.name}}" title="About this entity" class="media-left">
+				<a href="#/data/entity/{{model.name}}" title="About this entity"
+					class="media-left">
 					<i class="{{model.iconclass}} fa-5x"></i>
 				</a>
 				<div class="media-body">
 
 					<h4 class="media-heading">
 						<a href="#/data/entity/{{model.name}}" title="About this entity">{{model.name}}</a>
-						<span class="label label-info" ng-show="model.code" title="Has code" >
-						<i class="fa fa-code"></i>
+						<span class="label label-info" ng-show="model.code" title="Has code">
+							<i class="fa fa-code"></i>
 						</span>
 					</h4>
 					<div>
-						
+
 						<div>{{model.description}}</div>
 						<div>
 							<a href="./data/{{model.name}}" target="json">
 								<i class="fa fa-angle-double-left" title="Json data for {{model.name}}"></i>
 							</a>
 						</div>
-						<a href="#/data/{{model.name}}" >
-                            data
-                        </a>
-                       
-</div>
+						<a href="#/data/{{model.name}}">
+							data
+						</a>
+
 					</div>
-					
 				</div>
 
 			</div>
-		</div>
 
+		</div>
 	</div>
+
 </div>

@@ -371,7 +371,11 @@ function validate($xml as xs:string,
     let $xml:=df:webpath($xml)!fn:trace(.,"xml ")
     let $schema:=df:webpath($schema)!fn:trace(.,"xsd ")
                   
-    let $errs:=validate:xsd-info(fn:doc($xml), fn:doc($schema))
+    let $errs:=if(fn:not(fn:doc-available($xml)))
+               then "xml not found:" || $xml
+               else if (fn:not(fn:doc-available($schema)))
+                    then "schema not found:" || $schema
+                    else validate:xsd-info(fn:doc($xml), fn:doc($schema))
     return <json type="array">{$errs!<_>{.}</_>}</json>   
 };
 
@@ -393,7 +397,7 @@ function status(){
  :) 
 declare function render($template,$map){
     let $defaults:=cnf:settings()
-    let $map:=map:merge(($map,$defaults))
+    let $map:=map:merge(($defaults,$map))
     return (web:method("html"),txq:render(
                 fn:resolve-uri("./templates/" || $template)
                 ,$map

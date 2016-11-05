@@ -1,15 +1,15 @@
 (:~
- : cxan info
+ : cxan info demo
  :)
 declare namespace task="https://github.com/Quodatum/app-doc/task";
 (: info about a cxan repository :)
 declare namespace xweb="http://expath.org/ns/webapp";
-declare variable $cxan:="http://cxan.org/";
+declare variable $REPOSITORY:="http://cxan.org/";
 
 (: @see http://cxan.org/faq#rest :)
 declare function xweb:get($path){ 
  let $req:=<http:request method='get'><http:header name="Accept" value="application/xml"/></http:request>
- return http:send-request($req,resolve-uri($path,$cxan))[2] 
+ return http:send-request($req,resolve-uri($path,$REPOSITORY))[2] 
 };
 (:~ 
  :repos
@@ -37,15 +37,15 @@ declare function xweb:package($pkg as xs:string) as element(pkg)
 };
 
 (:~ 
- : package uri
+ : @return package uri that can be used to retrieve xar
  : @param $pkg e.g "joewiz/xqjson"
  :)
-declare function xweb:version($pkg as xs:string,$version) 
+declare function xweb:version($pkg as xs:string,$version) as xs:anyURI
 { 
   let $p:=xweb:package($pkg)
   let $v:=$p/version[@num=$version]/file[@role="pkg"]
   return if(starts-with( resolve-uri($v/@name),"file:/"))
-         then   concat($cxan, "file/" , $pkg, "/" , $v/@name)  
+         then   concat($REPOSITORY, "file/" , $pkg, "/" , $v/@name)  
          else $v  
 };
 

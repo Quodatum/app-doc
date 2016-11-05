@@ -16,4 +16,6 @@ documents are xqdoc for modules below app path
 ## state.xml
 ## tasks.xml
 ## repositories.xml
+## history.xml
+
 

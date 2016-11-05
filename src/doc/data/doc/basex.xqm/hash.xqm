@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace hash = "http://basex.org/modules/hash";
+module namespace hash = "x-http://basex.org/modules/hash";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

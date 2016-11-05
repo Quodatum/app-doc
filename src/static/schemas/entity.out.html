@@ -1,0 +1,296 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Schema document for namespace https://github.com/Quodatum/app-doc/entity</title><style type="text/css">
+     .bodytext .bodytext {
+       margin-left: 0;
+       margin-right: 0;
+     }
+     .bodytext {
+       margin-left: 15%;
+       margin-right: 2%;
+     }
+     .annotation {
+       
+       
+     }
+     .same-ns {
+       color: Green;
+     }
+     .diff-ns {
+       color: maroon;
+     }
+     .warning {
+       color: red;
+     }
+     p.note {  
+       font-style: italic;
+     }
+     p.dt {  
+       font-weight: bold;
+     }
+     span.rfc {
+      font-variant: small-caps;
+     }
+    </style></head>
+   <body>
+      <h1>Schema document for namespace https://github.com/Quodatum/app-doc/entity</h1>
+      <div>
+         <hr>
+         <ul class="bodytext">
+            <li><a href="#elem_entity">Element <em>entity</em></a></li>
+            <li><a href="#elem_search">Element <em>search</em></a></li>
+            <li><a href="#elem_description">Element <em>description</em></a></li>
+            <li><a href="#type_searchType">Simple type <em>searchType</em></a></li>
+            <li><a href="#type_mixed-text">Complex type <em>mixed-text</em></a></li>
+            <li><a href="#elem_namespace">Element <em>namespace</em></a></li>
+            <li><a href="#elem_module">Element <em>module</em></a></li>
+            <li><a href="#elem_data">Element <em>data</em></a></li>
+         </ul>
+         <hr>
+      </div>
+      	
+      <div id="elem_entity">
+         <h3><a name="elem_entity">Element <em>entity</em></a></h3>
+         <div class="bodytext">
+            <div>
+               <h4>Notes</h4>root element
+            </div>
+            <div>
+               <h4>Formal declaration in XSD source form</h4><pre>
+	&lt;xs:element name="entity"&gt;
+		
+		&lt;xs:complexType&gt;
+			&lt;xs:sequence&gt;
+				&lt;xs:element minOccurs="0" name="parent"/&gt;
+				&lt;xs:element ref="<a href="#elem_description">entity:description</a>"/&gt;
+
+				&lt;xs:element
+    				maxOccurs="unbounded"
+    				minOccurs="0"
+    				ref="<a href="#elem_namespace">entity:namespace</a>"&gt;
+					
+
+				&lt;/xs:element&gt;
+				&lt;xs:element
+    				maxOccurs="unbounded"
+    				minOccurs="0"
+    				ref="<a href="#elem_module">entity:module</a>"&gt;
+					
+
+				&lt;/xs:element&gt;
+				&lt;xs:element name="fields"&gt;
+					
+					&lt;xs:complexType&gt;
+						&lt;xs:sequence&gt;
+							&lt;xs:element
+    							maxOccurs="unbounded"
+    							minOccurs="0"
+    							name="field"&gt;
+								&lt;xs:complexType&gt;
+									&lt;xs:sequence&gt;
+										&lt;xs:element
+    										name="description"
+    										type="<a href="#type_mixed-text">entity:mixed-text</a>"/&gt;
+										&lt;xs:element name="xpath" type="<span class="external-link diff-ns">xs:string</span>"/&gt;
+									&lt;/xs:sequence&gt;
+									&lt;xs:attribute
+    									name="name"
+    									type="<span class="external-link diff-ns">xs:string</span>"
+    									use="optional"/&gt;
+									&lt;xs:attribute
+    									name="type"
+    									type="<span class="external-link diff-ns">xs:string</span>"
+    									use="optional"/&gt;
+								&lt;/xs:complexType&gt;
+							&lt;/xs:element&gt;
+						&lt;/xs:sequence&gt;
+					&lt;/xs:complexType&gt;
+				&lt;/xs:element&gt;
+				&lt;xs:element maxOccurs="1" minOccurs="0" name="views"&gt;
+					&lt;xs:complexType&gt;
+						&lt;xs:sequence&gt;
+							&lt;xs:element
+    							maxOccurs="unbounded"
+    							minOccurs="0"
+    							name="view"&gt;
+								&lt;xs:complexType&gt;
+									&lt;xs:simpleContent&gt;
+										&lt;xs:extension base="<span class="external-link diff-ns">xs:NMTOKENS</span>"&gt;
+											&lt;xs:attribute name="name" type="<span class="external-link diff-ns">xs:string</span>"/&gt;
+										&lt;/xs:extension&gt;
+									&lt;/xs:simpleContent&gt;
+								&lt;/xs:complexType&gt;
+							&lt;/xs:element&gt;
+						&lt;/xs:sequence&gt;
+					&lt;/xs:complexType&gt;
+				&lt;/xs:element&gt;
+				&lt;xs:element name="iconclass" type="<span class="external-link diff-ns">xs:string</span>"&gt;
+					
+				&lt;/xs:element&gt;
+				&lt;xs:element ref="<a href="#elem_data">entity:data</a>"&gt;
+
+				&lt;/xs:element&gt;
+				&lt;xs:element
+    				ref="<a href="#elem_search">entity:search</a>"
+    				maxOccurs="1"
+    				minOccurs="0"/&gt;
+
+			&lt;/xs:sequence&gt;
+			&lt;xs:attribute name="name" type="<span class="external-link diff-ns">xs:string</span>"/&gt;
+			&lt;xs:attribute name="type" type="<span class="external-link diff-ns">xs:string</span>"/&gt;
+		&lt;/xs:complexType&gt;
+	&lt;/xs:element&gt;</pre></div>
+         </div>
+      </div>
+      
+      	
+      <div id="elem_search">
+         <h3><a name="elem_search">Element <em>search</em></a></h3>
+         <div class="bodytext">
+            <div>
+               <h4>Notes</h4>XQuery to return search-result for current object.
+               <br>			
+            </div>
+            <div>
+               <h4>Formal declaration in XSD source form</h4><pre>
+
+	&lt;xs:element name="search" type="<span class="external-link diff-ns">xs:string</span>"&gt;
+		
+	&lt;/xs:element&gt;</pre></div>
+         </div>
+      </div>
+      
+      	
+      <div id="elem_description">
+         <h3><a name="elem_description">Element <em>description</em></a></h3>
+         <div class="bodytext">
+            <div>
+               <h4>Notes</h4>about the entity
+            </div>
+            <div>
+               <h4>Formal declaration in XSD source form</h4><pre>
+
+	&lt;xs:element name="description" type="<a href="#type_mixed-text">entity:mixed-text</a>"&gt;
+		
+	&lt;/xs:element&gt;</pre></div>
+         </div>
+      </div>
+      
+      	
+      <div id="type_searchType">
+         <h3><a name="type_searchType">Simple type <em>searchType</em></a></h3>
+         <div class="bodytext">
+            <div>
+               <h4>Notes</h4>XQuery to return search-result for current object.
+               <br>			
+            </div>
+            <div>
+               <h4>Formal declaration in XSD source form</h4><pre>
+
+	&lt;xs:simpleType name="searchType"&gt;
+		
+		&lt;xs:restriction base="<span class="external-link diff-ns">xs:string</span>"/&gt;
+	&lt;/xs:simpleType&gt;</pre></div>
+         </div>
+      </div>
+      
+      	
+      	
+      <div id="type_mixed-text">
+         <h3><a name="type_mixed-text">Complex type <em>mixed-text</em></a></h3>
+         <div class="bodytext">
+            <div>
+               <h4>Formal declaration in XSD source form</h4><pre>
+	&lt;xs:complexType mixed="true" name="mixed-text"&gt;
+		&lt;xs:sequence&gt;
+			&lt;xs:any
+    			maxOccurs="unbounded"
+    			minOccurs="0"
+    			processContents="skip"/&gt;
+		&lt;/xs:sequence&gt;
+	&lt;/xs:complexType&gt;</pre></div>
+         </div>
+      </div>
+      	
+      <div id="elem_namespace">
+         <h3><a name="elem_namespace">Element <em>namespace</em></a></h3>
+         <div class="bodytext">
+            <div>
+               <h4>Notes</h4>
+               <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;namespaces used by the entity
+               <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div>
+               <h4>Formal declaration in XSD source form</h4><pre>
+	&lt;xs:element name="namespace"&gt;
+		
+		&lt;xs:complexType&gt;
+			&lt;xs:simpleContent&gt;
+				&lt;xs:extension base="<span class="external-link diff-ns">xs:string</span>"&gt;
+					&lt;xs:attribute
+    					use="required"
+    					name="prefix"
+    					type="<span class="external-link diff-ns">xs:string</span>"&gt;
+					&lt;/xs:attribute&gt;
+					&lt;xs:attribute
+    					use="required"
+    					name="uri"
+    					type="<span class="external-link diff-ns">xs:string</span>"&gt;
+					&lt;/xs:attribute&gt;
+				&lt;/xs:extension&gt;
+			&lt;/xs:simpleContent&gt;
+		&lt;/xs:complexType&gt;
+	&lt;/xs:element&gt;</pre></div>
+         </div>
+      </div>
+      	
+      <div id="elem_module">
+         <h3><a name="elem_module">Element <em>module</em></a></h3>
+         <div class="bodytext">
+            <div>
+               <h4>Formal declaration in XSD source form</h4><pre>
+	&lt;xs:element name="module"&gt;
+		
+		&lt;xs:complexType&gt;
+			&lt;xs:simpleContent&gt;
+				&lt;xs:extension base="<span class="external-link diff-ns">xs:string</span>"&gt;
+					&lt;xs:attribute
+    					use="required"
+    					name="prefix"
+    					type="<span class="external-link diff-ns">xs:string</span>"&gt;
+					&lt;/xs:attribute&gt;
+					&lt;xs:attribute
+    					use="required"
+    					name="namespace"
+    					type="<span class="external-link diff-ns">xs:string</span>"&gt;
+					&lt;/xs:attribute&gt;
+				&lt;/xs:extension&gt;
+			&lt;/xs:simpleContent&gt;
+		&lt;/xs:complexType&gt;
+	&lt;/xs:element&gt;</pre></div>
+         </div>
+      </div>
+      	
+      <div id="elem_data">
+         <h3><a name="elem_data">Element <em>data</em></a></h3>
+         <div class="bodytext">
+            <div>
+               <h4>Formal declaration in XSD source form</h4><pre>
+	&lt;xs:element name="data"&gt;
+		&lt;xs:complexType&gt;
+			
+			&lt;xs:simpleContent&gt;
+				&lt;xs:extension base="<span class="external-link diff-ns">xs:string</span>"&gt;
+					&lt;xs:attribute name="type" type="<span class="external-link diff-ns">xs:string</span>"&gt;
+						
+					&lt;/xs:attribute&gt;
+				&lt;/xs:extension&gt;
+			&lt;/xs:simpleContent&gt;
+		&lt;/xs:complexType&gt;
+	&lt;/xs:element&gt;</pre></div>
+         </div>
+      </div>
+      
+   </body>
+</html>

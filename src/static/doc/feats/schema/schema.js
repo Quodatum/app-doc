@@ -30,8 +30,8 @@ angular.module('quodatum.doc.schema', [ 'ui.router' ])
 
 					console.log("SchemaCtrl2");
 					$scope.input = {
-						xml : "Bill",
-						schema : "schema/one"
+						xml : "doc/data/doc/models/entity.xml",
+						schema : "static/schemas/entity.xsd"
 					};
 					$scope.report = "the results";
 					$scope.onxml = function(context) {
@@ -45,10 +45,13 @@ angular.module('quodatum.doc.schema', [ 'ui.router' ])
 								+ $scope.input.schema;
 					};
 					$scope.go = function() {
-						Validate.api.get($scope.input).$promise.then(function(
+						Validate.api.query($scope.input).$promise.then(function(
 								result) {
-							$scope.result = result;
+							$scope.report = result;
 							console.log("val", result);
 						});
 					};
+					$scope.set = function() {
+					  $scope.input = {xml : "/set/path"};
+                  };
 				} ]);

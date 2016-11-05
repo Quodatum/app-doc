@@ -1,0 +1,20 @@
+/* simple query language
+ ebnf: https://www.w3.org/TR/REC-xml/#sec-notation
+
+*/
+Grammar  ::= clause+ EOF
+
+clause ::= modifier? (field | Terminal)  
+modifier ::= "+" | "-"
+field ::= Terminal ":" Terminal
+
+<?TOKENS?>
+
+
+Terminal ::= [A-Za-z0-9]+
+           | "'" [^']+ "'"
+EOF      ::= $
+IgnorableWhitespace
+         ::= [ #x9#xA#xD]+
+           | '#' [^#xA]* [#xA]
+          /* ws: definition */

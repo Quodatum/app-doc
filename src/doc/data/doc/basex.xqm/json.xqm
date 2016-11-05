@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace json = "http://basex.org/modules/json";
+module namespace json = "x-http://basex.org/modules/json";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace unit = "http://basex.org/modules/unit";
+module namespace unit = "x-http://basex.org/modules/unit";
 
 (:~
  : Asserts that the effective boolean value of the specified <code>$test</code> is true and returns an empty sequence. Otherwise, raises an error. The <i>effective boolean value</i> of an expression can be explicitly computed by using the <code>fn:boolean</code> function.

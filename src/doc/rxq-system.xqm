@@ -12,6 +12,7 @@ declare default function namespace 'quodatum.system.rest';
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
 import module namespace rest = "http://exquery.org/ns/restxq";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
+import module namespace request = "http://exquery.org/ns/request";
 
 declare variable $dr:db as xs:string:="doc-doc";
 
@@ -45,17 +46,22 @@ function atask2($app as xs:string,$task as xs:string){
 
 (:~
  :  run a task
+ :@param task 
  :)
 declare
 %updating  
 %output:method("text") 
 %rest:POST %rest:path("/doc/task/{$task}")
- %rest:query-param("app", "{$app}","doc")
-function dotask2($app as xs:string,$task as xs:string){
+ %rest:query-param("mode", "{$mode}","sync")
+function dotask2($task as xs:string,$mode as xs:string){
+  let $_:=$mode=>fn:trace("mode")
+  let $base:=get-base("doc")
    let $xq:=get-task($task)  
-   return if($task="filelist-1.xq")
-          then (xquery:update($xq),db:output("xq update" || rest:uri()))
-          else ( eval:update($xq,get-base("doc"),map{}), db:output("ok-top"))
+   return if($mode="sync")
+          then ( eval:update($xq,$base,map{}),
+                db:output("[success] task " || $task))
+          else let $j:= jobs:eval($xq,map{},map{"base-uri":$base,"cache":fn:true()}) 
+               return db:output("[success] async " || $j) 
 };
 
 declare function get-base($app as xs:string){

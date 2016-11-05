@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace hof = "http://basex.org/modules/hof";
+module namespace hof = "x-http://basex.org/modules/hof";
 
 (:~
  : Returns its argument unchanged. This function isn't useful on its own, but can be used as argument to other higher-order functions.

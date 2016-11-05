@@ -68,7 +68,7 @@ declare function xqdoc-html:variables(
   let $variables := $xqdoc/xqdoc:variables/xqdoc:variable[
     $private or not(annotation/@name = 'private')
   ]
-  where $variables
+  where fn:trace($variables,"--vars-")
   return (
     <h2>Variables</h2>,
     <ul>{

@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace crypto = "http://expath.org/ns/crypto";
+module namespace crypto = "x-http://expath.org/ns/crypto";
 declare namespace experr = "http://expath.org/ns/error";
 
 (:~

@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace request = "http://exquery.org/ns/request";
+module namespace request = "x-http://exquery.org/ns/request";
 
 (:~
  : Returns the Method of the HTTP request.

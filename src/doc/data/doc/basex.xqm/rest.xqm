@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace rest = "http://exquery.org/ns/restxq";
+module namespace rest = "x-http://exquery.org/ns/restxq";
 declare namespace wadl = "http://wadl.dev.java.net/2009/02";
 
 (:~

@@ -27,7 +27,7 @@
     </views>
 	<iconclass>fa fa-shopping-bag  </iconclass>
 	<data type="element(pkg:dependency)"><![CDATA[
-for $r in $cmpx:comps/comp:release
+for $r in cmpx:comps()/comp:release
 return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true" status="ok"/>
 ]]></data>
 </entity>

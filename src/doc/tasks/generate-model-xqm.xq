@@ -1,5 +1,5 @@
 (:~
- : Update "generated/models.xqm" from data/models
+ : Update `generated/models.xqm` from files in `data/models`
  :)
 
 declare namespace task="https://github.com/Quodatum/app-doc/task";

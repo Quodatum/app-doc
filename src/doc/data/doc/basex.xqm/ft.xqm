@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace ft = "http://basex.org/modules/ft";
+module namespace ft = "x-http://basex.org/modules/ft";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~
