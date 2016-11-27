@@ -52,6 +52,7 @@
         </field>
 	</fields>
 	   <views>
+	   <view name="id">dbpath</view>
 	    <view name="list">name html</view>
         <view name="filter">name description</view>
     </views>

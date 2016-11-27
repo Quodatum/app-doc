@@ -8,7 +8,7 @@ documents are xqdoc for modules supplied with BaseX
 ### models
 documents are the models
 
-### modules
+### /apps/{$app}
 documents are xqdoc for modules below app path
 
 # root documents
@@ -17,5 +17,6 @@ documents are xqdoc for modules below app path
 ## tasks.xml
 ## repositories.xml
 ## history.xml
+## wadl.xml
 
 

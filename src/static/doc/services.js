@@ -19,8 +19,9 @@ angular.module(
 .factory('DiceService', ['Restangular','$location', function (Restangular,$location) {
 return {
     setup: function($scope,update){
-      $scope.params = {start : 1,sort : "name"}; //q added by filter
-      
+      var d={start : 1,sort : "name"};
+      $scope.params=angular.extend({},$location.search(),$scope.params,d); //q added by filter
+      console.log($scope.params,"==========");
       $scope.$watch('params', function(value) {
          $location.search($scope.params);
          update();

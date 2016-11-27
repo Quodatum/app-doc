@@ -1,8 +1,10 @@
 <div>
     <cva-bar ng-model="bar" single="true"></cva-bar>
 	<div class="row">
+	     <h3>Counter: <span class="badge " >{{repeat.count}}</span>.</h3>
 		<table class="table .col-md-6">
 			<thead>
+			
 				<tr>
 					<th>Option</th>
 					<th>Time</th>
@@ -14,23 +16,25 @@
 				<tr>
 					<td>
 						<button ng-click="incr()" class="btn btn-default">Update count</button>
+						<label>repeat: <input type="checkbox" ng-model="repeat.post" /></label>
 					</td>
 					<td>
 						<span class="badge badge-default">{{postMs}}</span>
 					</td>
 					<td>
-						<input type="checkbox" ng-model="checkboxModel.value1"/>
+						..
 					</td>
 				</tr>
                 <tr>
                     <td>
                         <button ng-click="get()" class="btn btn-default">Get count</button>
+                        <label>repeat: <input type="checkbox" ng-model="repeat.get"  /></label>
                     </td>
                     <td>
                         <span class="badge badge-default">{{getMs}}</span>
                     </td>
                     <td>
-                        <input type="checkbox" ng-model="checkboxModel.value1"/>
+                        ..
                     </td>
                 </tr>
 			</tbody>

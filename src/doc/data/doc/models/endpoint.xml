@@ -1,6 +1,7 @@
 <entity name="endpoint" xmlns="https://github.com/Quodatum/app-doc/entity">  
 	<description>A WADL type wadl:resource </description>
 	<namespace prefix="wadl" uri="http://wadl.dev.java.net/2009/02"/>
+	   <module prefix="rest" namespace="http://exquery.org/ns/restxq" />
 	<fields>
 		<field name="path" type="xs:string">
 			<description>path</description>
@@ -25,5 +26,5 @@
     <view name="filter">path doc</view>
     </views>
 	<iconclass>fa fa-exchange</iconclass>
-	<data type="element(wadl:resource)"></data>
+	<data type="element(wadl:resource)">fn:trace(rest:wadl(),"WADL")//wadl:resource</data>
 </entity>

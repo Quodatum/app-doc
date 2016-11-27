@@ -70,8 +70,13 @@ declare function generate($e as element(ent:entity)) as xs:string
          fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
       }},
        "json":   map{{ {$fields!jsonfn(.)=>fn:string-join(",")} }},
+       
       "data": function() as {$e/ent:data/@type/fn:string(.)}*
-       {{ {let $a:=$e/ent:data/fn:string() return if($a)then $a else "()"} }}
+       {{ {let $a:=$e/ent:data/fn:string() return if($a)then $a else "()"} }},
+       
+       "views": map{{ 
+       {$e/ent:views/ent:view!("'" || @name || "': '" ||. || "'")=>fn:string-join(',')}
+       }}
    }}</field>
 };
 

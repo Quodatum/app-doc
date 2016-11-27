@@ -16,5 +16,5 @@ let $files:=df:dir($src,"*.xqm,*.xq")
 return (db:output("modules processed: " || count($files) )
          ,for $file in $files   
         let $doc:=doc:xqdoc("app",$src ||$file)
-        return db:replace($db,"/modules/" || $file,$doc) 
+        return db:replace($db,"/apps/doc/" || $file,$doc) 
         )

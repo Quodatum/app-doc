@@ -14,7 +14,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">
-					<div class="pull-right">type: {{model.type}}</div>
+					<div class="pull-right">Type: <code>{{model.type}}</code></div>
 					<i class="{{model.iconclass}}"></i>
 					{{model.name}}
 				</h3>

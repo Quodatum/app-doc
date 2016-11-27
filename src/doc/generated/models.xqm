@@ -1,9 +1,10 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2016-11-05T23:08:39.501Z 
+ : auto generated from xml files in entities folder at: 2016-11-27T23:10:04.419Z 
  :)
 
 module namespace entity = 'quodatum.models.generated';
 import module namespace cmpx='quodatum.cmpx';
+import module namespace rest='http://exquery.org/ns/restxq';
 import module namespace xqdoc-html='quodatum.xqdoc.html';
 declare namespace pkg='http://expath.org/ns/pkg';
 declare namespace comp='urn:quodatum:qd-cmpx:component';
@@ -49,8 +50,13 @@ declare variable $entity:list:=map {
             (: string :)
                         fn:data($_/version)!element version {  .} 
                  } },
+       
       "data": function() as element(item)*
-       { () }
+       { () },
+       
+       "views": map{ 
+       'list': 'name version description uri logo','filter': 'name description'
+       }
    },
   "component.version": map{
      "name": "component.version",
@@ -82,9 +88,14 @@ declare variable $entity:list:=map {
             (: string :)
                         fn:data($_/@version)!element version {  .} 
                  } },
+       
       "data": function() as element(pkg:dependency)*
        { for $r in cmpx:comps()/comp:release
-return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true" status="ok"/> }
+return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true" status="ok"/> },
+       
+       "views": map{ 
+       'filter': 'component'
+       }
    },
   "component": map{
      "name": "component",
@@ -126,8 +137,13 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
             (: string :)
                         fn:data($_/comp:type)!element type {  .} 
                  } },
+       
       "data": function() as element(comp:cmp)*
-       { cmpx:comps() }
+       { cmpx:comps() },
+       
+       "views": map{ 
+       'filter': 'name description'
+       }
    },
   "database": map{
      "name": "database",
@@ -164,8 +180,13 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
             (: number :)
                         fn:data($_/@resources)!element resources { attribute type {'number'}, .} 
                  } },
+       
       "data": function() as element(database)*
-       { db:list-details() }
+       { db:list-details() },
+       
+       "views": map{ 
+       
+       }
    },
   "endpoint": map{
      "name": "endpoint",
@@ -203,8 +224,13 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
             (: string :)
                         fn:data($_/@path)!element path {  .} 
                  } },
+       
       "data": function() as element(wadl:resource)*
-       { () }
+       { fn:trace(rest:wadl(),"WADL")//wadl:resource },
+       
+       "views": map{ 
+       'filter': 'path doc'
+       }
    },
   "entity.field": map{
      "name": "entity.field",
@@ -241,8 +267,13 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
             (: string :)
                         fn:data($_/ent:xpath)!element xpath {  .} 
                  } },
+       
       "data": function() as element(ent:field)*
-       { collection("doc-doc")//ent:field }
+       { collection("doc-doc")//ent:field },
+       
+       "views": map{ 
+       'filter': 'name description'
+       }
    },
   "entity": map{
      "name": "entity",
@@ -313,8 +344,13 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
             (: string :)
                         fn:data($_/ent:data/@type)!element type {  .} 
                  } },
+       
       "data": function() as element(ent:entity)*
-       { collection("doc-doc")//ent:entity }
+       { collection("doc-doc")//ent:entity },
+       
+       "views": map{ 
+       'filter': 'name description'
+       }
    },
   "file": map{
      "name": "file",
@@ -337,8 +373,13 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
             (: string :)
                         fn:data($_/path)!element path {  .} 
                  } },
+       
       "data": function() as element(*)*
-       { () }
+       { () },
+       
+       "views": map{ 
+       'filter': 'name'
+       }
    },
   "job": map{
      "name": "job",
@@ -375,8 +416,13 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
             (: string :)
                         fn:data($_/@user)!element user {  .} 
                  } },
+       
       "data": function() as element(job)*
-       { jobs:list()[. != jobs:current()]  ! jobs:list-details(.) }
+       { jobs:list()[. != jobs:current()]  ! jobs:list-details(.) },
+       
+       "views": map{ 
+       'filter': 'name description'
+       }
    },
   "search-result": map{
      "name": "search-result",
@@ -408,8 +454,13 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
             (: string :)
                         fn:data($_/uri)!element uri {  .} 
                  } },
+       
       "data": function() as element(search)*
-       { () }
+       { () },
+       
+       "views": map{ 
+       
+       }
    },
   "task": map{
      "name": "task",
@@ -446,11 +497,16 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
             (: string :)
                         fn:data($_/concat('/doc/data/file/read?path=' ,db:path(.)))!element xquery {  .} 
                  } },
+       
       "data": function() as element(xqdoc:xqdoc)*
        { collection("doc-doc")//xqdoc:xqdoc[
   xqdoc:namespaces/xqdoc:namespace/@uri="https://github.com/Quodatum/app-doc/task"
  and xqdoc:module/@type="main"
-] }
+] },
+       
+       "views": map{ 
+       'filter': 'name description'
+       }
    },
   "xqmodule": map{
      "name": "xqmodule",
@@ -522,8 +578,13 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
             (: string :)
                         fn:data($_/xqdoc:module/xqdoc:uri)!element uri {  .} 
                  } },
+       
       "data": function() as element(xqdoc:xqdoc)*
-       { collection("doc-doc")/xqdoc:xqdoc }
+       { collection("doc-doc")/xqdoc:xqdoc },
+       
+       "views": map{ 
+       'id': 'dbpath','list': 'name html','filter': 'name description'
+       }
    }
 };
 

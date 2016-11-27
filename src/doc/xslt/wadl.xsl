@@ -7,7 +7,7 @@
 	version="2.0">
 
 	<!-- root is initial path to ignore -->
-	<xsl:param name="root" as="xs:string" select="''"/>
+	<xsl:param name="root" as="xs:string" select="''" />
 
 	<!-- generate module html // -->
 	<xsl:template match="/wadl:application/wadl:resources">
@@ -24,12 +24,12 @@
 					<xsl:choose>
 						<xsl:when test="$root='/'">
 							<a href="../../doc/wadl?fmt=xml" target="dn">
-								<i class="glyphicon glyphicon-save"></i>
+								<i class="glyphicon glyphicon-save" />
 							</a>
 						</xsl:when>
 						<xsl:otherwise>
 							<a href="../../doc/app/{$root}/view/wadl?fmt=xml" target="dn">
-								<i class="glyphicon glyphicon-save"></i>
+								<i class="glyphicon glyphicon-save" />
 							</a>
 						</xsl:otherwise>
 					</xsl:choose>
@@ -39,33 +39,36 @@
 			<div class="row">
 				<div class="col-md-4">
 					<ul class="list-group">
-						<xsl:for-each-group select="wadl:resource" group-by="@path">
-							<xsl:sort select="qdfun:fixuri(@path)" />
+						<xsl:for-each-group select="wadl:resource"
+							group-by="@path">
+							<xsl:sort select="lower-case(qdfun:fixuri(@path))" />
 							<li class="list-group-item">
-							
+
+								
+
+								<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
+									<xsl:value-of select="qdfun:fixuri(@path)" />
+								</a>
+
+								<xsl:for-each select="current-group()">
+									<xsl:apply-templates select="wadl:method"
+										mode="name" />
+								</xsl:for-each>
 								<span class="pull-right">
-						            <xsl:apply-templates select="wadl:method/wadl:response"
-						                mode="mediaType" />
-						        </span>
-						
-						        <a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
-						            <xsl:value-of select="qdfun:fixuri(@path)" />
-						        </a>
-						        
-						        <xsl:for-each select="current-group()">
-						          <xsl:apply-templates select="wadl:method" mode="name" />
-						        </xsl:for-each>
+                                    <xsl:apply-templates select="wadl:method/wadl:response"
+                                        mode="mediaType" />
+                                </span>
 							</li>
 						</xsl:for-each-group>
 					</ul>
 				</div>
-				<div class="col-md-8" style="height:70vh;overflow:scroll;">
+				<div class="col-md-8" >
 					<xsl:for-each select="wadl:resource">
-						<xsl:sort select="qdfun:fixuri(@path)" />
+						<xsl:sort select="lower-case(qdfun:fixuri(@path))" />
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a class="anchor" id="path-{generate-id()}"></a>
+									<a class="anchor" id="path-{generate-id()}" />
 									<xsl:apply-templates select="." mode="link">
 										<xsl:with-param name="root" select="$root" />
 									</xsl:apply-templates>
@@ -172,7 +175,7 @@
 
 	<!-- generate span with method name eg GET -->
 	<xsl:template match="wadl:method" mode="name">
-		<xsl:variable name="name" select="@name" />
+		<xsl:variable name="name" select="string(@name)" />
 		<span>
 			<xsl:attribute name="class">
 		<xsl:text>wadl-method label </xsl:text>
@@ -191,7 +194,7 @@
 				</xsl:otherwise>
 			</xsl:choose>
 			</xsl:attribute>
-			<xsl:value-of select="(@name,'(all)')[1]" />
+			<xsl:value-of select="if($name = '')then '(ALL)' else $name" />
 		</span>
 	</xsl:template>
 

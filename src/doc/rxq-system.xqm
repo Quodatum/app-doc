@@ -53,7 +53,8 @@ declare
 %output:method("text") 
 %rest:POST %rest:path("/doc/task/{$task}")
  %rest:query-param("mode", "{$mode}","sync")
-function dotask2($task as xs:string,$mode as xs:string){
+ %rest:query-param("app", "{$app}","doc")
+function dotask2($app as xs:string,$task as xs:string,$mode as xs:string){
   let $_:=$mode=>fn:trace("mode")
   let $base:=get-base("doc")
    let $xq:=get-task($task)  

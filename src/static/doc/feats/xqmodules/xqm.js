@@ -43,6 +43,7 @@ angular.module('quodatum.doc.xqm',
       console.log("XqmCtrl2");
 
       function update() {
+      console.log("XQ req", $scope.params);
         DiceService.list('xqmodule', $scope.params).then(function(d) {
           // console.log("AppsCtrl2", d);
           $scope.apps = d;

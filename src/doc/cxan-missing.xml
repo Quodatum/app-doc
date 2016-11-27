@@ -1,7 +1,7 @@
 <package xmlns="http://cxan.org/ns/package" id="missing">
     <abstract>No metadata (cxan.xml) found.</abstract>
-    <author id="noone">Andy Bunce</author>
-    <maintainer id="abunce">noone</maintainer>
+    <author id="noone">Unknown</author>
+    <maintainer id="abunce">Unknown</maintainer>
     <home></home>
     <category id="apps">Applications</category>
    

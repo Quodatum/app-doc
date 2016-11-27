@@ -34,23 +34,30 @@ angular.module('quodatum.doc.tools',
       console.log("post control");
       $scope.get = function() {
         var _start = performance.now();
-        Restangular.one("ping").get().then(function(r) {
+        return Restangular.one("ping").get().then(function(r) {
           $scope.getMs= Math.floor(performance.now() - _start);
-          
-          growl.success(r, {
-            title : 'GET  ' + $scope.getMs + ' ms.'
-          });
-        });
+          $scope.repeat.count=r;
+          if($scope.repeat.get){
+            $scope.get(); //does this leak??
+          }
+         });
       };
+    
       $scope.incr = function() {
         var _start = performance.now();
-        Restangular.all("ping").post().then(function(r) {
+        return Restangular.all("ping").post().then(function(r) {
           $scope.postMs = Math.floor(performance.now() - _start);
-          growl.success(r, {
-            title : 'POST  ' +  $scope.postMs + ' ms.'
-          });
-        });
+          $scope.repeat.count=r;
+          if($scope.repeat.post){
+            $scope.incr();
+          }
+        })
       };
+      $scope.repeat ={get:false,
+                     post:false,
+                     count:null
+      };
+  
       $scope.model = [ {
         label : 'parent1',
         children : [ {

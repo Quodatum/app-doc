@@ -12,20 +12,18 @@
 				<div class="media-body">
 
 					<h4 class="media-heading">
-
-						{{app.name}} <span class="label label-default">{{app.version}}</span>
+						<a href="#/data/app/{{app.name}}">{{app.name}}</a>
+						
 					</h4>
 					<p>{{app.description}}</p>
-					<p>
-						<a href="#/data/app/{{app.name}}">Documentation</a>
-
-					</p>
+					
 				</div>
 				<div class="btn-toolbar media-right">
 					<div class="btn-group">
 						<a href="{{app.uri}}" target="app-{{app.name}}" title="Run app"
 							class="btn btn-default">
-							<i class="fa fa-external-link"></i>
+							<span class="label label-default">{{app.version}}</span>
+							<i class="fa fa-play-circle"></i>
 						</a>
 					</div>
 				</div>

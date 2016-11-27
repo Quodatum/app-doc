@@ -76,8 +76,8 @@ declare function response($items,
  {
   let $total:=fn:count($items)
   let $opts:=map:merge(($opts,$dice:default))
-  let $items:= dice:sort($items,map:get($entity,"access"),$opts?sort)
-  let $jsonf:= map:get($entity,"json")
+  let $items:= dice:sort($items,$entity?access,$opts?sort)
+  let $jsonf:= $entity?json
   let $fields:=if ($opts?fields) then fn:tokenize($opts?fields) else map:keys($jsonf)
   let $slice:= fn:subsequence($items,$opts?start,$opts?limit)
   return 
@@ -90,6 +90,15 @@ declare function response($items,
         return <_ >{$fields!$jsonf(.)($item)}</_>}
     </items>
   </json> 
+};
+
+(:~ 
+ : get data
+ :)
+declare function get($entity as map(*),$name as xs:string)
+as element(*){
+    let $results:=$entity("data")()
+    return $results[$name=$entity?access?name(.)]
 };
 
 (:~ 

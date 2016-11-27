@@ -18,7 +18,7 @@ import module namespace apps = 'quodatum.doc.apps' at "apps.xqm";
 
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
 import module namespace rest = "http://exquery.org/ns/restxq";
-
+import module namespace request = "http://exquery.org/ns/request";
 
 (:~
  : The doc home page as html. The UI entry point.
@@ -49,17 +49,26 @@ function doc-init(){
      (: update model.xqm  :)
      if(db:exists("doc-doc")) then (
          cnf:write-log("load-app-code~~~~~~~~~~~"),
-         qsr:dotask2("doc","load-app-code.xq"),
+         qsr:dotask2("doc","load-app-code.xq","sync"),
          cnf:write-log("~~~~~~run tasks"),
+         wadl-save(),
          db:output(<rest:forward>/doc</rest:forward>)
          
      )else (
          cnf:write-log("~~~~~~create db"),
-         qsr:dotask2("doc","generate-app-db.xq"),
+         qsr:dotask2("doc","generate-app-db.xq","sync"),
          db:output(<rest:forward>/doc/init</rest:forward>) 
      )
 }; 
 
+declare 
+%updating
+function wadl-save(){
+    let $doc:=copy $c := rest:wadl()
+              modify (insert node (attribute when {fn:current-dateTime()}) into  $c)
+              return $c
+    return db:replace("doc-doc","wadl.xml",$doc)
+};
 
 (:~
  : List of apps found on file system.
@@ -140,8 +149,20 @@ function entity-data($entity as xs:string,$q )
     let $entity:=$entity:list($entity)
     let $results:=$entity("data")()
     let $results:=if($q) then fn:filter($results,$entity?filter(?,$q)) else $results 
+    (: parameter names that are entity fields :)
+    let $p:=request:parameter-names()[.=map:keys($entity?access)]=>fn:trace("Xparams")
+    let $p:=$p!map:entry(.,request:parameter(.))
+    let $results:=fn:fold-left($p,$results,filter-fold($entity,?,?))
     return dice:response($results,$entity,web:dice())
 };
+
+declare function filter-fold($entity,$results,$next){
+    let $a:=fn:trace($next,"filter-fold")
+    let $name:=map:keys($next)
+    let $test:=function($item){$entity?access($name)($item)=map:get($next,$name)}
+    return fn:filter($results,$test)
+};
+
 (: ** DEBUG ** :)
 declare
 %rest:GET %rest:path("doc/data/test")
@@ -161,10 +182,13 @@ function test-data($q )
 declare
 %rest:GET %rest:path("doc/data/xqmodule/item")
 %output:method("json")
-%rest:query-param("item", "{$item}")   
-function data-item($item as xs:string) 
-{
-    let $a:=fn:trace("$$$$$$")
+%rest:query-param("item", "{$item}")
+%rest:query-param("view", "{$view}","json")    
+function xqmodule-item(
+    $item as xs:string,
+    $view as xs:string
+){
+    let $view:=$view=>fn:trace("view")
     let $entity:=$entity:list("xqmodule")
     let $results:=$entity("data")()
     let $results:=$results[$item=$entity?access?dbpath(.)]
@@ -181,9 +205,8 @@ declare
 function data-item($entity as xs:string,$name as xs:string ) 
 {
     let $entity:=$entity:list($entity)
-    let $results:=$entity("data")()
-    let $results:=$results[$name=$entity?access?name(.)]
-    return dice:one(fn:head($results),$entity)
+    let $result:=dice:get($entity,$name)
+    return dice:one($result,$entity)
 };
 
 
