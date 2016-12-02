@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace map = "http://www.w3.org/2005/xpath-functions/map";
+module namespace map = "x-http://www.w3.org/2005/xpath-functions/map";
 
 (:~
  : Returns true if the <i>map</i> supplied as <code>$input</code> contains an entry with a key equal to the supplied value of <code>$key</code> ; otherwise it returns false. No error is raised if the map contains keys that are not comparable with the supplied <code>$key</code> . <p>If the supplied key is <code>xs:untypedAtomic</code>, it is compared as an instance of <code>xs:string</code>. If the supplied key is the <code>xs:float</code> or <code>xs:double</code> value <code>NaN</code>, the function returns true if there is an entry whose key is <code>NaN</code>, or false otherwise. </p> 

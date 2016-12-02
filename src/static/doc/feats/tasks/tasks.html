@@ -1,0 +1,38 @@
+<div>
+	<cva-bar params="params" state="$state" metadata="tasks.metadata">
+	<button ng-click="run('filelist-1.xq')" title="Run task"
+                            class="btn btn-default pull-right ">
+                            filelist1.xq<i class="fa fa-play-circle"></i>
+                        </button>
+	</cva-bar>
+	<div class="row">
+		<div ng-repeat="task in tasks" class="media col-sm-6 col-md-4 ">
+			<div class="qd-model well">
+			<div class="media-left">
+				<a ui-sref="tasks.item({task:task.name})" > <i
+					class="pull-left fa fa-arrow-circle-right fa-5x"></i>
+				</a>
+				<div class="pull-left ">
+                        <button ng-click="run(task.name)" title="Run task"
+                            class="btn btn-default pull-right ">           
+                             <span class="badge badge-default">{{task.params}}</span>
+                              <i class="fa fa-play-circle"></i>
+                        </button>
+                       
+                    </div>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">
+						{{task.name}} 
+						
+					</h4>
+					
+
+					<p>{{task.description}}</p>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

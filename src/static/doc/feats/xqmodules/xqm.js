@@ -1,52 +1,71 @@
 // app info
 angular.module('quodatum.doc.xqm',
-    [ 'ui.router', 'restangular', 'quodatum.services' ])
+    [ 'ui.router',  'quodatum.services' ])
 
 .config(
     [ '$stateProvider', '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
           $stateProvider
 
-          .state('xqm', {
-            url : "/data/xqm",
+          .state('xqmodule', {
+            url : "/data/xqmodule",
             abstract : true,
-            template : '<ui-view>library</ui-view>'
+            template : '<ui-view>library</ui-view>',
+            data : {
+              entity : "xqmodule"
+            }
+          })
+
+          .state('xqmodule.index', {
+            url : "",
+            templateUrl : '/static/doc/feats/xqmodules/xqms.html',
+            controller : "XqmsCtrl",
+            ncyBreadcrumb : {
+              label : 'XQ Modules'
+            }
+          })
+
+          .state('xqmodule.module', {
+            url : "/item?item",
+            templateUrl : '/static/doc/feats/xqmodules/xqm1.html',
+            controller : "XqmCtrl",
+            ncyBreadcrumb : {
+              label : '{{$stateParams.item}}',
+              parent : 'xqmodule.index'
+            }
           })
         } ])
 
 // controllers
 .controller("XqmsCtrl",
-    [ "$scope", "Restangular", function($scope, Restangular) {
+    [ "$scope", "DiceService", function($scope, DiceService) {
 
       console.log("XqmCtrl2");
-      var bar = Restangular.one("meta").one("cvabar", "apps-bar");
-      bar.get().then(function(d) {
-        $scope.bar = d;
-      });
-      var applist = Restangular.one("data").all('app');
-      applist.getList().then(function(d) {
-        // console.log("AppsCtrl2", d);
-        $scope.apps = d;
-      });
+
+      function update() {
+      console.log("XQ req", $scope.params);
+        DiceService.list('xqmodule', $scope.params).then(function(d) {
+          // console.log("AppsCtrl2", d);
+          $scope.apps = d;
+        });
+      }
+      DiceService.setup($scope, update)
 
     } ])
 
 .controller(
     "XqmCtrl",
-    [ "$scope", "$stateParams", "Restangular",
-        function($scope, $stateParams, Restangular) {
-          var app = $stateParams.app;
-          console.log("AppCtrl", app);
+    [ "$scope", "$stateParams", "DiceService",
+        function($scope, $stateParams, DiceService) {
+          var item = $stateParams.item;
+          console.log("xqmCtrl", item);
 
-          var applist = Restangular.one("data").one('app', app);
-          applist.get().then(function(d) {
-            $scope.app = d.item;
-            console.log(">>", d);
+          var applist = DiceService.one('xqmodule','item',{item:item})
+         .then(function(d) {
+            $scope.app = d;
+            console.log("xqmCtrl >>", d);
           });
-          var bar = Restangular.one("meta").one("cvabar", "app-bar");
-          bar.get().then(function(d) {
-            $scope.bar = d;
-          });
+
         } ])
 
 .controller(

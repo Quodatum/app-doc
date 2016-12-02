@@ -11,13 +11,10 @@ import module namespace df = 'quodatum.doc.file' at "../lib/files.xqm";
 let $app:="doc"
 let $db:="doc-" || $app
 let $src:=fn:resolve-uri("..")
-let $_:=fn:trace($src ,"src:__")
 
 let $files:=df:dir($src,"*.xqm,*.xq")
-for $file in $files
-
-let $doc:=doc:xqdoc("app",$src ||$file)
-return (  
-      db:replace($db,"/modules/" || $file,$doc),
-      db:output($file || " added xqdoc to db")
-       )
+return (db:output("modules processed: " || count($files) )
+         ,for $file in $files   
+        let $doc:=doc:xqdoc("app",$src ||$file)
+        return db:replace($db,"/apps/doc/" || $file,$doc) 
+        )

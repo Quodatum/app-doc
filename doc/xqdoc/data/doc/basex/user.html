@@ -1,0 +1,956 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/user.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://basex.org/modules/user</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> contains functions for creating and administering database users. The <a href="http://docs.basex.org/wiki/User_Management">User Management</a> article gives more information on database users and permissions.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="alter#2">
+      <h3>alter($name, $newname)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$name</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$newname</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Renames a user with the specified <code>$name</code> to <code>$newname</code> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:unknown The specified user name is unknown.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:name The specified user name is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:admin The "admin" user cannot be modified.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:logged-in The specified user is currently logged in.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:update The operation can only be performed once per user or database pattern.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:conflict A user cannot be both altered and dropped.</td>
+      </tr>
+    </table>
+    <a name="create#2">
+      <h3>create($name, $password)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$name</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$password</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Creates a new user with the specified <code>$name</code> and <code>$password</code> . The default permission <code>none</code> can be overwritten with the <code>$permission</code> argument. Existing users will be overwritten.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:name The specified user name is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:permission The specified permission is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:admin The "admin" user cannot be modified.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:logged-in The specified user is currently logged in.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:update The operation can only be performed once per user or database pattern.</td>
+      </tr>
+    </table>
+    <a name="create#3">
+      <h3>create($name, $password, $permission)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$name</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$password</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$permission</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Creates a new user with the specified <code>$name</code> and <code>$password</code> . The default permission <code>none</code> can be overwritten with the <code>$permission</code> argument. Existing users will be overwritten.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:name The specified user name is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:permission The specified permission is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:admin The "admin" user cannot be modified.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:logged-in The specified user is currently logged in.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:update The operation can only be performed once per user or database pattern.</td>
+      </tr>
+    </table>
+    <a name="current#0">
+      <h3>current()</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns the name of the currently logged in user.</td>
+      </tr>
+    </table>
+    <a name="drop#1">
+      <h3>drop($name)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$name</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Drops a user with the specified <code>$name</code> . If a glob <code>$pattern</code> is specified, only the database pattern will be dropped.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:unknown The specified user name is unknown.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:name The specified user name is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:pattern The specified database pattern is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:admin The "admin" user cannot be modified.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:logged-in The specified user is currently logged in.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:update The operation can only be performed once per user or database pattern.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:conflict A user cannot be both altered and dropped.</td>
+      </tr>
+    </table>
+    <a name="drop#2">
+      <h3>drop($name, $pattern)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$name</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$pattern</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Drops a user with the specified <code>$name</code> . If a glob <code>$pattern</code> is specified, only the database pattern will be dropped.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:unknown The specified user name is unknown.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:name The specified user name is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:pattern The specified database pattern is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:admin The "admin" user cannot be modified.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:logged-in The specified user is currently logged in.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:update The operation can only be performed once per user or database pattern.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:conflict A user cannot be both altered and dropped.</td>
+      </tr>
+    </table>
+    <a name="exists#1">
+      <h3>exists($name)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$name</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Checks if a user with the specified <code>$name</code> exists.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:name The specified user name is invalid.</td>
+      </tr>
+    </table>
+    <a name="grant#2">
+      <h3>grant($name, $permission)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$name</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$permission</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Grants the specified <code>$permission</code> to a user with the specified <code>$name</code> . If a glob <code>$pattern</code> is specified, the permission will only be applied to databases matching that pattern.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:unknown The specified user name is unknown.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:name The specified user name is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:pattern The specified database pattern is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:permission The specified permission is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:admin The "admin" user cannot be modified.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:local A local permission can only be 'none', 'read' or 'write'.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:logged-in The specified user is currently logged in.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:update The operation can only be performed once per user or database pattern.</td>
+      </tr>
+    </table>
+    <a name="grant#3">
+      <h3>grant($name, $permission, $pattern)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$name</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$permission</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$pattern</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Grants the specified <code>$permission</code> to a user with the specified <code>$name</code> . If a glob <code>$pattern</code> is specified, the permission will only be applied to databases matching that pattern.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:unknown The specified user name is unknown.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:name The specified user name is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:pattern The specified database pattern is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:permission The specified permission is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:admin The "admin" user cannot be modified.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:local A local permission can only be 'none', 'read' or 'write'.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:logged-in The specified user is currently logged in.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:update The operation can only be performed once per user or database pattern.</td>
+      </tr>
+    </table>
+    <a name="list#0">
+      <h3>list()</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns the names of all registered users.</td>
+      </tr>
+    </table>
+    <a name="list-details#1">
+      <h3>list-details($name)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$name</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(user)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns an element sequence, containing all registered users and their permissions.
+In addition to the <a href="http://docs.basex.org/wiki/Commands#SHOW_USERS">SHOW USERS</a> command, encoded password strings and database permissions will be output. A user <code>$name</code> can be specified to filter the results in advance.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:unknown The specified user name is unknown.</td>
+      </tr>
+    </table>
+    <a name="list-details#0">
+      <h3>list-details()</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(user)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns an element sequence, containing all registered users and their permissions.
+In addition to the <a href="http://docs.basex.org/wiki/Commands#SHOW_USERS">SHOW USERS</a> command, encoded password strings and database permissions will be output. A user <code>$name</code> can be specified to filter the results in advance.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:unknown The specified user name is unknown.</td>
+      </tr>
+    </table>
+    <a name="password#2">
+      <h3>password($name, $password)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$name</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$password</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Changes the <code>password</code> of a user with the specified <code>$name</code> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:unknown The specified user name is unknown.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:name The specified user name is invalid.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>:update The operation can only be performed once per user or database pattern.</td>
+      </tr>
+    </table>
+  </body>
+</html>

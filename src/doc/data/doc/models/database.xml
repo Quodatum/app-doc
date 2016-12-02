@@ -1,0 +1,29 @@
+<entity name="database" 
+	xmlns="https://github.com/Quodatum/app-doc/entity">
+	<description>A BaseX database</description>
+	<fields>
+		<field name="name" type="xs:string">
+			<description>Database name</description>
+			<xpath>.</xpath>
+		</field>
+		<field name="href" type="xs:string">
+			<description>URL for database detail</description>
+			<xpath>"#/data/database/" || .</xpath>
+		</field>
+		<field name="resources" type="xs:integer">
+			<description>number of resources</description>
+			<xpath>@resources</xpath>
+		</field>
+		<field name="modifiedDate" type="xs:dateTime">
+			<description>modifiedDate</description>
+			<xpath>@modified-date</xpath>
+		</field>
+		<field name="path" type="xs:string">
+			<description>source path</description>
+			<xpath>@path</xpath>
+		</field>
+
+	</fields>
+	<iconclass>glyphicon glyphicon-th</iconclass>
+	<data type="element(database)">db:list-details()</data>
+</entity>

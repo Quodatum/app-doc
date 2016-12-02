@@ -3,15 +3,19 @@
 	<fields>
 		<field name="title" type="xs:string">
 			<description>title</description>
-			<xpath>$_/title</xpath>
+			<xpath>title</xpath>
 		</field>
 		<field name="type" type="xs:string">
 			<description>type</description>
-			<xpath>$_/type</xpath>
+			<xpath>type</xpath>
 		</field>
 		<field name="uri" type="xs:string">
 			<description>link to result</description>
-			<xpath>$_/uri</xpath>
+			<xpath>uri</xpath>
+		</field>
+		<field name="sref" type="xs:string">
+			<description>ui-router ui-sref data</description>
+			<xpath>"app.item.index({'name':'benchx'})"</xpath>
 		</field>
 	</fields>
 	<iconclass>fa fa-question-circle</iconclass>

@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/proc.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://basex.org/modules/proc</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> provides functions for executing system commands from XQuery.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="execute#1">
+      <h3>execute($cmd)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$cmd</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(result)</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Executes the specified command in a separate process and returns the result as element.
+<code>$cmd</code> is the name of the command. Arguments to the command may be specified via <code>$args</code> .
+The result can be explicitly converted to a specified <code>$encoding</code> . If no encoding is specified, the system’s default encoding is used.
+A result has the following structure:
+<pre class="brush:xml"> &lt;result&gt; &lt;output&gt;...result output...&lt;/output&gt; &lt;error&gt;...error output...&lt;/error&gt; &lt;code&gt;0&lt;/code&gt; &lt;/result&gt; </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXPR9999 the specified encoding does not exist or is not supported.</td>
+      </tr>
+    </table>
+    <a name="execute#2">
+      <h3>execute($cmd, $args)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$cmd</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$args</code>
+              </td>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(result)</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Executes the specified command in a separate process and returns the result as element.
+<code>$cmd</code> is the name of the command. Arguments to the command may be specified via <code>$args</code> .
+The result can be explicitly converted to a specified <code>$encoding</code> . If no encoding is specified, the system’s default encoding is used.
+A result has the following structure:
+<pre class="brush:xml"> &lt;result&gt; &lt;output&gt;...result output...&lt;/output&gt; &lt;error&gt;...error output...&lt;/error&gt; &lt;code&gt;0&lt;/code&gt; &lt;/result&gt; </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXPR9999 the specified encoding does not exist or is not supported.</td>
+      </tr>
+    </table>
+    <a name="execute#3">
+      <h3>execute($cmd, $args, $encoding)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$cmd</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$args</code>
+              </td>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$encoding</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(result)</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Executes the specified command in a separate process and returns the result as element.
+<code>$cmd</code> is the name of the command. Arguments to the command may be specified via <code>$args</code> .
+The result can be explicitly converted to a specified <code>$encoding</code> . If no encoding is specified, the system’s default encoding is used.
+A result has the following structure:
+<pre class="brush:xml"> &lt;result&gt; &lt;output&gt;...result output...&lt;/output&gt; &lt;error&gt;...error output...&lt;/error&gt; &lt;code&gt;0&lt;/code&gt; &lt;/result&gt; </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXPR9999 the specified encoding does not exist or is not supported.</td>
+      </tr>
+    </table>
+    <a name="system#1">
+      <h3>system($cmd)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$cmd</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Executes the specified command in a separate process and returns the result as string.
+<code>$cmd</code> is the name of the command. Arguments to the command may be specified via <code>$args</code> .
+The result can be explicitly converted to a specified <code>$encoding</code> . If no encoding is specified, the system’s default encoding is used.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXPRnnnn If the command results in an error, an XQuery error will be raised. Its code will consist of the letters <code>BXPR</code> and four digits with the command’s exit code.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXPR9999 the specified encoding does not exist or is not supported.</td>
+      </tr>
+    </table>
+    <a name="system#2">
+      <h3>system($cmd, $args)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$cmd</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$args</code>
+              </td>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Executes the specified command in a separate process and returns the result as string.
+<code>$cmd</code> is the name of the command. Arguments to the command may be specified via <code>$args</code> .
+The result can be explicitly converted to a specified <code>$encoding</code> . If no encoding is specified, the system’s default encoding is used.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXPRnnnn If the command results in an error, an XQuery error will be raised. Its code will consist of the letters <code>BXPR</code> and four digits with the command’s exit code.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXPR9999 the specified encoding does not exist or is not supported.</td>
+      </tr>
+    </table>
+    <a name="system#3">
+      <h3>system($cmd, $args, $encoding)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$cmd</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$args</code>
+              </td>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$encoding</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Executes the specified command in a separate process and returns the result as string.
+<code>$cmd</code> is the name of the command. Arguments to the command may be specified via <code>$args</code> .
+The result can be explicitly converted to a specified <code>$encoding</code> . If no encoding is specified, the system’s default encoding is used.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXPRnnnn If the command results in an error, an XQuery error will be raised. Its code will consist of the letters <code>BXPR</code> and four digits with the command’s exit code.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXPR9999 the specified encoding does not exist or is not supported.</td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,29 +1,11 @@
 // database info
 angular.module('quodatum.doc.tools',
-    [ 'ui.router', 'restangular', 'angular-growl', 'treemendous' ]).config(
+    [ 'ui.router', 'restangular', 'angular-growl', 'treemendous','ui.bootstrap'  ])
+
+.config(
     [ '$stateProvider', '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
           $stateProvider
-
-          .state('tasks', {
-            url : "/tasks",
-            abstract : true,
-            template : '<ui-view>tasks</ui-view>'
-          })
-
-          .state('tasks.index', {
-            url : "",
-            templateUrl : '/static/doc/feats/tools/tasks.xhtml',
-            reloadOnSearch : false,
-            controller : "TaskCtrls"
-          })
-
-          .state('tasks.item', {
-            url : "/:task",
-            templateUrl : '/static/doc/feats/tools/task.xhtml',
-            reloadOnSearch : false,
-            controller : "TaskCtrl"
-          })
 
           .state('poster', {
             url : "/poster",
@@ -31,70 +13,51 @@ angular.module('quodatum.doc.tools',
             reloadOnSearch : false,
             controller : "PostCtrl"
           })
-
+          
+        .state('comps', {
+            url : "/comps",
+            templateUrl : '/static/doc/feats/tools/comps.xhtml',
+            reloadOnSearch : false,
+            controller : "CmpCtrl"
+          })
         } ])
 
 // controllers
-.controller("TaskCtrls",
+.controller("CmpCtrl",
     [ "$scope", "Restangular", "growl", function($scope, Restangular, growl) {
-      console.log("task control");
-      $scope.setTitle("Run Tasks");
-      $scope.params = {
-        start : 0
-      };
-      growl.info("This page uses angular growl for notifications");
-      var bar = Restangular.one("meta").one("cvabar", "tasks-bar");
-      bar.get().then(function(d) {
-        $scope.bar = d;
-      });
-      Restangular.one("data").all("task").getList().then(function(d) {
-        $scope.tasks = d;
-      });
-
-      $scope.run = function(task) {
-        Restangular.all("task").all(task).post().then(function(r) {
-          console.log("TASK DONE");
-          growl.success(r);
-
-        }, function(r) {
-          growl.error(r.data);
-        })
-      };
-
-    } ])
-
-// details of a task
-.controller(
-    "TaskCtrl",
-    [ "$scope", "Restangular", "$stateParams", "growl",
-        function($scope, Restangular, $stateParams, growl) {
-          console.log("task control");
-          var task = $stateParams.task;
-          $scope.setTitle("Run Task" + task);
-        } ])
-
+      console.log("comp control");
+    }])
+    
 // test update read and increment a counter
 .controller("PostCtrl",
     [ "$scope", "Restangular", "growl", function($scope, Restangular, growl) {
       console.log("post control");
       $scope.get = function() {
         var _start = performance.now();
-        Restangular.one("ping").get().then(function(r) {
-          var _time = Math.floor(performance.now() - _start);
-          growl.success(r, {
-            title : 'GET  ' + _time + ' ms.'
-          });
-        });
+        return Restangular.one("ping").get().then(function(r) {
+          $scope.getMs= Math.floor(performance.now() - _start);
+          $scope.repeat.count=r;
+          if($scope.repeat.get){
+            $scope.get(); //does this leak??
+          }
+         });
       };
+    
       $scope.incr = function() {
         var _start = performance.now();
-        Restangular.all("ping").post().then(function(r) {
-          var _time = Math.floor(performance.now() - _start);
-          growl.success(r, {
-            title : 'POST  ' + _time + ' ms.'
-          });
-        });
+        return Restangular.all("ping").post().then(function(r) {
+          $scope.postMs = Math.floor(performance.now() - _start);
+          $scope.repeat.count=r;
+          if($scope.repeat.post){
+            $scope.incr();
+          }
+        })
       };
+      $scope.repeat ={get:false,
+                     post:false,
+                     count:null
+      };
+  
       $scope.model = [ {
         label : 'parent1',
         children : [ {
@@ -116,4 +79,5 @@ angular.module('quodatum.doc.tools',
         growl.info("expand: " + item.label + " " + t);
         return true;
       };
-    } ]);
+    } ])
+;

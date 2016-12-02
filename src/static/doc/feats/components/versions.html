@@ -1,0 +1,25 @@
+<div>
+    <cva-bar metadata="apps.metadata" params="params" state="$state">
+    </cva-bar>
+    <div class="row">
+
+        <div ng-repeat="app in apps" class="media col-sm-6 col-md-4 ">
+            <div class="qd-model well">
+                <a class="media-left" ui-sref="component.item({name:app.name})">
+                    <i class="{{model.iconclass}} fa-5x"></i>
+                </a>
+                <div class="media-body">
+
+                    <h4 class="media-heading">
+                        <a ui-sref="component.item({name:app.component})"> {{app.component}}</a>
+                        <div class="pull-right" title="Status">
+                        <span class="label label-info">{{app.status}}</span></div>
+                    </h4>
+                    <p>{{app.version}}</p>
+                   
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace convert = "http://basex.org/modules/convert";
+module namespace convert = "x-http://basex.org/modules/convert";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

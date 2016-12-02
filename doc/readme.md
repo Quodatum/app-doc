@@ -1,4 +1,7 @@
 # Doc app dev guide
+* [general](doc.md)
+* [client](client/readme.md)
+* [server](server/readme.md)
 
 Web UI set in doc-rest.xqm
 UI is created in layout.xqm
@@ -27,8 +30,7 @@ generic request parameters
 
 ## cva bars 
 A UI component. Crumbs,Views,Actions
-Has an XML respresentation.
-lib/cva.xqm can load from a conventional location and format for json 
+
 
 ##xslt 
 Anchor

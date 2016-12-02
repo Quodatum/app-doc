@@ -10,9 +10,9 @@
 module namespace dr = 'quodatum.system.rest';
 declare default function namespace 'quodatum.system.rest'; 
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
-
-import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
+import module namespace rest = "http://exquery.org/ns/restxq";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
+import module namespace request = "http://exquery.org/ns/request";
 
 declare variable $dr:db as xs:string:="doc-doc";
 
@@ -27,22 +27,42 @@ declare variable $dr:tasks as element(xqdoc:xqdoc)*:=db:open("doc-doc")//xqdoc:x
  :  list tasks
  :)
 declare  
-%output:method("json")  
-%rest:GET %rest:path("{$app}/task")
-function listtasks($app){
+%rest:GET %rest:path("/doc/task")
+%output:method("json") 
+function listtasks(){
    <json type="array"/>
 };
+
+(:~
+ :  about a task
+ :)
+declare 
+%output:method("json") 
+%rest:GET %rest:path("/doc/task/{$task}")
+ %rest:query-param("app", "{$app}","doc")
+function atask2($app as xs:string,$task as xs:string){
+   <json type="object"/>
+};
+
 (:~
  :  run a task
+ :@param task 
  :)
-declare  
+declare
+%updating  
 %output:method("text") 
-%rest:POST %rest:path("{$app}/task/{$task}")
-function dotask2($app,$task as xs:string){
+%rest:POST %rest:path("/doc/task/{$task}")
+ %rest:query-param("mode", "{$mode}","sync")
+ %rest:query-param("app", "{$app}","doc")
+function dotask2($app as xs:string,$task as xs:string,$mode as xs:string){
+  let $_:=$mode=>fn:trace("mode")
+  let $base:=get-base("doc")
    let $xq:=get-task($task)  
-   let $r:= eval:update($xq,get-base($app),5)
-   
-   return "ok"
+   return if($mode="sync")
+          then ( eval:update($xq,$base,map{}),
+                db:output("[success] task " || $task))
+          else let $j:= jobs:eval($xq,map{},map{"base-uri":$base,"cache":fn:true()}) 
+               return db:output("[success] async " || $j) 
 };
 
 declare function get-base($app as xs:string){
@@ -57,23 +77,25 @@ declare function get-task($name) as xs:string{
   return $xq 
 };
 
+
 (:~
  :  ping incr counter
  :)
-declare %updating
-%output:method("text")  
-%rest:POST %rest:path("{$app}/ping")
-function dopost($app){
+declare %updating  
+%rest:POST %rest:path("/doc/ping")
+%output:method("text")
+function dopost(){
     (replace value of node $dr:state/hits with 1+$dr:state/hits,
             db:output(1+$dr:state/hits))
 };
+
 (:~
  :  ping incr counter
  :)
 declare 
 %output:method("text")  
-%rest:GET %rest:path("{$app}/ping")
-function dostate($app){
+%rest:GET %rest:path("/doc/ping")
+function dostate(){
   $dr:state/hits
 };
 

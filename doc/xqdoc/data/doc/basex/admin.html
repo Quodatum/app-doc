@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/admin.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://basex.org/modules/admin</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> contains functions for performing admin-centric operations such as managing database users and log data.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="logs#1">
+      <h3>logs($date)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$date</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(entry)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns <a href="http://docs.basex.org/wiki/Logging">Logging</a> data compiled by the database or HTTP server: <ul> <li> If no argument is specified, a list of all log files will be returned, including the file size and date. </li> <li> If a <code>$date</code> is specified, the contents of a single log file will be returned. </li> <li> If <code>$merge</code> is set to true, related log entries will be merged. Please note that the merge might not be 100% successful, as log entries may be ambiguous. </li> </ul>
+        </td>
+      </tr>
+    </table>
+    <a name="logs#2">
+      <h3>logs($date, $merge)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$date</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$merge</code>
+              </td>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(entry)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns <a href="http://docs.basex.org/wiki/Logging">Logging</a> data compiled by the database or HTTP server: <ul> <li> If no argument is specified, a list of all log files will be returned, including the file size and date. </li> <li> If a <code>$date</code> is specified, the contents of a single log file will be returned. </li> <li> If <code>$merge</code> is set to true, related log entries will be merged. Please note that the merge might not be 100% successful, as log entries may be ambiguous. </li> </ul>
+        </td>
+      </tr>
+    </table>
+    <a name="logs#0">
+      <h3>logs()</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(file)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns <a href="http://docs.basex.org/wiki/Logging">Logging</a> data compiled by the database or HTTP server: <ul> <li> If no argument is specified, a list of all log files will be returned, including the file size and date. </li> <li> If a <code>$date</code> is specified, the contents of a single log file will be returned. </li> <li> If <code>$merge</code> is set to true, related log entries will be merged. Please note that the merge might not be 100% successful, as log entries may be ambiguous. </li> </ul>
+        </td>
+      </tr>
+    </table>
+    <a name="sessions#0">
+      <h3>sessions()</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(session)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns an element sequence with all currently opened sessions, including the user name, address (IP:port) and an optionally opened database.
+The output of this function and the <a href="http://docs.basex.org/wiki/Commands#SHOW_SESSIONS">SHOW SESSIONS</a> command is similar.</td>
+      </tr>
+    </table>
+    <a name="write-log#1">
+      <h3>write-log($text)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$text</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>empty-sequence()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Writes a string to the database logs, along with current user data (timestamp, user name). If the function is called in a web application or a database client, the IP will be logged. Otherwise, the string <code>STANDALONE</code> will be logged.</td>
+      </tr>
+    </table>
+  </body>
+</html>

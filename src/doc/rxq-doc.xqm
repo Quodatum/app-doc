@@ -6,18 +6,19 @@
 module namespace dr = 'quodatum.doc.rest';
 declare default function namespace 'quodatum.doc.rest';
 
+import module namespace cmpx="quodatum.cmpx";
 import module namespace cnf = 'quodatum.app.config' at 'config.xqm';
 import module namespace doc = 'quodatum.doc' at 'doctools.xqm';
 import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
-import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm";
-import module namespace web = 'quodatum.web.utils3' at 'lib/webutils.xqm';
+import module namespace dice = 'quodatum.web.dice/v3' at "lib/dice.xqm";
+import module namespace web = 'quodatum.web.utils4' at 'lib/webutils.xqm';
 import module namespace entity = 'quodatum.models.generated' at 'generated/models.xqm';
 import module namespace  qsr = 'quodatum.system.rest' at 'rxq-system.xqm';
+import module namespace apps = 'quodatum.doc.apps' at "apps.xqm";
 
 import module namespace df = 'quodatum.doc.file' at "lib/files.xqm";
-import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
 import module namespace rest = "http://exquery.org/ns/restxq";
-
+import module namespace request = "http://exquery.org/ns/request";
 
 (:~
  : The doc home page as html. The UI entry point.
@@ -25,6 +26,7 @@ import module namespace rest = "http://exquery.org/ns/restxq";
 declare  
  %rest:GET %rest:path("doc")
  %output:method("html")
+%output:media-type('text/html')
  %output:version("5.0")
 function doc(){
      (: update model.xqm :)
@@ -36,57 +38,58 @@ function doc(){
 };
 
 (:~
- : Initialise system by runnning tasks 1-3
+ : Initialise/repair system by runnning tasks 1-3
  :)
 declare %updating 
  %rest:GET %rest:path("doc/init")
  %output:method("html")
  %output:version("5.0")
+ %output:media-type('text/html')
 function doc-init(){
      (: update model.xqm  :)
-     if(db:exists("doc")) then (
+     if(db:exists("doc-doc")) then (
          cnf:write-log("load-app-code~~~~~~~~~~~"),
-         qsr:dotask2("doc","load-app-code.xq"),
+         qsr:dotask2("doc","load-app-code.xq","sync"),
          cnf:write-log("~~~~~~run tasks"),
+         wadl-save(),
          db:output(<rest:forward>/doc</rest:forward>)
          
      )else (
          cnf:write-log("~~~~~~create db"),
-         qsr:dotask2("doc","generate-app-db.xq"),
+         qsr:dotask2("doc","generate-app-db.xq","sync"),
          db:output(<rest:forward>/doc/init</rest:forward>) 
      )
 }; 
 
+declare 
+%updating
+function wadl-save(){
+    let $doc:=copy $c := rest:wadl()
+              modify (insert node (attribute when {fn:current-dateTime()}) into  $c)
+              return $c
+    return db:replace("doc-doc","wadl.xml",$doc)
+};
 
 (:~
  : List of apps found on file system.
  :)
 declare
 %rest:GET %rest:path("doc/data/app")
+%rest:query-param("q", "{$q}")  
 %output:method("json")
-function apps() 
+function apps($q ) 
 {
-
-let $searchs:=for $a in df:apps()
-            order by $a
-            return app-json($a)
-                    
-let $entity:=$entity:list("app")
-let $_:= dice:response($searchs,$entity)
-return fn:trace($_,"json")
+    let $entity:=$entity:list("app")
+    let $searchs:=df:apps() ! apps:app-json(.,doc:uri#3)         
+    let $searchs:=if($q) then fn:filter($searchs,$entity?filter(?,$q)) else $searchs                    
+         
+    let $_:= dice:response($searchs,$entity,web:dice())
+    return $_
 };
 
-declare function app-json($app as xs:string) as element(item){
-    let $logo:=doc:uri("static",$app,"logo.svg")
-    let $logo:= if(file:exists($logo))
-                then <logo>{"/static/" || $app || "/logo.svg"}</logo> 
-                else ()
-     return <item type="object">
-                    <name>{$app}</name>
-                    <description>todo this</description>
-                    {$logo
-                    }</item>            
-};
+
+
+
 (:~
  : detail of app found on file system.
  :)
@@ -95,64 +98,118 @@ declare
 %output:method("json")   
 function app($app) 
 {
-    <json type="object">{app-json($app)}</json>
+    let $entity:=$entity:list("app")
+    let $jsonf:= map:get($entity,"json")
+    
+    let $item:=apps:app-json($app,doc:uri#3)
+    return <json type="object">{dice:json-flds($item,$jsonf)/*}</json>
 };
 
+(:~
+ : detail of app found on file system.
+ :)
+declare
+%rest:GET %rest:path("doc/data/app/{$app}/component")
+%rest:query-param("q", "{$q}") 
+%output:method("json")   
+function appcmp($app,$q) 
+{
+    let $data:=cmpx:app-dependents($app)!cmpx:status(.)
+    let $entity:=$entity:list("component.version")
+    return dice:response($data,$entity,web:dice())
+};
+
+(:~
+ : detail of a task .
+ :)
+declare
+%rest:GET %rest:path("doc/data/task/{$task}")
+%output:method("json")   
+function task($task) 
+{
+    let $entity:=$entity:list("task")
+    let $items:=$entity?data()
+    let $f:=$entity?access?name
+    let $item:=$items[$f(.)=$task]
+     (: just one :)
+     return <json objects="json">{dice:json-flds($item,$entity?json)/*}</json>
+ };
+
+
+ 
 (:~
  : default entity lister
  :)
 declare
 %rest:GET %rest:path("doc/data/{$entity}")
-%output:method("json")   
-function entity-data($entity as xs:string) 
+%rest:query-param("q", "{$q}") 
+%output:method("json") 
+function entity-data($entity as xs:string,$q ) 
 {
     let $entity:=$entity:list($entity)
     let $results:=$entity("data")()
-    let $_:=fn:trace($results,"entity RESULTS ")
+    let $results:=if($q) then fn:filter($results,$entity?filter(?,$q)) else $results 
+    (: parameter names that are entity fields :)
+    let $p:=request:parameter-names()[.=map:keys($entity?access)]=>fn:trace("Xparams")
+    let $p:=$p!map:entry(.,request:parameter(.))
+    let $results:=fn:fold-left($p,$results,filter-fold($entity,?,?))
+    return dice:response($results,$entity,web:dice())
+};
+
+declare function filter-fold($entity,$results,$next){
+    let $a:=fn:trace($next,"filter-fold")
+    let $name:=map:keys($next)
+    let $test:=function($item){$entity?access($name)($item)=map:get($next,$name)}
+    return fn:filter($results,$test)
+};
+
+(: ** DEBUG ** :)
+declare
+%rest:GET %rest:path("doc/data/test")
+%rest:query-param("q", "{$q}") 
+
+function test-data($q ) 
+{
+    let $entity:=$entity:list("xqmodule")
+    let $results:=fn:doc(fn:resolve-uri("test-xml.xml"))/*/*
+    
     return dice:response($results,$entity)
 };
 
 (:~
- : list of direct children of $path as json array
- : @param $path path to list the children of eg "/app"  
- : @return json [ {name:"gg","path:"aaa/bb",isdir:false},{}..]
+ : default data item lister
  :)
 declare
-%rest:GET %rest:path("doc/data/file/list")
-%rest:query-param("path", "{$path}","/")  
+%rest:GET %rest:path("doc/data/xqmodule/item")
+%output:method("json")
+%rest:query-param("item", "{$item}")
+%rest:query-param("view", "{$view}","json")    
+function xqmodule-item(
+    $item as xs:string,
+    $view as xs:string
+){
+    let $view:=$view=>fn:trace("view")
+    let $entity:=$entity:list("xqmodule")
+    let $results:=$entity("data")()
+    let $results:=$results[$item=$entity?access?dbpath(.)]
+    return if($results)
+            then dice:one(fn:head($results),$entity)
+            else fn:error()
+};
+(:~
+ : default data item lister
+ :)
+declare
+%rest:GET %rest:path("doc/data/{$entity}/{$name}")
 %output:method("json")   
-function files($path) as element(json) 
+function data-item($entity as xs:string,$name as xs:string ) 
 {
-    <json type="array">{df:list($path)}</json>
+    let $entity:=$entity:list($entity)
+    let $result:=dice:get($entity,$name)
+    return dice:one($result,$entity)
 };
 
-(:~
- : list of files matching pattern as json array
- : @param $path eg "/app"  
- : @return json [ {name:"gg","path:"aaa/bb",isdir:false},{}..]
- :)
-declare
-%rest:GET %rest:path("doc/data/file/find")
-%rest:query-param("pattern", "{$pattern}","")  
-%output:method("json")   
-function find($pattern) as element(json) 
-{
-    <json type="array">{df:find("/",$pattern)}</json>
-};
 
-(:~
- : get contents of file.
- : @param $path e.g. "/app/doc/readme.md"
- : @return html resprestation of file
- :)
-declare
-%rest:GET %rest:path("doc/data/file/read")
-%rest:query-param("path", "{$path}","/")  
-%output:method("html")   
-function read($path) as element() 
-{
-    <pre>{df:read($path)}</pre>
-};
 
 (:~
  : search apps
@@ -160,11 +217,12 @@ function read($path) as element()
  :)
 declare
 %rest:GET %rest:path("doc/search")
-%output:method("json")   
-function search() 
+%output:method("json") 
+%rest:query-param("q", "{$q}")  
+function search($q) 
 {
     let $results:=(<search>
-                <title>doc</title>
+                <title>searching for {$q}</title>
                 <uri>/apps/doc</uri>
                 </search>,
                 <search>
@@ -172,7 +230,7 @@ function search()
                 <uri>/apps/benchx</uri>
             </search>)
     let $entity:=$entity:list("search-result")
-    return dice:response($results,$entity)
+    return dice:response($results,$entity,web:dice())
 };
 
 (:~
@@ -182,7 +240,7 @@ function search()
   : @param type:  eg 'app' 'static' 'basex' 'repo'
  :)
 declare 
-%rest:GET %rest:path("doc/app/{$app}/server/xqdoc")
+%rest:GET %rest:path("doc/app/{$app}/view/xqdoc")
 %restxq:query-param("path", "{$path}","")
 %restxq:query-param("fmt", "{$fmt}","html")
 %restxq:query-param("type", "{$type}","app")   
@@ -199,13 +257,27 @@ function xqdoc($type as xs:string,
            
 };
 
-
+(:~
+ : show xqdoc for rest api 
+ : @TODO permission
+ :)
+declare 
+%rest:GET %rest:path("doc/wadl")
+%output:method("html")
+%restxq:query-param("fmt", "{$fmt}","html")  
+function wadl-full(
+              $fmt as xs:string) 
+{
+  let $w:=doc:wadl-under(rest:wadl(), "")
+  let $r:=if($fmt="html")then doc:wadl-html($w,"/" ) else $w
+  return (web:method($fmt),$r) 
+}; 
  
 (:~
  : show xqdoc for rest api
  :)
 declare 
-%rest:GET %rest:path("doc/app/{$app}/server/wadl")
+%rest:GET %rest:path("doc/app/{$app}/view/wadl")
 %output:method("html")
 %restxq:query-param("path", "{$path}","")
 %restxq:query-param("fmt", "{$fmt}","html")  
@@ -223,27 +295,24 @@ function wadl($app as xs:string,
  : @parameter $fmt xml or html
  :)
 declare 
-%rest:GET %rest:path("doc/app/{$app}/client/components")
+%rest:GET %rest:path("doc/app/{$app}/view/component")
 %restxq:query-param("fmt", "{$fmt}","html")
 %output:method("html")  
 function client-components($app as xs:string,
                         $fmt as xs:string) 
 {
-  let $s:="expath-pkg.xml"
-  let $pkg:=doc:app-uri($app,$s)
-  return if (fn:not(fn:doc-available($pkg)))
-         then fn:error(xs:QName('dr:package'),$pkg || " not found")
-         else let $doc:=fn:doc($pkg) 
-              return if($fmt="xml") 
-                      then (web:download-response("xml", $s),$doc)
-                      else doc:components-html($doc/*)    
+  let $pkg:=doc:app-uri($app,"expath-pkg.xml")
+  return if (fn:doc-available($pkg))
+         then let $doc:=fn:doc($pkg)/* 
+              return doc:component-render($fmt,$doc)
+         else <div>"expath-pkg.xml" not found.)</div>   
 }; 
 
 (:~
  : show list templates
  :)
 declare 
-%rest:GET %rest:path("doc/app/{$app}/client/templates")
+%rest:GET %rest:path("doc/app/{$app}/view/template")
 %output:method("json")  
 function templates($app as xs:string) 
 {
@@ -266,20 +335,10 @@ function templates($app as xs:string)
  :)
 declare 
 %rest:GET %rest:path("doc/components/browser")
-%restxq:query-param("fmt", "{$fmt}","xml")
+%output:method("html") 
+%restxq:query-param("fmt", "{$fmt}","html")
 function browser-list($fmt as xs:string){
-    let $d:=$doc:components
-    let $generate:=map{
-        "xml":map{"get":hof:id#1},
-        "html":map{"get":doc:components-html#1},
-         "svg":map{"get":doc:components-svg#1,"method":"xml"}
-    }
-    let $tfmt:=$generate($fmt)
-    let $method:=($tfmt?method,$fmt)[1]
-    return (
-        web:method($fmt),
-        $tfmt?get($d)
-    )
+    doc:component-render($fmt)
     
 };
 
@@ -292,20 +351,12 @@ declare
 %output:method("json")
 function basex-list()
 {
-<json type="array">{
-   doc:basex-modules()!<_>{.}</_>
-   }</json>
-};
+    let $entity:=$entity:list("xqmodule")
 
-(:~
- : wadl for system need permisioning
- :)
-declare 
-%rest:GET %rest:path("doc/wadl")
-%output:method("xml")
-function wadl()
-{
-rest:wadl()
+    let $items:=$entity?data()
+  
+    let $_:= dice:response($items,$entity,web:dice())
+    return $_
 };
 
 
@@ -343,8 +394,25 @@ function validate($xml as xs:string,
     let $xml:=df:webpath($xml)!fn:trace(.,"xml ")
     let $schema:=df:webpath($schema)!fn:trace(.,"xsd ")
                   
-    let $errs:=validate:xsd-info(fn:doc($xml), fn:doc($schema))
+    let $errs:=if(fn:not(fn:doc-available($xml)))
+               then "xml not found:" || $xml
+               else if (fn:not(fn:doc-available($schema)))
+                    then "schema not found:" || $schema
+                    else validate:xsd-info(fn:doc($xml), fn:doc($schema))
     return <json type="array">{$errs!<_>{.}</_>}</json>   
+};
+
+(:~
+ :  status info json
+ :)
+declare 
+%output:method("json") 
+%rest:GET %rest:path("/doc/status")
+function status(){
+   <json type="object">
+   <version>{cnf:settings()?version}</version>
+   <cacherestxq>{db:system()/globaloptions/cacherestxq/fn:string()}</cacherestxq>
+   </json>
 };
 
 (:~
@@ -352,7 +420,7 @@ function validate($xml as xs:string,
  :) 
 declare function render($template,$map){
     let $defaults:=cnf:settings()
-    let $map:=map:merge(($map,$defaults))
+    let $map:=map:merge(($defaults,$map))
     return (web:method("html"),txq:render(
                 fn:resolve-uri("./templates/" || $template)
                 ,$map

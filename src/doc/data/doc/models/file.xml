@@ -1,0 +1,22 @@
+<entity name="file" xmlns="https://github.com/Quodatum/app-doc/entity">
+	<description>A file system element file or directory on the server.
+	Based on XProc.</description>
+	<namespace prefix="c"  uri="http://www.w3.org/ns/xproc-step"/>
+	<fields>
+		<field name="name" type="xs:string">
+			<description>File name.</description>
+			<xpath>name</xpath>
+		</field>
+		<field name="path" type="xs:string">
+			<description>file path.</description>
+			<xpath>path</xpath>
+		</field>
+		
+	</fields>
+	<views>
+        <view name="filter">name</view>
+    </views>
+	<iconclass>fa fa-file</iconclass>
+	<data type="element(*)"></data>
+	
+</entity>

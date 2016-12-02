@@ -1,34 +1,62 @@
 <entity name="xqmodule" xmlns="https://github.com/Quodatum/app-doc/entity">
 	<description>An XQuery source code module</description>
 	<namespace prefix="xqdoc" uri="http://www.xqdoc.org/1.0"/>
-
+    <module prefix="xqdoc-html" namespace="quodatum.xqdoc.html" />
 	<fields>
-		<field name="file" type="xs:string">
+		<field name="filename" type="xs:string">
 			<description>file name</description>
-			<xpath>fn:substring-after(fn:base-uri($_),"abide-modules/")</xpath>
+			<xpath>tokenize(base-uri(.),"/")[last()]</xpath>
 		</field>
 		<field name="href" type="xs:string">
 			<description>ui view</description>
-			<xpath>"#/data/xqmodule/item?item=" || fn:base-uri($_)</xpath>
+			<xpath>("#/data/xqmodule/item?item=" || db:path(.))</xpath>
 		</field>
+		<field name="path" type="xs:string">
+            <description>path to source xquery on file system</description>
+            <xpath>(
+            if(starts-with(db:path(.),"basex.xqm/"))
+            then "doc/data/" || db:path(.)
+            else "doc/" || substring-after(db:path(.),"modules/")
+            )</xpath>
+        </field>
+        <field name="dbpath" type="xs:string">
+            <description>path to xdoc in database</description>
+            <xpath>db:path(.)</xpath>
+        </field>
 		<field name="type" type="xs:string">
-			<description>library</description>
-			<xpath>$_/xqdoc:module/@type</xpath>
+			<description>"basex", "main" or "library"</description>
+			<xpath>(if(starts-with(db:path(.),"basex.xqm/"))
+			        then "basex" 
+			        else xqdoc:module/@type)</xpath>
 		</field>
 		<field name="description" type="xs:string?">
 			<description>source description</description>
-			<xpath>$_/xqdoc:module/xqdoc:comment/xqdoc:description</xpath>
+			<xpath>xqdoc:module/xqdoc:comment/xqdoc:description</xpath>
 		</field>
 		<field name="uri" type="xs:string?">
 			<description>module namespace</description>
-			<xpath>$_/xqdoc:module/xqdoc:uri</xpath>
+			<xpath>xqdoc:module/xqdoc:uri</xpath>
 		</field>
 		<field name="name" type="xs:string?">
 			<description>module name</description>
-			<xpath>$_/xqdoc:module/xqdoc:name</xpath>
+			<xpath>xqdoc:module/xqdoc:name</xpath>
 		</field>
+		<field name="html" type="element()">
+            <description>html for component</description>
+            <!-- <xpath>.</xpath> -->
+            <xpath>xqdoc-html:create(.,"path",true())</xpath>
+        </field>
+        <field name="icon" type="xs:string?">
+            <description>svg icon based on type</description>
+            <xpath>"./icon.svg"</xpath>
+        </field>
 	</fields>
+	   <views>
+	   <view name="id">dbpath</view>
+	    <view name="list">name html</view>
+        <view name="filter">name description</view>
+    </views>
 	<iconclass>fa fa-file-code-o</iconclass>
-	<data type="element(xqdoc:xqdoc)">db:open("doc-doc")//xqdoc:xqdoc
+	<data type="element(xqdoc:xqdoc)">collection("doc-doc")/xqdoc:xqdoc
 	</data>
 </entity>

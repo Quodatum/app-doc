@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../basex.svg"></img>
+    </div>
+    <h2>Library Module: xqdoc/docs.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>docs</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This module generates single HTML documentations.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>Christian Grün, BaseX Team, 2013</td>
+      </tr>
+    </table>
+    <h2>Variables</h2>
+    <h3 name="TAGS">$TAGS</h3>
+    <table>
+      <tr>
+        <td>
+          <b>Type:</b>
+        </td>
+        <td>
+          <code>item()</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Supported tags.</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="create#3">
+      <h3>create($path, $inspect, $private)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$path</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td>path to query module</td>
+            </tr>
+            <tr>
+              <td>
+                <code>$inspect</code>
+              </td>
+              <td>
+                <code>element(module)</code>
+              </td>
+              <td>inspected module</td>
+            </tr>
+            <tr>
+              <td>
+                <code>$private</code>
+              </td>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td>also show private variables</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>node()*</code>
+              </td>
+              <td>body elements</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Creates a single HTML page for the specified module.</td>
+      </tr>
+    </table>
+    <a name="files#3">
+      <h3>files($src, $recursive, $pattern)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$src</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$recursive</code>
+              </td>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$pattern</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>file paths below $src
+$src typically from resolve-uri</td>
+      </tr>
+    </table>
+    <a name="functions#2">
+      <h3>functions($inspect, $private)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$inspect</code>
+              </td>
+              <td>
+                <code>element(module)</code>
+              </td>
+              <td>information on the inspected module</td>
+            </tr>
+            <tr>
+              <td>
+                <code>$private</code>
+              </td>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td>also show private functions</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element()*</code>
+              </td>
+              <td>description of functions</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Creates a description of all functions.</td>
+      </tr>
+    </table>
+    <a name="tags#1">
+      <h3>tags($node)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$node</code>
+              </td>
+              <td>
+                <code>element()</code>
+              </td>
+              <td>root node</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(tr)*</code>
+              </td>
+              <td>tags</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Lists all supported tags from the specified node.</td>
+      </tr>
+    </table>
+    <a name="variables#2">
+      <h3>variables($inspect, $private)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$inspect</code>
+              </td>
+              <td>
+                <code>element(module)</code>
+              </td>
+              <td>information on the inspected module</td>
+            </tr>
+            <tr>
+              <td>
+                <code>$private</code>
+              </td>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td>also show private variables</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element()*</code>
+              </td>
+              <td>description of variables</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Creates a description of all variables.</td>
+      </tr>
+    </table>
+  </body>
+</html>

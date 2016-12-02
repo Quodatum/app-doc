@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/out.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://basex.org/modules/out</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> contains functions for simplifying formatted data output.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="format#2">
+      <h3>format($format, $item1)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$format</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$item1</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns a formatted string. <code>$item1</code> and all following items are applied to the <code>$format</code> string, according to <a href="http://download.oracle.com/javase/1.5.0/docs/api/java/util/Formatter.html#syntax">Java’s printf syntax</a> .</td>
+      </tr>
+    </table>
+    <a name="nl#0">
+      <h3>nl()</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns a single newline character ( <code>&amp;#10;</code> ).</td>
+      </tr>
+    </table>
+    <a name="tab#0">
+      <h3>tab()</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns a single tabulator character ( <code>&amp;#9;</code> ).</td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,307 @@
+<json objects="json _">
+  <total type="number">76</total>
+  <range>1-30/76</range>
+  <entity>xqmodule</entity>
+  <items type="array">
+    <_>
+      <dbpath>basex.xqm/admin.xqm</dbpath>
+      <path>basex.xqm/admin.xqm</path>
+      <filename>admin.xqm</filename>
+      <name>admin.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/admin.xqm</href>
+      <uri>http://basex.org/modules/admin</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions for performing admin-centric operations such as managing database users and log data.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/archive.xqm</dbpath>
+      <path>basex.xqm/archive.xqm</path>
+      <filename>archive.xqm</filename>
+      <name>archive.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/archive.xqm</href>
+      <uri>http://basex.org/modules/archive</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions to handle archives (including ePub, Open Office, JAR, and many other formats). New ZIP and GZIP archives can be created, existing archives can be updated, and the archive entries can be listed and extracted. The archive:extract-binary function includes an example for writing the contents of an archive to disk.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/array.xqm</dbpath>
+      <path>basex.xqm/array.xqm</path>
+      <filename>array.xqm</filename>
+      <name>array.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/array.xqm</href>
+      <uri>x-http://www.w3.org/2005/xpath-functions/array</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions for manipulating arrays, which will officially be introduced with XQuery 3.1 .   Please note that the functions are subject to change until the specification has reached its final stage.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/bin.xqm</dbpath>
+      <path>basex.xqm/bin.xqm</path>
+      <filename>bin.xqm</filename>
+      <name>bin.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/bin.xqm</href>
+      <uri>http://expath.org/ns/binary</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions to process binary data, including extracting subparts, searching, basic binary operations and conversion between binary and structured forms. This module is based on the EXPath Binary Module .</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/client.xqm</dbpath>
+      <path>basex.xqm/client.xqm</path>
+      <filename>client.xqm</filename>
+      <name>client.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/client.xqm</href>
+      <uri>http://basex.org/modules/client</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions to access remote BaseX server instances from XQuery. With this module, you can on the one hand execute database commands and on the other hand evaluate queries, the results of which are returned as XDM sequences.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/convert.xqm</dbpath>
+      <path>basex.xqm/convert.xqm</path>
+      <filename>convert.xqm</filename>
+      <name>convert.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/convert.xqm</href>
+      <uri>http://basex.org/modules/convert</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions to convert data between different formats.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/crypto.xqm</dbpath>
+      <path>basex.xqm/crypto.xqm</path>
+      <filename>crypto.xqm</filename>
+      <name>crypto.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/crypto.xqm</href>
+      <uri>http://expath.org/ns/crypto</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions to perform cryptographic operations in XQuery. The cryptographic module is based on an early draft of the EXPath Cryptographic Module and provides the following functionality: creation of message authentication codes (HMAC), encryption and decryption, and creation and validation of XML Digital Signatures.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/csv.xqm</dbpath>
+      <path>basex.xqm/csv.xqm</path>
+      <filename>csv.xqm</filename>
+      <name>csv.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/csv.xqm</href>
+      <uri>http://basex.org/modules/csv</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains a single function to parse CSV input. CSV (comma-separated values) is a popular representation for tabular data, exported e. g. from Excel.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/db.xqm</dbpath>
+      <path>basex.xqm/db.xqm</path>
+      <filename>db.xqm</filename>
+      <name>db.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/db.xqm</href>
+      <uri>http://basex.org/modules/db</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions for processing databases from within XQuery. Existing databases can be opened and listed, its contents can be directly accessed, documents can be added to and removed, etc.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/fetch.xqm</dbpath>
+      <path>basex.xqm/fetch.xqm</path>
+      <filename>fetch.xqm</filename>
+      <name>fetch.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/fetch.xqm</href>
+      <uri>http://basex.org/modules/fetch</uri>
+      <type>basex</type>
+      <description>This XQuery Module provides simple functions to fetch the content of resources identified by URIs. Resources can be stored locally or remotely and e.g. use the file:// or http:// scheme. If more control over HTTP requests is required, the HTTP Module can be used. With the HTML Module , retrieved HTML documents can be converted to XML. The module has initially been inspired by Zorba’s Fetch Module .</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/file.xqm</dbpath>
+      <path>basex.xqm/file.xqm</path>
+      <filename>file.xqm</filename>
+      <name>file.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/file.xqm</href>
+      <uri>http://expath.org/ns/file</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions related to file system operations, such as listing, reading, or writing files. This module is based on the EXPath File Module .</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/ft.xqm</dbpath>
+      <path>basex.xqm/ft.xqm</path>
+      <filename>ft.xqm</filename>
+      <name>ft.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/ft.xqm</href>
+      <uri>http://basex.org/modules/ft</uri>
+      <type>basex</type>
+      <description>This XQuery Module extends the W3C Full Text Recommendation with some useful functions: The index can be directly accessed, full-text results can be marked with additional elements, or the relevant parts can be extracted. Moreover, the score value, which is generated by the contains text expression, can be explicitly requested from items.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/geo.xqm</dbpath>
+      <path>basex.xqm/geo.xqm</path>
+      <filename>geo.xqm</filename>
+      <name>geo.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/geo.xqm</href>
+      <uri>http://expath.org/ns/geo</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions that may be applied to geometry data conforming to the Open Geospatial Consortium (OGC) Simple Feature (SF) data model. It is based on the EXPath Geo Module and uses the JTS library. Geometries introduced in GML 2 are: Point, LineString, LinearRing, Polygon, MultiPoint, MultiLineString, MultiPolygon, and MultiGeometry. All nodes queried by BaseX should be a valid geometry. The only geometry type which is not supported by BaseX right now is MultiGeometry.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/hash.xqm</dbpath>
+      <path>basex.xqm/hash.xqm</path>
+      <filename>hash.xqm</filename>
+      <name>hash.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/hash.xqm</href>
+      <uri>http://basex.org/modules/hash</uri>
+      <type>basex</type>
+      <description>This XQuery Module provides functions that perform different hash operations.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/hof.xqm</dbpath>
+      <path>basex.xqm/hof.xqm</path>
+      <filename>hof.xqm</filename>
+      <name>hof.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/hof.xqm</href>
+      <uri>http://basex.org/modules/hof</uri>
+      <type>basex</type>
+      <description>This XQuery Module adds some useful higher-order functions, additional to the Higher-Order Functions provided by the official specification.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/html.xqm</dbpath>
+      <path>basex.xqm/html.xqm</path>
+      <filename>html.xqm</filename>
+      <name>html.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/html.xqm</href>
+      <uri>http://basex.org/modules/html</uri>
+      <type>basex</type>
+      <description>This XQuery Module provides functions for converting HTML to XML. Conversion will only take place if TagSoup is included in the classpath (see HTML Parsing for more details).</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/http.xqm</dbpath>
+      <path>basex.xqm/http.xqm</path>
+      <filename>http.xqm</filename>
+      <name>http.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/http.xqm</href>
+      <uri>http://expath.org/ns/http-client</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains a single function to send HTTP requests and handle HTTP responses. The function send-request is based on the EXPath HTTP Client Module . It gives full control over the available request and response parameters. For simple GET requests, the Fetch Module may be sufficient.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/index.xqm</dbpath>
+      <path>basex.xqm/index.xqm</path>
+      <filename>index.xqm</filename>
+      <name>index.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/index.xqm</href>
+      <uri>http://basex.org/modules/index</uri>
+      <type>basex</type>
+      <description>This XQuery Module provides functions for displaying information stored in the database index structures.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/inspect.xqm</dbpath>
+      <path>basex.xqm/inspect.xqm</path>
+      <filename>inspect.xqm</filename>
+      <name>inspect.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/inspect.xqm</href>
+      <uri>http://basex.org/modules/inspect</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions for extracting internal information about modules and functions and generating documentation.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/json.xqm</dbpath>
+      <path>basex.xqm/json.xqm</path>
+      <filename>json.xqm</filename>
+      <name>json.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/json.xqm</href>
+      <uri>http://basex.org/modules/json</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions to parse and serialize JSON documents. JSON (JavaScript Object Notation) is a popular data exchange format for applications written in JavaScript. As there are notable differences between JSON and XML, no mapping exists that guarantees a lossless, bidirectional conversion between JSON and XML. For this reason, we offer various mappings, all of which are suited to different use cases.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/map.xqm</dbpath>
+      <path>basex.xqm/map.xqm</path>
+      <filename>map.xqm</filename>
+      <name>map.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/map.xqm</href>
+      <uri>x-http://www.w3.org/2005/xpath-functions/map</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions for manipulating maps, which will officially be introduced with XQuery 3.1 .   Please note that the functions are subject to change until the specification has reached its final stage.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/math.xqm</dbpath>
+      <path>basex.xqm/math.xqm</path>
+      <filename>math.xqm</filename>
+      <name>math.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/math.xqm</href>
+      <uri>x-http://www.w3.org/2005/xpath-functions/math</uri>
+      <type>basex</type>
+      <description>The math XQuery Module defines functions to perform mathematical operations, such as pi , asin and acos . Most functions are specified in the Functions and Operators Specification of the upcoming XQuery 3.0 Recommendation, and some additional ones have been added in this module.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/out.xqm</dbpath>
+      <path>basex.xqm/out.xqm</path>
+      <filename>out.xqm</filename>
+      <name>out.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/out.xqm</href>
+      <uri>http://basex.org/modules/out</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions for simplifying formatted data output.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/proc.xqm</dbpath>
+      <path>basex.xqm/proc.xqm</path>
+      <filename>proc.xqm</filename>
+      <name>proc.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/proc.xqm</href>
+      <uri>http://basex.org/modules/proc</uri>
+      <type>basex</type>
+      <description>This XQuery Module provides functions for executing system commands from XQuery.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/prof.xqm</dbpath>
+      <path>basex.xqm/prof.xqm</path>
+      <filename>prof.xqm</filename>
+      <name>prof.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/prof.xqm</href>
+      <uri>http://basex.org/modules/prof</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains various testing, profiling and helper functions.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/random.xqm</dbpath>
+      <path>basex.xqm/random.xqm</path>
+      <filename>random.xqm</filename>
+      <name>random.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/random.xqm</href>
+      <uri>http://basex.org/modules/random</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions for computing random values. All functions except for random:seeded-double and random:seeded-integer are non-deterministic, i. e., they return different values for each call.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/repo.xqm</dbpath>
+      <path>basex.xqm/repo.xqm</path>
+      <filename>repo.xqm</filename>
+      <name>repo.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/repo.xqm</href>
+      <uri>http://basex.org/modules/repo</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions for installing, listing and deleting modules contained in the Repository .</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/request.xqm</dbpath>
+      <path>basex.xqm/request.xqm</path>
+      <filename>request.xqm</filename>
+      <name>request.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/request.xqm</href>
+      <uri>http://exquery.org/ns/request</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions for retrieving information on an HTTP request that has triggered the query. It is mainly useful in the context of Web Applications . The module is related to Adam Retter’s EXQuery Request Module draft.</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/rest.xqm</dbpath>
+      <path>basex.xqm/rest.xqm</path>
+      <filename>rest.xqm</filename>
+      <name>rest.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/rest.xqm</href>
+      <uri>http://exquery.org/ns/restxq</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains helper functions for the RESTXQ API, some of which are defined in the RESTXQ Draft .</description>
+    </_>
+    <_>
+      <dbpath>basex.xqm/session.xqm</dbpath>
+      <path>basex.xqm/session.xqm</path>
+      <filename>session.xqm</filename>
+      <name>session.xqm</name>
+      <href>#/data/xqmodule/item?item=doc-doc/basex.xqm/session.xqm</href>
+      <uri>http://basex.org/modules/session</uri>
+      <type>basex</type>
+      <description>This XQuery Module contains functions for accessing and modifying server-side session information. This module is mainly useful in the context of Web Applications .</description>
+    </_>
+  </items>
+</json>

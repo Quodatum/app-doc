@@ -33,10 +33,7 @@ angular.module('quodatum.doc.directives', [ 'ui.router','restangular', 'angular-
 						name : 'cva'
 					} ];
 					$scope.endpoint='data/file/list';
-					var bar = Restangular.one("meta").one("cvabar","test-bar");
-					bar.get().then(function(d) {
-						$scope.bar = d;
-					});
+					
 					
 					$scope.path = "/test";
 					$scope.fsel = function() {

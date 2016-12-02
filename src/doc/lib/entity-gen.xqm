@@ -26,6 +26,7 @@ let $src:= <text>(: entity access maps
  :)
 
 module namespace entity = 'quodatum.models.generated';
+{bf:build-modules($entities)}
 {bf:build-namespaces($entities)}
 {(  bf:build-describe($entities))} 
 
@@ -40,27 +41,42 @@ as map(*){{
 };
 
 (:~
- : generate xquery for to return field value in the format: "name"=function(){}
+ : generate xquery for to return field value in the format: "name":function($_){}
  :)
 declare function accessfn($f as element(ent:field)) as xs:string
 {
-<field>
-       "{$f/@name/fn:string()}": function($_ as element()) as {$f/@type/fn:string()} {{{$f/ent:xpath }}}</field>
+let $type:=$f/@type/fn:string()
+return <field>
+       "{$f/@name/fn:string()}": function($_ as element()) as {$type} {{$_/{$f/ent:xpath } }}</field>
 };
 
 declare function generate($e as element(ent:entity)) as xs:string
 {
   let $fields:=for $field in $e/ent:fields/ent:field   
                 order by $field/@name
-                return $field    
+                return $field
+                
+  let $filter:=$e/ent:views/ent:view[@name="filter"]=>fn:tokenize()
+  let $filter:= $e/ent:fields/ent:field[@name=$filter]/ent:xpath/fn:concat("$item/",.) 
+                   
   return <field>
   "{$e/@name/fn:string()}": map{{
      "name": "{ $e/@name/fn:string()}",
      "description": "{ escape($e/ent:description)}",
-     "access": map{{ {fn:string-join($fields!accessfn(.),",")} }},
-     "json": map{{ {fn:string-join($fields!jsonfn(.),",")} }},
+     "access": map{{ {$fields!accessfn(.)=>fn:string-join(",")} }},
+    
+     "filter": function($item,$q) as xs:boolean{{ 
+         some $e in ( {fn:string-join($filter,", ")}) satisfies
+         fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
+      }},
+       "json":   map{{ {$fields!jsonfn(.)=>fn:string-join(",")} }},
+       
       "data": function() as {$e/ent:data/@type/fn:string(.)}*
-       {{ {let $a:=$e/ent:data/fn:string() return if($a)then $a else "()"} }}
+       {{ {let $a:=$e/ent:data/fn:string() return if($a)then $a else "()"} }},
+       
+       "views": map{{ 
+       {$e/ent:views/ent:view!("'" || @name || "': '" ||. || "'")=>fn:string-join(',')}
+       }}
    }}</field>
 };
 
@@ -92,29 +108,31 @@ declare variable $entity:{$entity/@name/fn:string()}: map{{ {fn:string-join($m,"
 (:~ 
  :  return xml for suitable json serialization for field 
 :)
-declare function jsonfn($f as element(ent:field)) as xs:string{
+declare function jsonfn($f as element(ent:field)) 
+as xs:string
+{
     let $name:=$f/@name/fn:string()
     let $type:=json-type($f/@type)
     let $json-type:=if($type="element") then "string" else $type
     let $opt:=fn:contains($type,"?")
+    let $at:=if($json-type ne "string") 
+            then "attribute type {'" || $json-type || "'},"
+            else "" 
     (: generate json xml :)
     let $simple:=function() as xs:string{
                 <field>(: {$type} :)
-                        let $d:=fn:data({$f/ent:xpath })
-                        return if($d)
-                              then element {$name} {{ attribute type {{"{$json-type}" }},$d }} 
-                              else ()</field>
+                        fn:data($_/{$f/ent:xpath })!element {$name} {{ {$at} .}} 
+                </field>
                 }
     (: serialize when element :)
     let $element:=function() as xs:string{
-                <field>element {$name} {{ attribute type {{"string"}},fn:serialize({$f/ent:xpath})}}</field>
+                <field>element {$name} {{ attribute type {{"string"}},fn:serialize($_/{$f/ent:xpath})}}</field>
                 } 
                            
     return <field>
            "{$name}": function($_ as element()) as element({$name})? {{
             {if($type="element") then $element() else $simple()} }}</field>
 };
-
 
 
 (:~ convert xs type to json
@@ -134,6 +152,13 @@ declare function build-namespaces($entities as element()*){
   for $n in distinct-deep($entities/ent:namespace)
   return 
 <text>declare namespace {$n/@prefix/fn:string()}='{$n/@uri/fn:string()}';
+</text>
+};
+(:~ declare any namespaces found :)
+declare function build-modules($entities as element()*){
+  for $n in distinct-deep($entities/ent:module)
+  return 
+<text>import module namespace {$n/@prefix/fn:string()}='{$n/@namespace/fn:string()}';
 </text>
 };
 

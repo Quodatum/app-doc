@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/xquery.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://basex.org/modules/xquery</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> contains functions for evaluating XQuery strings and modules at runtime.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="eval#1">
+      <h3>eval($query)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$query</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Evaluates the supplied <code>$query</code> string as XQuery expression and returns the resulting items.
+The evaluated query has its own query context. If a returned node is stored in a database, a main-memory copy will be returned as result, because the referenced database is closed after query execution and will not be accessible anymore.
+Variables and context items can be declared via <code>$bindings</code> . The specified keys must be QNames or strings: <ul> <li> If a key is a QName, it will be directly adopted as variable name. </li> <li> It a key is a string, it may be prefixed with a dollar sign. Namespace can be specified using the <a href="http://www.jclark.com/xml/xmlns.htm">Clark Notation</a>. </li> <li> If the specified string is empty, the value will be bound to the context item. </li> </ul>  <p>The <code>$options</code> parameter contains evaluation options, which can either be specified </p>  <ul> <li> as children of an <code>&lt;xquery:options/&gt;</code> element: </li> </ul>  <pre class="brush:xml"> &lt;xquery:options&gt; &lt;xquery:permission value="none"/&gt; &lt;/xquery:options&gt; </pre>  <ul> <li> as map, which contains all key/value pairs: </li> </ul>  <pre class="brush:xml"> map { "permission": "none" } </pre>  <p>The following options are available: </p>  <ul> <li> <code>permission</code>: the query will be evaluated with the specified permissions (see <a href="http://docs.basex.org/wiki/User_Management">User Management</a>). </li> <li> <code>timeout</code>: query execution will be interrupted after the specified number of seconds. </li> <li> <code>memory</code>: query execution will be interrupted if the specified number of megabytes will be exceeded. This check works best if only one process is running at the same time. </li> </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0001 the query contains <a href="http://docs.basex.org/wiki/XQuery_Update#Updating_Expressions">updating expressions</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0003 insufficient permissions for evaluating the query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0004 query execution exceeded timeout or memory constraints.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FOTY0013 the expression yields function items.</td>
+      </tr>
+    </table>
+    <a name="eval#2">
+      <h3>eval($query, $bindings)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$query</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$bindings</code>
+              </td>
+              <td>
+                <code>map(*)</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Evaluates the supplied <code>$query</code> string as XQuery expression and returns the resulting items.
+The evaluated query has its own query context. If a returned node is stored in a database, a main-memory copy will be returned as result, because the referenced database is closed after query execution and will not be accessible anymore.
+Variables and context items can be declared via <code>$bindings</code> . The specified keys must be QNames or strings: <ul> <li> If a key is a QName, it will be directly adopted as variable name. </li> <li> It a key is a string, it may be prefixed with a dollar sign. Namespace can be specified using the <a href="http://www.jclark.com/xml/xmlns.htm">Clark Notation</a>. </li> <li> If the specified string is empty, the value will be bound to the context item. </li> </ul>  <p>The <code>$options</code> parameter contains evaluation options, which can either be specified </p>  <ul> <li> as children of an <code>&lt;xquery:options/&gt;</code> element: </li> </ul>  <pre class="brush:xml"> &lt;xquery:options&gt; &lt;xquery:permission value="none"/&gt; &lt;/xquery:options&gt; </pre>  <ul> <li> as map, which contains all key/value pairs: </li> </ul>  <pre class="brush:xml"> map { "permission": "none" } </pre>  <p>The following options are available: </p>  <ul> <li> <code>permission</code>: the query will be evaluated with the specified permissions (see <a href="http://docs.basex.org/wiki/User_Management">User Management</a>). </li> <li> <code>timeout</code>: query execution will be interrupted after the specified number of seconds. </li> <li> <code>memory</code>: query execution will be interrupted if the specified number of megabytes will be exceeded. This check works best if only one process is running at the same time. </li> </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0001 the query contains <a href="http://docs.basex.org/wiki/XQuery_Update#Updating_Expressions">updating expressions</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0003 insufficient permissions for evaluating the query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0004 query execution exceeded timeout or memory constraints.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FOTY0013 the expression yields function items.</td>
+      </tr>
+    </table>
+    <a name="eval#3">
+      <h3>eval($query, $bindings, $options)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$query</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$bindings</code>
+              </td>
+              <td>
+                <code>map(*)</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$options</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Evaluates the supplied <code>$query</code> string as XQuery expression and returns the resulting items.
+The evaluated query has its own query context. If a returned node is stored in a database, a main-memory copy will be returned as result, because the referenced database is closed after query execution and will not be accessible anymore.
+Variables and context items can be declared via <code>$bindings</code> . The specified keys must be QNames or strings: <ul> <li> If a key is a QName, it will be directly adopted as variable name. </li> <li> It a key is a string, it may be prefixed with a dollar sign. Namespace can be specified using the <a href="http://www.jclark.com/xml/xmlns.htm">Clark Notation</a>. </li> <li> If the specified string is empty, the value will be bound to the context item. </li> </ul>  <p>The <code>$options</code> parameter contains evaluation options, which can either be specified </p>  <ul> <li> as children of an <code>&lt;xquery:options/&gt;</code> element: </li> </ul>  <pre class="brush:xml"> &lt;xquery:options&gt; &lt;xquery:permission value="none"/&gt; &lt;/xquery:options&gt; </pre>  <ul> <li> as map, which contains all key/value pairs: </li> </ul>  <pre class="brush:xml"> map { "permission": "none" } </pre>  <p>The following options are available: </p>  <ul> <li> <code>permission</code>: the query will be evaluated with the specified permissions (see <a href="http://docs.basex.org/wiki/User_Management">User Management</a>). </li> <li> <code>timeout</code>: query execution will be interrupted after the specified number of seconds. </li> <li> <code>memory</code>: query execution will be interrupted if the specified number of megabytes will be exceeded. This check works best if only one process is running at the same time. </li> </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0001 the query contains <a href="http://docs.basex.org/wiki/XQuery_Update#Updating_Expressions">updating expressions</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0003 insufficient permissions for evaluating the query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0004 query execution exceeded timeout or memory constraints.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FOTY0013 the expression yields function items.</td>
+      </tr>
+    </table>
+    <a name="invoke#1">
+      <h3>invoke($uri)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$uri</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Opens <code>$uri</code> as file, evaluates it as XQuery expression at runtime, and returns the resulting items. Database nodes in the result will be copied and returned instead.
+The semantics of the <code>$bindings</code> and <code>$options</code> parameters is the same as for <a href="#xquery:eval">xquery:eval</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0001 the expression contains <a href="http://docs.basex.org/wiki/XQuery_Update#Updating_Expressions">updating expressions</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0003 insufficient permissions for evaluating the query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0004 query execution exceeded timeout.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FOTY0013 the expression yields function items.</td>
+      </tr>
+    </table>
+    <a name="invoke#2">
+      <h3>invoke($uri, $bindings)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$uri</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$bindings</code>
+              </td>
+              <td>
+                <code>map(*)</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Opens <code>$uri</code> as file, evaluates it as XQuery expression at runtime, and returns the resulting items. Database nodes in the result will be copied and returned instead.
+The semantics of the <code>$bindings</code> and <code>$options</code> parameters is the same as for <a href="#xquery:eval">xquery:eval</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0001 the expression contains <a href="http://docs.basex.org/wiki/XQuery_Update#Updating_Expressions">updating expressions</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0003 insufficient permissions for evaluating the query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0004 query execution exceeded timeout.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FOTY0013 the expression yields function items.</td>
+      </tr>
+    </table>
+    <a name="invoke#3">
+      <h3>invoke($uri, $bindings, $options)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$uri</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$bindings</code>
+              </td>
+              <td>
+                <code>map(*)</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$options</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Opens <code>$uri</code> as file, evaluates it as XQuery expression at runtime, and returns the resulting items. Database nodes in the result will be copied and returned instead.
+The semantics of the <code>$bindings</code> and <code>$options</code> parameters is the same as for <a href="#xquery:eval">xquery:eval</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0001 the expression contains <a href="http://docs.basex.org/wiki/XQuery_Update#Updating_Expressions">updating expressions</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0003 insufficient permissions for evaluating the query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0004 query execution exceeded timeout.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FOTY0013 the expression yields function items.</td>
+      </tr>
+    </table>
+    <a name="parse#1">
+      <h3>parse($query)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$query</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Parses the specified <code>$query</code> string as XQuery module and returns information on the resulting query plan (please note that the naming of the expressions in the query plan may change over time). The <code>$options</code> parameters can be specified in two ways: <ul> <li> as children of an <code>&lt;xquery:options/&gt;</code> element: </li> </ul>  <pre class="brush:xml"> &lt;xquery:options&gt; &lt;xquery:compile value="true"/&gt; &lt;/xquery:options&gt; </pre>  <ul> <li> as map, which contains all key/value pairs: </li> </ul>  <pre class="brush:xml"> map { "compile": true() } </pre>  <p>The following options are available: </p>  <ul> <li> <code>compile</code>: additionally compiles the query after parsing it. By default, this option is <code>false</code>. </li> <li> <code>plan</code>: returns an XML representation of the internal query plan. By default, this option is <code>true</code>. </li> </ul>
+        </td>
+      </tr>
+    </table>
+    <a name="parse#2">
+      <h3>parse($query, $options)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$query</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$options</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Parses the specified <code>$query</code> string as XQuery module and returns information on the resulting query plan (please note that the naming of the expressions in the query plan may change over time). The <code>$options</code> parameters can be specified in two ways: <ul> <li> as children of an <code>&lt;xquery:options/&gt;</code> element: </li> </ul>  <pre class="brush:xml"> &lt;xquery:options&gt; &lt;xquery:compile value="true"/&gt; &lt;/xquery:options&gt; </pre>  <ul> <li> as map, which contains all key/value pairs: </li> </ul>  <pre class="brush:xml"> map { "compile": true() } </pre>  <p>The following options are available: </p>  <ul> <li> <code>compile</code>: additionally compiles the query after parsing it. By default, this option is <code>false</code>. </li> <li> <code>plan</code>: returns an XML representation of the internal query plan. By default, this option is <code>true</code>. </li> </ul>
+        </td>
+      </tr>
+    </table>
+    <a name="type#1">
+      <h3>type($expr)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$expr</code>
+              </td>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Similar to <code>fn:trace($expr, $msg)</code> , but instead of a user-defined message, it emits the compile-time type and estimated result size of its argument.</td>
+      </tr>
+    </table>
+    <a name="update#1">
+      <h3>update($query)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$query</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Evaluates <code>$query</code> as updating XQuery expression at runtime.
+All updates will be added to the <a href="http://docs.basex.org/wiki/XQuery_Update#Pending_Update_List">Pending Update List</a> of the main query and performed after the evaluation of the main query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0002 the query contains no <a href="http://docs.basex.org/wiki/XQuery_Update#Updating_Expressions">updating expressions</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0003 insufficient permissions for evaluating the query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0004 query execution exceeded timeout or memory constraints.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FOTY0013 the expression yields function items.</td>
+      </tr>
+    </table>
+    <a name="update#2">
+      <h3>update($query, $bindings)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$query</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$bindings</code>
+              </td>
+              <td>
+                <code>map(*)</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Evaluates <code>$query</code> as updating XQuery expression at runtime.
+All updates will be added to the <a href="http://docs.basex.org/wiki/XQuery_Update#Pending_Update_List">Pending Update List</a> of the main query and performed after the evaluation of the main query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0002 the query contains no <a href="http://docs.basex.org/wiki/XQuery_Update#Updating_Expressions">updating expressions</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0003 insufficient permissions for evaluating the query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0004 query execution exceeded timeout or memory constraints.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FOTY0013 the expression yields function items.</td>
+      </tr>
+    </table>
+    <a name="update#3">
+      <h3>update($query, $bindings, $options)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$query</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$bindings</code>
+              </td>
+              <td>
+                <code>map(*)</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$options</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Evaluates <code>$query</code> as updating XQuery expression at runtime.
+All updates will be added to the <a href="http://docs.basex.org/wiki/XQuery_Update#Pending_Update_List">Pending Update List</a> of the main query and performed after the evaluation of the main query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0002 the query contains no <a href="http://docs.basex.org/wiki/XQuery_Update#Updating_Expressions">updating expressions</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0003 insufficient permissions for evaluating the query.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXXQ0004 query execution exceeded timeout or memory constraints.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:FOTY0013 the expression yields function items.</td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -18,6 +18,7 @@
 	<xsl:template match="//xqdoc:xqdoc">
 		<div class="row">
 			<div class="col-md-2">
+			<!-- toc -->
 				<xsl:call-template name="list">
 					<xsl:with-param name="cmps"
 						select="//xqdoc:variable|//xqdoc:function" />
@@ -49,15 +50,9 @@
 							</code>
 						</td>
 					</tr>
-					<tr>
-						<td>
-							<b>Description:</b>
-						</td>
-						<td>
-							<xsl:apply-templates
-								select="xqdoc:module/xqdoc:comment/xqdoc:description" />
-						</td>
-					</tr>
+					<xsl:apply-templates
+						select="xqdoc:module/xqdoc:comment/xqdoc:description" />
+					
 					<tr>
 						<td>
 							<b>Author:</b>
@@ -159,7 +154,7 @@
 				<b>Description:</b>
 			</td>
 			<td>
-				<xsl:apply-templates select="*" />
+				<xsl:apply-templates  />
 			</td>
 		</tr>
 	</xsl:template>
@@ -203,16 +198,18 @@
 
 	<xsl:template name="list">
 		<xsl:param name="cmps" />
-		<xsl:for-each select="$cmps">
+		<ul>
+		<xsl:for-each-group select="$cmps" group-by="xqdoc:name">
 			<xsl:sort select="lower-case(xqdoc:name)" />
-			<span>
+			<li>
 				<xsl:apply-templates select="." mode="link" />
-			</span>
-		</xsl:for-each>
+			</li>
+		</xsl:for-each-group>
+		</ul>
 	</xsl:template>
 
 	<xsl:template match="xqdoc:function" mode="link">
-		<a ng-click="scrollTo('cmp-{xqdoc:name}')" class="label label-info"
+		<a ng-click="scrollTo('cmp-{xqdoc:name}')" 
 			style="cursor:pointer;" title="{xqdoc:comment/xqdoc:description}">
 			<xsl:value-of select="concat(xqdoc:name,'#')" />
 		</a>

@@ -1,21 +1,70 @@
 <div>
-	<div class="fluid">
-		<ul class="breadcrumb ">
-			<li>
-				<a href="#/data/entity">Entities</a>
-				
-			</li>
-			<li>
-				{{model.name}}
-			</li>
-		</ul>
-	</div>
+	<cva-bar ng-model="bar" params="params" state="$state" single="true">
+		<a ng-click="$state.go(model.name+'.index')" class="btn btn-default navbar-btn"
+			title="data">Instances</a>
 
-	<div>name :{{model.name}}</div>
-	<div>description: {{model.description}}</div>
-	<div>type: {{model.type}}</div>
-	<div>
-		nfields:
-		<a href="#/{{model.fieldslink}}">{{model.nfields}}</a>
+		<a href="./data/{{model.name}}" target="json" class="btn btn-default navbar-btn"
+			title="json for this data">
+			<span class="badge badge-default">J</span>
+			<i class="fa fa-external-link"></i>
+		</a>
+	</cva-bar>
+
+	<div class="fluid">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<div class="pull-right">Type: <code>{{model.type}}</code></div>
+					<i class="{{model.iconclass}}"></i>
+					{{model.name}}
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div>{{model.description}}</div>
+
+				<div>
+
+					<div>
+						<h4>
+							Fields
+							<span class="badge badge-default">{{model.nfields}}</span>
+						</h4>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Type</th>
+									<th>XPath</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="f in fields">
+									<td>{{f.name}}</td>
+									<td>{{f.description}}</td>
+									<td>
+										<var>{{f.type}}</var>
+									</td>
+									<td>
+										<code>{{f.xpath}}</code>
+									</td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div>
+						<h4>Code</h4>
+						<pre>{{model.modules}}{{model.namespaces}}
+{{model.code}}</pre>
+					</div>
+					<div>
+						iconclass:
+						<span class="label label-default">{{model.iconclass}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

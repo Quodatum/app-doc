@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace geo = "http://expath.org/ns/geo";
+module namespace geo = "x-http://expath.org/ns/geo";
 declare namespace experr = "http://expath.org/ns/error";
 
 (:~

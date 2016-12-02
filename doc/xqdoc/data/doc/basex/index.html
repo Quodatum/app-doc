@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/index.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://basex.org/modules/index</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> provides functions for displaying information stored in the database index structures.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="attribute-names#1">
+      <h3>attribute-names($db)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$db</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(value)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns all attribute names stored in the <a href="http://docs.basex.org/wiki/Indexes#Name_Index">Name Index</a> of the database <code>$db</code> , along with their number of occurrences.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0002 The addressed database does not exist or could not be opened.</td>
+      </tr>
+    </table>
+    <a name="attributes#1">
+      <h3>attributes($db)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$db</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(value)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns all strings stored in the <a href="http://docs.basex.org/wiki/Indexes#Attribute_Index">Attribute Index</a> of the database <code>$db</code> , along with their number of occurrences.
+If <code>$prefix</code> is specified, the returned entries will be refined to the ones starting with that prefix.
+If <code>$start</code> and <code>$ascending</code> are specified, all nodes will be returned after or before the specified start entry.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0002 The addressed database does not exist or could not be opened.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0004 the attribute index is not available.</td>
+      </tr>
+    </table>
+    <a name="attributes#2">
+      <h3>attributes($db, $prefix)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$db</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$prefix</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(value)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns all strings stored in the <a href="http://docs.basex.org/wiki/Indexes#Attribute_Index">Attribute Index</a> of the database <code>$db</code> , along with their number of occurrences.
+If <code>$prefix</code> is specified, the returned entries will be refined to the ones starting with that prefix.
+If <code>$start</code> and <code>$ascending</code> are specified, all nodes will be returned after or before the specified start entry.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0002 The addressed database does not exist or could not be opened.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0004 the attribute index is not available.</td>
+      </tr>
+    </table>
+    <a name="attributes#3">
+      <h3>attributes($db, $start, $ascending)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$db</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$start</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$ascending</code>
+              </td>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(value)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns all strings stored in the <a href="http://docs.basex.org/wiki/Indexes#Attribute_Index">Attribute Index</a> of the database <code>$db</code> , along with their number of occurrences.
+If <code>$prefix</code> is specified, the returned entries will be refined to the ones starting with that prefix.
+If <code>$start</code> and <code>$ascending</code> are specified, all nodes will be returned after or before the specified start entry.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0002 The addressed database does not exist or could not be opened.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0004 the attribute index is not available.</td>
+      </tr>
+    </table>
+    <a name="element-names#1">
+      <h3>element-names($db)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$db</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(value)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns all element names stored in the <a href="http://docs.basex.org/wiki/Indexes#Name_Index">Name Index</a> of the database <code>$db</code> , along with their number of occurrences.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0002 The addressed database does not exist or could not be opened.</td>
+      </tr>
+    </table>
+    <a name="facets#1">
+      <h3>facets($db)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$db</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns information about all facets and facet values of the database <code>$db</code> in document structure format.
+If <code>$type</code> is specified as <code>flat</code> , the function returns this information in a flat summarized version. The returned data is derived from the <a href="http://docs.basex.org/wiki/Indexes#Path_Index">Path Index</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0002 The addressed database does not exist or could not be opened.</td>
+      </tr>
+    </table>
+    <a name="facets#2">
+      <h3>facets($db, $type)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$db</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$type</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns information about all facets and facet values of the database <code>$db</code> in document structure format.
+If <code>$type</code> is specified as <code>flat</code> , the function returns this information in a flat summarized version. The returned data is derived from the <a href="http://docs.basex.org/wiki/Indexes#Path_Index">Path Index</a> .</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0002 The addressed database does not exist or could not be opened.</td>
+      </tr>
+    </table>
+    <a name="texts#1">
+      <h3>texts($db)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$db</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(value)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns all strings stored in the <a href="http://docs.basex.org/wiki/Indexes#Text_Index">Text Index</a> of the database <code>$db</code> , along with their number of occurrences.
+If <code>$prefix</code> is specified, the returned entries will be refined to the ones starting with that prefix.
+If <code>$start</code> and <code>$ascending</code> are specified, all nodes will be returned after or before the specified start entry.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0002 The addressed database does not exist or could not be opened.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0004 the text index is not available.</td>
+      </tr>
+    </table>
+    <a name="texts#2">
+      <h3>texts($db, $prefix)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$db</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$prefix</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(value)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns all strings stored in the <a href="http://docs.basex.org/wiki/Indexes#Text_Index">Text Index</a> of the database <code>$db</code> , along with their number of occurrences.
+If <code>$prefix</code> is specified, the returned entries will be refined to the ones starting with that prefix.
+If <code>$start</code> and <code>$ascending</code> are specified, all nodes will be returned after or before the specified start entry.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0002 The addressed database does not exist or could not be opened.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0004 the text index is not available.</td>
+      </tr>
+    </table>
+    <a name="texts#3">
+      <h3>texts($db, $start, $ascending)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$db</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$start</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$ascending</code>
+              </td>
+              <td>
+                <code>xs:boolean</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>element(value)*</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns all strings stored in the <a href="http://docs.basex.org/wiki/Indexes#Text_Index">Text Index</a> of the database <code>$db</code> , along with their number of occurrences.
+If <code>$prefix</code> is specified, the returned entries will be refined to the ones starting with that prefix.
+If <code>$start</code> and <code>$ascending</code> are specified, all nodes will be returned after or before the specified start entry.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0002 The addressed database does not exist or could not be opened.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXDB0004 the text index is not available.</td>
+      </tr>
+    </table>
+  </body>
+</html>

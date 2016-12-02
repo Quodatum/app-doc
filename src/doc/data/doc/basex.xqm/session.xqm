@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace session = "http://basex.org/modules/session";
+module namespace session = "x-http://basex.org/modules/session";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

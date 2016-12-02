@@ -4,31 +4,17 @@
 : @since oct 2012
 :)
 
-module namespace web = 'quodatum.web.utils3';
-declare default function namespace 'quodatum.web.utils3'; 
-
+module namespace qweb = 'quodatum.web.utils4';
+declare default function namespace 'quodatum.web.utils4'; 
+import module namespace request = "http://exquery.org/ns/request";
 declare namespace rest = 'http://exquery.org/ns/restxq';
-import module namespace session ="http://basex.org/modules/session";
 
-
-(:~
-: execute function fn if session has loggedin user with matching role else 401
-:)
-declare function role-check($role as xs:string,$fn){
-  let $uid:=session:get("uid")
-  return if($uid) then
-        $fn()
-         else http-auth("Whizz apb auth",())
-};
-
-(:~ return user of raise error if none
-: @TODO role check
-:)
-declare function user($role as xs:string){
-  let $uid:=session:get("uid")
-  return if($uid) then
-        $uid
-        else fn:error(xs:QName('web:session-user'),"not logged in") 
+(:~ map of available dice parameters :)
+declare function dice(){
+    let $fld:=function($n){
+                        request:parameter($n)!map:entry($n,request:parameter($n))
+                           }
+    return map:merge(("start","limit","sort","fields")!$fld(.))
 };
 
 declare function status($code,$reason){
@@ -137,4 +123,15 @@ declare function strip-ns($n as node()) as node() {
   ) else (
     $n
   )
+};
+
+(:~ todo use basex mime :)
+declare function svg-response(){
+    web:response-header(map { 'media-type': "image/svg+xml",
+                              'method':"xml"})
+};
+ 
+declare function json-response(){
+    web:response-header(map { 'media-type': "application/json",
+                              'method':"json"})
 };

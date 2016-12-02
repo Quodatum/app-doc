@@ -10,15 +10,16 @@ xquery version "3.0";
  
 module namespace doc = 'quodatum.doc';
 declare default function namespace 'quodatum.doc';
-
+import module namespace web = 'quodatum.web.utils4' at 'lib/webutils.xqm';
+import module namespace svggen = 'quodatum.doc.svg' at 'svggen.xqm';
 
 declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
 
-declare variable $doc:components:=fn:doc("data/doc/components.xml")/components;
+declare namespace comp="https://github.com/Quodatum/app-doc/component";
 
-declare variable $doc:repopath:=file:parent(db:system()/globaloptions/repopath);
+declare variable $doc:repopath:=db:system()/globaloptions/repopath;
 (:~ 
  : e.g "C:\Program Files (x86)\basex\etc\modules\"
  :)
@@ -90,39 +91,77 @@ declare function static-uri(
 declare function xqdoc($type as xs:string,
                         $path as xs:string)
 as element(xqdoc:xqdoc){
-        let $doc:=if($type="basex") then basex-xqdoc($path) 
-                      else xqdoc_($path)
-        return copy $c := $doc
-                modify (
-                  for $d in $c//xqdoc:description
-                  return replace node $d with <xqdoc:description>{$d}</xqdoc:description>
-                   )
-                 return $c                            
+        if($type="basex") 
+        then basex-xqdoc($path) 
+        else xqdoc_($path)                   
 };
 
-declare function xqdoc_($path as xs:string){
+(:~ get xqdoc for path, parse descriptions, trap errors  :)
+declare  function xqdoc_($path as xs:string) as element(xqdoc:xqdoc){
     try{
-        inspect:xqdoc($path)
+       copy $c :=  inspect:xqdoc(fn:translate($path,"\","/"))
+               modify (
+                (:  for $d in $c//xqdoc:description
+                  return replace node $d with <xqdoc:description>{fn:parse-xml-fragment($d/*)}</xqdoc:description> :)
+                   )  
+                 return $c   
     } catch * {
-     <xqdoc:xqdoc type="err">{$path}</xqdoc:xqdoc>
+      let $e:=map{
+               "code":$err:code,
+               "description":$err:description,
+               "value":$err:value,
+               "module":$err:module,
+               "line-number":$err:line-number,
+               "column-number":$err:column-number,
+               "additional":$err:additional
+               }
+     return <xqdoc:xqdoc type="err" path="{$path}">{fn:serialize($e,map{"method":"basex"})}</xqdoc:xqdoc>
     }
 };
 
 (:~
+ :  xqdoc for restxq functions in module doc
+ :)
+declare function rxq-fns($xqd as element(xqdoc:xqdoc)) as element(xqdoc:function)*
+{
+  let $pre:=$xqd//xqdoc:namespaces/xqdoc:namespace[@uri="http://exquery.org/ns/restxq"]
+  return if($pre) then
+                  let $t:=$pre/@prefix || ":" || "path" 
+                  return $xqd//xqdoc:function[.//xqdoc:annotation/@name=$t]
+         else ()   
+};
+
+
+declare function component-render(
+                        $fmt as xs:string) 
+{
+  component-render($fmt,fn:doc("data/doc/components.xml")/comp:components) 
+}; 
+
+declare function component-render(
+                        $fmt as xs:string,$doc )
+{ 
+ let $render:=map{"xml": function($doc){web:download-response("xml", "expath-pkg.xml"),$doc},
+                  "svg":function($doc){web:svg-response(),svggen:generate($doc)},       
+                 "html":function($doc){doc:components-html($doc)},
+                 "json":function($doc){web:json-response(),
+                                    <json type="object"><html>{
+                                    doc:components-html($doc)!fn:serialize(.,map{"method":"html"})
+                                    }</html></json>}
+            }
+   return $render?($fmt,"html")[1]($doc)
+};
+    
+(:~
  : html report for components referenced in package
+ :@param $pkg package or component
  :)
 declare function components-html($pkg as element())
 {
     xslt:transform($pkg,"xslt/component.xsl")  
 };
 
-(:~
- : svg graph for components referenced in package
- :)
-declare function components-svg($pkg as element())
-{
-    xslt:transform($pkg,"xslt/component.xsl")  
-};
+
 
 (:~
  : return html report for WADL entries supplied
@@ -139,8 +178,7 @@ declare function wadl-html($wadl,$root as xs:string)
  :)
 declare function wadl-under($wadl as element(wadl:application)
                             ,$root as xs:string) as element(wadl:application)
-{
-  
+{  
   copy $s:=$wadl
    modify(
            delete node $s//wadl:resource[fn:not(
@@ -150,10 +188,12 @@ declare function wadl-under($wadl as element(wadl:application)
     return $s 
 };
 
-declare function templates($app as xs:string){
+declare function templates($app as xs:string)
+{
     let $path:= static-uri($app,"templates/")
-    
-    let $list:=file:list($path,fn:true())
-    let $_:=fn:trace($list,"path::::")
-return $list
+    return if(file:is-dir($path)) then
+                let $list:=file:list($path,fn:true())
+                let $_:=fn:trace($list,"path::::")
+                return $list
+            else ()
 };

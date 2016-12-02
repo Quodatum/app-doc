@@ -10,8 +10,8 @@ declare namespace task ="https://github.com/Quodatum/app-doc/task";
 
  
 declare variable $eval:def-opts:=map{
-     "permission" :  "create",
-     "timeout": 5
+     "permission" :  "admin",
+     "timeout": 30
  };
   
 (:~ eval list of tasks
@@ -32,7 +32,6 @@ declare function do-tasks($names as xs:string*){
 declare function eval2($xq as xs:string,$timeout as xs:double)
 as item()*{
     let $xq:= 'declare base-uri "' || fn:resolve-uri("..") ||'";&#10;' || $xq 
-    let $xq:=fn:trace($xq,"eval2 ")
     return try {
               (:  let $t1:=prof:current-ms() :)
                 let $x:=client:connect('localhost', 1984, 'admin', 'admin') !client:query(.,$xq)
@@ -71,25 +70,24 @@ as item()*{
  : return sequence head() is elapsed time or -1 if error, tail() is result or error code
  :)
 declare  %updating
-function update($xq as xs:string,$base as xs:string,$timeout as xs:double)
+function update($xq as xs:string,$base as xs:string,$options as map(*))
 {
  let $bindings:=map{}
- let $opts:=map {
-     "permission" : "create",
-     "timeout":$timeout
-  }
+ let $opts:=map:merge(($options,$eval:def-opts))=>fn:trace("opts:")
   let $xq:= 'declare base-uri "' || $base ||'";&#10;' || $xq
-   let $xq:=fn:trace($xq,"eval:update")
+ 
+   return xquery:update($xq,$bindings,$opts)
+   (:
   return try{
        let $t1:=prof:current-ms()
        let $x:= () (:xquery:update($xq,$bindings,$opts) :)
        let $t:=(prof:current-ms()-$t1) div 1000
-       return map{"":xquery:update($xq,$bindings,$opts),
+       return db:output(map{"result":xquery:update($xq,$bindings,$opts),
                     "time":(prof:current-ms()-$t1) div 1000
-                    }
+                    })
       }catch * 
       {
-         map{"error":map{
+         db:output(map{"error":map{
                "code":$err:code,
                "description":$err:description,
                "value":$err:value,
@@ -98,7 +96,8 @@ function update($xq as xs:string,$base as xs:string,$timeout as xs:double)
                 "column-number":$err:column-number,
                "additional":$err:additional
                }
-            }
+            })
     
       }
+      :)
 };

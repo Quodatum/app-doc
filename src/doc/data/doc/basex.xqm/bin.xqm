@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace bin = "http://expath.org/ns/binary";
+module namespace bin = "x-http://expath.org/ns/binary";
 
 (:~
  : Returns the binary form of the set of octets written as a sequence of (ASCII) hex digits ([0-9A-Fa-f]).

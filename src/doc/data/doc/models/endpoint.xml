@@ -1,26 +1,30 @@
 <entity name="endpoint" xmlns="https://github.com/Quodatum/app-doc/entity">  
 	<description>A WADL type wadl:resource </description>
 	<namespace prefix="wadl" uri="http://wadl.dev.java.net/2009/02"/>
+	   <module prefix="rest" namespace="http://exquery.org/ns/restxq" />
 	<fields>
 		<field name="path" type="xs:string">
 			<description>path</description>
-			<xpath>$_/@path</xpath>
+			<xpath>@path</xpath>
 		</field>
 		<field name="method" type="xs:string">
 			<description>http methods eg PUT DELETE</description>
-			<xpath>$_/wadl:method/@name</xpath>
+			<xpath>wadl:method/@name</xpath>
 		</field>
 		<field name="doc" type="xs:string">
 			<description>html doc</description>
-			<xpath>if($_/wadl:method/wadl:doc) 
-			       then $_/wadl:method/wadl:doc/text()
-			       else '' </xpath>
+			<xpath>(if(wadl:method/wadl:doc) 
+			       then wadl:method/wadl:doc/text()
+			       else '' )</xpath>
 		</field>
 		<field name="mediatype" type="xs:string">
-			<description>mediatype</description>
-			<xpath>$_/wadl:method/wadl:response/wadl:representation/@mediaType</xpath>
+			<description>mediatype e.g "text/html" or "application/xml"</description>
+			<xpath>wadl:method/wadl:response/wadl:representation/@mediaType</xpath>
 		</field>
 	</fields>
+	<views>
+    <view name="filter">path doc</view>
+    </views>
 	<iconclass>fa fa-exchange</iconclass>
-	<data type="element(wadl:resource)"></data>
+	<data type="element(wadl:resource)">fn:trace(rest:wadl(),"WADL")//wadl:resource</data>
 </entity>

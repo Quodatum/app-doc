@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace user = "http://basex.org/modules/user";
+module namespace user = "x-http://basex.org/modules/user";
 
 (:~
  : Returns the name of the currently logged in user.

@@ -1,82 +1,156 @@
-<xs:schema attributeFormDefault="unqualified"
-	elementFormDefault="qualified" 
-	targetNamespace="https://github.com/Quodatum/app-doc/entity"
-	xmlns:entity="https://github.com/Quodatum/app-doc/entity"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:entity="https://github.com/Quodatum/app-doc/entity"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified"
+	elementFormDefault="qualified" targetNamespace="https://github.com/Quodatum/app-doc/entity">
 	<xs:element name="entity">
+		<xs:annotation>
+			<xs:documentation>root element</xs:documentation>
+		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element type="entity:mixed-text" name="description" />
-				<xs:element name="namespace" maxOccurs="unbounded"
-					minOccurs="0">
-					<xs:complexType>
-						<xs:simpleContent>
-							<xs:extension base="xs:string">
-								<xs:attribute type="xs:string"
-									name="prefix" use="required" />
-								<xs:attribute name="uri"
-									type="xs:string" use="required">
-								</xs:attribute>
-							</xs:extension>
-						</xs:simpleContent>
-					</xs:complexType>
+				<xs:element minOccurs="0" name="parent" />
+				<xs:element ref="entity:description" />
+
+				<xs:element maxOccurs="unbounded" minOccurs="0"
+					ref="entity:namespace">
+					<xs:annotation>
+						<xs:documentation>
+							namespaces used by the entity
+						</xs:documentation>
+					</xs:annotation>
+
+				</xs:element>
+				<xs:element maxOccurs="unbounded" minOccurs="0"
+					ref="entity:module">
+					<xs:annotation>
+						<xs:documentation>
+							modules used by the entity
+						</xs:documentation>
+					</xs:annotation>
+
 				</xs:element>
 				<xs:element name="fields">
+					<xs:annotation>
+						<xs:documentation>
+							properties of the entity defined by XPath
+						</xs:documentation>
+					</xs:annotation>
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="field"
-								maxOccurs="unbounded" minOccurs="0">
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="field">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element type="entity:mixed-text" name="description" />
-										<xs:element type="xs:string"
-											name="xpath" />
+										<xs:element name="description" type="entity:mixed-text" />
+										<xs:element name="xpath" type="xs:string" />
 									</xs:sequence>
-									<xs:attribute type="xs:string"
-										name="name" use="optional" />
-									<xs:attribute type="xs:string"
-										name="type" use="optional" />
+									<xs:attribute name="name" type="xs:string" use="optional" />
+									<xs:attribute name="type" type="xs:string" use="optional" />
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="views" maxOccurs="1" minOccurs="0">
+				<xs:element name="views" minOccurs="0" >
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="view"
-								maxOccurs="unbounded" minOccurs="0">
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="view">
 								<xs:complexType>
-									<xs:attribute type="xs:string"
-										name="name" use="optional" />
+									<xs:simpleContent>
+										<xs:extension base="xs:NMTOKENS">
+											<xs:attribute name="name" type="xs:string" />
+										</xs:extension>
+									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element type="xs:string" name="iconclass" />
-				<xs:element name="data">
-					<xs:complexType>
-						<xs:simpleContent>
-							<xs:extension base="xs:string">
-								<xs:attribute name="type"
-									type="xs:string">
-								</xs:attribute>
-							</xs:extension>
-						</xs:simpleContent>
-					</xs:complexType>
+				<xs:element name="iconclass" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>
+							css for icon
+						</xs:documentation>
+					</xs:annotation>
 				</xs:element>
+				<xs:element ref="entity:data">
+
+				</xs:element>
+				<xs:element ref="entity:search" maxOccurs="1" minOccurs="0" />
+
 			</xs:sequence>
-			<xs:attribute type="xs:string" name="name" />
-			<xs:attribute type="xs:string" name="type" />
+			<xs:attribute name="name" type="xs:string" />
+			<xs:attribute name="type" type="xs:string" />
 		</xs:complexType>
 	</xs:element>
-	
-	  <!-- Complex type used for comment text to allow the inclusion
-       of embedded HTML markup within comments. -->
-    <xs:complexType name="mixed-text"  mixed="true">
-        <xs:sequence>
-            <xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
-        </xs:sequence>
-    </xs:complexType>
+
+	<xs:element name="search" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>XQuery to return search-result for current object.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="description" type="entity:mixed-text">
+		<xs:annotation>
+			<xs:documentation>about the entity</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:simpleType name="searchType">
+		<xs:annotation>
+			<xs:documentation>XQuery to return search-result for current object.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+
+	<!-- Complex type used for comment text to allow the inclusion of embedded 
+		HTML markup within comments. -->
+	<xs:complexType mixed="true" name="mixed-text">
+		<xs:sequence>
+			<xs:any maxOccurs="unbounded" minOccurs="0" processContents="skip" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="namespace">
+		<xs:annotation>
+                        <xs:documentation>
+                            namespaces used by the entity
+                        </xs:documentation>
+        </xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute use="required" name="prefix" type="xs:string">
+					</xs:attribute>
+					<xs:attribute use="required" name="uri" type="xs:string">
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="module">
+		<xs:annotation></xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute use="required" name="prefix" type="xs:string">
+					</xs:attribute>
+					<xs:attribute use="required" name="namespace" type="xs:string">
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="data">
+		<xs:complexType>
+			<xs:annotation></xs:annotation>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="type" type="xs:string">
+						<xs:annotation></xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

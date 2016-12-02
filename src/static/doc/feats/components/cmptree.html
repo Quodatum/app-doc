@@ -1,0 +1,14 @@
+<div class="fillxx">
+    <cva-bar ng-model="bar" params="params" state="$state" single="true">
+    <div class="btn-group" role="group" aria-label="svg zoom">
+      <button ng-click="zoomIn($event)" class="navbar-btn btn btn-default">+</button>
+      <button ng-click="zoomReset($event)"  class="navbar-btn btn btn-default">Reset</button>
+      <button ng-click="zoomOut($event)" class="navbar-btn btn btn-default">-</button>
+    </div>
+    </cva-bar>
+    <div  id="svghere" ng-include="'components/browser?fmt=svg'" onload="gotsvg()" 
+  style="background-color:Azure ;"> 
+tree here
+</div>
+<div>After</div>
+</div>

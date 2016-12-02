@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace fetch = "http://basex.org/modules/fetch";
+module namespace fetch = "x-http://basex.org/modules/fetch";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

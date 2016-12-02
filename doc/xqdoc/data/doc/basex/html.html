@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/html.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://basex.org/modules/html</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> provides functions for converting HTML to XML. Conversion will only take place if <a href="http://home.ccil.org/~cowan/XML/tagsoup/">TagSoup</a> is included in the classpath (see <a href="http://docs.basex.org/wiki/Parsers#HTML_Parser">HTML Parsing</a> for more details).</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="parse#1">
+      <h3>parse($input)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>xs:anyAtomicType</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>document-node()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Converts the HTML document specified by <code>$input</code> to XML, and returns a document node:
+<ul> <li> The input may either be a string or a binary item (xs:hexBinary, xs:base64Binary). </li> <li> If the input is passed on in its binary representation, the HTML parser will try to automatically choose the correct encoding. </li> </ul>  <p>The <code>$options</code> argument can be used to set <a href="http://docs.basex.org/wiki/Parsers#TagSoup_Options">TagSoup Options</a>, which can be specified…
+</p>  <ul> <li> as children of an <code>&lt;html:options/&gt;</code> element; e.g.: </li> </ul>  <pre class="brush:xml"> &lt;html:options&gt; &lt;html:key1 value='value1'/&gt; ... &lt;/html:options&gt; </pre>  <ul> <li> as map, which contains all key/value pairs: </li> </ul>  <pre class="brush:xml"> map { "key1": "value1", ... } </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXHL0001 the input cannot be converted to XML.</td>
+      </tr>
+    </table>
+    <a name="parse#2">
+      <h3>parse($input, $options)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>xs:anyAtomicType</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$options</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>document-node()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Converts the HTML document specified by <code>$input</code> to XML, and returns a document node:
+<ul> <li> The input may either be a string or a binary item (xs:hexBinary, xs:base64Binary). </li> <li> If the input is passed on in its binary representation, the HTML parser will try to automatically choose the correct encoding. </li> </ul>  <p>The <code>$options</code> argument can be used to set <a href="http://docs.basex.org/wiki/Parsers#TagSoup_Options">TagSoup Options</a>, which can be specified…
+</p>  <ul> <li> as children of an <code>&lt;html:options/&gt;</code> element; e.g.: </li> </ul>  <pre class="brush:xml"> &lt;html:options&gt; &lt;html:key1 value='value1'/&gt; ... &lt;/html:options&gt; </pre>  <ul> <li> as map, which contains all key/value pairs: </li> </ul>  <pre class="brush:xml"> map { "key1": "value1", ... } </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXHL0001 the input cannot be converted to XML.</td>
+      </tr>
+    </table>
+    <a name="parser#0">
+      <h3>parser()</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Returns the name of the applied HTML parser (currently: <code>TagSoup</code> ). If an <i>empty string</i> is returned, TagSoup was not found in the classpath, and the input will be treated as well-formed XML.</td>
+      </tr>
+    </table>
+  </body>
+</html>

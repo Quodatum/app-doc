@@ -14,6 +14,13 @@ body {
 	width:5em;
 	display:inline-block;
 }
+.fillxx{
+    width: 100hh;
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    background-color:blue;/*Development Only*/
+}
 /* http://stackoverflow.com/questions/10931315/how-to-preventdefault-on-anchor-tags
 */
 a{
@@ -22,7 +29,7 @@ a{
 a.anchor {
     display: block;
     position: relative;
-    top: -3em;
+    top: -4em;
     visibility: hidden;
 }
 
@@ -137,4 +144,17 @@ tree-mendous .active {
   background-color: #aaddff;
   font-weight: bold;  
 }
-
+/* http://stackoverflow.com/a/26495054/3210344 */
+.label-as-badge { 
+border-radius: 1em;
+ padding: 3px 7px; 
+ }
+ 
+ .ellipis {
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+}

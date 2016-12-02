@@ -1,0 +1,33 @@
+<entity name="component.version" xmlns="https://github.com/Quodatum/app-doc/entity">
+	 <parent name="component" />
+	<description>A specific version of a component.</description>
+	<namespace prefix="pkg" uri="http://expath.org/ns/pkg" />
+	<namespace prefix="comp" uri="urn:quodatum:qd-cmpx:component" />   
+	<module prefix="cmpx" namespace="quodatum.cmpx" />
+	<fields>
+		<field name="component" type="xs:string">
+			<description>component name</description>
+			<xpath>@name</xpath>
+		</field>
+		<field name="version" type="xs:string">
+			<description>component version</description>
+			<xpath>@version</xpath>
+		</field>
+		<field name="found" type="xs:boolean">
+			<description>True if is in component catalog</description>
+			<xpath>@found</xpath>
+		</field>
+		<field name="status" type="xs:string">
+			<description>ok,noversion,missing</description>
+			<xpath>@status</xpath>
+		</field>
+	</fields>
+	<views>
+        <view name="filter">component</view>
+    </views>
+	<iconclass>fa fa-shopping-bag  </iconclass>
+	<data type="element(pkg:dependency)"><![CDATA[
+for $r in cmpx:comps()/comp:release
+return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true" status="ok"/>
+]]></data>
+</entity>

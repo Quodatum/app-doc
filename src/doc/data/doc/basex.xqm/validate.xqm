@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace validate = "http://basex.org/modules/validate";
+module namespace validate = "x-http://basex.org/modules/validate";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

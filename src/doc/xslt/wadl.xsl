@@ -3,76 +3,103 @@
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:wadl="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/02/xpath-functions"
-	exclude-result-prefixes="xs wadl fn" version="2.0">
+	xmlns:qdfun="http://quodatum.com/functions" exclude-result-prefixes="xs wadl fn"
+	version="2.0">
 
 	<!-- root is initial path to ignore -->
-	<xsl:param name="root" as="xs:string" />
+	<xsl:param name="root" as="xs:string" select="''" />
 
 	<!-- generate module html // -->
 	<xsl:template match="/wadl:application/wadl:resources">
-		<div class="row">
-			<div class="col-md-4">
-				<ul style="overflow:scroll">
-					<xsl:for-each select="wadl:resource">
-						<xsl:sort select="@path" />
-						<li style="white-space:nowrap;">
-							<xsl:apply-templates select="." mode="link">
-								<xsl:with-param name="root" select="$root" />
-							</xsl:apply-templates>
-						</li>
-					</xsl:for-each>
-				</ul>
-			</div>
-			<div class="col-md-8" style="height:70vh;overflow:scroll;">
+		<div>
+			<h2>
 
-				<h2>
-					RestXQ API:
-					<xsl:value-of select="$root" />
-					<small class="pull-right">
-						wadl.xml
-						<a href="../../doc/app/{$root}/server/wadl?fmt=xml" target="dn">
-							<i class="glyphicon glyphicon-save"></i>
-						</a>
-					</small>
-				</h2>
+				<xsl:value-of select="$root" />
+				Endpoints:
+				<span class="label label-default label-as-badge">
+					<xsl:value-of select="count(//wadl:resource)" />
+				</span>
+				<small class="pull-right">
+					wadl.xml
+					<xsl:choose>
+						<xsl:when test="$root='/'">
+							<a href="../../doc/wadl?fmt=xml" target="dn">
+								<i class="glyphicon glyphicon-save" />
+							</a>
+						</xsl:when>
+						<xsl:otherwise>
+							<a href="../../doc/app/{$root}/view/wadl?fmt=xml" target="dn">
+								<i class="glyphicon glyphicon-save" />
+							</a>
+						</xsl:otherwise>
+					</xsl:choose>
 
-				<xsl:for-each select="wadl:resource">
-					<xsl:sort select="@path" />
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a class="anchor" id="path-{generate-id()}"></a>
-								<xsl:apply-templates select="." mode="link">
-									<xsl:with-param name="root" select="$root" />
-								</xsl:apply-templates>
+				</small>
+			</h2>
+			<div class="row">
+				<div class="col-md-4">
+					<ul class="list-group">
+						<xsl:for-each-group select="wadl:resource"
+							group-by="@path">
+							<xsl:sort select="lower-case(qdfun:fixuri(@path))" />
+							<li class="list-group-item">
 
 								
-							</h4>
 
-						</div>
+								<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
+									<xsl:value-of select="qdfun:fixuri(@path)" />
+								</a>
 
-						<div class="panel-body">
-							<xsl:value-of select="wadl:method/wadl:doc" />
-							<xsl:apply-templates select="wadl:method" />
+								<xsl:for-each select="current-group()">
+									<xsl:apply-templates select="wadl:method"
+										mode="name" />
+								</xsl:for-each>
+								<span class="pull-right">
+                                    <xsl:apply-templates select="wadl:method/wadl:response"
+                                        mode="mediaType" />
+                                </span>
+							</li>
+						</xsl:for-each-group>
+					</ul>
+				</div>
+				<div class="col-md-8" >
+					<xsl:for-each select="wadl:resource">
+						<xsl:sort select="lower-case(qdfun:fixuri(@path))" />
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a class="anchor" id="path-{generate-id()}" />
+									<xsl:apply-templates select="." mode="link">
+										<xsl:with-param name="root" select="$root" />
+									</xsl:apply-templates>
+
+
+								</h4>
+
+							</div>
+
+							<div class="panel-body">
+								<xsl:value-of select="wadl:method/wadl:doc" />
+								<xsl:apply-templates select="wadl:method" />
+							</div>
 						</div>
-					</div>
-				</xsl:for-each>
+					</xsl:for-each>
+				</div>
 			</div>
 		</div>
 	</xsl:template>
 
 	<xsl:template match="wadl:resource" mode="link">
 		<xsl:param name="root" />
-		<span class="pull-right">		
-				<xsl:apply-templates select="wadl:method/wadl:response" mode="mediaType"/>
+		<span class="pull-right">
+			<xsl:apply-templates select="wadl:method/wadl:response"
+				mode="mediaType" />
 		</span>
-		<xsl:apply-templates select="wadl:method" mode="name"/>
-		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
-			<span class="">
-				<xsl:value-of select="substring(@path,1)" />
-			</span>
-		</a>
 
+		<a ng-click="scrollTo('path-{generate-id()}')" title="{wadl:method/wadl:doc}">
+			<xsl:value-of select="qdfun:fixuri(@path)" />
+		</a>
+		<xsl:apply-templates select="wadl:method" mode="name" />
 	</xsl:template>
 
 	<xsl:template match="wadl:method">
@@ -83,29 +110,31 @@
 
 
 	<xsl:template match="wadl:representation" mode="mediaType">
-	    <xsl:variable name="mediaType" select="wadl:representation/@mediaType"/>
-		<span class="badge badge-default" title="{$mediaType}">
-		<xsl:choose>
-                <xsl:when test="$mediaType='text/html'">
-                    <xsl:text>H</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="$mediaType='application/octet-stream'">
-                     <xsl:text>B</xsl:text>
-                    </xsl:when>
-                     <xsl:when test="$mediaType='application/xml'">
-                     <xsl:text>X</xsl:text>
-                    </xsl:when>
-                     <xsl:when test="$mediaType='text/plain'">
-                     <xsl:text>T</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="$mediaType='application/json'">
-                     <xsl:text>J</xsl:text>
-                    </xsl:when>
-                     <xsl:when test="$mediaType='image/svg+xml'">
-                     <xsl:text>S</xsl:text>
-                    </xsl:when>
-                    
-                    <xsl:otherwise>?</xsl:otherwise>
+		<xsl:variable name="mediaType" select="@mediaType" />
+		<span class="label label-default label-pill pull-xs-right" title="{$mediaType}">
+			<xsl:choose>
+				<xsl:when test="$mediaType='text/html'">
+					<xsl:text>H</xsl:text>
+				</xsl:when>
+				<xsl:when test="$mediaType='application/octet-stream'">
+					<xsl:text>B</xsl:text>
+				</xsl:when>
+				<xsl:when test="$mediaType='application/xml'">
+					<xsl:text>X</xsl:text>
+				</xsl:when>
+				<xsl:when test="$mediaType='text/plain'">
+					<xsl:text>T</xsl:text>
+				</xsl:when>
+				<xsl:when test="$mediaType='application/json'">
+					<xsl:text>J</xsl:text>
+				</xsl:when>
+				<xsl:when test="$mediaType='image/svg+xml'">
+					<xsl:text>S</xsl:text>
+				</xsl:when>
+
+				<xsl:otherwise>
+					?
+				</xsl:otherwise>
 			</xsl:choose>
 		</span>
 	</xsl:template>
@@ -117,7 +146,8 @@
 				<thead>
 					<tr>
 						<th>Parameter</th>
-						<th>Value</th>
+						<th>Style</th>
+						<th>Type</th>
 						<th>Description</th>
 					</tr>
 				</thead>
@@ -128,11 +158,13 @@
 							<xsl:value-of select="@name" />
 						</td>
 						<td>
-							<input type="text" name="{@name}" />
 							<xsl:value-of select="@style" />
 						</td>
 						<td>
-							?
+							<xsl:value-of select="@type" />
+						</td>
+						<td>
+							<xsl:value-of select="wadl:doc" />
 						</td>
 					</tr>
 				</xsl:for-each>
@@ -143,7 +175,7 @@
 
 	<!-- generate span with method name eg GET -->
 	<xsl:template match="wadl:method" mode="name">
-		<xsl:variable name="name" select="@name" />
+		<xsl:variable name="name" select="string(@name)" />
 		<span>
 			<xsl:attribute name="class">
 		<xsl:text>wadl-method label </xsl:text>
@@ -162,7 +194,14 @@
 				</xsl:otherwise>
 			</xsl:choose>
 			</xsl:attribute>
-			<xsl:value-of select="(wadl:method/@name,'(all)')[1]" />
+			<xsl:value-of select="if($name = '')then '(ALL)' else $name" />
 		</span>
 	</xsl:template>
+
+	<!-- Add leading / to path if not present -->
+	<xsl:function name="qdfun:fixuri">
+		<xsl:param name="uri" as="xs:string" />
+		<xsl:value-of
+			select="if(starts-with($uri,'/'))then $uri else concat('/',$uri)" />
+	</xsl:function>
 </xsl:stylesheet>

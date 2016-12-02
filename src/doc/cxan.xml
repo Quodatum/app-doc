@@ -1,0 +1,10 @@
+<package xmlns="http://cxan.org/ns/package" id="doc">
+    <abstract>Documentation services for BaseX web apps</abstract>
+    <author id="abunce">Andy Bunce</author>
+    <maintainer id="abunce">Andy Bunce</maintainer>
+    <home>https://github.com/Quodatum/app-doc</home>
+    <category id="apps">Applications</category>
+    <tag>basex</tag>
+    <tag>restxq</tag>
+    <tag>documentation</tag>
+</package>

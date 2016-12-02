@@ -9,8 +9,8 @@ module namespace model-rest = 'quodatum.model.rest';
 declare default function namespace 'quodatum.model.rest'; 
 
 import module namespace entity ='quodatum.models.generated' at "generated/models.xqm";
-import module namespace dice = 'quodatum.web.dice/v2' at "lib/dice.xqm"; 
-import module namespace web = 'quodatum.web.utils3' at "lib/webutils.xqm";
+import module namespace dice = 'quodatum.web.dice/v3' at "lib/dice.xqm"; 
+import module namespace web = 'quodatum.web.utils4' at "lib/webutils.xqm";
 declare namespace ent="https://github.com/Quodatum/app-doc/entity"; 
 
 declare variable $model-rest:models:=db:open("doc-doc")//ent:entity;
@@ -24,9 +24,9 @@ declare
 %output:method("json")    
 function model-list($q) {
  let $entity:=$entity:list("entity")
- let $items:=$model-rest:models
+ let $items:=$entity?data()
  let $items:=if($q)then $items[fn:contains($entity("access")("name")(.),$q)] else $items
- return dice:response($items,$entity,())
+ return dice:response($items,$entity,web:dice())
 };
 
 (:~ 
@@ -36,8 +36,10 @@ declare
 %rest:GET %rest:path("doc/data/entity/{$entity}")
 %output:method("json")    
 function model($entity) {
- let $fields:=entity:fields("entity")
- let $item:=$model-rest:models[@name=$entity]
+let $this:=$entity:list("entity")
+ let $items:=$this?data()
+ let $fields:=$this?json
+ let $item:=$items[@name=$entity]
  (: just one :)
  return <json objects="json">{dice:json-flds($item,$fields)/*}</json>
 
@@ -50,10 +52,10 @@ declare
 %rest:GET %rest:path("doc/data/entity/{$entity}/field")
 %output:method("json")    
 function field-list($entity) {
- let $fentity:=$entity:list("field")
-    let $items:=$model-rest:models[@name=$entity]/fields/field
-	let $crumbs:=(<_><name>{$entity}</name><slug>{$entity}</slug></_>,
-                  <_><name>fields</name><slug>fields</slug></_>)
-    return dice:response($items,$fentity,$crumbs)
+    let $dentity:=$entity:list("entity")
+    let $items:=$dentity?data()
+    let $items:=$items[@name=$entity]/ent:fields/ent:field
+    let $fentity:=$entity:list("entity.field")
+    return dice:response($items,$fentity,web:dice())
                       
 };

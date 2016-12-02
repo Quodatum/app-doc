@@ -1,0 +1,397 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta http-equiv="Generator" content="xquerydoc - https://github.com/xquery/xquerydoc"/><title>xqDoc - </title><style type="text/css">
+          body {
+          font-family: Helvetica;
+          padding: 0.5em  1em;
+          }
+          pre {
+          font-family: Inconsolata, Consolas, monospace;
+          }
+          ol.results {
+          padding-left: 0;
+          }
+          .footer {
+          text-align:right;
+          border-top: solid 4px;
+          padding: 0.25em 0.5em;
+          font-size: 85%;
+          color: #999;
+          }
+          li.result {
+          list-style-position: inside;
+          list-style: none;
+          height:140px;
+          }
+          h2 {
+          display: inline-block;
+          margin: 0;
+          }
+
+          h2 a,
+          .result h3 a {
+          text-decoration: inherit;
+          color: inherit;
+          }
+          h3{
+	  font-size: 140%;
+	  background-color: #aaa;
+	  border-bottom: 1px solid #000;
+	  width: 100%;
+	  }
+          h4{
+	  font-size: 100%;
+	  background-color: #ddd;
+	  width: 90%;
+	  }
+
+          .namespace {
+          color: #999;
+          }
+          .namespace:before {
+          content: "{";
+          }
+          .namespace:after {
+          content: "}";
+          }
+          table{
+          width:75%;
+          float:right;
+          }
+          td {
+          height:100px;
+          width:50%;
+          vertical-align:text-top;
+          }
+        </style><script src="lib/prettify.js" type="text/javascript"> </script><script src="lib/lang-xq.js" type="text/javascript"> </script><link rel="stylesheet" type="text/css" href="lib/prettify.css"/></head><body class="home"><div id="main"><h1><span class="namespace">apb.benchx.rest</span>  error module </h1><div id="variables"><h3>Variables</h3><div id="var_bm_timeout"><h4><pre class="prettyprint lang-xq"><u>Variable</u>: $bm:timeout as xs:integer</pre></h4><p>max time for execution of query</p></div></div><div id="functions"><h3>Functions</h3><div id="func_benchmark_0"><h4><pre class="prettyprint lang-xq"><u>Function</u>: benchmark(
+)</pre></h4><p>Benchmark html application entry point. Will create db if required</p></div><div id="func_error_2"><h4><pre class="prettyprint lang-xq"><u>Function</u>: error($description,$additional
+)</pre></h4><h5>Params</h5><ul><li>description as </li><li>additional as </li></ul></div><div id="func_execute_1"><h4><pre class="prettyprint lang-xq"><u>Function</u>: execute($body
+)</pre></h4><p>Execute one test and store to session</p><h5>Params</h5><ul><li>body as  name and suite</li></ul></div><div id="func_state_0"><h4><pre class="prettyprint lang-xq"><u>Function</u>: state(
+)</pre></h4><p>get information about application state</p></div><div id="func_state-post_2"><h4><pre class="prettyprint lang-xq"><u>Function</u>: state-post($mode,$factor as xs:double
+)</pre></h4><p>set application state mode and factor</p><h5>Params</h5><ul><li>mode as </li><li>factor as xs:double</li></ul></div><div id="func_addrecord_1"><h4><pre class="prettyprint lang-xq"><u>Function</u>: addrecord($body
+)</pre></h4><p>save session timing data as a new library file</p><h5>Params</h5><ul><li>body as </li></ul></div><div id="func_session-delete_0"><h4><pre class="prettyprint lang-xq"><u>Function</u>: session-delete(
+)</pre></h4><p>clear any session timing data</p></div><div id="func_library_0"><h4><pre class="prettyprint lang-xq"><u>Function</u>: library(
+)</pre></h4><p>list of library files</p></div><div id="func_record_2"><h4><pre class="prettyprint lang-xq"><u>Function</u>: record($id,$format
+)</pre></h4><p>get record as json (default) or xml</p><h5>Params</h5><ul><li>id as </li><li>format as </li></ul></div><div id="func_compare_4"><h4><pre class="prettyprint lang-xq"><u>Function</u>: compare($id,$query,$state,$format
+)</pre></h4><p>get compare data for state like D0</p><h5>Params</h5><ul><li>id as </li><li>query as </li><li>state as </li><li>format as </li></ul></div><div id="func_record-delete_2"><h4><pre class="prettyprint lang-xq"><u>Function</u>: record-delete($id as xs:string,$password
+)</pre></h4><p>delete record</p><h5>Params</h5><ul><li>id as xs:string</li><li>password as </li></ul></div><div id="func_suites_0"><h4><pre class="prettyprint lang-xq"><u>Function</u>: suites(
+)</pre></h4><p>list of suites</p></div><div id="func_queries_1"><h4><pre class="prettyprint lang-xq"><u>Function</u>: queries($suite as xs:string
+)</pre></h4><p>Get list of tests in suite</p><h5>Params</h5><ul><li>suite as xs:string name of suite</li></ul></div><div id="func_about_0"><h4><pre class="prettyprint lang-xq"><u>Function</u>: about(
+)</pre></h4><p>Information about the server platform, Java version etc.</p></div><div id="func_env_0"><h4><pre class="prettyprint lang-xq"><u>Function</u>: env(
+)</pre></h4><p>distinct environments from the library.</p></div><div id="func_testbed_0"><h4><pre class="prettyprint lang-xq"><u>Function</u>: testbed(
+)</pre></h4><p>testbed not part of app, use this for experiments</p></div></div><div><h3>Original Source Code</h3><pre class="prettyprint lang-xq">(:~ 
+ : A RESTXQ interface for running benchmarks against BaseX
+ :@author Andy Bunce
+ :@version 0.1
+ :)
+module namespace bm = 'apb.benchx.rest';
+declare default function namespace 'apb.benchx.rest'; 
+
+import module namespace xm='apb.xmark.test' at 'xmark.xqm';
+import module namespace s='apb.benchx.state' at 'state.xqm';
+import module namespace lib='quodatum.benchx.library' at 'library.xqm';
+
+import module namespace dbtools = 'apb.dbtools' at 'lib.xq/dbtools.xqm';
+import module namespace env = 'quodatum.basex.env' at 'lib.xq/basex-env.xqm';
+import module namespace web = 'apb.web.utils3' at 'lib.xq/webutils.xqm';
+
+(:~
+ : max time for execution of query
+ :)
+declare variable $bm:timeout as xs:integer:=10;
+
+(:~
+ : Benchmark html application entry point.
+ : Will create db if required
+ :)
+declare %updating
+%rest:GET %rest:path("benchx")
+%output:method("html")   
+function benchmark()
+{
+    if(fn:not(env:basex-minversion("7.8.2"))) then      
+            db:output(
+            (web:status(500,"Server error")," BaseX min ver 7.8.2 required")
+            )
+    else
+        (s:init(),
+        if(db:exists("benchx")) then ()
+        else 
+            dbtools:sync-from-path("benchx",fn:resolve-uri("data/benchx"))
+            ,
+            db:output(&lt;rest:forward&gt;/static/benchx&lt;/rest:forward&gt;)
+         )
+};
+
+
+declare %rest:error("*")
+%rest:error-param("description", "{$description}")
+%rest:error-param("additional","{$additional}") (: error stack trace  :)
+%output:method("text")  
+function error($description,$additional) {
+    (web:status(500,"Server error $%^%Â£$ "),$additional)
+};
+
+
+(:~
+ : Execute one test and store to session
+ : @param body name and suite
+ : @return information about the result, including runtime
+ :)
+declare %updating
+%rest:POST("{$body}") %rest:path("benchx/api/execute")
+%output:method("json")   
+function execute($body)
+{
+let $name:=$body/json/name/fn:string()
+let $suite:=$body/json/suite/fn:string()
+let $time:=xm:time-xmark($suite || "/" || $name,$bm:timeout)
+let $run:= &lt;run&gt;
+        {$time}
+        &lt;name&gt;{$name}&lt;/name&gt;
+        &lt;mode&gt;{s:mode()}&lt;/mode&gt;
+        &lt;factor&gt;{$s:root/state/factor/fn:string()}&lt;/factor&gt;
+        &lt;created&gt;{fn:current-dateTime()}&lt;/created&gt;
+    &lt;/run&gt;
+ return db:output((&lt;json objects="json run"&gt;{$run}&lt;/json&gt;,
+        s:add($run)))
+};
+
+
+(:~
+ : get information about application state
+ :)
+declare 
+%rest:GET %rest:path("benchx/api/state")
+%output:method("json")   
+function state() 
+{
+&lt;json objects="json _ state" &gt;
+    {s:state()}
+&lt;/json&gt;
+}; 
+
+(:~
+ : set application state mode and factor
+ :)
+declare %updating
+%rest:POST %rest:path("benchx/api/state")
+%restxq:query-param("mode", "{$mode}")
+%restxq:query-param("factor", "{$factor}")
+%output:method("json")   
+function state-post($mode,$factor as xs:double) 
+{
+    (: @TODO o/p new rather than current state :)
+    let $factor:=fn:trace($factor,"factor:")
+    return (
+        db:output(&lt;json objects="json state"&gt;{s:state()}&lt;/json&gt;),
+        s:make($mode,$factor)
+     )
+}; 
+
+
+
+(:~
+ : save session timing data as a new library file
+ :)
+declare %updating
+%rest:POST("{$body}") %rest:path("benchx/api/session")
+%output:method("json")   
+function addrecord($body) 
+{
+    lib:add-session($body,s:benchmark())  
+};
+
+(:~
+ : clear any session timing data
+ :)
+declare 
+%rest:DELETE %rest:path("benchx/api/session")
+%output:method("json")   
+function session-delete() 
+{
+ s:clear()
+}; 
+
+(:~
+ : list of library files
+ :)
+declare 
+%rest:GET %rest:path("benchx/api/library")
+%output:method("json")   
+function library() 
+{
+    lib:list(())
+}; 
+
+(:~
+ : get record as json (default) or xml
+ :)
+declare 
+%rest:GET %rest:path("benchx/api/library/{$id}")
+%restxq:query-param("format", "{$format}","json")
+%output:method("json")
+function record($id,$format) 
+{
+    let $b:=lib:get($id)
+    return if($format="json") then lib:json($b)
+            else (web:download-response("xml",$id || ".xml"),$b) 
+};
+
+(:~
+ : get compare data for state like D0
+ :)
+declare 
+%rest:GET %rest:path("benchx/api/library/{$id}/compare")
+%restxq:query-param("format", "{$format}","json")
+%restxq:query-param("query", "{$query}","")
+%restxq:query-param("state", "{$state}","")
+%output:method("json")
+function compare($id,$query,$state,$format) 
+{
+    let $suite as xs:string:=$lib:benchmarks[id=$id]/suite/fn:string()
+	let $hits:=$lib:benchmarks[suite=$suite]/runs/run[
+                     name=$query and
+                    (mode || factor)=$state
+                ]
+    let $_:=&lt;json objects="json _"&gt;
+                &lt;total type="number"&gt;{fn:count($hits)}&lt;/total&gt;
+                &lt;id&gt;{$id}&lt;/id&gt;
+                &lt;query&gt;{$query}&lt;/query&gt;
+                &lt;hit type="array"&gt;
+                    {for $hit in $hits
+                    let $b:=$hit/ancestor::benchmark
+					order by fn:number($hit/runtime)
+                    return &lt;_&gt;{        
+                    $hit/runtime,
+					$b/server/hostname,
+					$b/meta/description,
+                    $b/id
+                    }
+                    &lt;/_&gt;
+                    }
+                &lt;/hit&gt;
+            &lt;/json&gt; 
+    return $_
+};
+
+(:~
+ : delete record
+ :)
+declare %updating
+%rest:DELETE %rest:path("benchx/api/library/{$id}")
+%restxq:form-param("password", "{$password}")
+%output:method("json")   
+function record-delete($id as xs:string,$password) 
+{
+   (db:output( &lt;json objects="json"&gt;
+    &lt;todo&gt;password: {$password}&lt;/todo&gt;
+    &lt;/json&gt;),lib:delete($id) )
+};
+ 
+ 
+(:~
+ : list of suites
+ : @return array of suite names
+ :)
+declare 
+%rest:GET %rest:path("benchx/api/suite")
+%output:method("json")   
+function suites() 
+{
+    let $suites:=xm:list-suites()
+    return &lt;json type="array"&gt;{
+    for $suite in $suites
+    let $desc:=xm:describe( $suite)
+    return &lt;_ type="object"&gt;
+            &lt;name&gt;{$suite}&lt;/name&gt;
+            &lt;href&gt;#/suite/{$suite}&lt;/href&gt;
+            &lt;describe&gt;{$desc}&lt;/describe&gt;
+            &lt;session&gt;#/suite/{$suite}/session&lt;/session&gt;
+            &lt;library&gt;#/suite/{$suite}/library&lt;/library&gt;
+            &lt;results type="number"&gt;{fn:count($lib:benchmarks[suite=$suite])}&lt;/results&gt;
+            &lt;queries type="array"&gt;{ for  $file in xm:queries( $suite )
+                    return &lt;_&gt;{$file}&lt;/_&gt;
+            }&lt;/queries&gt;
+            &lt;/_&gt;
+            }
+&lt;/json&gt;
+};
+
+(:~
+ : Get list of tests in suite
+ : @param suite name of suite
+ : @return the suite object
+ :)
+declare 
+%rest:GET %rest:path("benchx/api/suite/{$suite}")
+%output:method("json")   
+function queries($suite as xs:string) 
+{
+&lt;json objects="json _" arrays="queries runs"&gt;
+    &lt;name&gt;{$suite}&lt;/name&gt;
+     &lt;session&gt;#/suite/{$suite}/session&lt;/session&gt;
+    &lt;library&gt;#/suite/{$suite}/library&lt;/library&gt;
+    &lt;queries&gt;
+    { for  $file in xm:queries( $suite )
+            return &lt;_&gt;
+                &lt;name&gt;{$file}&lt;/name&gt;
+                &lt;src&gt;{xm:get-xmark($suite || "/" || $file)}&lt;/src&gt;
+                &lt;runs /&gt;
+                &lt;/_&gt;
+    }
+    &lt;/queries&gt;
+&lt;/json&gt;
+};  
+
+(:~
+ : Information about the server platform, Java version etc.
+ : @return json env array
+ :)
+declare 
+%rest:GET %rest:path("benchx/api/thisenv")
+%output:method("json")  
+function about() 
+{
+&lt;json type="object" &gt;
+    {env:xml()/*}
+&lt;/json&gt;
+}; 
+
+(:~
+ : distinct environments from the library.
+ : @return json env array
+ :)
+declare 
+%rest:GET %rest:path("benchx/api/environment")
+%output:method("json")  
+function env() 
+{
+&lt;json type="array" &gt;   
+    {lib:environments()}
+&lt;/json&gt;
+}; 
+(:~
+ : testbed not part of app, use this for experiments
+ :)
+declare 
+%rest:GET %rest:path("benchx/api/~testbed")
+%output:method("json")   
+function testbed() 
+{
+   &lt;json  objects="json doc _" arrays="docs "&gt;
+   &lt;docs&gt;
+   {for $doc in $lib:benchmarks
+   order by $doc/meta/created
+   return &lt;_&gt;
+   {$doc/id,
+    $doc/server/suite,
+    $doc/server/description,
+    $doc/meta/description,
+    $doc/meta/created
+       }&lt;/_&gt;
+   }&lt;/docs&gt;&lt;/json&gt;    
+}; 
+
+</pre></div><br/><div class="footer"><p style="text-align:right"><i/> |
+          generated by xquerydoc <a href="https://github.com/xquery/xquerydoc" target="xquerydoc">https://github.com/xquery/xquerydoc</a></p></div></div><script type="application/javascript">
+	  window.onload = function(){ prettyPrint(); }
+	</script></body></html>

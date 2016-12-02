@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace array = "http://www.w3.org/2005/xpath-functions/array";
+module namespace array = "x-http://www.w3.org/2005/xpath-functions/array";
 
 (:~
  : Returns the number of members in <code>$array</code> . Note that because an array is an item, the <code>fn:count</code> function when applied to an array always returns <code>1</code> .

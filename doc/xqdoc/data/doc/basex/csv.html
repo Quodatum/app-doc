@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>XQuery documentation </title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css"></link>
+  </head>
+  <body>
+    <div class="right">
+      <img width="104" src="../../../basex.svg"></img>
+    </div>
+    <h2>Library Module: data/doc/basex.xqm/csv.xqm</h2>
+    <table>
+      <tr>
+        <td>
+          <b>URI:</b>
+        </td>
+        <td>
+          <code>http://basex.org/modules/csv</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>This <a href="http://docs.basex.org/wiki/Module_Library">XQuery Module</a> contains a single function to parse CSV input. <a href="http://en.wikipedia.org/wiki/Comma-separated_values">CSV</a> (comma-separated values) is a popular representation for tabular data, exported e. g. from Excel.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Author:</b>
+        </td>
+        <td>BaseX Team</td>
+      </tr>
+      <tr>
+        <td>
+          <b>See:</b>
+        </td>
+        <td>http://docs.basex.org/wiki/Module_Library</td>
+      </tr>
+    </table>
+    <h2>Functions</h2>
+    <a name="parse#1">
+      <h3>parse($input)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>document-node(csv)</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Converts the CSV data specified by <code>$input</code> to an XML document or a map. The <code>$options</code> argument can be used to control the way the input is converted.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXCS0001 the input cannot be parsed.</td>
+      </tr>
+    </table>
+    <a name="parse#2">
+      <h3>parse($input, $options)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$options</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Converts the CSV data specified by <code>$input</code> to an XML document or a map. The <code>$options</code> argument can be used to control the way the input is converted.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXCS0001 the input cannot be parsed.</td>
+      </tr>
+    </table>
+    <a name="serialize#1">
+      <h3>serialize($input)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>node()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Serializes the node specified by <code>$input</code> as CSV data, and returns the result as <code>xs:string</code> . Items can also be serialized as JSON if the <a href="http://docs.basex.org/wiki/Serialization">Serialization Parameter</a>  <code>method</code> is set to <code>csv</code> .
+The <code>$options</code> argument can be used to control the way the input is serialized.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXCS0002 the input cannot be serialized.</td>
+      </tr>
+    </table>
+    <a name="serialize#2">
+      <h3>serialize($input, $options)</h3>
+    </a>
+    <table>
+      <tr>
+        <td>
+          <b>Arguments:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>$input</code>
+              </td>
+              <td>
+                <code>node()</code>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <code>$options</code>
+              </td>
+              <td>
+                <code>item()</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Returns:</b>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <code>xs:string</code>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Description:</b>
+        </td>
+        <td>Serializes the node specified by <code>$input</code> as CSV data, and returns the result as <code>xs:string</code> . Items can also be serialized as JSON if the <a href="http://docs.basex.org/wiki/Serialization">Serialization Parameter</a>  <code>method</code> is set to <code>csv</code> .
+The <code>$options</code> argument can be used to control the way the input is serialized.</td>
+      </tr>
+      <tr>
+        <td>
+          <b>Error:</b>
+        </td>
+        <td>bxerr:BXCS0002 the input cannot be serialized.</td>
+      </tr>
+    </table>
+  </body>
+</html>

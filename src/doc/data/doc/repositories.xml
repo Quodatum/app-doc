@@ -1,0 +1,11 @@
+<repositories>
+	<repo abbrev="expath" href="../repos/expath/">
+		<desc>The EXPath project repository.</desc>
+		<packages>../repos/expath/packages.xml</packages>
+		<git>
+			<remote>http://git.fgeorges.org/r/expath/cxan-repo.git</remote>
+			<branch>master</branch>
+		</git>
+	</repo>
+
+</repositories>

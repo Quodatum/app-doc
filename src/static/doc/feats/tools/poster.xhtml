@@ -1,18 +1,57 @@
 <div>
-	<div>poster</div>
-	<button ng-click="get()" class="btn btn-default">Get count</button>
-	<button ng-click="incr()" class="btn btn-default">Update count</button>
+    <cva-bar ng-model="bar" single="true"></cva-bar>
+	<div class="row">
+	     <h3>Counter: <span class="badge " >{{repeat.count}}</span>.</h3>
+		<table class="table .col-md-6">
+			<thead>
+			
+				<tr>
+					<th>Option</th>
+					<th>Time</th>
+					<th>Repeat</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr>
+					<td>
+						<button ng-click="incr()" class="btn btn-default">Update count</button>
+						<label>repeat: <input type="checkbox" ng-model="repeat.post" /></label>
+					</td>
+					<td>
+						<span class="badge badge-default">{{postMs}}</span>
+					</td>
+					<td>
+						..
+					</td>
+				</tr>
+                <tr>
+                    <td>
+                        <button ng-click="get()" class="btn btn-default">Get count</button>
+                        <label>repeat: <input type="checkbox" ng-model="repeat.get"  /></label>
+                    </td>
+                    <td>
+                        <span class="badge badge-default">{{getMs}}</span>
+                    </td>
+                    <td>
+                        ..
+                    </td>
+                </tr>
+			</tbody>
+		</table>
+	</div>
 	<div class="row">
 		Before
 		<tree-mendous nodes="model" select-mode="single">
-		<ul class="list-unstyled">
-			<li ng-repeat="item in nodes"  tree-expand="expandFn(item)" tree-select>
-			<span class="label">{{$expanded}}</span>
-			<span ng-class="{selectedNode:$selected}">{{item.label}}</span> 
-			<tree-branch
-					nodes="item.children" ng-show="$expanded">AA</tree-branch>
-			</li>
-		</ul>
+			<ul class="list-unstyled">
+				<li ng-repeat="item in nodes" tree-expand="expandFn(item)"
+					tree-select="tree-select">
+					<span class="label">{{$expanded}}</span>
+					<span ng-class="{selectedNode:$selected}">{{item.label}}</span>
+					<tree-branch nodes="item.children" ng-show="$expanded">AA
+					</tree-branch>
+				</li>
+			</ul>
 		</tree-mendous>
 		After
 	</div>

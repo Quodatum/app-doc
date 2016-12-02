@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace xslt = "http://basex.org/modules/xslt";
+module namespace xslt = "x-http://basex.org/modules/xslt";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

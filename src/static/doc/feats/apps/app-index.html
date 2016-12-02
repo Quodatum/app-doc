@@ -1,0 +1,68 @@
+<div class="container">
+	<cva-bar ng-model="bar" single="true" state="$state"> </cva-bar>
+	<div class="row">
+
+		<div class="panel  panel-info panel-body col-md-4">
+			<div class="media">
+				<img class="media-object pull-left" ng-src="{{app.logo}}"
+					alt="{{app.name}} - no logo" style="width: 64px; height: 64px;" />
+				<div class="media-body">
+					<h1 class="media-heading">
+						{{app.name}} <span class="btn-group"> <a href="{{app.uri}}"
+							target="app-{{app.name}}" title="Run app" class="btn btn-default">
+								<i class="fa fa-play-circle"></i>
+						</a>
+						</span>
+					</h1>
+					<div>Description:{{app.description}}</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="panel  panel-info panel-body">
+				<div class="panel-heading">
+					<h3 class="panel-title">Server</h3>
+				</div>
+				<div class="panel-body table-responsive">
+					<ul class="nav nav-pills nav-stacked">
+					<li><a
+                            ui-sref="app.item.client.component({view:'component'})"
+                            class="btn btn-default btn-sm">Components</a></li>
+						<li><a ui-sref="app.item.server.wadl({view:'wadl'})"
+							class="btn btn-default btn-sm"> Endpoints </a></li>
+						<li><a ui-sref="app.item.server.rest"
+							class="btn btn-default btn-sm"> Restxq </a></li>
+						<li><a ui-sref="app.item.server.xqdoc({view:'xqdoc'})"
+							class="btn btn-default btn-sm">XQdoc </a></li>
+						<li><a href="/dba/logs?loglist=%2F{{app.name}}&amp;sort="
+							target="logs" class="btn btn-default btn-sm">log</a></li>
+						<li><a href="/dba/logs?loglist=%2F{{app.name}}&amp;sort="
+                            target="logs" class="btn btn-default btn-sm">Entities</a></li>
+                         <li><a href="/dba/logs?loglist=%2F{{app.name}}&amp;sort="
+                            target="logs" class="btn btn-default btn-sm">Tasks</a></li>  	
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class=" col-md-4">
+			<div class="panel  panel-info panel-body">
+				<div class="panel-heading">
+					<h3 class="panel-title">Client</h3>
+				</div>
+				<div class="panel-body table-responsive">
+					<ul class="nav nav-pills nav-stacked">
+						<li><a
+							ui-sref="app.item.client.component({view:'component'})"
+							class="btn btn-default btn-sm">Components</a></li>
+						<li><a ui-sref="app.item.client.template({view:'template'})"
+							class="btn btn-default btn-sm"> Templates</a></li>
+						 	
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

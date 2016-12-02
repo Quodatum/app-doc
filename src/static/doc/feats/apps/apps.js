@@ -1,109 +1,182 @@
 // app info
-angular.module('quodatum.doc.apps',
-    [ 'ui.router', 'restangular', 'quodatum.services' ])
-    
-    .config(
+angular.module('quodatum.doc.apps', [ 'ui.router', 'quodatum.services' ])
+
+.config(
     [ '$stateProvider', '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
           $stateProvider
-          
+
           .state('app', {
             url : "/data/app",
             abstract : true,
-            template : '<ui-view>library</ui-view>'
+            template : '<ui-view>App list</ui-view>',
+            data : {
+              entity : "app"
+            }
           })
 
           .state('app.index', {
             url : "",
             templateUrl : '/static/doc/feats/apps/apps.xhtml',
-            controller : "AppsCtrl"
+            controller : "AppsCtrl",
+            ncyBreadcrumb : {
+              label : 'Apps'
+            }
           })
 
           .state('app.item', {
             url : "/:app",
-            templateUrl : '/static/doc/feats/apps/app1.xhtml',
-            controller : "AppCtrl"
+            abstract : true,
+            template : '<ui-view>App detail</ui-view>',
+            ncyBreadcrumb : {
+              label : '{{app.name}}'
+            }
+          })
+
+          .state('app.item.index', {
+            url : "",
+            templateUrl : '/static/doc/feats/apps/app-index.html',
+            controller : "AppCtrl",
+            ncyBreadcrumb : {
+              label : '{{$stateParams.app}}',
+              parent : 'app.index'
+            }
+          })
+
+          .state('app.item.client', {
+            url : "/client",
+            abstract : true,
+            template : '<ui-view>client</ui-view>',
+            ncyBreadcrumb : {
+              label : 'client',
+              parent : 'app.item.index'
+            }
+          })
+
+          .state('app.item.server', {
+            url : "/server",
+            abstract : true,
+            template : '<ui-view>server</ui-view>',
+            ncyBreadcrumb : {
+              label : 'server',
+              parent : 'app.item.index'
+            }
+          })
+
+          .state('app.item.server.rest', {
+            url : "/rest",
+            templateUrl : '/static/doc/feats/apps/app-rest.xhtml',
+            ncyBreadcrumb : {
+              label : 'restXQ'
+            },
+            controller : "RestCtrl"
+          })
+
+          // list components used
+          .state('app.item.client.component', {
+            url : "/component",
+            templateUrl : '/static/doc/feats/components/versions.html',
+            ncyBreadcrumb : {
+              label : 'Components'
+            },
+            controller : "CmpCtrlX",
+            data : {
+              entity : "component.version"
+            }
+              
           })
           
-           .state('app.item.client', {
-            url : "/client",
-            templateUrl : '/static/doc/feats/apps/client.xhtml',
-            controller : "AppCtrl2"
-          })
-            .state('app.item.server', {
-            url : "/server",
-            templateUrl : '/static/doc/feats/apps/server.xhtml',
-            controller : "AppCtrl2"
-          })
-            .state('app.item.view', {
-            url : "/view",
+          .state('app.item.client.template', {
+            url : "/:view",
             templateUrl : '/static/doc/feats/apps/app-view.xhtml',
-            controller : "AppCtrl2"
+            ncyBreadcrumb : {
+              label : 'view: {{$stateParams.view}}'
+            },
+            controller : "ScrollCtrl"
           })
+
+          .state('app.item.server.xqdoc', {
+            url : "/:view",
+            templateUrl : '/static/doc/feats/apps/app-view.xhtml',
+            ncyBreadcrumb : {
+              label : 'view: {{$stateParams.view}}'
+            },
+            controller : "ScrollCtrl"
+          })
+
+          .state('app.item.server.wadl', {
+            url : "/:view",
+            templateUrl : '/static/doc/feats/apps/app-view.xhtml',
+            ncyBreadcrumb : {
+              label : 'view: {{$stateParams.view}}'
+            },
+            controller : "ScrollCtrl"
+          })
+
         } ])
 
-
 // controllers
+.controller("CmpCtrlX",
+    [ "$scope", "$stateParams","DiceService", function($scope, $stateParams,DiceService) {
+      var app=$stateParams.app;
+      function update() {
+        DiceService.onelist('app', app,"component",$scope.params)
+        .then(function(d) {
+          $scope.apps = d;
+        });
+      }
+
+      DiceService.setup($scope, update);
+    } ])
+
+    
+.controller("RestCtrl",
+    [ "$scope", "DiceService", function($scope, DiceService) {
+      console.log("RestCtrl");
+
+      function update() {
+        /*
+         * Restangular.one("data").all('app') .getList($scope.params)
+         * .then(function(d){ //console.log("models..",d); $scope.apps=d; });
+         */
+      }
+      DiceService.setup($scope, update)
+    } ])
+
 .controller("AppsCtrl",
-    [ "$scope", "Restangular", function($scope, Restangular) {
+    [ "$scope", "DiceService", function($scope, DiceService) {
+       console.log("AppsCtrl2");
 
-      console.log("AppsCtrl2");
-      var bar = Restangular.one("meta").one("cvabar", "apps-bar");
-      bar.get().then(function(d) {
-        $scope.bar = d;
-      });
-      var applist = Restangular.one("data").all('app');
-      applist.getList().then(function(d) {
-        // console.log("AppsCtrl2", d);
-        $scope.apps = d;
-      });
+      function update() {
+        DiceService.list('app', $scope.params).then(function(d) {
+          // console.log("models..",d);
+          $scope.apps = d;
+        });
+      }
 
+      DiceService.setup($scope, update);
     } ])
 
 .controller(
     "AppCtrl",
-    [ "$scope", "$stateParams", "Restangular",
-        function($scope, $stateParams, Restangular) {
+    [ "$scope", "$stateParams", "DiceService",
+        function($scope, $stateParams, DiceService) {
           var app = $stateParams.app;
           console.log("AppCtrl", app);
-
-          var applist = Restangular.one("data").one('app', app);
-          applist.get().then(function(d) {
-            $scope.app = d.item;
-            console.log(">>", d);
-          });
-          var bar = Restangular.one("meta").one("cvabar", "app-bar");
-          bar.get().then(function(d) {
-            $scope.bar = d;
+          $scope.server = [ {
+            state : "app.item.server.wadl({view:'wadl'})",
+            label : "Endpoints"
+          }, {
+            state : "app.item.server.xqdoc({view:'xqdoc'})",
+            label : "XQdoc"
+          }, {
+            state : "app.item.server.wadl({view:'wadl'})",
+            label : "Endpoints"
+          } ]
+          DiceService.one('app', app).then(function(d) {
+            $scope.app = d;
+            // console.log(">>", d);
           });
         } ])
 
-.controller(
-    'AppCtrl2',
-    [ "$scope", "$stateParams", "ScrollService", "$log",
-        function($scope, $stateParams, ScrollService, $log) {
-          $log.log("View:", $stateParams.view);
-          var app = $stateParams.app;
-          var map = {
-            "xqdoc" : '/server/xqdoc',
-            "wadl" : '/server/wadl',
-            "components" : '/client/components',
-            "templates" : '/client/templates',
-            "xqdoc2" : 'doc/server'
-          };
-          $scope.view = $stateParams.view;
-          $scope.app = $stateParams.app;
-          var searchObject = $location.search(); // {path:"dd",type:"basex"}
-          console.log("search:", searchObject);
-          var target = "../../doc/app/" + app + map[$stateParams.view];
-          if (searchObject.path) {
-            target += "?path=" + $stateParams.path;
-          }
-          if (searchObject.type) {
-            target += "&type=" + searchObject.type;
-          }
-          $scope.inc = target;
-          console.log("TAR", target);
-          $scope.setTitle("docs");
-          $scope.scrollTo = ScrollService.scrollTo
-        } ]);
+;

@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace xquery = "http://basex.org/modules/xquery";
+module namespace xquery = "x-http://basex.org/modules/xquery";
 declare namespace bxerr = "http://basex.org/errors";
 
 (:~

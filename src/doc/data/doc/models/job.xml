@@ -1,0 +1,38 @@
+<entity name="job" xmlns="https://github.com/Quodatum/app-doc/entity">
+	<description>a BaseX job</description>
+	<!-- 
+	<job id="job1" type="XQuery" state="running" user="admin" duration="PT0.001S">
+  XQUERY jobs:list-details()
+</job>
+ -->
+	<namespace prefix="task"  uri="https://github.com/Quodatum/app-doc/task"/>
+	<fields>
+		<field name="id" type="xs:string">
+			<description>job id e.g 'job0'</description>
+			<xpath>@id</xpath>
+		</field>
+		<field name="type" type="xs:string">
+            <description>job type</description>
+            <xpath>@type</xpath>
+        </field>
+		<field name="state" type="xs:string">
+			<description>e.g running</description>
+			<xpath>@state</xpath>
+		</field>
+		<field name="user" type="xs:string">
+            <description>user</description>
+            <xpath>@user</xpath>
+        </field>
+        <field name="duration" type="xs:string">
+            <description>run time.</description>
+            <xpath>@duration</xpath>
+        </field>
+	</fields>
+	 <views>
+        <view name="filter">name description</view>
+    </views>
+	<iconclass>fa fa-cog </iconclass>
+	<data type="element(job)">
+jobs:list()[. != jobs:current()]  ! jobs:list-details(.)
+</data>
+</entity>

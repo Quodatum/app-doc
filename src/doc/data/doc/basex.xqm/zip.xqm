@@ -4,7 +4,7 @@
  : @author BaseX Team
  : @see http://docs.basex.org/wiki/Module_Library
  :)
-module namespace zip = "http://expath.org/ns/zip";
+module namespace zip = "x-http://expath.org/ns/zip";
 declare namespace experr = "http://expath.org/ns/error";
 
 (:~
