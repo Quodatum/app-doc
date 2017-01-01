@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2016-11-27T23:10:04.419Z 
+ : auto generated from xml files in entities folder at: 2017-01-01T23:02:54.319Z 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -31,23 +31,23 @@ declare variable $entity:list:=map {
       },
        "json":   map{ 
            "description": function($_ as element()) as element(description)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/description)!element description {  .} 
                  },
            "logo": function($_ as element()) as element(logo)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/logo)!element logo {  .} 
                  },
            "name": function($_ as element()) as element(name)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/name)!element name {  .} 
                  },
            "uri": function($_ as element()) as element(uri)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/('/' || name))!element uri {  .} 
                  },
            "version": function($_ as element()) as element(version)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/version)!element version {  .} 
                  } },
        
@@ -55,7 +55,7 @@ declare variable $entity:list:=map {
        { () },
        
        "views": map{ 
-       'list': 'name version description uri logo','filter': 'name description'
+       'id': 'name','list': 'name version description uri logo','filter': 'name description'
        }
    },
   "component.version": map{
@@ -73,19 +73,19 @@ declare variable $entity:list:=map {
       },
        "json":   map{ 
            "component": function($_ as element()) as element(component)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@name)!element component {  .} 
                  },
            "found": function($_ as element()) as element(found)? {
-            (: boolean :)
+            (: xs:boolean :)
                         fn:data($_/@found)!element found { attribute type {'boolean'}, .} 
                  },
            "status": function($_ as element()) as element(status)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@status)!element status {  .} 
                  },
            "version": function($_ as element()) as element(version)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@version)!element version {  .} 
                  } },
        
@@ -107,6 +107,7 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
        "home": function($_ as element()) as xs:string {$_/comp:home },
        "html": function($_ as element()) as element() {$_/. },
        "name": function($_ as element()) as xs:string {$_/@name },
+       "release": function($_ as element()) as xs:string* {$_/comp:release/@version/string() },
        "releases": function($_ as element()) as xs:integer {$_/count(comp:release) },
        "type": function($_ as element()) as xs:string {$_/comp:type } },
     
@@ -116,25 +117,34 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
       },
        "json":   map{ 
            "description": function($_ as element()) as element(description)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/comp:description)!element description {  .} 
                  },
            "home": function($_ as element()) as element(home)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/comp:home)!element home {  .} 
                  },
            "html": function($_ as element()) as element(html)? {
-            element html { attribute type {"string"},fn:serialize($_/.)} },
+            (: element() :)
+                        fn:data($_/.)!element html {  .} 
+                 },
            "name": function($_ as element()) as element(name)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@name)!element name {  .} 
                  },
+           "release": function($_ as element()) as element(release)* {
+            (: array of strings :)
+                   element release { 
+                        attribute type {"array"},
+                        $_/comp:release/@version/string()!element _ { attribute type {"string"}, .}
+                        } 
+                 },
            "releases": function($_ as element()) as element(releases)? {
-            (: number :)
+            (: xs:integer :)
                         fn:data($_/count(comp:release))!element releases { attribute type {'number'}, .} 
                  },
            "type": function($_ as element()) as element(type)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/comp:type)!element type {  .} 
                  } },
        
@@ -161,23 +171,23 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
       },
        "json":   map{ 
            "href": function($_ as element()) as element(href)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/"#/data/database/" || .)!element href {  .} 
                  },
            "modifiedDate": function($_ as element()) as element(modifiedDate)? {
-            (: string :)
+            (: xs:dateTime :)
                         fn:data($_/@modified-date)!element modifiedDate {  .} 
                  },
            "name": function($_ as element()) as element(name)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/.)!element name {  .} 
                  },
            "path": function($_ as element()) as element(path)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@path)!element path {  .} 
                  },
            "resources": function($_ as element()) as element(resources)? {
-            (: number :)
+            (: xs:integer :)
                         fn:data($_/@resources)!element resources { attribute type {'number'}, .} 
                  } },
        
@@ -207,21 +217,21 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
       },
        "json":   map{ 
            "doc": function($_ as element()) as element(doc)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/(if(wadl:method/wadl:doc) 
 			       then wadl:method/wadl:doc/text()
 			       else '' ))!element doc {  .} 
                  },
            "mediatype": function($_ as element()) as element(mediatype)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/wadl:method/wadl:response/wadl:representation/@mediaType)!element mediatype {  .} 
                  },
            "method": function($_ as element()) as element(method)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/wadl:method/@name)!element method {  .} 
                  },
            "path": function($_ as element()) as element(path)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@path)!element path {  .} 
                  } },
        
@@ -248,23 +258,23 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
       },
        "json":   map{ 
            "description": function($_ as element()) as element(description)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/ent:description)!element description {  .} 
                  },
            "name": function($_ as element()) as element(name)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@name)!element name {  .} 
                  },
            "parent": function($_ as element()) as element(parent)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/../../@name)!element parent {  .} 
                  },
            "type": function($_ as element()) as element(type)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@type)!element type {  .} 
                  },
            "xpath": function($_ as element()) as element(xpath)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/ent:xpath)!element xpath {  .} 
                  } },
        
@@ -299,49 +309,49 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
       },
        "json":   map{ 
            "code": function($_ as element()) as element(code)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/ent:data)!element code {  .} 
                  },
            "description": function($_ as element()) as element(description)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/ent:description)!element description {  .} 
                  },
            "fieldslink": function($_ as element()) as element(fieldslink)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/fn:concat("/data/entity/",@name,"/field"))!element fieldslink {  .} 
                  },
            "iconclass": function($_ as element()) as element(iconclass)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/ent:iconclass)!element iconclass {  .} 
                  },
            "modules": function($_ as element()) as element(modules)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/ent:module/concat("import module namespace ",@prefix,"='",@namespace,"';
 ")=>string-join())!element modules {  .} 
                  },
            "name": function($_ as element()) as element(name)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@name)!element name {  .} 
                  },
            "namespaces": function($_ as element()) as element(namespaces)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/ent:namespace/concat("declare namespace ",@prefix,"='",@uri,"';
 ")=>string-join())!element namespaces {  .} 
                  },
            "nfields": function($_ as element()) as element(nfields)? {
-            (: number :)
+            (: xs:integer :)
                         fn:data($_/fn:count(ent:fields/ent:field))!element nfields { attribute type {'number'}, .} 
                  },
            "parent": function($_ as element()) as element(parent)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/ent:parent/@name)!element parent {  .} 
                  },
            "parentlink": function($_ as element()) as element(parentlink)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/fn:concat("/data/entity/",ent:parent/@name))!element parentlink {  .} 
                  },
            "type": function($_ as element()) as element(type)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/ent:data/@type)!element type {  .} 
                  } },
        
@@ -366,11 +376,11 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
       },
        "json":   map{ 
            "name": function($_ as element()) as element(name)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/name)!element name {  .} 
                  },
            "path": function($_ as element()) as element(path)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/path)!element path {  .} 
                  } },
        
@@ -397,23 +407,23 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
       },
        "json":   map{ 
            "duration": function($_ as element()) as element(duration)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@duration)!element duration {  .} 
                  },
            "id": function($_ as element()) as element(id)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@id)!element id {  .} 
                  },
            "state": function($_ as element()) as element(state)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@state)!element state {  .} 
                  },
            "type": function($_ as element()) as element(type)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@type)!element type {  .} 
                  },
            "user": function($_ as element()) as element(user)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/@user)!element user {  .} 
                  } },
        
@@ -439,19 +449,19 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
       },
        "json":   map{ 
            "sref": function($_ as element()) as element(sref)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/"app.item.index({'name':'benchx'})")!element sref {  .} 
                  },
            "title": function($_ as element()) as element(title)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/title)!element title {  .} 
                  },
            "type": function($_ as element()) as element(type)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/type)!element type {  .} 
                  },
            "uri": function($_ as element()) as element(uri)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/uri)!element uri {  .} 
                  } },
        
@@ -478,23 +488,23 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
       },
        "json":   map{ 
            "description": function($_ as element()) as element(description)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/xqdoc:module/xqdoc:comment/xqdoc:description)!element description {  .} 
                  },
            "name": function($_ as element()) as element(name)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/xqdoc:module/xqdoc:uri)!element name {  .} 
                  },
            "params": function($_ as element()) as element(params)? {
-            (: number :)
+            (: xs:integer :)
                         fn:data($_/count(descendant::xqdoc:variable))!element params { attribute type {'number'}, .} 
                  },
            "path": function($_ as element()) as element(path)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/fn:replace(db:path(.),"^modules/","doc/"))!element path {  .} 
                  },
            "xquery": function($_ as element()) as element(xquery)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/concat('/doc/data/file/read?path=' ,db:path(.)))!element xquery {  .} 
                  } },
        
@@ -512,6 +522,7 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
      "name": "xqmodule",
      "description": "An XQuery source code module",
      "access": map{ 
+       "app": function($_ as element()) as xs:string? {$_/(if(fn:starts-with(db:path(.),"apps/"))then fn:tokenize(db:path(.),"/")[2] else "") },
        "dbpath": function($_ as element()) as xs:string {$_/db:path(.) },
        "description": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:comment/xqdoc:description },
        "filename": function($_ as element()) as xs:string {$_/tokenize(base-uri(.),"/")[last()] },
@@ -519,10 +530,10 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
        "html": function($_ as element()) as element() {$_/xqdoc-html:create(.,"path",true()) },
        "icon": function($_ as element()) as xs:string? {$_/"./icon.svg" },
        "name": function($_ as element()) as xs:string? {$_/xqdoc:module/xqdoc:name },
-       "path": function($_ as element()) as xs:string {$_/(
+       "srcpath": function($_ as element()) as xs:string {$_/(
             if(starts-with(db:path(.),"basex.xqm/"))
             then "doc/data/" || db:path(.)
-            else "doc/" || substring-after(db:path(.),"modules/")
+            else  substring-after(db:path(.),"apps/")
             ) },
        "type": function($_ as element()) as xs:string {$_/(if(starts-with(db:path(.),"basex.xqm/"))
 			        then "basex" 
@@ -534,48 +545,54 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
          fn:contains($e,$q, 'http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive')
       },
        "json":   map{ 
+           "app": function($_ as element()) as element(app)? {
+            (: xs:string? :)
+                        fn:data($_/(if(fn:starts-with(db:path(.),"apps/"))then fn:tokenize(db:path(.),"/")[2] else ""))!element app {  .} 
+                 },
            "dbpath": function($_ as element()) as element(dbpath)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/db:path(.))!element dbpath {  .} 
                  },
            "description": function($_ as element()) as element(description)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/xqdoc:module/xqdoc:comment/xqdoc:description)!element description {  .} 
                  },
            "filename": function($_ as element()) as element(filename)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/tokenize(base-uri(.),"/")[last()])!element filename {  .} 
                  },
            "href": function($_ as element()) as element(href)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/("#/data/xqmodule/item?item=" || db:path(.)))!element href {  .} 
                  },
            "html": function($_ as element()) as element(html)? {
-            element html { attribute type {"string"},fn:serialize($_/xqdoc-html:create(.,"path",true()))} },
+            (: element() :)
+                        fn:data($_/xqdoc-html:create(.,"path",true()))!element html {  .} 
+                 },
            "icon": function($_ as element()) as element(icon)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/"./icon.svg")!element icon {  .} 
                  },
            "name": function($_ as element()) as element(name)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/xqdoc:module/xqdoc:name)!element name {  .} 
                  },
-           "path": function($_ as element()) as element(path)? {
-            (: string :)
+           "srcpath": function($_ as element()) as element(srcpath)? {
+            (: xs:string :)
                         fn:data($_/(
             if(starts-with(db:path(.),"basex.xqm/"))
             then "doc/data/" || db:path(.)
-            else "doc/" || substring-after(db:path(.),"modules/")
-            ))!element path {  .} 
+            else  substring-after(db:path(.),"apps/")
+            ))!element srcpath {  .} 
                  },
            "type": function($_ as element()) as element(type)? {
-            (: string :)
+            (: xs:string :)
                         fn:data($_/(if(starts-with(db:path(.),"basex.xqm/"))
 			        then "basex" 
 			        else xqdoc:module/@type))!element type {  .} 
                  },
            "uri": function($_ as element()) as element(uri)? {
-            (: string :)
+            (: xs:string? :)
                         fn:data($_/xqdoc:module/xqdoc:uri)!element uri {  .} 
                  } },
        

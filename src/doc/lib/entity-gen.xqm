@@ -112,9 +112,12 @@ declare function jsonfn($f as element(ent:field))
 as xs:string
 {
     let $name:=$f/@name/fn:string()
-    let $type:=json-type($f/@type)
-    let $json-type:=if($type="element") then "string" else $type
+    let $type:=$f/@type/fn:string()
     let $opt:=fn:contains($type,"?")
+    let $repeat:=fn:contains($type,"*")
+    let $json-type:=json-type($type)
+    let $mult:=if($repeat) then "*" else "?"
+    
     let $at:=if($json-type ne "string") 
             then "attribute type {'" || $json-type || "'},"
             else "" 
@@ -124,14 +127,28 @@ as xs:string
                         fn:data($_/{$f/ent:xpath })!element {$name} {{ {$at} .}} 
                 </field>
                 }
+    let $array:=function() as xs:string{
+                <field>(: array of strings :)
+                   element {$name} {{ 
+                        attribute type {{"array"}},
+                        $_/{$f/ent:xpath }!element _ {{ attribute type {{"string"}}, .}}
+                        }} 
+                </field>
+                }            
     (: serialize when element :)
     let $element:=function() as xs:string{
-                <field>element {$name} {{ attribute type {{"string"}},fn:serialize($_/{$f/ent:xpath})}}</field>
+                <field>element {$name} {{ 
+                     attribute type {{"string"}},
+                     fn:serialize($_/{$f/ent:xpath})}}</field>
                 } 
-                           
+                    
     return <field>
-           "{$name}": function($_ as element()) as element({$name})? {{
-            {if($type="element") then $element() else $simple()} }}</field>
+           "{$name}": function($_ as element()) as element({$name}){$mult} {{
+            {if($repeat)then
+             $array() 
+            else if($type="element") then 
+               $element() 
+             else $simple()} }}</field>
 };
 
 
@@ -139,11 +156,12 @@ as xs:string
 :)
 declare function json-type($xsd as xs:string) as xs:string{
 switch ($xsd)
-   case "element()" return "element" 
+   case "element()" return "string" 
    case "xs:boolean" return "boolean"
    case "xs:integer" return "number"
    case "xs:float" return "number"
    case "xs:double" return "number"
+   case "xs:string*" return "array"
    default return "string" 
 };
 

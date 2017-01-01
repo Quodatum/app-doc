@@ -8,11 +8,14 @@
 					alt="{{app.name}} - no logo" style="width: 64px; height: 64px;" />
 				<div class="media-body">
 					<h1 class="media-heading">
-						{{app.name}} <span class="btn-group"> <a href="{{app.uri}}"
-							target="app-{{app.name}}" title="Run app" class="btn btn-default">
-								<i class="fa fa-play-circle"></i>
-						</a>
-						</span>
+						{{app.name}} 
+						<div class="btn-group">
+	                        <a href="{{app.uri}}" target="app-{{app.name}}" title="Run app"
+	                            class="btn btn-default">
+	                            <span class="label label-default">{{app.version}}</span>
+	                            <i class="fa fa-play-circle"></i>
+	                        </a>
+	                    </div>
 					</h1>
 					<div>Description:{{app.description}}</div>
 				</div>
@@ -28,7 +31,7 @@
 				<div class="panel-body table-responsive">
 					<ul class="nav nav-pills nav-stacked">
 					<li><a
-                            ui-sref="app.item.client.component({view:'component'})"
+                            ui-sref="app.item.server.component({view:'component'})"
                             class="btn btn-default btn-sm">Components</a></li>
 						<li><a ui-sref="app.item.server.wadl({view:'wadl'})"
 							class="btn btn-default btn-sm"> Endpoints </a></li>

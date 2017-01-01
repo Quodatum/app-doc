@@ -14,7 +14,7 @@
 	<dependency name="quodatum-directives" version="0.1.0" />
 	<dependency name="quodatum-config" version="0.1.0" />
 	<dependency name="stacktrace" version="1.0.4" />
-	<dependency name="angular-ui-router" version="0.2.15" />
+	<dependency name="angular-ui-router" version="0.2.17" />
 	<dependency name="angular-breadcrumb" version="0.4.0" />
 	<dependency name="NgDexie" version="0.0.15" />
 	<dependency name="svg-pan-zoom" version="3.2.3" />

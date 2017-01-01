@@ -72,12 +72,25 @@ angular.module('quodatum.doc.apps', [ 'ui.router', 'quodatum.services' ])
             controller : "RestCtrl"
           })
 
+               // list components used
+          .state('app.item.server.component', {
+            url : "/component",
+            templateUrl : '/static/doc/feats/components/versions.html',
+            ncyBreadcrumb : {
+              label : 'Server components'
+            },
+            controller : "CmpCtrlX",
+            data : {
+              entity : "component.version"
+            }
+              
+          })
           // list components used
           .state('app.item.client.component', {
             url : "/component",
             templateUrl : '/static/doc/feats/components/versions.html',
             ncyBreadcrumb : {
-              label : 'Components'
+              label : 'Client components'
             },
             controller : "CmpCtrlX",
             data : {

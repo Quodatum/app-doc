@@ -47,6 +47,7 @@ function atask2($app as xs:string,$task as xs:string){
 (:~
  :  run a task
  :@param task 
+ :@param $mode "sync" "async"
  :)
 declare
 %updating  
@@ -58,11 +59,25 @@ function dotask2($app as xs:string,$task as xs:string,$mode as xs:string){
   let $_:=$mode=>fn:trace("mode")
   let $base:=get-base("doc")
    let $xq:=get-task($task)  
-   return if($mode="sync")
-          then ( eval:update($xq,$base,map{}),
-                db:output("[success] task " || $task))
-          else let $j:= jobs:eval($xq,map{},map{"base-uri":$base,"cache":fn:true()}) 
+   return (
+            task-log($app ,$task,$mode),
+            if($mode="sync") then
+               ( eval:update($xq,$base,map{}),
+                 db:output("[success] task " || $task))
+            else 
+               let $j:= jobs:eval($xq,map{},map{"base-uri":$base,"cache":fn:true()}) 
                return db:output("[success] async " || $j) 
+            )
+};
+
+declare %updating function task-log($app as xs:string,$task as xs:string,$mode as xs:string)
+as empty-sequence(){
+    let $history:=fn:doc("doc-doc/history.xml")/history
+    let $event:=<event id="{1+$history/@nextId}" when="{fn:current-dateTime()}">
+                    <task name="{$task}" mode="{$mode}"/>
+               </event>
+    return (insert node $event into $history,
+            replace value of node $history/@nextId with 1+$history/@nextId)
 };
 
 declare function get-base($app as xs:string){

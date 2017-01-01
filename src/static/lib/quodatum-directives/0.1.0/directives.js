@@ -2,7 +2,8 @@
  * filepick shows file directory tree
  * tree
  * filetree
- * apbDropdown generates sort by drop down.
+ * sortui generates sort by drop down.
+ * uipage
  */
 angular.module('quodatum.directives', [ 'ngResource', 'ui.bootstrap' ])
 // <filetree value=/>

@@ -1,6 +1,11 @@
 <div>
 	<cva-bar metadata="apps.metadata" params="params" state="$state"
-		single="true">buttons</cva-bar>
+		single="true">
+		<a href="data/xqmodule/xqdoc?item={{item}}" target="dn" class="btn btn-default">xqdoc</a>
+		<a href="data/xqmodule/xq?item={{item}}" target="dn" class="btn btn-default">xq</a>
+		<a href="data/xqmodule/parse?item={{item}}" target="dn" class="btn btn-default">parse</a>  
+		{{params}}
+		</cva-bar>
 	<div  compile-html="app.html">
 	</div>
 </div>

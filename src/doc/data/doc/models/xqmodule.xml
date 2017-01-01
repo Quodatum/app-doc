@@ -11,12 +11,12 @@
 			<description>ui view</description>
 			<xpath>("#/data/xqmodule/item?item=" || db:path(.))</xpath>
 		</field>
-		<field name="path" type="xs:string">
-            <description>path to source xquery on file system</description>
+		<field name="srcpath" type="xs:string">
+            <description>Path to source xquery on file system. Relative to webapp</description>
             <xpath>(
             if(starts-with(db:path(.),"basex.xqm/"))
             then "doc/data/" || db:path(.)
-            else "doc/" || substring-after(db:path(.),"modules/")
+            else  substring-after(db:path(.),"apps/")
             )</xpath>
         </field>
         <field name="dbpath" type="xs:string">
@@ -49,6 +49,10 @@
         <field name="icon" type="xs:string?">
             <description>svg icon based on type</description>
             <xpath>"./icon.svg"</xpath>
+        </field>
+        <field name="app" type="xs:string?">
+            <description>Name of app containing this code or empty</description>
+            <xpath>(if(fn:starts-with(db:path(.),"apps/"))then fn:tokenize(db:path(.),"/")[2] else "")</xpath>
         </field>
 	</fields>
 	   <views>

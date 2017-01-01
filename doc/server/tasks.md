@@ -6,6 +6,7 @@ They use the namespace "https://github.com/Quodatum/app-doc/task"
 
 (:~
  :  run a task
+ : @param $task 
  :)
 declare
 %updating  

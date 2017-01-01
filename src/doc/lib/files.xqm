@@ -9,7 +9,7 @@ module namespace df = 'quodatum.doc.file';
  : path to webapps with trailing slash 
  :)
 declare variable $df:base:= db:system()/globaloptions/webpath/fn:string()
-                             || file:dir-separator();
+                             || "/";
 
 (:~ 
  : default file list skip data

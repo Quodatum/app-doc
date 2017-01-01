@@ -21,8 +21,10 @@
 			<description>uri for the application logo if exists</description>
 			<xpath>logo</xpath>
 		</field>
+		
 	</fields>
 	<views>
+	   <view name="id">name</view>
 		<view name="list">name version description uri logo</view>
 		<view name="filter">name description</view>
 	</views>

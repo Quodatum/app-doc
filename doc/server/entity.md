@@ -48,6 +48,7 @@ $entity:list
       "data": function() as element(pkg:dependency)*
        { for $r in cmpx:comps()/comp:release
 return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true" status="ok"/> }
+     "views":map{"name":"fld list"}
    },
 ## sample data access
 ```xquery

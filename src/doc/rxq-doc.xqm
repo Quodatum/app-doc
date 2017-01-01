@@ -177,7 +177,57 @@ function test-data($q )
 };
 
 (:~
- : default data item lister
+ : xqmodule xqdoc item lister
+ :)
+declare
+%rest:GET %rest:path("doc/data/xqmodule/xqdoc")
+%output:method("xml")
+%rest:query-param("item", "{$item}")
+%rest:query-param("view", "{$view}","json")    
+function xqmodule-xqdoc(
+    $item as xs:string,
+    $view as xs:string
+){
+    let $doc:=fn:doc("/doc-doc/" || $item)
+    return $doc
+};
+
+(:~
+ : xqmodule xqdoc item lister
+ :)
+declare
+%rest:GET %rest:path("doc/data/xqmodule/parse")
+%output:method("xml")
+%rest:query-param("item", "{$item}")
+%rest:query-param("view", "{$view}","json")    
+function xqmodule-parse(
+    $item as xs:string,
+    $view as xs:string
+){
+    let $doc:=fn:doc("/doc-doc/" || $item)
+    return $doc
+};
+
+(:~
+ : xqmodule xqdoc item lister
+ :)
+declare
+%rest:GET %rest:path("doc/data/xqmodule/xq")
+%output:method("text")
+%rest:query-param("item", "{$item}")
+%rest:query-param("view", "{$view}","json")    
+function xqmodule-xq(
+    $item as xs:string,
+    $view as xs:string
+){
+    let $_:=fn:trace($item,"iiiiii")
+    let $entity:=$entity:list("xqmodule")
+    let $results:=$entity("data")()
+    let $results:=$results[$item=$entity?access?dbpath(.)]
+    return $entity?access?srcpath($results)=>df:webpath()=>file:read-text()
+};
+(:~
+ : xqmodule data item lister
  :)
 declare
 %rest:GET %rest:path("doc/data/xqmodule/item")
@@ -196,6 +246,7 @@ function xqmodule-item(
             then dice:one(fn:head($results),$entity)
             else fn:error()
 };
+
 (:~
  : default data item lister
  :)
@@ -204,6 +255,7 @@ declare
 %output:method("json")   
 function data-item($entity as xs:string,$name as xs:string ) 
 {
+    let $_:=fn:trace($entity,"$$$$$")
     let $entity:=$entity:list($entity)
     let $result:=dice:get($entity,$name)
     return dice:one($result,$entity)

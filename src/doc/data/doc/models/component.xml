@@ -30,6 +30,10 @@
 			<description>count of releases</description>
 			<xpath>count(comp:release)</xpath>
 		</field>
+		<field name="release" type="xs:string*">
+            <description>releases</description>
+            <xpath>comp:release/@version/string()</xpath>
+        </field>
 	</fields>
 	<views>
 		<view name="filter">name description</view>

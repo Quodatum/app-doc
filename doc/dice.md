@@ -12,7 +12,7 @@ Uses entity model
 $entity
 ?data  returns a function returning a sequence of all the data items
 ?access  returns as map keys are fields items are functions F(item) returning value of key
-?json map(xs:string,function()) 
+?json map(xs:string,function()) returns json
 ?filter  function($item,$q) 
 
 ## Client
