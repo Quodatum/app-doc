@@ -4,9 +4,12 @@ angular.module(
         'ya.treeview', 'ya.treeview.tpls', 'angular-growl', 'ncy-angular-breadcrumb',
         'm43nu.auto-height',
 		'quodatum.entity','quodatum.doc.tasks',
-        'quodatum.doc.apps', 'quodatum.doc.components', 'quodatum.doc.files',
-        'quodatum.doc.xqm', 'quodatum.doc.schema', 'quodatum.doc.directives',
-        'quodatum.doc.tools', 'quodatum.directives', 'quodatum.config' , 'quodatum.history'])
+        'quodatum.doc.apps', 'quodatum.doc.components', 
+        'quodatum.doc.files', 'quodatum.doc.jobs',
+        'quodatum.doc.xqm', 'quodatum.doc.schema', 
+        'quodatum.doc.tools','quodatum.doc.database',
+        'quodatum.doc.directives',
+       'quodatum.directives', 'quodatum.config' , 'quodatum.history'])
 
 .constant("apiRoot", "../../doc/")
 

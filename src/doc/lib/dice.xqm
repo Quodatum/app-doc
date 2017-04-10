@@ -120,7 +120,8 @@ declare function one($item,$entity as map(*))
 declare function one($item,$entity as map(*),$opts as map(*))
 {
   let $jsonf:= map:get($entity,"json")
-  let $fields:=if ($opts?fields) then fn:tokenize($opts?fields) else map:keys($jsonf)
+  let $fields:=if ($opts?fields) then fn:tokenize($opts?fields) else map:keys($jsonf)=>fn:trace("FF")
+  
   return  <json objects="json " >
   {$fields!$jsonf(.)($item)}
   </json> 

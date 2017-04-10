@@ -146,7 +146,7 @@ as xs:string
            "{$name}": function($_ as element()) as element({$name}){$mult} {{
             {if($repeat)then
              $array() 
-            else if($type="element") then 
+            else if($type="element()") then 
                $element() 
              else $simple()} }}</field>
 };

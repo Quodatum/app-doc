@@ -28,24 +28,23 @@ generic request parameters
 
 
 
-## cva bars 
-A UI component. Crumbs,Views,Actions
-
-
 ##xslt 
 Anchor
+```
 <a class="anchor" id="cmp-{@name}"/>
 <a ng-click="scrollTo('cmp-{@name}')">
     <xsl:value-of select="@name" />
 </a>
-
+```
+scroll
+```
 $scope.scrollTo = function(id) {
         //$log.log("DDDD", id);
         $location.hash(id);
         // call $anchorScroll()
         $anchorScroll();
     };
-          
+```         
 
 
 #restangular One vs All

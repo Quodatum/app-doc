@@ -31,6 +31,7 @@ declare
 function doc(){
      (: update model.xqm :)
      let $_:=fn:trace(fn:current-dateTime(),"*** START: ")
+     let $_:=rest:init()
      (: @TODO check db exist app status et :)                 
      return if(db:exists("doc-doc") )
             then render("main.xq",map{})
@@ -49,7 +50,7 @@ function doc-init(){
      (: update model.xqm  :)
      if(db:exists("doc-doc")) then (
          cnf:write-log("load-app-code~~~~~~~~~~~"),
-         qsr:dotask2("doc","load-app-code.xq","sync"),
+         qsr:dotask2("doc","load-app-xqdoc.xq","sync"),
          cnf:write-log("~~~~~~run tasks"),
          wadl-save(),
          db:output(<rest:forward>/doc</rest:forward>)
@@ -204,7 +205,7 @@ function xqmodule-parse(
     $item as xs:string,
     $view as xs:string
 ){
-    let $doc:=fn:doc("/doc-doc/" || $item)
+    let $doc:=fn:doc("/doc-doc/parse/" || $item || ".xqdoc")
     return $doc
 };
 
@@ -255,10 +256,12 @@ declare
 %output:method("json")   
 function data-item($entity as xs:string,$name as xs:string ) 
 {
-    let $_:=fn:trace($entity,"$$$$$")
+
     let $entity:=$entity:list($entity)
     let $result:=dice:get($entity,$name)
+    let $_:=fn:trace($result,"$$$$$")
     return dice:one($result,$entity)
+
 };
 
 

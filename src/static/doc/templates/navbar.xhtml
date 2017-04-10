@@ -31,6 +31,12 @@
 							</a>
 						</li>
 						<li role="presentation" class="dropdown-header">Server</li>
+						  <li>
+                            <a ui-sref="database.index">
+                                <i class="glyphicon glyphicon-th"></i>
+                                Databases
+                            </a>
+                        </li>
 						<li>
                             <a ui-sref="files.index">
                                 <i class="fa fa-folder-open"></i>
@@ -65,11 +71,13 @@
 							</a>
 						</li>
 						<li>
-							<a ui-sref="tasks.index">
+							<a ui-sref="task.index">
 								<i class="fa fa-arrow-circle-right"></i>
 								Tasks
 							</a>
 						</li>
+					
+						
 					</ul>
 				</li>
 				<li class="dropdown"  uib-dropdown="uib-dropdown">
@@ -79,6 +87,12 @@
 						<b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
+					<li>
+                            <a href="/dba" tabindex="-1" target="dba">
+                                <i class="glyphicon glyphicon-th"></i>
+                                DBA  <i class="fa fa-external-link-square"></i>
+                            </a>
+                        </li>
 						<li>
 							<a ui-sref="files2">
 								<i class="fa fa-folder-open"></i>

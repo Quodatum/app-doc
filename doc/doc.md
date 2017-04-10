@@ -1,5 +1,12 @@
 # about the doc application
 
+## to add entity
+
+* add to doc/data/doc/models
+* create feat/entity/entity.js
+* add script `feat/entity/entity.js` to `doc\templates\layout.xq`
+* add module name to ..
+
 ## entities
 
 UI http://localhost:8984/doc/#/data/{$entity}

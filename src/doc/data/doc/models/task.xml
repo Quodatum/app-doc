@@ -15,9 +15,9 @@
 			<description>description</description>
 			<xpath>xqdoc:module/xqdoc:comment/xqdoc:description</xpath>
 		</field>
-		<field name="xquery" type="xs:string">
-            <description>xquery code for this task.</description>
-            <xpath>concat('/doc/data/file/read?path=' ,db:path(.)) </xpath>
+		<field name="url" type="xs:string">
+            <description>URL for xquery source. base is webapp</description>
+            <xpath>fn:replace(db:path(.),'^apps/','')</xpath>
         </field>
         <field name="params" type="xs:integer">
             <description>Number of parameters.</description>

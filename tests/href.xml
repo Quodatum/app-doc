@@ -1,0 +1,14 @@
+<!-- urls for tests href.xqm -->
+<requests>
+	<request url="data/app" />
+	<request url="data/component" />
+	<request url="data/entity" />
+	<request url="data/endpoint" />
+	<request url="data/xqmodule" />
+	<request url="data/task" />
+	<request url="data/search-result" />
+	<request url="wadl" />
+	<request url="components/browser" >
+		<param name="fmt">json</param>
+	</request>
+</requests>

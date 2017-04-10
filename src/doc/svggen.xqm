@@ -11,8 +11,8 @@ xquery version "3.0";
 module namespace svggen = 'quodatum.doc.svg';
 declare default function namespace 'quodatum.doc.svg';
 import module namespace dotml="http://www.martin-loetzsch.de/DOTML";
-import module namespace ex-graphviz="http://expkg-zone58.github.io/ex-graphviz";
-declare namespace comp="https://github.com/Quodatum/app-doc/component";
+import module namespace ex-graphviz="expkg-zone58:image.graphviz";
+declare namespace cmpx="urn:quodatum:qd-cmpx:component";
 (:~ example dotml 
  :)
 declare variable $svggen:simple:=
@@ -48,12 +48,15 @@ as element()
 {
 let $dot:= 
  <dotml:graph  rankdir="LR" fontname="Arial" label="Components"> 
-		{(for $c in $pkg/comp:cmp
+		{(for $c in $pkg/cmpx:cmp
 		 let $id:=name($c/@name)
-		 return <dotml:node id="{$id}" label="{$c/@name}" shape="box" style="filled" fillcolor="yellow"
+		 let $colours:=map{"browser":"yellow","expath":"red"}
+		 let $type:=$c/cmpx:type/fn:string()
+		 return <dotml:node id="{$id}" label="{$c/@name}" shape="box" style="filled" 
+		 fillcolor="{$colours?($type)}"
 		 URL="javascript:alert('{$c/@name}')" />,
-		 for $d in $pkg/comp:cmp/comp:depends
-		 return <dotml:edge from="{name($d/../@name)}" to="{name($d)}"/>  )
+		 for $d in $pkg/cmpx:cmp/cmpx:dependency
+		 return <dotml:edge from="{name($d/../@name)}" to="{name($d/@name)}"/>  )
 		     }
         </dotml:graph>
 		

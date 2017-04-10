@@ -52,11 +52,13 @@ declare variable $debug-js as element()* external :=();
     <script src="{$static}feats/components/components.js"  ></script>
 	<script src="{$static}feats/history/history.js"  ></script>
     <script src="{$static}feats/files/files.js"  ></script>
+    <script src="{$static}feats/jobs/jobs.js"  ></script>
     <script src="{$static}feats/schema/schema.js"  ></script>
     <script src="{$static}feats/entity/entity.js"  ></script>
     <script src="{$static}feats/xqmodules/xqm.js"  ></script>
     <script src="{$static}feats/tools/tools.js"  ></script>
     <script src="{$static}feats/tasks/tasks.js"  ></script>
+    <script src="{$static}feats/database/database.js"  ></script>
     <script src="{$static}feats/directives/directives.js"  ></script>
 </body>
 </html>

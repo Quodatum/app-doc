@@ -15,7 +15,9 @@
                         <div class="pull-right" title="Status">
                         <span class="label label-info">{{app.status}}</span></div>
                     </h4>
-                    <p>{{app.version}}</p>
+                    <p> <a ui-sref="component.version.item({name:app.component,version:app.version})">
+                    {{app.version}}
+                    </a></p>
                    
                 </div>
 

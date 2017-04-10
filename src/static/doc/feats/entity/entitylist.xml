@@ -14,19 +14,14 @@
 						<span class="label label-info" ng-show="model.code" title="Has code">
 							<i class="fa fa-code"></i>
 						</span>
+						 <div class="pull-right">
+                          <a ng-click="$state.go(model.name+'.index')" 
+            title="Instances"><i class="fa fa-list-ul"></i></a>
+                        </div>
 					</h4>
 					<div>
 
 						<div>{{model.description}}</div>
-						<div>
-							<a href="./data/{{model.name}}" target="json">
-								<i class="fa fa-angle-double-left" title="Json data for {{model.name}}"></i>
-							</a>
-						</div>
-						<a href="#/data/{{model.name}}">
-							data
-						</a>
-
 					</div>
 				</div>
 

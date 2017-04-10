@@ -2,13 +2,17 @@
     <cva-bar ng-model="bar" single="true"></cva-bar>
 	<div class="row">
 	     <h3>Counter: <span class="badge " >{{repeat.count}}</span>.</h3>
-		<table class="table .col-md-6">
+		<table class="table ">
 			<thead>
 			
 				<tr>
 					<th>Option</th>
-					<th>Time</th>
-					<th>Repeat</th>
+					<th class="col-md-1">Median</th>
+					<th class="col-md-1">Avg</th>
+					<th class="col-md-1">Last</th>
+					<th class="col-md-1">Repeat</th>
+					<th class="col-md-1">min</th>
+					<th class="col-md-1">max</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -18,12 +22,24 @@
 						<button ng-click="incr()" class="btn btn-default">Update count</button>
 						<label>repeat: <input type="checkbox" ng-model="repeat.post" /></label>
 					</td>
-					<td>
-						<span class="badge badge-default">{{postMs}}</span>
+					<td class="col-md-1">
+                        <span class="badge badge-default">{{postValues.median}}</span>
+                    </td>
+					<td class="col-md-1">
+						<span class="badge badge-default">{{postValues.avg| number : 1}}</span>
 					</td>
-					<td>
-						..
-					</td>
+					<td class="col-md-1">
+                        <span class="badge badge-default">{{postValues.last}}</span>
+                    </td>
+					<td class="col-md-1">
+						<span class="badge badge-default">{{postValues.count}}</span>
+					</td >
+					<td class="col-md-1">
+                        <span class="badge badge-default">{{postValues.min}}</span>
+                    </td>
+                    <td class="col-md-1">
+                        <span class="badge badge-default">{{postValues.max}}</span>
+                    </td>
 				</tr>
                 <tr>
                     <td>
@@ -31,10 +47,22 @@
                         <label>repeat: <input type="checkbox" ng-model="repeat.get"  /></label>
                     </td>
                     <td>
-                        <span class="badge badge-default">{{getMs}}</span>
+                        <span class="badge badge-default">{{getValues.median}}</span>
                     </td>
                     <td>
-                        ..
+                        <span class="badge badge-default">{{getValues.avg| number : 1}}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-default">{{getValues.last}}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-default">{{getValues.count}}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-default">{{getValues.min}}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-default">{{getValues.max}}</span>
                     </td>
                 </tr>
 			</tbody>

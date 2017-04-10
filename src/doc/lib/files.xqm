@@ -40,11 +40,11 @@ file:list($s,fn:true(),$glob)
 (:~ true path from segment :)
 declare function df:webpath($path as xs:string)
  as xs:string{
- $df:base || $path
+   if(fn:starts-with($path, "/"))then fn:error("Relative path required") else file:resolve-path($path,$df:base)
 };
 
 (:~
- : list of all appications
+ : list of all applications
  :)
 declare function df:apps() as xs:string*
 {
@@ -109,6 +109,7 @@ function df:find($dir as xs:string,$pattern as xs:string) as element(_)*
 declare function df:read($dir) as item()* 
 {
     let $fdir:= df:webpath($dir)
+    let $_:=fn:trace($fdir,"df:read")
     return if(fn:doc-available($fdir))
            then fn:serialize(fn:doc($fdir))
            else if(fn:unparsed-text-available($fdir))

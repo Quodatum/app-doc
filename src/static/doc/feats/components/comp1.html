@@ -2,10 +2,43 @@
 	<cva-bar ng-model="bar" params="params" state="$state" single="true">
 	</cva-bar>
 	<div class="row">
-	<div>home:<a href="{{item.home}}" target="home">{{item.home}}</a></div>
-	Type:{{item.type}}
-	<ul><li>version</li></ul>
-	<p>description:{{item.description}}</p>
-	<pre>{{item.html}}</pre>
+		
+		<div class="panel panel-default col-sm-4">
+            <div class="panel-heading">
+               Type:{{item.type}}  <a href="{{item.home}}" target="home">{{item.home}}</a>
+            </div>
+            <div class="panel-body">
+                {{item.description}}
+            </div>
+        </div>
+		<div class="panel panel-default  col-sm-4">
+			<div class="panel-heading">
+				Releases: <span class="badge badge-default">{{item.releases}}</span>
+			</div>
+			<div class="panel-body">
+				<ul class="list-group">
+					<li ng-repeat="rel in item.release" class="list-group-item"><a
+						ui-sref="component.version.item({name:item.name,version:rel})"
+						href="{{rel}}">{{rel}}</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-default  col-sm-4">
+            <div class="panel-heading">
+                Dependencies: <span class="badge badge-default">{{item.dependencies}}</span>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li ng-repeat="dep in item.dependency" class="list-group-item"><a
+                        ui-sref="component.item({name:dep})"
+                        href="{{rel}}">{{dep}}</a></li>
+                </ul>
+            </div>
+        </div>
+		</div>
+		<div class="row">
+		<h2>Source</h2>
+		<pre>{{item.html}}</pre>
+		</div>
 	</div>
 </div>

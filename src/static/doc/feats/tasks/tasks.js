@@ -1,14 +1,14 @@
 // tasks
 angular.module('quodatum.doc.tasks',
-    [ 'ui.router', 'restangular', 'angular-growl' ])
+    [ 'ui.router', 'restangular', 'angular-growl', 'quodatum.services' ])
     
 .config(
     [ '$stateProvider', '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
           $stateProvider
 
-          .state('tasks', {
-            url : "/tasks",
+          .state('task', {
+            url : "/task",
             abstract : true,
             template : '<ui-view>tasks</ui-view>',
             ncyBreadcrumb : {
@@ -19,22 +19,22 @@ angular.module('quodatum.doc.tasks',
             }
           })
 
-          .state('tasks.index', {
+          .state('task.index', {
             url : "",
             templateUrl : '/static/doc/feats/tasks/tasks.html',
-            controller : "TaskCtrls",
+            controller : "TasksCtrl",
             ncyBreadcrumb : {
               label : 'tasks'
             }
           })
 
-          .state('tasks.item', {
+          .state('task.item', {
             url : "/:task",
             templateUrl : '/static/doc/feats/tasks/task.xhtml',
             reloadOnSearch : false,
             ncyBreadcrumb : {
               label : '{{$stateParams.task}}',
-              parent : 'tasks.index'
+              parent : 'task.index'
             },
             controller : "TaskCtrl"
           })
@@ -49,13 +49,13 @@ angular.module('quodatum.doc.tasks',
 
 // controllers
 .controller(
-    "TaskCtrls",
+    "TasksCtrl",
     [
         "$scope",
         "$location",
-        "TaskService",
+        "TaskService","DiceService",
         "growl",
-        function($scope, $location, TaskService, growl) {
+        function($scope, $location, TaskService,DiceService, growl) {
           console.log("task control");
           $scope.setTitle("Run Tasks");
           $scope.params = {
@@ -73,11 +73,6 @@ angular.module('quodatum.doc.tasks',
             })
           };
 
-          $scope.$watch('params', function(value) {
-            $location.search($scope.params);
-            update();
-          }, true);
-
           function update() {
             TaskService.list($scope.params).then(
                 function(d) {
@@ -85,6 +80,7 @@ angular.module('quodatum.doc.tasks',
                 });
           }
           ;
+          DiceService.setup($scope, update);
         } ])
 
 // details of a task
@@ -98,7 +94,7 @@ angular.module('quodatum.doc.tasks',
           TaskService.get(task).then(function(d) {
             console.log("task control", d);
             $scope.data = d;
-            TaskService.text(d.path).then(function(d) {
+            TaskService.text(d.url).then(function(d) {
               console.log("task text", d);
               $scope.source = d;
             });

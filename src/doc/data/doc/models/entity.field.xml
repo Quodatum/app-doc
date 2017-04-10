@@ -1,5 +1,5 @@
 <entity name="entity.field" xmlns="https://github.com/Quodatum/app-doc/entity">
-    <parent name="entity"/> 
+    <has-a name="entity"/> 
     <description>About an entity field. </description>
     <namespace prefix="ent"
         uri="https://github.com/Quodatum/app-doc/entity" />

@@ -1,0 +1,28 @@
+<div>
+	<cva-bar ng-model="bar" single="true" state="$state">
+	<li>
+		<button ng-click="run(data.name)" title="Run task"
+			class="btn btn-default">
+			<i class="fa fa-play-circle"></i>
+		</button>
+		<button ng-click="run(data.name,{mode:'async'})"
+			title="Run task async" class="btn btn-info">
+			<i class="fa fa-play-circle"></i>
+		</button>
+	</li>
+	</cva-bar>
+	<div>
+		Path: <a ui-sref="xqmodule.module({item:data.path})"
+			class="btn btn-default btn-sm"><i class="fa fa-file-code-o"></i>
+			{{data.path}}</a>
+	</div>
+	<div>params: {{data.params}}</div>
+	<div>description: {{data.description}}</div>
+	<div>
+		xquery:
+		<pre>
+            {{source}}
+        </pre>
+	</div>
+
+</div>

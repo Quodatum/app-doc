@@ -54,6 +54,6 @@ declare
 %output:method("text")   
 function read($path) as xs:string? 
 { 
-    df:read($path)
+    df:read($path=>fn:trace("READ"))
 };
 

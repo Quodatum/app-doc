@@ -1,5 +1,5 @@
 <entity name="component.version" xmlns="https://github.com/Quodatum/app-doc/entity">
-	 <parent name="component" />
+	 <has-a name="component" />
 	<description>A specific version of a component.</description>
 	<namespace prefix="pkg" uri="http://expath.org/ns/pkg" />
 	<namespace prefix="comp" uri="urn:quodatum:qd-cmpx:component" />   

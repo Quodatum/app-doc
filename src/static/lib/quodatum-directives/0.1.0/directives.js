@@ -197,7 +197,7 @@ angular.module('quodatum.directives', [ 'ngResource', 'ui.bootstrap' ])
     templateUrl : '../static/lib/quodatum-directives/0.1.0/sortui.html',
 
     controller : function($scope, $resource) {
-      $scope.field = "XXY";
+      $scope.field = "(none)";
       $scope.isopen = false;
 
       $scope._setSort = function(fld) {
@@ -282,6 +282,7 @@ angular.module('quodatum.directives', [ 'ngResource', 'ui.bootstrap' ])
       controller : function($scope){
         if($scope.state){
             var ent=$scope.state.current.data.entity;
+            //console.log("----- cvaBar: ",$scope.state);
               EntityService.fields(ent)
               .then(function(d){
                 var names=[];

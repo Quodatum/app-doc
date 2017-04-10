@@ -1,15 +1,11 @@
 <div>
 	<cva-bar params="params" state="$state" metadata="tasks.metadata">
-	<button ng-click="run('filelist-1.xq')" title="Run task"
-                            class="btn btn-default pull-right ">
-                            filelist1.xq<i class="fa fa-play-circle"></i>
-                        </button>
 	</cva-bar>
 	<div class="row">
 		<div ng-repeat="task in tasks" class="media col-sm-6 col-md-4 ">
 			<div class="qd-model well">
 			<div class="media-left">
-				<a ui-sref="tasks.item({task:task.name})" > <i
+				<a ui-sref="task.item({task:task.name})" > <i
 					class="pull-left fa fa-arrow-circle-right fa-5x"></i>
 				</a>
 				<div class="pull-left ">

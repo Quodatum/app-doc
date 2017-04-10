@@ -1,0 +1,33 @@
+<div>
+    <cva-bar metadata="databases.metadata" params="params" state="$state">
+           Db?  
+    </cva-bar>
+    <div class="row">
+
+        <div ng-repeat="database in databases" class="media col-sm-6 col-md-4 ">
+            <div class="qd-model well">
+                <a class="media-left" ui-sref="database.item({database:database.name})">
+                    <i class="{{model.iconclass}} fa-5x"></i>
+                </a>
+                <div class="media-body">
+
+                    <h4 class="media-heading">
+                        <a ui-sref="database.item({database:database.name})"> {{database.name}}</a>
+                        
+                        <div class="pull-right">
+                            <span class="label label-default" title="resources">{{database.resources}}</span>
+                        </div>
+                    </h4>
+                    <ul>
+                      <li>size: {{database.size}}</li>
+                         <li>modifiedDate: {{database.modifiedDate}}</li>
+                         <li>path: {{database.path}}</li>
+                    </ul>
+               
+                   
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

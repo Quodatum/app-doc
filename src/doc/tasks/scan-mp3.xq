@@ -3,7 +3,7 @@
  :)
 declare namespace task="https://github.com/Quodatum/app-doc/task";
 import module namespace df = "quodatum.doc.file" at "../lib/files.xqm";
-import module namespace tags = 'expkg-zone58.metadata.audio';
+import module namespace tags = 'expkg-zone58:audio.metadata';
 
 declare variable $db:="test-mp3";
 declare variable $path external:="C:\Users\andy\Music\David Myles\In The Nighttime- From Dinner Party to Dance Party Disc 1\01 What Would I Have to Do.mp3";

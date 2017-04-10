@@ -8,7 +8,7 @@
  :@version 0.1
  :)
 module namespace dr = 'quodatum.system.rest';
-declare default function namespace 'quodatum.system.rest'; 
+
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
 import module namespace rest = "http://exquery.org/ns/restxq";
 import module namespace eval = 'quodatum.eval' at "lib/eval.xqm";
@@ -29,7 +29,8 @@ declare variable $dr:tasks as element(xqdoc:xqdoc)*:=db:open("doc-doc")//xqdoc:x
 declare  
 %rest:GET %rest:path("/doc/task")
 %output:method("json") 
-function listtasks(){
+function dr:listtasks()
+{
    <json type="array"/>
 };
 
@@ -40,7 +41,8 @@ declare
 %output:method("json") 
 %rest:GET %rest:path("/doc/task/{$task}")
  %rest:query-param("app", "{$app}","doc")
-function atask2($app as xs:string,$task as xs:string){
+function dr:atask2($app as xs:string,$task as xs:string)
+{
    <json type="object"/>
 };
 
@@ -55,12 +57,13 @@ declare
 %rest:POST %rest:path("/doc/task/{$task}")
  %rest:query-param("mode", "{$mode}","sync")
  %rest:query-param("app", "{$app}","doc")
-function dotask2($app as xs:string,$task as xs:string,$mode as xs:string){
+function dr:dotask2($app as xs:string,$task as xs:string,$mode as xs:string)
+{
   let $_:=$mode=>fn:trace("mode")
-  let $base:=get-base("doc")
-   let $xq:=get-task($task)  
+  let $base:=dr:get-base("doc")
+   let $xq:=dr:get-task($task)  
    return (
-            task-log($app ,$task,$mode),
+            dr:task-log($app ,$task,$mode),
             if($mode="sync") then
                ( eval:update($xq,$base,map{}),
                  db:output("[success] task " || $task))
@@ -70,23 +73,34 @@ function dotask2($app as xs:string,$task as xs:string,$mode as xs:string){
             )
 };
 
-declare %updating function task-log($app as xs:string,$task as xs:string,$mode as xs:string)
-as empty-sequence(){
-    let $history:=fn:doc("doc-doc/history.xml")/history
-    let $event:=<event id="{1+$history/@nextId}" when="{fn:current-dateTime()}">
-                    <task name="{$task}" mode="{$mode}"/>
-               </event>
-    return (insert node $event into $history,
-            replace value of node $history/@nextId with 1+$history/@nextId)
+(:~
+ : run task
+ : @param $mode "sync" or "async"
+ :)
+declare %updating function dr:task-log($app as xs:string,$task as xs:string,$mode as xs:string)
+as empty-sequence()
+{
+    if(fn:doc-available("doc-doc/history.xml")) then
+        let $history:=fn:doc("doc-doc/history.xml")/history
+        let $event:=<event id="{1+$history/@nextId}" when="{fn:current-dateTime()}" app="{$app}">
+                        <task name="{$task}" mode="{$mode}"/>
+                   </event>
+        return (insert node $event into $history,
+                replace value of node $history/@nextId with 1+$history/@nextId)
+    else
+      ()
 };
 
-declare function get-base($app as xs:string){
+declare function dr:get-base($app as xs:string)
+{
  let $w:=file:path-to-uri(db:system()/globaloptions/webpath)
  return $w || $app || "/tasks/file"
 };
 
 (:~ xquery src for name :)
-declare function get-task($name) as xs:string{
+declare function dr:get-task($name) 
+as xs:string
+{
   let $f:=fn:resolve-uri("tasks/" || $name )
   let $xq:= fn:unparsed-text($f)
   return $xq 
@@ -99,7 +113,8 @@ declare function get-task($name) as xs:string{
 declare %updating  
 %rest:POST %rest:path("/doc/ping")
 %output:method("text")
-function dopost(){
+function dr:dopost()
+{
     (replace value of node $dr:state/hits with 1+$dr:state/hits,
             db:output(1+$dr:state/hits))
 };
@@ -110,14 +125,16 @@ function dopost(){
 declare 
 %output:method("text")  
 %rest:GET %rest:path("/doc/ping")
-function dostate(){
+function dr:dostate()
+{
   $dr:state/hits
 };
 
 (:~ 
  :all task names
  :)
-declare function tasks(){
+declare function dr:tasks()
+{
     for $t in $dr:tasks
     let $name:=$t/xqdoc:module/xqdoc:uri
     order by $name

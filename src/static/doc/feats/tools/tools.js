@@ -24,18 +24,21 @@ angular.module('quodatum.doc.tools',
 
 // controllers
 .controller("CmpCtrl",
-    [ "$scope", "Restangular", "growl", function($scope, Restangular, growl) {
+    [ "$scope",   function($scope) {
       console.log("comp control");
     }])
     
 // test update read and increment a counter
 .controller("PostCtrl",
-    [ "$scope", "Restangular", "growl", function($scope, Restangular, growl) {
+    [ "$scope", "Restangular","StatsService",function($scope, Restangular,StatsService) {
       console.log("post control");
+      $scope.getCount=StatsService.getInstance();
+      $scope.postCount=StatsService.getInstance();
       $scope.get = function() {
         var _start = performance.now();
         return Restangular.one("ping").get().then(function(r) {
-          $scope.getMs= Math.floor(performance.now() - _start);
+          var v=Math.floor(performance.now() - _start);
+          $scope.getValues =  $scope.getCount.log(v);;
           $scope.repeat.count=r;
           if($scope.repeat.get){
             $scope.get(); //does this leak??
@@ -46,7 +49,9 @@ angular.module('quodatum.doc.tools',
       $scope.incr = function() {
         var _start = performance.now();
         return Restangular.all("ping").post().then(function(r) {
-          $scope.postMs = Math.floor(performance.now() - _start);
+          var v= Math.floor(performance.now() - _start);
+
+          $scope.postValues =  $scope.postCount.log(v);;
           $scope.repeat.count=r;
           if($scope.repeat.post){
             $scope.incr();
@@ -80,4 +85,46 @@ angular.module('quodatum.doc.tools',
         return true;
       };
     } ])
+
+// track max,min,avg
+.service('StatsService', [ function() { 
+  var aCounter = function() {   
+  var data={count:0,max:null,min:null,total:0,median:0};
+  this.log=function(val){
+    data.last=val;
+    data.total+=val;
+    data.count+=1;
+    if(data.count==1){
+      data.max=val;
+      data.min=val;
+     data.median=val;
+    }else{
+      if(val<data.min)data.min=val;
+      if(val>data.max)data.max=val;
+    };
+    //https://jeremykun.com/2012/06/14/streaming-median/
+    if (data.median > val)
+      data.median-= 1
+    else if( data.median < val)
+      data.median += 1;
+
+    data.avg=data.total / data.count;
+   // console.log("stats",data);
+    return data;
+  };
+  this.clear=function(){
+    data={count:0,max:null,min:null,total:0};
+  };
+  this.values=function(){
+    return data;
+  };
+
+  };
+  return {
+    getInstance: function () {
+      return new aCounter();
+    }
+};
+}])
+
 ;

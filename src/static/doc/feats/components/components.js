@@ -50,7 +50,7 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
             }
           })
 
-          .state('component.version', {
+          .state('component.item.version', {
             url : "/version",
             abstract : true,
             ncyBreadcrumb : {
@@ -61,17 +61,27 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
               entity : "component.version"
             }
           })
-          
-          .state('component.version.index', {
+
+          .state('component.item.version.index', {
             url : "",
             templateUrl : '/static/doc/feats/components/versions.html',
             ncyBreadcrumb : {
-                label : 'versions',
-                parent : 'component.index'
+              label : 'versions',
+              parent : 'component.item'
             },
             controller : "VersCtrl",
           })
-          
+
+          .state('component.item.version.item', {
+            url : "/version/:version",
+            templateUrl : '/static/doc/feats/components/version.html',
+            ncyBreadcrumb : {
+              label : '{{$stateParams.version}}',
+              parent : 'component.item'
+            },
+            controller : "VerCtrl"
+          })
+
           .state('component.basex', {
             url : "/basex",
             abstract : true,
@@ -129,19 +139,12 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
 } ])
 
 .controller("TreeCtrl", [ '$scope', function($scope) {
-  console.log("TreeCtrl", $scope.$stateParams);
-  var panZoom;
-  $scope.gotsvg = function() {
-    var svg = document.getElementById("svghere").querySelector('svg');
-    panZoom = svgPanZoom(svg, {
-      zoomEnabled : true,
-      controlIconsEnabled : true,
-      fit : true,
-      center : true,
-      minZoom : 0.1
-    });
-  };
-
+  console.log("TreeCtrlXX: ", svgPanZoom);
+  var panZoom= svgPanZoom('#demo-tiger', {
+    zoomEnabled: true,
+    controlIconsEnabled: true
+  });
+  console.log("panZoom", panZoom);
   $scope.zoomIn = function(ev) {
     ev.preventDefault();
     panZoom.zoomIn();
@@ -205,22 +208,26 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
           DiceService.setup($scope, update);
         } ])
 
- .controller(
+.controller(
     // provides dice scrolling controller for components
     "VersCtrl",
-    [ '$stateParams', '$scope', 'DiceService',
+    [
+        '$stateParams',
+        '$scope',
+        'DiceService',
         function($stateParams, $scope, DiceService) {
 
           console.log("VersCtrl: ", $stateParams);
           function update() {
-            DiceService.list("component.version", $scope.params).then(function(d) {
-              $scope.apps = d;
-            });
+            DiceService.list("component.version", $scope.params).then(
+                function(d) {
+                  $scope.apps = d;
+                });
           }
           ;
           DiceService.setup($scope, update);
-        } ]) 
-        
+        } ])
+
 // controller for component=name
 .controller(
     "CompCtrl",
@@ -232,5 +239,20 @@ angular.module('quodatum.doc.components', [ 'ui.router', 'quodatum.services' ])
           applist.then(function(d) {
             $scope.item = d;
             console.log(">>CompCtrl", d);
+          });
+        } ])
+
+// controller for component=name
+.controller(
+    "VerCtrl",
+    [ 'DiceService', '$stateParams', '$scope',
+        function(DiceService, $stateParams, $scope) {
+          console.log("VerCtrl",$stateParams);
+          var name = $stateParams.name;
+          var rel = $stateParams.version;
+          var applist = DiceService.one('component', name);
+          applist.then(function(d) {
+            $scope.item = d;
+            console.log(">>VerCtrl", d);
           });
         } ]);

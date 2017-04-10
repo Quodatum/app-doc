@@ -12,12 +12,12 @@ module namespace doc = 'quodatum.doc';
 declare default function namespace 'quodatum.doc';
 import module namespace web = 'quodatum.web.utils4' at 'lib/webutils.xqm';
 import module namespace svggen = 'quodatum.doc.svg' at 'svggen.xqm';
-
+import module namespace cmpx="quodatum.cmpx";
 declare namespace wadl="http://wadl.dev.java.net/2009/02";
 declare namespace pkg="http://expath.org/ns/pkg";
 declare namespace xqdoc="http://www.xqdoc.org/1.0";
 
-declare namespace comp="https://github.com/Quodatum/app-doc/component";
+
 
 declare variable $doc:repopath:=db:system()/globaloptions/repopath;
 (:~ 
@@ -135,7 +135,8 @@ declare function rxq-fns($xqd as element(xqdoc:xqdoc)) as element(xqdoc:function
 declare function component-render(
                         $fmt as xs:string) 
 {
-  component-render($fmt,fn:doc("data/doc/components.xml")/comp:components) 
+  let $d:=<cmpx:components>{cmpx:comps()}</cmpx:components> 
+  return component-render($fmt,$d) 
 }; 
 
 declare function component-render(
