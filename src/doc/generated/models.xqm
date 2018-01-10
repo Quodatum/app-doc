@@ -1,5 +1,5 @@
 (: entity access maps 
- : auto generated from xml files in entities folder at: 2017-03-06T12:42:40.42Z 
+ : auto generated from xml files in entities folder at: 2017-08-23T10:07:17.643+01:00 
  :)
 
 module namespace entity = 'quodatum.models.generated';
@@ -60,7 +60,7 @@ declare variable $entity:list:=map {
    },
   "basexlog": map{
      "name": "basexlog",
-     "description": "BaseX log entry",
+     "description": "BaseX log entry ",
      "access": map{ 
        "address": function($_ as element()) as xs:string {$_/@address },
        "text": function($_ as element()) as xs:string {$_/. },
@@ -133,8 +133,10 @@ declare variable $entity:list:=map {
                  } },
        
       "data": function() as element(pkg:dependency)*
-       { for $r in cmpx:comps()/comp:release
-return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true" status="ok"/> },
+       { 
+for $r in cmpx:comps()/comp:release
+return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true" status="ok"/>
+ },
        
        "views": map{ 
        'filter': 'component'
@@ -144,7 +146,8 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
      "name": "component",
      "description": "A software component. Includes Javascript libraries
 		and EXPath packages. Components are managed through the qd-cmpx
-		component.",
+		component.
+	",
      "access": map{ 
        "dependencies": function($_ as element()) as xs:integer {$_/count(comp:dependency) },
        "dependency": function($_ as element()) as xs:string* {$_/comp:dependency/@name/string() },
@@ -266,7 +269,7 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
    },
   "endpoint": map{
      "name": "endpoint",
-     "description": "A WADL type wadl:resource",
+     "description": "A WADL type wadl:resource ",
      "access": map{ 
        "doc": function($_ as element()) as xs:string {$_/(if(wadl:method/wadl:doc) 
 			       then wadl:method/wadl:doc/text()
@@ -310,7 +313,7 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
    },
   "entity.field": map{
      "name": "entity.field",
-     "description": "About an entity field.",
+     "description": "About an entity field. ",
      "access": map{ 
        "description": function($_ as element()) as xs:string {$_/ent:description },
        "name": function($_ as element()) as xs:string {$_/@name },
@@ -353,7 +356,8 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
    },
   "entity": map{
      "name": "entity",
-     "description": "About an entity i.e. something described in this framework",
+     "description": "About an entity i.e. something described in this framework
+	",
      "access": map{ 
        "code": function($_ as element()) as xs:string? {$_/ent:data },
        "description": function($_ as element()) as xs:string {$_/ent:description },
@@ -494,7 +498,9 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                  } },
        
       "data": function() as element(job)*
-       { jobs:list()[. != jobs:current()]  ! jobs:list-details(.) },
+       { 
+jobs:list()[. != jobs:current()]  ! jobs:list-details(.)
+ },
        
        "views": map{ 
        'filter': 'name description'
@@ -575,10 +581,12 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                  } },
        
       "data": function() as element(xqdoc:xqdoc)*
-       { collection("doc-doc")//xqdoc:xqdoc[
+       { 
+collection("doc-doc")//xqdoc:xqdoc[
   xqdoc:namespaces/xqdoc:namespace/@uri="https://github.com/Quodatum/app-doc/task"
  and xqdoc:module/@type="main"
-] },
+]
+ },
        
        "views": map{ 
        'filter': 'name description'
@@ -663,7 +671,8 @@ return <pkg:dependency  name="{$r/../@name}" version="{$r/@version}" found="true
                  } },
        
       "data": function() as element(xqdoc:xqdoc)*
-       { collection("doc-doc")/xqdoc:xqdoc },
+       { collection("doc-doc")/xqdoc:xqdoc
+	 },
        
        "views": map{ 
        'id': 'dbpath','list': 'name html','filter': 'name description'

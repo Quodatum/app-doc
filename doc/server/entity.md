@@ -72,7 +72,7 @@ let $data:= $e("data")()[1] (: get first :)
 return $data
 ``` 
 
-field access
+### field access
 ```
 declare  base-uri "C:/Users/andy/workspace/app-doc/src/";
 import module namespace entity = 'quodatum.models.generated' at "doc/generated/models.xqm";
@@ -83,3 +83,4 @@ let $e:=$entity:list("component") (: get task definition :)
 let $data:= $e("data")()[1] (: get first :)
 return $e?json?html($data)
 ```
+### with dice
